@@ -62,6 +62,7 @@ fun RegisterText(modifier: Modifier = Modifier) {
     var password by remember { mutableStateOf(TextFieldValue("")) }
     var emailError by remember { mutableStateOf(false) }
     var passwordError by remember { mutableStateOf(false) }
+    //hola
 
     Column(
         modifier = modifier
@@ -114,6 +115,7 @@ fun RegisterText(modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(16.dp))
         Button(
             onClick = {
+
 
             },
             modifier = Modifier.fillMaxWidth()
