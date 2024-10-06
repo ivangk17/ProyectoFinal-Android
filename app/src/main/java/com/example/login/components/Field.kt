@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.input.VisualTransformation
 import com.example.login.screen.isEmailValid
 
 @Composable
@@ -24,7 +25,9 @@ fun Field(
     errorMessage: String,
     isValid: (String) -> Boolean,
     keyboardType: KeyboardType = KeyboardType.Text,
-    imeAction: ImeAction = ImeAction.Next
+    imeAction: ImeAction = ImeAction.Next,
+    visualTransformation: VisualTransformation = VisualTransformation.None
+
 ) {
     var isError by remember { mutableStateOf(false) }
 
@@ -40,7 +43,8 @@ fun Field(
             keyboardType = keyboardType,
             imeAction = imeAction
         ),
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
+        visualTransformation = visualTransformation
     )
     if (isError) {
         Text(

@@ -27,6 +27,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -120,7 +121,8 @@ fun RegisterText(modifier: Modifier = Modifier, navController: NavController) {
             errorMessage = "La contraseña debe tener al menos 4 caracteres",
             isValid = { it.length >= 4 },
             keyboardType = KeyboardType.Password,
-            imeAction = ImeAction.Done
+            imeAction = ImeAction.Done,
+            visualTransformation = LastCharVisibleTransformation()
         )
         Spacer(modifier = Modifier.height(16.dp))
         Button(
