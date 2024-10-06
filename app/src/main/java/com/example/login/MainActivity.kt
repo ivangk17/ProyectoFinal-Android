@@ -1,6 +1,8 @@
 package com.example.login
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -27,6 +29,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -34,7 +37,12 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.login.ui.theme.LoginTheme
-
+import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,9 +59,30 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
 fun isEmailValid(email: String): Boolean {
     return Patterns.EMAIL_ADDRESS.matcher(email).matches()
+}
+
+suspend fun handleLogin(user: User, context: Context) {
+    try {
+        val response = RetrofitClient.apiService.login(user)
+        Toast.makeText(context, "Login exitoso, Token: ${response.token}", Toast.LENGTH_SHORT).show()
+    } catch (e: Exception) {
+        val errorMessage = when (e) {
+            is HttpException -> {
+                val errorBody = e.response()?.errorBody()?.string()
+                val errorResponse = try {
+                    Gson().fromJson(errorBody, ErrorResponse::class.java)
+                } catch (jsonException: JsonSyntaxException) {
+                    ErrorResponse(errorBody ?: "Error desconocido")
+                }
+                errorResponse?.message ?: "Error desconocido"
+            }
+            else -> e.message ?: "Error desconocido"
+        }
+        Log.e("TAG", "Error en la ejection: $errorMessage", e)
+        Toast.makeText(context, "Error al hacer login, error: $errorMessage", Toast.LENGTH_SHORT).show()
+    }
 }
 
 @Composable
@@ -62,9 +91,10 @@ fun RegisterText(modifier: Modifier = Modifier) {
     var password by remember { mutableStateOf(TextFieldValue("")) }
     var emailError by remember { mutableStateOf(false) }
     var passwordError by remember { mutableStateOf(false) }
-    //hola
+    val context = LocalContext.current
 
     Column(
+
         modifier = modifier
             .fillMaxSize()
             .padding(16.dp),
@@ -115,8 +145,10 @@ fun RegisterText(modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(16.dp))
         Button(
             onClick = {
-
-
+                val user = User(email.text, password.text)
+                CoroutineScope(Dispatchers.Main).launch {
+                    handleLogin(user, context)
+                }
             },
             modifier = Modifier.fillMaxWidth()
         ) {
