@@ -1,10 +1,11 @@
-package com.example.login.screen
-
-import android.util.Log
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import com.example.login.R
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -14,16 +15,18 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.login.Api
 import com.example.login.Poliza
+import com.example.login.RetrofitClient
 import com.example.login.tokens.Token
 import com.example.login.tokens.Utility
 import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 @Composable
 fun HomeScreen(navController: NavController) {
@@ -33,34 +36,24 @@ fun HomeScreen(navController: NavController) {
 
     LaunchedEffect(Unit) {
         scope.launch {
-            val retrofit = Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:3000")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-
-            val api = retrofit.create(Api::class.java)
-            val response = api.getPolizas("Bearer ${Token.token}")
-
+            val response = RetrofitClient.apiService.getPolizas("Bearer ${Token.token}")
             if (response.isSuccessful) {
                 polizas = response.body()
             } else {
-                Log.e("HomeScreen", "Error fetching polizas: ${response.errorBody()}")
+                // Manejo de error
             }
         }
     }
 
     Column(
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         if (polizas != null) {
+            // Recorremos las pólizas y mostramos cada una en una tarjeta
             polizas!!.forEach { poliza ->
-                Text(
-                    text = "Poliza: ${poliza.dominio}",
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold
-                )
+                PolizaCard(poliza)
             }
         } else {
             Text(
@@ -69,5 +62,57 @@ fun HomeScreen(navController: NavController) {
                 fontWeight = FontWeight.Bold
             )
         }
+    }
+}
+
+@Composable
+fun PolizaCard(poliza: Poliza) {
+    Card(
+        shape = RoundedCornerShape(12.dp),
+        modifier = Modifier
+            .padding(8.dp)
+            .fillMaxWidth(),
+        elevation = CardDefaults.cardElevation(4.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            // Aquí debes colocar el ícono del vehículo, según corresponda
+            Image(
+                painter = painterResource(id = getVehicleIcon(poliza.dominio)), // Esto es un ejemplo, ajusta según tu recurso
+                contentDescription = "Vehicle Icon",
+                contentScale = ContentScale.Fit,
+                modifier = Modifier
+                    .size(48.dp)
+                    .padding(end = 16.dp)
+            )
+
+            Column {
+                Text(
+                    text = "${poliza.dominio} - ${"poliza.marca"} ${"poliza.modelo"}",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black
+                )
+                Text(
+                    text = "Patente: ${poliza.dominio}",
+                    fontSize = 16.sp,
+                    color = Color.Gray
+                )
+            }
+        }
+    }
+}
+
+// Función auxiliar para obtener el ícono correspondiente al vehículo
+@Composable
+fun getVehicleIcon(dominio: String): Int {
+    return if (dominio.contains("Camion", ignoreCase = true)) {
+        R.drawable.ic_camion // El ícono del camión
+    } else {
+        R.drawable.ic_auto // El ícono del auto
     }
 }
