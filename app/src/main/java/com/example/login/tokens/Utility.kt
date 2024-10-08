@@ -1,6 +1,6 @@
 package com.example.login.tokens
 import com.auth0.android.jwt.JWT
-import com.example.login.User
+import com.example.login.data.models.User
 
 class Utility {
 

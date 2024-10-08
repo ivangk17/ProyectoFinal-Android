@@ -1,4 +1,4 @@
-package com.example.login
+package com.example.login.utilities
 
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.OffsetMapping

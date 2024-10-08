@@ -1,9 +1,9 @@
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import com.example.login.R
 import androidx.compose.runtime.Composable
@@ -22,8 +22,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.login.Poliza
-import com.example.login.RetrofitClient
+import com.example.login.components.PolizaCard
+import com.example.login.data.models.Poliza
+import com.example.login.data.network.RetrofitClient
 import com.example.login.tokens.Token
 import com.example.login.tokens.Utility
 import kotlinx.coroutines.launch
@@ -40,7 +41,7 @@ fun HomeScreen(navController: NavController) {
             if (response.isSuccessful) {
                 polizas = response.body()
             } else {
-                // Manejo de error
+                    Log.e("HomeScreen", "Error fetching polizas: ${response.errorBody()?.string()}")
             }
         }
     }
@@ -65,54 +66,4 @@ fun HomeScreen(navController: NavController) {
     }
 }
 
-@Composable
-fun PolizaCard(poliza: Poliza) {
-    Card(
-        shape = RoundedCornerShape(12.dp),
-        modifier = Modifier
-            .padding(8.dp)
-            .fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(4.dp)
-    ) {
-        Row(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            // Aquí debes colocar el ícono del vehículo, según corresponda
-            Image(
-                painter = painterResource(id = getVehicleIcon(poliza.dominio)), // Esto es un ejemplo, ajusta según tu recurso
-                contentDescription = "Vehicle Icon",
-                contentScale = ContentScale.Fit,
-                modifier = Modifier
-                    .size(48.dp)
-                    .padding(end = 16.dp)
-            )
 
-            Column {
-                Text(
-                    text = "${poliza.dominio} - ${"poliza.marca"} ${"poliza.modelo"}",
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black
-                )
-                Text(
-                    text = "Patente: ${poliza.dominio}",
-                    fontSize = 16.sp,
-                    color = Color.Gray
-                )
-            }
-        }
-    }
-}
-
-// Función auxiliar para obtener el ícono correspondiente al vehículo
-@Composable
-fun getVehicleIcon(dominio: String): Int {
-    return if (dominio.contains("Camion", ignoreCase = true)) {
-        R.drawable.ic_camion // El ícono del camión
-    } else {
-        R.drawable.ic_auto // El ícono del auto
-    }
-}

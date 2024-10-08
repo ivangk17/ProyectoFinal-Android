@@ -1,6 +1,8 @@
-package com.example.login
+package com.example.login.data.network
 
-import android.telecom.Call
+import com.example.login.data.models.LoginResponse
+import com.example.login.data.models.Poliza
+import com.example.login.data.models.User
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
