@@ -1,7 +1,8 @@
 package com.example.login.navigation
 
 object Rutas {
-    const val loginScreen = "loginScreen"
-    const val homeScreen = "homeScreen"
+    const val LOGIN_SCREEN = "loginScreen"
+    const val HOME_SCREEN = "homeScreen"
+    const val  POLIZA_DETALLE_SCREEN = "polizaDetalleScreen"
 
 }

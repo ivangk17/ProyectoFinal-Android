@@ -51,7 +51,7 @@ suspend fun handleLogin(user: User, context: Context, navController: NavControll
         val response = RetrofitClient.apiService.login(user)
         Token.token = response.token
         Toast.makeText(context, "Login exitoso, Token: ${response.token}", Toast.LENGTH_SHORT).show()
-        navController.navigate(route = Rutas.homeScreen)
+        navController.navigate(route = Rutas.HOME_SCREEN)
     } catch (e: Exception) {
         val errorMessage = when (e) {
             is HttpException -> {

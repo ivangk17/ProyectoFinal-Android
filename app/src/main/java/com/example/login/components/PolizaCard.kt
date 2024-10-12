@@ -1,6 +1,7 @@
 package com.example.login.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,12 +23,13 @@ import androidx.compose.ui.unit.sp
 import com.example.login.data.models.Poliza
 
 @Composable
-fun PolizaCard(poliza: Poliza) {
+fun PolizaCard(poliza: Poliza, onClick: () -> Unit) {
     Card(
         shape = RoundedCornerShape(12.dp),
         modifier = Modifier
             .padding(8.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable { onClick() },
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
         Row(

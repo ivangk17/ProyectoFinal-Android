@@ -13,8 +13,12 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.login.ui.viewmodels.HomeViewModel
 import com.example.login.components.PolizaCard
+import com.example.login.navigation.Rutas
 import com.example.login.tokens.Token
 import com.example.login.tokens.Utility
+import com.google.gson.Gson
+
+val gson = Gson()
 
 @Composable
 fun HomeScreen(navController: NavController, homeViewModel: HomeViewModel) {
@@ -34,7 +38,10 @@ fun HomeScreen(navController: NavController, homeViewModel: HomeViewModel) {
         if (polizas.isNotEmpty()) {
         // Recorremos las pólizas y mostramos cada una en una tarjeta
             polizas.forEach { poliza ->
-                PolizaCard(poliza)
+                PolizaCard(poliza){
+                    val polizaJson = gson.toJson(poliza)
+                    navController.navigate("${Rutas.POLIZA_DETALLE_SCREEN}/$polizaJson")
+                }
             }
         } else {
             Text(
