@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Poliza(
     @SerializedName("_id")
-    val id: Int,
+    val id: String,
     val dominio: String
 
 )
