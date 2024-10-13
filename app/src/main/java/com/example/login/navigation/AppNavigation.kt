@@ -2,7 +2,9 @@ package com.example.login.navigation
 
 import com.example.login.ui.screens.HomeScreen
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -14,13 +16,33 @@ import com.example.login.data.network.GetServicePolizas
 import com.example.login.data.network.RetrofitClient
 import com.example.login.ui.screens.LoginScreen
 import com.example.login.ui.screens.PolizaDetailsScreen
+import com.example.login.ui.screens.SolicitidPolizaScreen
 import com.example.login.ui.viewmodels.PolizaDetailsViewModel
-import com.google.gson.Gson
+import com.example.login.ui.viewmodels.SolicitudPolizaViewModel
+import com.example.login.utilities.obtenerObjetoDeNavegacion
+
+fun NavGraphBuilder.polizaComposable(
+    route: String,
+    viewModelFactory: () -> ViewModel,
+    content: @Composable (Poliza, ViewModel) -> Unit
+) {
+    composable(
+        route = "$route/{polizaJson}",
+        arguments = listOf(navArgument("polizaJson") { type = NavType.StringType })
+    ) { backStackEntry ->
+        val poliza = obtenerObjetoDeNavegacion<Poliza>(backStackEntry, "polizaJson")
+        if (poliza != null) {
+            val viewModel = viewModelFactory()
+            content(poliza, viewModel)
+        }
+    }
+}
 
 
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
+
     NavHost(navController = navController, startDestination = Rutas.LOGIN_SCREEN, builder = {
         composable(Rutas.HOME_SCREEN) {
             val homeViewModel: HomeViewModel = viewModel(
@@ -35,22 +57,25 @@ fun AppNavigation() {
         composable(Rutas.LOGIN_SCREEN) {
             LoginScreen(navController)
         }
-        composable(
-            route= "${Rutas.POLIZA_DETALLE_SCREEN}/{polizaJson}",
-            arguments = listOf(navArgument("polizaJson") { type = NavType.StringType })
-        ) {
-                backStackEntry ->
-            val gson = Gson()
-            val polizaJson = backStackEntry.arguments?.getString("polizaJson") ?: ""
-            val poliza = gson.fromJson(polizaJson, Poliza::class.java)
 
-            val polizaDetailsViewModel : PolizaDetailsViewModel = viewModel(
-                factory = PolizaDetailsViewModel.provideFactory(
-                    GetServicePolizas(RetrofitClient.apiService)
-                )
-            )
+        polizaComposable(
+            route = Rutas.POLIZA_DETALLE_SCREEN,
+            viewModelFactory = {
+                PolizaDetailsViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
+                    .create(PolizaDetailsViewModel::class.java)
+            }
+        ) { poliza, viewModel ->
+            PolizaDetailsScreen(poliza, viewModel)
+        }
 
-            PolizaDetailsScreen(poliza, polizaDetailsViewModel)
+        polizaComposable(
+            route = Rutas.SOLICITUD_POLIZA_SCREEN,
+            viewModelFactory = {
+                SolicitudPolizaViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
+                    .create(SolicitudPolizaViewModel::class.java)
+            }
+        ) { poliza, viewModel ->
+            SolicitidPolizaScreen(poliza, viewModel)
         }
         }
     )
