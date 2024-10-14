@@ -15,8 +15,8 @@ import com.example.login.ui.screens.LoginScreen
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Rutas.loginScreen, builder = {
-        composable(Rutas.homeScreen) {
+    NavHost(navController = navController, startDestination = Rutas.LoginScreen.ruta, builder = {
+        composable(Rutas.HomeScreen.ruta) {
             val homeViewModel: HomeViewModel = viewModel(
                 factory = HomeViewModel.provideFactory(
                     GetServicePolizas(RetrofitClient.apiService)
@@ -26,7 +26,7 @@ fun AppNavigation() {
             HomeScreen(navController, homeViewModel)
 
         }
-        composable(Rutas.loginScreen) {
+        composable(Rutas.LoginScreen.ruta) {
             LoginScreen(navController)
         }
         }

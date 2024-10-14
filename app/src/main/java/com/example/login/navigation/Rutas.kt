@@ -1,7 +1,7 @@
 package com.example.login.navigation
 
-object Rutas {
-    const val loginScreen = "loginScreen"
-    const val homeScreen = "homeScreen"
+sealed class Rutas(val ruta: String) {
+    object LoginScreen : Rutas("loginScreen")
+    object HomeScreen : Rutas("homeScreen")
 
 }
