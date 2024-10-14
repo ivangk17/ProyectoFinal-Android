@@ -1,7 +1,7 @@
 package com.example.login.data.network
 
 import com.example.login.data.models.LoginResponse
-import com.example.login.data.models.Poliza
+import com.example.login.data.models.poliza.Poliza
 import com.example.login.data.models.User
 import retrofit2.Response
 import retrofit2.http.Body

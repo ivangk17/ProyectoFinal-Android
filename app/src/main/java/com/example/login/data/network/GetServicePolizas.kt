@@ -1,6 +1,6 @@
 package com.example.login.data.network
 
-import com.example.login.data.models.Poliza
+import com.example.login.data.models.poliza.Poliza
 import com.example.login.tokens.Token
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

@@ -4,7 +4,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.login.data.models.Poliza
+import com.example.login.data.models.poliza.Poliza
 import com.example.login.data.network.GetServicePolizas
 import kotlinx.coroutines.launch
 

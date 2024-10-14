@@ -10,7 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.login.data.models.Poliza
+import com.example.login.data.models.poliza.Poliza
 import com.example.login.ui.viewmodels.HomeViewModel
 import com.example.login.data.network.GetServicePolizas
 import com.example.login.data.network.RetrofitClient
@@ -42,8 +42,8 @@ fun NavGraphBuilder.polizaComposable(
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
-
-    NavHost(navController = navController, startDestination = Rutas.LOGIN_SCREEN, builder = {
+    //todo cambiar ruta por defecto
+    NavHost(navController = navController, startDestination = Rutas.HOME_SCREEN, builder = {
         composable(Rutas.HOME_SCREEN) {
             val homeViewModel: HomeViewModel = viewModel(
                 factory = HomeViewModel.provideFactory(

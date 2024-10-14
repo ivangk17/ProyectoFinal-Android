@@ -20,7 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.login.data.models.Poliza
+import com.example.login.data.models.poliza.Poliza
 
 @Composable
 fun PolizaCard(poliza: Poliza, onClick: () -> Unit) {

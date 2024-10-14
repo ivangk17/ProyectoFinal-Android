@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.ViewModel
-import com.example.login.data.models.Poliza
+import com.example.login.data.models.poliza.Poliza
 
 @Composable
 fun PolizaDetailsScreen(poliza: Poliza, polizaDetailsViewModel: ViewModel) {

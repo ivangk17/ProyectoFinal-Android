@@ -1,4 +1,4 @@
-package com.example.login.data.models
+package com.example.login.data.models.poliza
 
 import com.google.gson.annotations.SerializedName
 
