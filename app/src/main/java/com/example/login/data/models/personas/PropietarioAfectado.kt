@@ -5,18 +5,18 @@ import com.example.login.data.models.vehiculos.VehiculoTercero
 import java.util.Date
 
 data class PropietarioAfectado(
-    override val id: Int,
-    override val nombre: String,
-    override val apellido: String,
-    override val nombreCompleto: String,
-    override val cuit: String,
-    override val email: String,
-    override val telefono: Int,
-    override val  fechaDeNacimiento: Date,
-    override val sexo: String,
-    override val domicilio: Domicilio,
+    override val id: Int = -1,
+    override val nombre: String = "",
+    override val apellido: String = "",
+    override val nombreCompleto: String = "${nombre} ${apellido}",
+    override val cuit: String = "",
+    override val email: String = "",
+    override val telefono: Int = -1,
+    override val fechaDeNacimiento: Date? = null,
+    override val sexo: String = "",
+    override val domicilio: Domicilio = Domicilio(),
 
-    val vehiculoPropietadoAfectado: VehiculoTercero
+    val vehiculoPropietadoAfectado: VehiculoTercero = VehiculoTercero()
 
 ): Persona(
     id,

@@ -21,10 +21,10 @@ import com.example.login.ui.viewmodels.PolizaDetailsViewModel
 import com.example.login.ui.viewmodels.SolicitudPolizaViewModel
 import com.example.login.utilities.obtenerObjetoDeNavegacion
 
-fun NavGraphBuilder.polizaComposable(
+fun <T : ViewModel> NavGraphBuilder.polizaComposable(
     route: String,
-    viewModelFactory: () -> ViewModel,
-    content: @Composable (Poliza, ViewModel) -> Unit
+    viewModelFactory: () -> T,
+    content: @Composable (Poliza, T) -> Unit
 ) {
     composable(
         route = "$route/{polizaJson}",
@@ -37,6 +37,7 @@ fun NavGraphBuilder.polizaComposable(
         }
     }
 }
+
 
 
 @Composable
@@ -65,7 +66,7 @@ fun AppNavigation() {
                     .create(PolizaDetailsViewModel::class.java)
             }
         ) { poliza, viewModel ->
-            PolizaDetailsScreen(poliza, viewModel)
+            PolizaDetailsScreen(poliza, viewModel, navController)
         }
 
         polizaComposable(
@@ -75,7 +76,7 @@ fun AppNavigation() {
                     .create(SolicitudPolizaViewModel::class.java)
             }
         ) { poliza, viewModel ->
-            SolicitidPolizaScreen(poliza, viewModel)
+            SolicitidPolizaScreen(poliza, viewModel, navController)
         }
         }
     )

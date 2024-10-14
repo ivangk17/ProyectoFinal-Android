@@ -1,5 +1,6 @@
 package com.example.login.ui.screens
 
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -36,9 +37,9 @@ fun HomeScreen(navController: NavController, homeViewModel: HomeViewModel) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         if (polizas.isNotEmpty()) {
-        // Recorremos las pólizas y mostramos cada una en una tarjeta
             polizas.forEach { poliza ->
                 PolizaCard(poliza){
+                    Log.e("poliza", poliza.dominio)
                     val polizaJson = gson.toJson(poliza)
                     navController.navigate("${Rutas.POLIZA_DETALLE_SCREEN}/$polizaJson")
                 }

@@ -11,4 +11,5 @@ enum class ConsecuenciaSiniestro {
     ROBO_TOTAL,
     ROTURA_CRISTALES,
     INCENCIO_PARCIAL,
+    DESCONOCIDO
 }
