@@ -13,8 +13,8 @@ data class User(
     override val nombreCompleto: String,
     override val cuit: String,
     override val email: String,
-    override val telefono: Int,
-    override val  fechaDeNacimiento: Date,
+    override val telefono: String,
+    override val  fechaDeNacimiento: String,
     override val sexo: String,
     override val domicilio: Domicilio
 ) : Persona(

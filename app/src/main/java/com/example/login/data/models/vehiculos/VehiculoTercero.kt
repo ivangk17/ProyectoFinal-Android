@@ -7,14 +7,14 @@ data class VehiculoTercero(
     override val marca: String ="",
     override val modelo: String ="",
     override val tipoVehiculo: TipoVehiculo = TipoVehiculo.DESCONOCIDO,
-    override val anio: Int = -1,
+    override val anio: String = "",
     override val dominio: String = "",
-    override val idAsegurado: Number = -1,
+    override val idAsegurado: String = "",
     override val color: String = "",
 
     val aseguradora: String ="",
     val poliza: String = "",
-    val fechaVencimiento: Date? = null
+    val fechaVencimiento: String = ""
 
 ):
     Vehiculo(

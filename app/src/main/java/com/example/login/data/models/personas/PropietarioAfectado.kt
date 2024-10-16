@@ -11,8 +11,8 @@ data class PropietarioAfectado(
     override val nombreCompleto: String = "${nombre} ${apellido}",
     override val cuit: String = "",
     override val email: String = "",
-    override val telefono: Int = -1,
-    override val fechaDeNacimiento: Date? = null,
+    override val telefono: String = "",
+    override val fechaDeNacimiento: String = "",
     override val sexo: String = "",
     override val domicilio: Domicilio = Domicilio(),
 

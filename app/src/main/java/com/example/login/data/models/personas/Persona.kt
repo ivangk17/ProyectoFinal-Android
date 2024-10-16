@@ -10,8 +10,8 @@ open class Persona(
     open val nombreCompleto: String = "${nombre} ${apellido}",
     open val cuit: String = "",
     open val email: String = "",
-    open val telefono: Int = -1,
-    open val fechaDeNacimiento: Date? = null,
+    open val telefono: String = "",
+    open val fechaDeNacimiento: String= "",
     open val sexo: String = "",
     open val domicilio: Domicilio = Domicilio()
 )

@@ -5,8 +5,8 @@ open class Vehiculo(
     open val marca: String = "",
     open val modelo: String = "",
     open val tipoVehiculo: TipoVehiculo = TipoVehiculo.DESCONOCIDO,
-    open val anio: Int = -1,
+    open val anio: String = "",
     open val dominio: String = "",
-    open val idAsegurado: Number = -1,
+    open val idAsegurado: String = "",
     open val color: String = ""
 )
