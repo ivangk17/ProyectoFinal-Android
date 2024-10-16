@@ -1,7 +1,7 @@
 package com.example.login.utilities
 
-import com.example.login.data.models.FormField
-import com.example.login.data.models.TipoCampo
+import com.example.login.data.models.fields.FormField
+import com.example.login.data.models.fields.TipoCampo
 
 object ValidacionesCampos {
 

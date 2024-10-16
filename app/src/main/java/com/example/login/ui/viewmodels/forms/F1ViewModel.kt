@@ -3,8 +3,8 @@ package com.example.login.ui.viewmodels.forms
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.login.data.models.FormField
-import com.example.login.data.models.TipoCampo
+import com.example.login.data.models.fields.FormField
+import com.example.login.data.models.fields.TipoCampo
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.network.GetServicePolizas
 import com.example.login.ui.viewmodels.CrearPolizaViewModel

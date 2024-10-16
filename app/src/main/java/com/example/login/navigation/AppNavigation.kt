@@ -17,9 +17,11 @@ import com.example.login.data.network.RetrofitClient
 import com.example.login.ui.screens.LoginScreen
 import com.example.login.ui.screens.PolizaDetailsScreen
 import com.example.login.ui.screens.forms.F1
+import com.example.login.ui.screens.forms.F2
 import com.example.login.ui.viewmodels.CrearPolizaViewModel
 import com.example.login.ui.viewmodels.PolizaDetailsViewModel
 import com.example.login.ui.viewmodels.forms.F1ViewModel
+import com.example.login.ui.viewmodels.forms.F2ViewModel
 import com.example.login.utilities.obtenerObjetoDeNavegacion
 
 fun <T : ViewModel> NavGraphBuilder.polizaComposable(
@@ -46,7 +48,7 @@ fun AppNavigation() {
     val navController = rememberNavController()
 
     //todo cambiar ruta por defecto
-    NavHost(navController = navController, startDestination = Rutas.LOGIN_SCREEN, builder = {
+    NavHost(navController = navController, startDestination = Rutas.HOME_SCREEN, builder = {
         composable(Rutas.HOME_SCREEN) {
             val homeViewModel: HomeViewModel = viewModel(
                 factory = HomeViewModel.provideFactory(
@@ -74,11 +76,11 @@ fun AppNavigation() {
         polizaComposable(
             route = Rutas.SOLICITUD_POLIZA_SCREEN,
             viewModelFactory = {
-                F1ViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
-                    .create(F1ViewModel::class.java)
+                F2ViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
+                    .create(F2ViewModel::class.java)
             }
         ) { poliza, viewModel ->
-            F1(navController, viewModel, poliza)
+            F2(navController, viewModel, poliza)
         }
         }
     )

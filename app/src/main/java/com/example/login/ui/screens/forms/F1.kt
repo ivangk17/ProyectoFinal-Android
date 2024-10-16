@@ -1,5 +1,6 @@
 package com.example.login.ui.screens.forms
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
@@ -16,6 +17,7 @@ import com.example.login.data.models.poliza.Poliza
 import com.example.login.ui.viewmodels.CrearPolizaViewModel
 import com.example.login.ui.viewmodels.forms.F1ViewModel
 
+@SuppressLint("SuspiciousIndentation")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun F1(navController: NavController, viewModel: F1ViewModel, poliza: Poliza) {

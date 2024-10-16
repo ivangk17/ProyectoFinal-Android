@@ -1,4 +1,4 @@
-package com.example.login.data.models
+package com.example.login.data.models.fields
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
