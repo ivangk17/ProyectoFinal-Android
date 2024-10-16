@@ -48,7 +48,7 @@ fun AppNavigation() {
     val navController = rememberNavController()
 
     //todo cambiar ruta por defecto
-    NavHost(navController = navController, startDestination = Rutas.LOGIN_SCREEN, builder = {
+    NavHost(navController = navController, startDestination = Rutas.HOME_SCREEN, builder = {
         composable(Rutas.HOME_SCREEN) {
             val homeViewModel: HomeViewModel = viewModel(
                 factory = HomeViewModel.provideFactory(
