@@ -16,10 +16,10 @@ import com.example.login.data.network.GetServicePolizas
 import com.example.login.data.network.RetrofitClient
 import com.example.login.ui.screens.LoginScreen
 import com.example.login.ui.screens.PolizaDetailsScreen
-import com.example.login.ui.screens.SolicitidPolizaScreen
+import com.example.login.ui.screens.forms.F1
+import com.example.login.ui.viewmodels.CrearPolizaViewModel
 import com.example.login.ui.viewmodels.PolizaDetailsViewModel
 import com.example.login.ui.viewmodels.forms.F1ViewModel
-import com.example.login.ui.viewmodels.forms.F5ViewModel
 import com.example.login.utilities.obtenerObjetoDeNavegacion
 
 fun <T : ViewModel> NavGraphBuilder.polizaComposable(
@@ -44,6 +44,7 @@ fun <T : ViewModel> NavGraphBuilder.polizaComposable(
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
+
     //todo cambiar ruta por defecto
     NavHost(navController = navController, startDestination = Rutas.LOGIN_SCREEN, builder = {
         composable(Rutas.HOME_SCREEN) {
@@ -77,7 +78,7 @@ fun AppNavigation() {
                     .create(F1ViewModel::class.java)
             }
         ) { poliza, viewModel ->
-            SolicitidPolizaScreen(poliza, viewModel, navController)
+            F1(navController, viewModel, poliza)
         }
         }
     )

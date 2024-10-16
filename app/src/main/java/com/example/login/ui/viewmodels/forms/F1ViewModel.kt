@@ -7,13 +7,14 @@ import com.example.login.data.models.FormField
 import com.example.login.data.models.TipoCampo
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.network.GetServicePolizas
+import com.example.login.ui.viewmodels.CrearPolizaViewModel
 import com.example.login.utilities.ValidacionesCampos.validarCampos
 
 
 class F1ViewModel(
     getServicePolizas: GetServicePolizas
 ) : ViewModel() {
-
+    val crearPolizaViewModel : CrearPolizaViewModel = CrearPolizaViewModel()
     val Solicitud = Solicitud()
     val campos = listOf(
         FormField("Lugar de Ocurrencia", mutableStateOf(""), tipo = TipoCampo.TEXTO),
@@ -47,6 +48,8 @@ class F1ViewModel(
             Solicitud.datosSiniestro.cantidadAutosParticipantes = campos[5].value.value.toIntOrNull()!!
             Solicitud.datosSiniestro.interseccion = campos[6].value.value
             Solicitud.datosSiniestro.fechaOcurrencia = FechaOcurrencia.value
+
+            crearPolizaViewModel.envioF1(Solicitud)
 
         }else{
             return null

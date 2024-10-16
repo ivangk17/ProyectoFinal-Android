@@ -1,6 +1,5 @@
 package com.example.login.ui.screens.forms
 
-import android.content.Context
 import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
@@ -8,15 +7,21 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.login.components.DataPicker
 import com.example.login.components.FieldStringForms
 import com.example.login.components.TimePicker
+import com.example.login.data.models.poliza.Poliza
+import com.example.login.ui.viewmodels.CrearPolizaViewModel
 import com.example.login.ui.viewmodels.forms.F1ViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun F1(navController: NavController, viewModel: F1ViewModel, context: Context) {
+fun F1(navController: NavController, viewModel: F1ViewModel, poliza: Poliza) {
+    val crearPolizaViewModel: CrearPolizaViewModel = viewModel(
+        factory = CrearPolizaViewModel.provideFactory()
+    )
         Column {
             DataPicker(onDateSelected = { date ->
                 viewModel.FechaOcurrencia.value = date
