@@ -48,7 +48,7 @@ fun AppNavigation() {
     val navController = rememberNavController()
 
     //todo cambiar ruta por defecto
-    NavHost(navController = navController, startDestination = Rutas.HOME_SCREEN, builder = {
+    NavHost(navController = navController, startDestination = Rutas.LOGIN_SCREEN, builder = {
         composable(Rutas.HOME_SCREEN) {
             val homeViewModel: HomeViewModel = viewModel(
                 factory = HomeViewModel.provideFactory(
@@ -76,11 +76,11 @@ fun AppNavigation() {
         polizaComposable(
             route = Rutas.SOLICITUD_POLIZA_SCREEN,
             viewModelFactory = {
-                F2ViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
-                    .create(F2ViewModel::class.java)
+                F1ViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
+                    .create(F1ViewModel::class.java)
             }
         ) { poliza, viewModel ->
-            F2(navController, viewModel, poliza)
+            F1(navController, viewModel, poliza)
         }
         }
     )
