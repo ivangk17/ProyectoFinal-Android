@@ -2,6 +2,7 @@ package com.example.login.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
@@ -18,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -33,7 +35,7 @@ import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DataPicker(onDateSelected: (String) -> Unit) {
+fun DatePicker(label: String, valor: MutableState<String?>, error: MutableState<String?>, onDateSelected: (String) -> Unit) {
     var showDatePicker by remember { mutableStateOf(false) }
     val datePickerState = rememberDatePickerState()
     val selectedDate = datePickerState.selectedDateMillis?.let {
@@ -46,13 +48,11 @@ fun DataPicker(onDateSelected: (String) -> Unit) {
         }
     }
 
-    Box(
-        modifier = Modifier.fillMaxWidth()
-    ) {
+    Column(modifier = Modifier.fillMaxWidth()) {
         OutlinedTextField(
             value = selectedDate,
             onValueChange = { },
-            label = { Text("Selecciona la fecha de ocurrencia") },
+            label = { Text(label) },
             readOnly = true,
             trailingIcon = {
                 IconButton(onClick = { showDatePicker = !showDatePicker }) {
@@ -64,8 +64,18 @@ fun DataPicker(onDateSelected: (String) -> Unit) {
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .height(64.dp)
+                .height(64.dp),
+            isError = error.value != null
         )
+
+        if (error.value != null) {
+            Text(
+                text = error.value ?: "",
+                color = MaterialTheme.colorScheme.error,
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.padding(top = 4.dp)
+            )
+        }
 
         if (showDatePicker) {
             Popup(

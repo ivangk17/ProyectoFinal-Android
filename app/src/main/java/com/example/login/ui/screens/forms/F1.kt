@@ -10,9 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.example.login.components.DataPicker
 import com.example.login.components.FieldStringForms
-import com.example.login.components.TimePicker
 import com.example.login.data.models.poliza.Poliza
 import com.example.login.ui.viewmodels.CrearPolizaViewModel
 import com.example.login.ui.viewmodels.forms.F1ViewModel
@@ -25,12 +23,12 @@ fun F1(navController: NavController, viewModel: F1ViewModel, poliza: Poliza) {
         factory = CrearPolizaViewModel.provideFactory()
     )
         Column {
-            DataPicker(onDateSelected = { date ->
-                viewModel.FechaOcurrencia.value = date
-            })
-            TimePicker(onTimeSelected = { time ->
-                viewModel.HoraOcurriencia.value = time
-            })
+//            DataPicker(onDateSelected = { date ->
+//                viewModel.FechaOcurrencia.value = date
+//            })
+//            TimePicker(onTimeSelected = { time ->
+//                viewModel.HoraOcurriencia.value = time
+//            })
             LazyColumn {
                 items(viewModel.campos.size) { index ->
                     val campo = viewModel.campos[index]

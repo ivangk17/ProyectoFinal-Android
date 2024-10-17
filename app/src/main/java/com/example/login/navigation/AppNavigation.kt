@@ -18,10 +18,12 @@ import com.example.login.ui.screens.LoginScreen
 import com.example.login.ui.screens.PolizaDetailsScreen
 import com.example.login.ui.screens.forms.F1
 import com.example.login.ui.screens.forms.F2
+import com.example.login.ui.screens.forms.F4
 import com.example.login.ui.viewmodels.CrearPolizaViewModel
 import com.example.login.ui.viewmodels.PolizaDetailsViewModel
 import com.example.login.ui.viewmodels.forms.F1ViewModel
 import com.example.login.ui.viewmodels.forms.F2ViewModel
+import com.example.login.ui.viewmodels.forms.F4ViewModel
 import com.example.login.utilities.obtenerObjetoDeNavegacion
 
 fun <T : ViewModel> NavGraphBuilder.polizaComposable(
@@ -76,11 +78,11 @@ fun AppNavigation() {
         polizaComposable(
             route = Rutas.SOLICITUD_POLIZA_SCREEN,
             viewModelFactory = {
-                F1ViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
-                    .create(F1ViewModel::class.java)
+                F4ViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
+                    .create(F4ViewModel::class.java)
             }
         ) { poliza, viewModel ->
-            F1(navController, viewModel, poliza)
+            F4(navController, viewModel, poliza)
         }
         }
     )

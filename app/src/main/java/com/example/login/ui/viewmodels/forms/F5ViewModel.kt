@@ -43,6 +43,7 @@ class F5ViewModel (
     fun crearSolicitudPoliza(): Solicitud? {
         validarCampos(campos)
 
+
         if (campos.all { it.error.value == null }) {
             Solicitud.conductorAsegurado.nombre = campos[0].value.value
             Solicitud.conductorAsegurado.apellido = campos[2].value.value

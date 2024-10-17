@@ -15,6 +15,7 @@ object ValidacionesCampos {
     }
 }
 
+
 private fun validarCampoNoVacio(campo: String): String? {
     return if (campo.isEmpty()) "Este campo no puede estar vacío" else null
 }
