@@ -5,5 +5,5 @@ object Token {
 
 
     //TODO BORRAR ESTO
-    var token: String = "pone el token aca!"
+    var token: String = ""
 }
