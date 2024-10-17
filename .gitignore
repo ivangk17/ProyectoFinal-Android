@@ -13,5 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
-Token.kt
-RetrofitClient.kt
+/app/src/main/java/com/example/login/tokens/Token.kt
+/app/src/main/java/com/example/login/data/network/RetrofitClient.kt
