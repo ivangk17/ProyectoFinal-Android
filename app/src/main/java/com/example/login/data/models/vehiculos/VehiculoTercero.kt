@@ -3,18 +3,18 @@ package com.example.login.data.models.vehiculos
 import java.util.Date
 
 data class VehiculoTercero(
-    override val numeroIdentificador: String = "",
-    override val marca: String ="",
-    override val modelo: String ="",
-    override val tipoVehiculo: TipoVehiculo = TipoVehiculo.DESCONOCIDO,
-    override val anio: String = "",
-    override val dominio: String = "",
-    override val idAsegurado: String = "",
-    override val color: String = "",
+    override var numeroIdentificador: String = "",
+    override var marca: String ="",
+    override var modelo: String ="",
+    override var tipoVehiculo: TipoVehiculo = TipoVehiculo.DESCONOCIDO,
+    override var anio: String = "",
+    override var dominio: String = "",
+    override var idAsegurado: String = "",
+    override var color: String = "",
 
-    val aseguradora: String ="",
-    val poliza: String = "",
-    val fechaVencimiento: String = ""
+    var aseguradora: String ="",
+    var poliza: String = "",
+    var fechaVencimiento: String = ""
 
 ):
     Vehiculo(

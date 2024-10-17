@@ -45,6 +45,7 @@ fun DatePicker(label: String, valor: MutableState<String?>, error: MutableState<
     LaunchedEffect(selectedDate) {
         if (selectedDate.isNotEmpty()) {
             onDateSelected(selectedDate)
+            showDatePicker = false
         }
     }
 
@@ -99,6 +100,7 @@ fun DatePicker(label: String, valor: MutableState<String?>, error: MutableState<
         }
     }
 }
+
 
 fun convertMillisToDate(millis: Long): String {
     val formatter = SimpleDateFormat("MM-dd-yyyy", Locale.getDefault())

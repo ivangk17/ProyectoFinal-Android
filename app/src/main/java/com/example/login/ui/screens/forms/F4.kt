@@ -40,15 +40,6 @@ fun F4(navController: NavController, viewModel: F4ViewModel, poliza: Poliza) {
             )
         }
 
-        item {
-            DatePicker(
-                label = "Fecha de Ocurrencia",
-                valor = viewModel.FechaVencimiento,
-                error = viewModel.errorFechaVencimiento,
-                onDateSelected = { newValue -> viewModel.onFechaChange(newValue) }
-            )
-        }
-
         items(viewModel.campos.size) { index ->
             val campo = viewModel.campos[index]
             FieldStringForms(
@@ -58,6 +49,17 @@ fun F4(navController: NavController, viewModel: F4ViewModel, poliza: Poliza) {
                 onValueChange = { newValue -> viewModel.onCampoChange(index, newValue) }
             )
         }
+
+        item {
+            DatePicker(
+                label = "Fecha de vencimiento de la poliza",
+                valor = viewModel.FechaVencimiento,
+                error = viewModel.errorFechaVencimiento,
+                onDateSelected = { newValue -> viewModel.onFechaChange(newValue) }
+            )
+        }
+
+
 
         item {
             Column {

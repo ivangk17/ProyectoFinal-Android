@@ -6,15 +6,15 @@ import java.util.Date
 
 data class PropietarioAfectado(
     override val id: Int = -1,
-    override val nombre: String = "",
-    override val apellido: String = "",
-    override val nombreCompleto: String = "${nombre} ${apellido}",
-    override val cuit: String = "",
-    override val email: String = "",
-    override val telefono: String = "",
-    override val fechaDeNacimiento: String = "",
-    override val sexo: String = "",
-    override val domicilio: Domicilio = Domicilio(),
+    override var nombre: String = "",
+    override var apellido: String = "",
+    override var nombreCompleto: String = "${nombre} ${apellido}",
+    override var cuit: String = "",
+    override var email: String = "",
+    override var telefono: String = "",
+    override var fechaDeNacimiento: String = "",
+    override var sexo: String = "",
+    override var domicilio: Domicilio = Domicilio(),
 
     val vehiculoPropietadoAfectado: VehiculoTercero = VehiculoTercero()
 
