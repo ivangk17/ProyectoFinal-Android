@@ -41,7 +41,7 @@ fun HomeScreen(navController: NavController, homeViewModel: HomeViewModel) {
                 PolizaCard(poliza){
                     Log.e("poliza", poliza.dominio)
                     val polizaJson = gson.toJson(poliza)
-                    navController.navigate("${Rutas.POLIZA_DETALLE_SCREEN}/$polizaJson")
+                    navController.navigate("${Rutas.PolizaDetalleScreen.ruta}/$polizaJson")
                 }
             }
         } else {
