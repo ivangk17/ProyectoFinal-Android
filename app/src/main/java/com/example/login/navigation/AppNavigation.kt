@@ -48,10 +48,8 @@ fun <T : ViewModel> NavGraphBuilder.polizaComposable(
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
-
-    //todo cambiar ruta por defecto
-    NavHost(navController = navController, startDestination = Rutas.HOME_SCREEN, builder = {
-        composable(Rutas.HOME_SCREEN) {
+    NavHost(navController = navController, startDestination = Rutas.HomeScreen.ruta, builder = {
+        composable(Rutas.HomeScreen.ruta) {
             val homeViewModel: HomeViewModel = viewModel(
                 factory = HomeViewModel.provideFactory(
                     GetServicePolizas(RetrofitClient.apiService)
@@ -61,12 +59,12 @@ fun AppNavigation() {
             HomeScreen(navController, homeViewModel)
 
         }
-        composable(Rutas.LOGIN_SCREEN) {
+        composable(Rutas.LoginScreen.ruta) {
             LoginScreen(navController)
         }
 
         polizaComposable(
-            route = Rutas.POLIZA_DETALLE_SCREEN,
+            route = Rutas.PolizaDetalleScreen.ruta,
             viewModelFactory = {
                 PolizaDetailsViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
                     .create(PolizaDetailsViewModel::class.java)
@@ -76,7 +74,7 @@ fun AppNavigation() {
         }
 
         polizaComposable(
-            route = Rutas.SOLICITUD_POLIZA_SCREEN,
+            route = Rutas.SolicitudPolizaScreen.ruta,
             viewModelFactory = {
                 F4ViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
                     .create(F4ViewModel::class.java)

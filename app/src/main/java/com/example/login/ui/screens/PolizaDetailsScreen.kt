@@ -22,7 +22,7 @@ fun PolizaDetailsScreen(
     Button(
         onClick = {
             val polizaJson = gson.toJson(poliza)
-            navController.navigate("${Rutas.SOLICITUD_POLIZA_SCREEN}/$polizaJson")
+            navController.navigate("${Rutas.SolicitudPolizaScreen.ruta}/$polizaJson")
         },
         ) {
         Text("Iniciar Solicitud")

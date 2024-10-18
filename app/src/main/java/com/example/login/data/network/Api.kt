@@ -17,5 +17,7 @@ interface Api {
      @GET("api/polizas/list")
      suspend fun getPolizas(@Header("Authorization") token: String): Response<List<Poliza>>
 
+     @GET("api/test/getStatus")
+     suspend fun getStatus(): Response<Boolean>
 
 }
