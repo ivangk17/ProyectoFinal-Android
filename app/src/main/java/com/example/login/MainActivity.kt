@@ -21,7 +21,7 @@ import com.example.login.ui.screens.LoadingScreen
 import com.example.login.ui.viewmodels.MainActivityViewModel
 
 class MainActivity : ComponentActivity() {
-
+    //CACONA
     private val viewModel: MainActivityViewModel by viewModels { MainActivityViewModel.provideFactory(
         GetStatus(RetrofitClient.apiService)
     ) }
