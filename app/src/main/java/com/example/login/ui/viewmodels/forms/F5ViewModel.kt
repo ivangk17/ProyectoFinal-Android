@@ -8,15 +8,23 @@ import com.example.login.data.models.fields.TipoCampo
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.network.GetServicePolizas
 import com.example.login.utilities.ValidacionesCampos.validarCampos
+import com.example.login.utilities.validarFecha
 
 class F5ViewModel (
     getServicePolizas: GetServicePolizas
 ) : ViewModel() {
 
-    var Solicitud = Solicitud()
-    var FechaNacimiento = mutableStateOf<String?>(null)
-    var FechaExpedicion = mutableStateOf<String?>(null)
-    var FechaVencimiento = mutableStateOf<String?>(null)
+    var solicitud = Solicitud()
+    var fechaNacimiento = mutableStateOf<String?>(null)
+    var errorFechaNacimiento = mutableStateOf<String?>(null)
+
+    var fechaExpedicion = mutableStateOf<String?>(null)
+    var errorFechaExpedicion = mutableStateOf<String?>(null)
+
+    var fechaDeVencimiento = mutableStateOf<String?>(null)
+    var errorFechaVencimiento = mutableStateOf<String?>(null)
+
+
 
     val campos = listOf(
         FormField("Nombre", mutableStateOf(""), tipo = TipoCampo.TEXTO),
@@ -40,31 +48,58 @@ class F5ViewModel (
         campos[index].error.value = null
     }
 
+    fun setFechaNacimiento(newValue: String) {
+        fechaNacimiento.value = newValue
+        errorFechaNacimiento.value = null
+    }
+
+    fun setFechaExpedicion(newValue: String) {
+        fechaExpedicion.value = newValue
+        errorFechaExpedicion.value = null
+    }
+
+    fun setFechaDeVencimiento(newValue: String) {
+        fechaDeVencimiento.value = newValue
+        errorFechaVencimiento.value = null
+    }
+
+
+
+
     fun crearSolicitudPoliza(): Solicitud? {
         validarCampos(campos)
 
+        validarFecha(fechaNacimiento, errorFechaNacimiento, "Debes completar la fecha de nacimiento")
+        validarFecha(fechaExpedicion, errorFechaExpedicion, "Debes completar la fecha de expedicion")
+        validarFecha(fechaDeVencimiento, errorFechaVencimiento, "Debes completar la fecha de vencimiento")
 
         if (campos.all { it.error.value == null }) {
-            Solicitud.conductorAsegurado.nombre = campos[0].value.value
-            Solicitud.conductorAsegurado.apellido = campos[2].value.value
-            Solicitud.conductorAsegurado.domicilio.calle = campos[3].value.value
-            Solicitud.conductorAsegurado.domicilio.localidad = campos[4].value.value
-            Solicitud.conductorAsegurado.domicilio.provincia = campos[5].value.value
-            Solicitud.conductorAsegurado.domicilio.pais = campos[6].value.value
-            Solicitud.conductorAsegurado.domicilio.codigoPostal = campos[7].value.value
-            Solicitud.conductorAsegurado.cuit = campos[8].value.value
-            Solicitud.conductorAsegurado.telefono = campos[9].value.value
-            Solicitud.conductorAsegurado.sexo = campos[10].value.value
-            Solicitud.conductorAsegurado.email = campos[11].value.value
-            Solicitud.conductorAsegurado.nroRegistro = campos[12].value.value
-            Solicitud.conductorAsegurado.claseRegistro = campos[13].value.value
-            Solicitud.conductorAsegurado.relacionAsegurado = campos[14].value.value
+            solicitud.conductorAsegurado.nombre = campos[0].value.value
+            solicitud.conductorAsegurado.apellido = campos[1].value.value
+            solicitud.conductorAsegurado.domicilio.calle = campos[2].value.value
+            solicitud.conductorAsegurado.domicilio.localidad = campos[3].value.value
+            solicitud.conductorAsegurado.domicilio.codigoPostal = campos[6].value.value
+            solicitud.conductorAsegurado.domicilio.provincia = campos[4].value.value
+            solicitud.conductorAsegurado.domicilio.pais = campos[5].value.value
+            solicitud.conductorAsegurado.cuit = campos[7].value.value
+            solicitud.conductorAsegurado.telefono = campos[8].value.value
+            solicitud.conductorAsegurado.sexo = campos[9].value.value
+            solicitud.conductorAsegurado.email = campos[10].value.value
+            solicitud.conductorAsegurado.nroRegistro = campos[11].value.value
+            solicitud.conductorAsegurado.claseRegistro = campos[12].value.value
+            solicitud.conductorAsegurado.relacionAsegurado = campos[13].value.value
 
-        }else{
+            solicitud.conductorAsegurado.fechaDeNacimiento = fechaNacimiento.value!!
+            solicitud.conductorAsegurado.fechaVencimiento = fechaDeVencimiento.value!!
+            solicitud.conductorAsegurado.fechaExpedicion = fechaExpedicion.value!!
+
+
+        }
+        else{
             return null
         }
 
-        return Solicitud
+        return solicitud
     }
 
     companion object{

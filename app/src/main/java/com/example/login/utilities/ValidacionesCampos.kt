@@ -1,5 +1,7 @@
 package com.example.login.utilities
 
+import androidx.compose.runtime.MutableState
+import androidx.lifecycle.MutableLiveData
 import com.example.login.data.models.fields.FormField
 import com.example.login.data.models.fields.TipoCampo
 
@@ -14,6 +16,13 @@ object ValidacionesCampos {
         }
     }
 }
+
+fun validarFecha(fecha: MutableState<String?>, error: MutableState<String?>, mensajeError: String) {
+    if (fecha.value.isNullOrEmpty()) {
+        error.value = mensajeError
+    }
+}
+
 
 
 private fun validarCampoNoVacio(campo: String): String? {
