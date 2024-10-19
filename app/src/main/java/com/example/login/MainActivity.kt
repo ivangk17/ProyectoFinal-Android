@@ -28,7 +28,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            LoadingScreen(viewModel)
+ //           LoadingScreen(viewModel)
+            AppNavigation()
         }
     }
 }
