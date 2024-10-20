@@ -1,6 +1,5 @@
 package com.example.login.navigation
 
-import com.example.login.ui.screens.HomeScreen
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -11,18 +10,14 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.login.data.models.poliza.Poliza
-import com.example.login.ui.viewmodels.HomeViewModel
 import com.example.login.data.network.GetServicePolizas
 import com.example.login.data.network.RetrofitClient
+import com.example.login.ui.screens.HomeScreen
 import com.example.login.ui.screens.LoginScreen
 import com.example.login.ui.screens.PolizaDetailsScreen
-import com.example.login.ui.screens.forms.F1
-import com.example.login.ui.screens.forms.F2
 import com.example.login.ui.screens.forms.F3
-import com.example.login.ui.viewmodels.CrearPolizaViewModel
+import com.example.login.ui.viewmodels.HomeViewModel
 import com.example.login.ui.viewmodels.PolizaDetailsViewModel
-import com.example.login.ui.viewmodels.forms.F1ViewModel
-import com.example.login.ui.viewmodels.forms.F2ViewModel
 import com.example.login.ui.viewmodels.forms.F3ViewModel
 import com.example.login.utilities.obtenerObjetoDeNavegacion
 

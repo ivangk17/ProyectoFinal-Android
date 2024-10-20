@@ -29,8 +29,8 @@ class F3ViewModel (getServicePolizas: GetServicePolizas
         FormField("Apellido", tipo = TipoCampo.TEXTO),
         FormField("Domicilio", tipo = TipoCampo.TEXTO),
         FormField("Localidad", tipo = TipoCampo.TEXTO),
-        FormField("C.P.", tipo = TipoCampo.TEXTO),
-        FormField("Prov.", tipo = TipoCampo.TEXTO),
+        FormField("Codigo Postal", tipo = TipoCampo.TEXTO),
+        FormField("Provincia.", tipo = TipoCampo.TEXTO),
         FormField("País", tipo = TipoCampo.TEXTO),
         FormField("CUIT", tipo = TipoCampo.TEXTO),
         FormField("E-mail", tipo = TipoCampo.TEXTO),
@@ -54,7 +54,22 @@ class F3ViewModel (getServicePolizas: GetServicePolizas
         if (campos.all { it.error.value == null }) { //similar a un foreach
             Solicitud.conductorAsegurado.nombre = campos[0].value.value
             Solicitud.conductorAsegurado.apellido = campos[1].value.value
-            //con todos los campos
+            //Solicitud.conductorAsegurado.domicilio = campos[2].value.value
+            //Solicitud.conductorAsegurado.localidad = campos[3].value.value
+            //Solicitud.conductorAsegurado.codigoPostal = campos[4].value.value
+            //Solicitud.conductorAsegurado.provincia = campos[5].value.value
+            //Solicitud.conductorAsegurado.pais = campos[6].value.value
+            Solicitud.conductorAsegurado.cuit = campos[7].value.value
+            Solicitud.conductorAsegurado.email = campos[8].value.value
+            Solicitud.conductorAsegurado.telefono = campos[9].value.value
+            //Solicitud.conductorAsegurado.marcaymodelo = campos[10].value.value
+            //Solicitud.conductorAsegurado.color = campos[11].value.value
+            //Solicitud.conductorAsegurado.anio = campos[12].value.value
+            //Solicitud.conductorAsegurado.dominio = campos[13].value.value
+            //Solicitud.conductorAsegurado.usodelvehiculo = campos[14].value.value
+            //Solicitud.conductorAsegurado.particular = campos[15].value.value
+           // Solicitud.conductorAsegurado.comercial = campos[16].value.value
+
 
         }else{
             return null
