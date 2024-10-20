@@ -26,9 +26,10 @@ data class DatosSiniestro(
     val asistioAmbulancia: Boolean? = null,
     val asistioBomberos: Boolean? = null,
     var huboDenuncia: HuboDenuncia = HuboDenuncia.DESCONOCIDO,
-    val estadoTiempo: EstadoTiempo = EstadoTiempo.DESCONOCIDO,
-    val estadoCamino: EstadoCamino = EstadoCamino.DESCONOCIDO,
-    val tipoCamino: TipoCamino = TipoCamino.DESCONOCIDO,
-    val consecuenciaSiniestro: ConsecuenciaSiniestro = ConsecuenciaSiniestro.DESCONOCIDO
+    var estadoTiempo: EstadoTiempo = EstadoTiempo.DESCONOCIDO,
+    var estadoCamino: EstadoCamino = EstadoCamino.DESCONOCIDO,
+    var tipoCamino: TipoCamino = TipoCamino.DESCONOCIDO,
+    val consecuenciaSiniestro: ConsecuenciaSiniestro = ConsecuenciaSiniestro.DESCONOCIDO,
+    var observaciones : String =""
 
 )

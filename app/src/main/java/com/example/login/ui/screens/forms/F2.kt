@@ -39,6 +39,7 @@ fun F2(navController: NavController, viewModel: F2ViewModel, poliza: Poliza){
 
             item {
                 DropdownMenuSample(
+                    title = "Seleccionar si hubo denuncia",
                     options = options,
                     selectedOption = viewModel.huboDenunciaSeleccion.value,
                     onOptionSelected = { viewModel.huboDenunciaSeleccion.value = it },

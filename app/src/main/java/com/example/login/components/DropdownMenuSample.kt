@@ -17,18 +17,21 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.login.data.models.solicitud.datosSiniestros.HuboDenuncia
 
 @Composable
 fun <T> DropdownMenuSample(
+    title:String,
     options: List<T>,
     selectedOption: T,
     onOptionSelected: (T) -> Unit,
     label: (T) -> String
 ) {
     var expanded by remember { mutableStateOf(false) }
-
+    Text( title, modifier = Modifier.padding(10.dp), style = TextStyle(fontSize = 18.sp))
     Box(modifier = Modifier.fillMaxWidth().wrapContentSize(Alignment.TopStart)) {
         Text(
             text = label(selectedOption),
