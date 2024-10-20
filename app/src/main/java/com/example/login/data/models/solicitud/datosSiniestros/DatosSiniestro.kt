@@ -29,7 +29,7 @@ data class DatosSiniestro(
     var estadoTiempo: EstadoTiempo = EstadoTiempo.DESCONOCIDO,
     var estadoCamino: EstadoCamino = EstadoCamino.DESCONOCIDO,
     var tipoCamino: TipoCamino = TipoCamino.DESCONOCIDO,
-    val consecuenciaSiniestro: ConsecuenciaSiniestro = ConsecuenciaSiniestro.DESCONOCIDO,
+    val consecuenciaSiniestro: ConsecuenciaSiniestro = ConsecuenciaSiniestro(),
     var observaciones : String =""
 
 )
