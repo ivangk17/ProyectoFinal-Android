@@ -9,12 +9,12 @@ import com.example.login.tokens.Utility
 
 data class Solicitud(
     val estado: Estado = Estado.PENDIENTE,
-    val daniosVehiculoAsegurado: String = "",
-    val daniosVehiculoAfectado: String = "",
+    var daniosVehiculoAsegurado: String = "",
+    var daniosVehiculoAfectado: String = "",
     val idPropietarioAsegurado: String = getId(Token.token),
     val conductorAsegurado: ConductorAsegurado = ConductorAsegurado(),
     val propietarioAfectado: PropietarioAfectado = PropietarioAfectado(),
-    val conductorAfectado: Persona = Persona(),
+    val conductorAfectado: ConductorAsegurado = ConductorAsegurado(),
     val lesiones: Lesiones = Lesiones(),
     val datosSiniestro: DatosSiniestro = DatosSiniestro()
 )

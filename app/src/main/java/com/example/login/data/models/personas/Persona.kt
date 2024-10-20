@@ -5,13 +5,13 @@ import java.util.Date
 
 open class Persona(
     open val id: Int = -1,
-    open val nombre: String = "",
-    open val apellido: String = "",
-    open val nombreCompleto: String = "${nombre} ${apellido}",
-    open val cuit: String = "",
-    open val email: String = "",
-    open val telefono: String = "",
-    open val fechaDeNacimiento: String= "",
-    open val sexo: String = "",
-    open val domicilio: Domicilio = Domicilio()
+    open var nombre: String = "",
+    open var apellido: String = "",
+    open var nombreCompleto: String = "${nombre} ${apellido}",
+    open var cuit: String = "",
+    open var email: String = "",
+    open var telefono: String = "",
+    open var fechaDeNacimiento: String= "",
+    open var sexo: String = "",
+    open var domicilio: Domicilio = Domicilio()
 )

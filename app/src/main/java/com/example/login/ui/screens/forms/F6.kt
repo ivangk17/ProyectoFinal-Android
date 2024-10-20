@@ -19,10 +19,12 @@ import androidx.navigation.NavController
 import com.example.login.components.DatePicker
 import com.example.login.components.FieldStringForms
 import com.example.login.data.models.poliza.Poliza
-import com.example.login.ui.viewmodels.forms.F5ViewModel
+import com.example.login.ui.viewmodels.forms.F6ViewModel
+
 
 @Composable
-fun F5(navController: NavController, viewModel: F5ViewModel, poliza: Poliza) {
+fun F6(navController: NavController, viewModel: F6ViewModel, poliza: Poliza) {
+
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -30,7 +32,7 @@ fun F5(navController: NavController, viewModel: F5ViewModel, poliza: Poliza) {
     ) {
         item {
             Text(
-                text = "INFORMACION DEL CONDUCTOR VEHÍCULO DEL ASEGURADO",
+                text = "INFORMACION DEL CONDUCTOR VEHÍCULO DEL AFECTADO",
                 textDecoration = TextDecoration.Underline,
                 fontWeight = FontWeight.Bold,
                 style = TextStyle(
@@ -94,4 +96,5 @@ fun F5(navController: NavController, viewModel: F5ViewModel, poliza: Poliza) {
             }
         }
     }
-    }
+
+}
