@@ -1,12 +1,15 @@
 package com.example.login.data.models.solicitud
 
+import com.example.login.data.models.personas.Lesionado
 import com.example.login.data.models.personas.Persona
 
 data class Lesiones(
-    val lesionado: Persona = Persona(),
-    val peatonOCiclista: Boolean? = null,
-    val conductorTercero: Boolean? = null,
-    val ocupanteTercero: Boolean? = null,
-    val asegurado: Boolean? = null,
-    val conductorAsegurado: Boolean? = null
+    var lesionado: Lesionado = Lesionado(),
+    var peatonOCiclista: Boolean = false,
+    var conductorTercero: Boolean = false,
+    var ocupanteTercero: Boolean = false,
+    var ocupanteAsgurado: Boolean = false,
+    var asegurado: Boolean = false,
+    var conductorAsegurado: Boolean = false,
+    var relacionConPropietario: Boolean = false
 )

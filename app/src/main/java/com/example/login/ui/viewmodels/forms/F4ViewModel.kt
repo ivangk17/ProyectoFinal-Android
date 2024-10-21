@@ -37,6 +37,7 @@ class F4ViewModel (
         FormField("Poliza", mutableStateOf(""), tipo = TipoCampo.TEXTO),
     )
 
+
     fun onCampoChange(index: Int, newValue: String) {
         campos[index].value.value = newValue
         campos[index].error.value = null
