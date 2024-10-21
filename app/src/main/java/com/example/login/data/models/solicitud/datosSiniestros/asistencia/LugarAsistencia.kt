@@ -1,8 +1,8 @@
 package com.example.login.data.models.solicitud.datosSiniestros.asistencia
 
 data class LugarAsistencia(
-    val nombreCentro: String = "",
-    val quedaInternado: Boolean? = null,
+    var nombreCentro: String = "",
+    var quedaInternado: Boolean? = null,
     val descripcionLesiones: String = "",
-    val estadoLesiones: EstadoLesiones = EstadoLesiones.DESCONOCIDO
+    var estadoLesiones: EstadoLesiones = EstadoLesiones.DESCONOCIDO
 )
