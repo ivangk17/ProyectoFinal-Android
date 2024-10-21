@@ -30,6 +30,7 @@ data class DatosSiniestro(
     var estadoCamino: EstadoCamino = EstadoCamino.DESCONOCIDO,
     var tipoCamino: TipoCamino = TipoCamino.DESCONOCIDO,
     val consecuenciaSiniestro: ConsecuenciaSiniestro = ConsecuenciaSiniestro(),
-    var observaciones : String =""
+    var observaciones : String ="",
+    var relato: String = ""
 
 )
