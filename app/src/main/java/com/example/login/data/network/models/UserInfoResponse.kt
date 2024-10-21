@@ -6,30 +6,30 @@ import com.google.gson.annotations.SerializedName
 
 data class UserInfoResponse(
 
-    val role: Role,
+    val role: Role = Role.ASEGURADO,
 
     @SerializedName("name")
-    val nombre :String,
+    val nombre :String = "",
 
     @SerializedName("lastname")
-    var apellido: String,
+    var apellido: String = "",
 
     var nombreCompleto: String = "${nombre} ${apellido} ",
 
     @SerializedName("dni")
-    var cuit: String,
+    var cuit: String = "",
 
-    var email: String,
+    var email: String = "",
 
     @SerializedName("phone")
-    var telefono: String,
+    var telefono: String = "",
 
     @SerializedName("date_of_birth")
-    var  fechaDeNacimiento: String,
+    var  fechaDeNacimiento: String = "",
 
     @SerializedName("gender")
-    var sexo: String,
+    var sexo: String = "",
 
     @SerializedName("domicile")
-    var domicilio: Domicilio
+    var domicilio: Domicilio = Domicilio()
 )

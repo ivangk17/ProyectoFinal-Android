@@ -39,7 +39,7 @@ fun HomeScreen(navController: NavController, homeViewModel: HomeViewModel) {
         if (polizas.isNotEmpty()) {
             polizas.forEach { poliza ->
                 PolizaCard(poliza){
-                    Log.e("poliza", poliza.dominio)
+                    Log.e("poliza", poliza.vehiculo.dominio)
                     val polizaJson = gson.toJson(poliza)
                     navController.navigate("${Rutas.PolizaDetalleScreen.ruta}/$polizaJson")
                 }

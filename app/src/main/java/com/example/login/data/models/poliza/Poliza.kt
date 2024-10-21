@@ -1,11 +1,16 @@
 package com.example.login.data.models.poliza
 
-import com.google.gson.annotations.SerializedName
+import com.example.login.data.models.vehiculos.Vehiculo
 
 data class Poliza(
-    @SerializedName("_id")
-    val id: String,
-    val dominio: String
+    val dniAsegurado: String = "",
+    val tipoCobertura: String = "",
+    val dominio: String = "",
+    val aseguradora: String = "",
+    val primaSegura: String = "",
+    val deducible: String = "",
+    val vehiculo: Vehiculo = Vehiculo(),
+
 
 )
 

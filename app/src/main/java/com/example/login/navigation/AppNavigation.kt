@@ -12,20 +12,24 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.login.data.models.poliza.Poliza
 import com.example.login.ui.viewmodels.HomeViewModel
-import com.example.login.data.network.GetServicePolizas
+import com.example.login.data.network.services.GetServicePolizas
+import com.example.login.data.network.services.GetServiceUser
 import com.example.login.data.network.RetrofitClient
 import com.example.login.ui.screens.LoginScreen
 import com.example.login.ui.screens.PolizaDetailsScreen
+import com.example.login.ui.screens.Prueba
 import com.example.login.ui.screens.forms.F1
 import com.example.login.ui.screens.forms.F2
+import com.example.login.ui.screens.forms.F3
 import com.example.login.ui.screens.forms.F4
 import com.example.login.ui.screens.forms.F5
-import com.example.login.ui.viewmodels.CrearPolizaViewModel
 import com.example.login.ui.viewmodels.PolizaDetailsViewModel
 import com.example.login.ui.viewmodels.forms.F1ViewModel
 import com.example.login.ui.viewmodels.forms.F2ViewModel
+import com.example.login.ui.viewmodels.forms.F3ViewModel
 import com.example.login.ui.viewmodels.forms.F4ViewModel
 import com.example.login.ui.viewmodels.forms.F5ViewModel
+import com.example.login.ui.viewmodels.forms.PruebaViewModel
 import com.example.login.utilities.obtenerObjetoDeNavegacion
 
 fun <T : ViewModel> NavGraphBuilder.polizaComposable(
@@ -78,11 +82,16 @@ fun AppNavigation() {
         polizaComposable(
             route = Rutas.SolicitudPolizaScreen.ruta,
             viewModelFactory = {
-                F5ViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
-                    .create(F5ViewModel::class.java)
+                F3ViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService), GetServiceUser(RetrofitClient.apiService))
+                    .create(F3ViewModel::class.java)
             }
+//            viewModelFactory = {
+//                F5ViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
+//                    .create(F5ViewModel::class.java)
+//            }
         ) { poliza, viewModel ->
-            F5(navController, viewModel, poliza)
+            F3(navController, viewModel, poliza)
+            //Prueba(navController, viewModel,)
         }
         }
     )

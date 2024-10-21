@@ -19,6 +19,12 @@ interface Api {
      @GET("api/polizas/list")
      suspend fun getPolizas(@Header("Authorization") token: String): Response<List<Poliza>>
 
+    @POST("api/polizas/getPoliza")
+    suspend fun getPoliza(
+        @Header("Authorization") token: String,
+        @Body idPoliza: String
+        ): Poliza
+
      @GET("api/test/getStatus")
      suspend fun getStatus(): Response<Boolean>
 

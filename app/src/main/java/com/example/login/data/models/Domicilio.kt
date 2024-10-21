@@ -3,7 +3,7 @@ package com.example.login.data.models
 import com.google.gson.annotations.SerializedName
 
 data class Domicilio(
-    @SerializedName("adress")
+    @SerializedName("address")
     var calle: String = "",
 
     @SerializedName("locality")

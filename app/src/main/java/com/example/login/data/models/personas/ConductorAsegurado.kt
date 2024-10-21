@@ -19,7 +19,8 @@ data class ConductorAsegurado(
     var claseRegistro: String = "",
     var relacionAsegurado: String = "",
     var fechaExpedicion: String = "",
-    var fechaVencimiento: String = ""
+    var fechaVencimiento: String = "",
+    var idPoliza: String = ""
 ): Persona(
     id,
     nombre,

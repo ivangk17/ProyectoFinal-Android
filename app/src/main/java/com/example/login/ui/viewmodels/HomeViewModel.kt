@@ -16,7 +16,7 @@ class HomeViewModel(
 
     fun loadPolizas() {
         viewModelScope.launch {
-            val polizas = getPolizasUseCase.execute()
+            val polizas = getPolizasUseCase.getPolizas()
             if(polizas.isSuccessful) {
                 Polizas.value = polizas.body()!!
             }

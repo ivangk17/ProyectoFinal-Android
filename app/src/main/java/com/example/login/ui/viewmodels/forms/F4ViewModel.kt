@@ -67,13 +67,13 @@ class F4ViewModel (
             Solicitud.propietarioAfectado.cuit = campos[8].value.value
             Solicitud.propietarioAfectado.email = campos[9].value.value
             Solicitud.propietarioAfectado.telefono = campos[10].value.value
-            Solicitud.propietarioAfectado.vehiculoPropietadoAfectado.color = campos[11].value.value
-            Solicitud.propietarioAfectado.vehiculoPropietadoAfectado.anio = campos[12].value.value
-            Solicitud.propietarioAfectado.vehiculoPropietadoAfectado.dominio = campos[13].value.value
-            Solicitud.propietarioAfectado.vehiculoPropietadoAfectado.aseguradora = campos[14].value.value
-            Solicitud.propietarioAfectado.vehiculoPropietadoAfectado.poliza = campos[15].value.value
+            Solicitud.propietarioAfectado.vehiculo.color = campos[11].value.value
+            Solicitud.propietarioAfectado.vehiculo.anio = campos[12].value.value
+            Solicitud.propietarioAfectado.vehiculo.dominio = campos[13].value.value
+            Solicitud.propietarioAfectado.vehiculo.aseguradora = campos[14].value.value
+            Solicitud.propietarioAfectado.vehiculo.poliza = campos[15].value.value
 
-            Solicitud.conductorAsegurado.fechaVencimiento = FechaVencimiento.value!!
+            Solicitud.propietarioAfectado.fechaVencimientoRegistro = FechaVencimiento.value!!
         }
 
         if (campos.all { it.error.value == null } ) {

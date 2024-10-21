@@ -68,7 +68,7 @@ fun F4(navController: NavController, viewModel: F4ViewModel, poliza: Poliza) {
                         val solicitud = viewModel.crearSolicitudPoliza()
                         if (solicitud != null) {
                             Log.d("solicitud", "se creo")
-                            Log.d("solicitud", "${viewModel.FechaVencimiento.value} ")
+                            Log.d("solicitud", "${viewModel.Solicitud} ")
                         } else {
                             Log.d("solicitud", "no se creo")
                         }

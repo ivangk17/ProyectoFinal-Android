@@ -3,7 +3,7 @@ package com.example.login.data.models.personas
 import com.example.login.data.models.Domicilio
 import com.example.login.data.models.vehiculos.Vehiculo
 
-data class PropietarioAfectado(
+open class Propietario(
     override val id: Int = -1,
     override var nombre: String = "",
     override var apellido: String = "",
@@ -15,10 +15,9 @@ data class PropietarioAfectado(
     override var sexo: String = "",
     override var domicilio: Domicilio = Domicilio(),
 
-    val vehiculo: Vehiculo = Vehiculo(),
-    var fechaVencimientoRegistro: String = ""
+    open val vehiculo: Vehiculo = Vehiculo()
 
-) : Persona(
+): Persona(
     id,
     nombre,
     apellido,
@@ -30,4 +29,3 @@ data class PropietarioAfectado(
     sexo,
     domicilio
 )
-

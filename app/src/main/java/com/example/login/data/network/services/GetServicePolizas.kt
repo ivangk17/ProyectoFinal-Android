@@ -10,7 +10,11 @@ import retrofit2.Response
 class GetServicePolizas(
     private val api: Api
 ) {
-    suspend fun execute(): Response<List<Poliza>> = withContext(Dispatchers.IO){
+    suspend fun getPolizas(): Response<List<Poliza>> = withContext(Dispatchers.IO){
         api.getPolizas("Bearer ${Token.token}")
+    }
+
+    suspend fun getPoliza(): Poliza = withContext(Dispatchers.IO){
+        api.getPoliza("Bearer ${Token.token}", "")
     }
 }
