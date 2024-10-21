@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.login.data.models.poliza.Poliza
-import com.example.login.data.network.GetServicePolizas
+import com.example.login.data.network.services.GetServicePolizas
 import kotlinx.coroutines.launch
 
 class HomeViewModel(

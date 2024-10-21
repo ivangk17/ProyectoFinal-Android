@@ -1,19 +1,15 @@
 package com.example.login.ui.viewmodels.forms
 
 import android.util.Log
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.login.components.SwitchCustom
 import com.example.login.data.models.fields.CheckField
 import com.example.login.data.models.fields.FormField
 import com.example.login.data.models.fields.TipoCampo
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.models.solicitud.datosSiniestros.HuboDenuncia
-import com.example.login.data.network.GetServicePolizas
+import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.utilities.ValidacionesCampos.validarCampos
 
 class F2ViewModel(
