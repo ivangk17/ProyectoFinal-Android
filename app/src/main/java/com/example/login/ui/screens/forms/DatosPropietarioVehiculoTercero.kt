@@ -19,12 +19,12 @@ import androidx.navigation.NavController
 import com.example.login.components.DatePicker
 import com.example.login.components.FieldStringForms
 import com.example.login.data.models.poliza.Poliza
-import com.example.login.ui.viewmodels.forms.F6ViewModel
-
+import com.example.login.navigation.Rutas
+import com.example.login.ui.screens.gson
+import com.example.login.ui.viewmodels.forms.DatosPropietarioVehiculoTerceroViewModel
 
 @Composable
-fun F6(navController: NavController, viewModel: F6ViewModel, poliza: Poliza) {
-
+fun DatosPropietarioVehiculoTercero(navController: NavController, viewModel: DatosPropietarioVehiculoTerceroViewModel, poliza: Poliza) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -32,7 +32,7 @@ fun F6(navController: NavController, viewModel: F6ViewModel, poliza: Poliza) {
     ) {
         item {
             Text(
-                text = "INFORMACION DEL CONDUCTOR VEHÍCULO DEL AFECTADO",
+                text = "DATOS DEL PROPIETARIO DEL OTRO VEHÍCULO",
                 textDecoration = TextDecoration.Underline,
                 fontWeight = FontWeight.Bold,
                 style = TextStyle(
@@ -44,47 +44,35 @@ fun F6(navController: NavController, viewModel: F6ViewModel, poliza: Poliza) {
 
         items(viewModel.campos.size) { index ->
             val campo = viewModel.campos[index]
-
-
             FieldStringForms(
                 label = campo.label,
                 value = campo.value,
                 error = campo.error,
                 onValueChange = { newValue -> viewModel.onCampoChange(index, newValue) }
             )
-
-            if(index == 7){
-                DatePicker(
-                    label = "Fecha de nacimiento",
-                    valor = viewModel.fechaNacimiento,
-                    error = viewModel.errorFechaNacimiento,
-                    onDateSelected = { newValue -> viewModel.setFechaNacimiento(newValue) }
-                )
-            }
-
-            if( index == 12){
-                DatePicker(
-                    label = "Fecha de expedicion",
-                    valor = viewModel.fechaExpedicion,
-                    error = viewModel.errorFechaExpedicion,
-                    onDateSelected = { newValue -> viewModel.setFechaExpedicion(newValue) }
-                )
-                DatePicker(
-                    label = "Fecha de vencimiento",
-                    valor = viewModel.fechaDeVencimiento,
-                    error = viewModel.errorFechaVencimiento,
-                    onDateSelected = { newValue -> viewModel.setFechaDeVencimiento(newValue) }
-                )
-            }
         }
+
+        item {
+            DatePicker(
+                label = "Fecha de vencimiento de la poliza",
+                valor = viewModel.FechaVencimiento,
+                error = viewModel.errorFechaVencimiento,
+                onDateSelected = { newValue -> viewModel.onFechaChange(newValue) }
+            )
+        }
+
+
 
         item {
             Column {
                 Button(
                     onClick = {
                         val solicitud = viewModel.crearSolicitudPoliza()
+                        val polizaJson = gson.toJson(poliza)
+                        navController.navigate(route = "${Rutas.ConductorVehiculoAsegurado.ruta}/${polizaJson}")
                         if (solicitud != null) {
-                            Log.d("solicitud", "se creo ${solicitud}")
+                            Log.d("solicitud", "se creo")
+                            Log.d("solicitud", "${viewModel.FechaVencimiento.value} ")
                         } else {
                             Log.d("solicitud", "no se creo")
                         }
@@ -96,5 +84,4 @@ fun F6(navController: NavController, viewModel: F6ViewModel, poliza: Poliza) {
             }
         }
     }
-
 }

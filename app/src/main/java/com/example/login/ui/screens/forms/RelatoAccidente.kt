@@ -12,7 +12,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.login.components.MultipleLine
 import com.example.login.data.models.poliza.Poliza
-import com.example.login.ui.viewmodels.forms.DatosAdicionalesViewModel
+import com.example.login.navigation.Rutas
+import com.example.login.ui.screens.gson
 import com.example.login.ui.viewmodels.forms.RelatoAccidenteViewModel
 
 @Composable
@@ -32,6 +33,8 @@ fun RelatoAccidente(navController: NavController, viewModel: RelatoAccidenteView
         Button(
             onClick = {
                 val solicitud = viewModel.crearSolicitud()
+                val polizaJson = gson.toJson(poliza)
+                navController.navigate("${Rutas.DaniosPersonales.ruta}/${polizaJson}")
                 if (solicitud != null) {
                     Log.d("SOLICITUD", viewModel.solicitud.datosSiniestro.relato.toString())
                 } else {

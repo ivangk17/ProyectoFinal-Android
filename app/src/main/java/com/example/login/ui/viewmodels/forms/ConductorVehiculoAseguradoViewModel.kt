@@ -10,7 +10,7 @@ import com.example.login.data.network.GetServicePolizas
 import com.example.login.utilities.ValidacionesCampos.validarCampos
 import com.example.login.utilities.validarFecha
 
-class F6ViewModel (
+class ConductorVehiculoAseguradoViewModel (
     getServicePolizas: GetServicePolizas
 ) : ViewModel() {
 
@@ -74,24 +74,24 @@ class F6ViewModel (
         validarFecha(fechaDeVencimiento, errorFechaVencimiento, "Debes completar la fecha de vencimiento")
 
         if (campos.all { it.error.value == null }) {
-            solicitud.conductorAfectado.nombre = campos[0].value.value
-            solicitud.conductorAfectado.apellido = campos[1].value.value
-            solicitud.conductorAfectado.domicilio.calle = campos[2].value.value
-            solicitud.conductorAfectado.domicilio.localidad = campos[3].value.value
-            solicitud.conductorAfectado.domicilio.codigoPostal = campos[6].value.value
-            solicitud.conductorAfectado.domicilio.provincia = campos[4].value.value
-            solicitud.conductorAfectado.domicilio.pais = campos[5].value.value
-            solicitud.conductorAfectado.cuit = campos[7].value.value
-            solicitud.conductorAfectado.telefono = campos[8].value.value
-            solicitud.conductorAfectado.sexo = campos[9].value.value
-            solicitud.conductorAfectado.email = campos[10].value.value
-            solicitud.conductorAfectado.nroRegistro = campos[11].value.value
-            solicitud.conductorAfectado.claseRegistro = campos[12].value.value
-            solicitud.conductorAfectado.relacionAsegurado = campos[13].value.value
+            solicitud.conductorAsegurado.nombre = campos[0].value.value
+            solicitud.conductorAsegurado.apellido = campos[1].value.value
+            solicitud.conductorAsegurado.domicilio.calle = campos[2].value.value
+            solicitud.conductorAsegurado.domicilio.localidad = campos[3].value.value
+            solicitud.conductorAsegurado.domicilio.codigoPostal = campos[6].value.value
+            solicitud.conductorAsegurado.domicilio.provincia = campos[4].value.value
+            solicitud.conductorAsegurado.domicilio.pais = campos[5].value.value
+            solicitud.conductorAsegurado.cuit = campos[7].value.value
+            solicitud.conductorAsegurado.telefono = campos[8].value.value
+            solicitud.conductorAsegurado.sexo = campos[9].value.value
+            solicitud.conductorAsegurado.email = campos[10].value.value
+            solicitud.conductorAsegurado.nroRegistro = campos[11].value.value
+            solicitud.conductorAsegurado.claseRegistro = campos[12].value.value
+            solicitud.conductorAsegurado.relacionAsegurado = campos[13].value.value
 
-            solicitud.conductorAfectado.fechaDeNacimiento = fechaNacimiento.value!!
-            solicitud.conductorAfectado.fechaVencimiento = fechaDeVencimiento.value!!
-            solicitud.conductorAfectado.fechaExpedicion = fechaExpedicion.value!!
+            solicitud.conductorAsegurado.fechaDeNacimiento = fechaNacimiento.value!!
+            solicitud.conductorAsegurado.fechaVencimiento = fechaDeVencimiento.value!!
+            solicitud.conductorAsegurado.fechaExpedicion = fechaExpedicion.value!!
 
 
         }
@@ -106,7 +106,7 @@ class F6ViewModel (
         fun provideFactory(getServicePolizas: GetServicePolizas): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return F6ViewModel(getServicePolizas) as T
+                return ConductorVehiculoAseguradoViewModel(getServicePolizas) as T
             }
         }
     }

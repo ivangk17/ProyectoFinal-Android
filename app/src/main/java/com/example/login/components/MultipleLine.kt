@@ -10,7 +10,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,26 +22,21 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun MultipleLine(
     titulo: String,
-    valor: MutableState<String?>,
+    valor: State<String?>,
     onValueChange: (String) -> Unit,
-    error: MutableState<String?> = mutableStateOf(null),
-    ){
-
-    if(valor.value.isNullOrEmpty()){
-        valor.value = ""
-    }
-
+    error: State<String?> = mutableStateOf(null)
+) {
     val isError = error.value != null
 
     Column {
         Text(
-            titulo,
+            text = titulo,
             style = TextStyle(fontSize = 24.sp, fontWeight = FontWeight.Bold),
             modifier = Modifier.padding(25.dp)
         )
         TextField(
             label = { Text(titulo) },
-            value = valor.value!!,
+            value = valor.value ?: "",
             onValueChange = { newValue ->
                 onValueChange(newValue)
             },
@@ -61,3 +56,4 @@ fun MultipleLine(
         }
     }
 }
+

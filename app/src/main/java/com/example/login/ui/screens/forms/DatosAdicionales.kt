@@ -14,8 +14,9 @@ import com.example.login.data.models.poliza.Poliza
 import com.example.login.data.models.solicitud.datosSiniestros.EstadoCamino
 import com.example.login.data.models.solicitud.datosSiniestros.EstadoTiempo
 import com.example.login.data.models.solicitud.datosSiniestros.TipoCamino
+import com.example.login.navigation.Rutas
+import com.example.login.ui.screens.gson
 import com.example.login.ui.viewmodels.forms.DatosAdicionalesViewModel
-import com.example.login.ui.viewmodels.forms.F6ViewModel
 
 @Composable
 fun DatosAdicionales(navController: NavController, viewModel: DatosAdicionalesViewModel, poliza: Poliza){
@@ -73,6 +74,8 @@ fun DatosAdicionales(navController: NavController, viewModel: DatosAdicionalesVi
             Button(
                 onClick = {
                     val solicitud = viewModel.crearSolicitud()
+                    val polizaJson = gson.toJson(poliza)
+                    navController.navigate("${Rutas.ConsecuenciaSiniestro.ruta}/${polizaJson}")
                     if (solicitud != null) {
                         Log.d("SOLICITUD", viewModel.solicitud.toString())
                     } else {

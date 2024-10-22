@@ -11,7 +11,7 @@ import com.example.login.ui.viewmodels.CrearPolizaViewModel
 import com.example.login.utilities.ValidacionesCampos.validarCampos
 
 
-class F1ViewModel(
+class DatosSiniestroViewModel(
     getServicePolizas: GetServicePolizas
 ) : ViewModel() {
     val crearPolizaViewModel : CrearPolizaViewModel = CrearPolizaViewModel()
@@ -62,7 +62,7 @@ class F1ViewModel(
         fun provideFactory(getServicePolizas: GetServicePolizas): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return F1ViewModel(getServicePolizas) as T
+                return DatosSiniestroViewModel(getServicePolizas) as T
             }
         }
     }

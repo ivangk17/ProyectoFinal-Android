@@ -20,6 +20,8 @@ import com.example.login.components.FieldStringForms
 import com.example.login.components.SwitchCustom
 import com.example.login.data.models.personas.Sexo
 import com.example.login.data.models.poliza.Poliza
+import com.example.login.navigation.Rutas
+import com.example.login.ui.screens.gson
 import com.example.login.ui.viewmodels.forms.DaniosPersonalesViewModel
 
 @Composable
@@ -79,6 +81,9 @@ fun DaniosPersonales(navController: NavController, viewModel: DaniosPersonalesVi
             Button(
                 onClick = {
                     val solicitud = viewModel.crearSolicitud()
+                    val polizaJson = gson.toJson(poliza)
+                    //TODO COMPLETAR
+                    //navController.navigate("${Rutas.ConsecuenciaSiniestro.ruta}/${polizaJson}")
                     if (solicitud != null) {
                         Log.d("SOLICITUD", viewModel.solicitud.toString())
                     } else {

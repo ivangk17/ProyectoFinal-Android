@@ -12,13 +12,15 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.login.components.FieldStringForms
 import com.example.login.data.models.poliza.Poliza
+import com.example.login.navigation.Rutas
+import com.example.login.ui.screens.gson
 import com.example.login.ui.viewmodels.CrearPolizaViewModel
-import com.example.login.ui.viewmodels.forms.F1ViewModel
+import com.example.login.ui.viewmodels.forms.DatosSiniestroViewModel
 
 @SuppressLint("SuspiciousIndentation")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun F1(navController: NavController, viewModel: F1ViewModel, poliza: Poliza) {
+fun DatosSiniestro(navController: NavController, viewModel: DatosSiniestroViewModel, poliza: Poliza) {
     val crearPolizaViewModel: CrearPolizaViewModel = viewModel(
         factory = CrearPolizaViewModel.provideFactory()
     )
@@ -44,6 +46,8 @@ fun F1(navController: NavController, viewModel: F1ViewModel, poliza: Poliza) {
                 item {
                     Button(onClick = {
                         val solicitud = viewModel.crearSolicitudPoliza()
+                        val polizaJson = gson.toJson(poliza)
+                        navController.navigate(route = "${Rutas.InformacionAdicional.ruta}/${polizaJson}")
                         if (solicitud != null) {
                             Log.d("solicitud", "se creo")
                             Log.d("solicitud", "${solicitud.toString()} ")

@@ -7,10 +7,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
@@ -19,10 +15,12 @@ import com.example.login.components.FieldStringForms
 import com.example.login.components.SwitchCustom
 import com.example.login.data.models.poliza.Poliza
 import com.example.login.data.models.solicitud.datosSiniestros.HuboDenuncia
-import com.example.login.ui.viewmodels.forms.F2ViewModel
+import com.example.login.navigation.Rutas
+import com.example.login.ui.screens.gson
+import com.example.login.ui.viewmodels.forms.InformacionAdicionalViewModel
 
 @Composable
-fun F2(navController: NavController, viewModel: F2ViewModel, poliza: Poliza){
+fun InformacionAdicional(navController: NavController, viewModel: InformacionAdicionalViewModel, poliza: Poliza){
     val options = HuboDenuncia.entries
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -62,6 +60,8 @@ fun F2(navController: NavController, viewModel: F2ViewModel, poliza: Poliza){
         Button(
             onClick = {
                 val solicitud = viewModel.crearSolicitudPoliza()
+                val polizaJson = gson.toJson(poliza)
+                navController.navigate(route = "${Rutas.DatosPropietarioVehiculoTercero.ruta}/${polizaJson}")
                 if (solicitud != null) {
                     Log.d("solicitud", "se creo")
                     Log.d("solicitud", "${viewModel.Solicitud.datosSiniestro} ")
