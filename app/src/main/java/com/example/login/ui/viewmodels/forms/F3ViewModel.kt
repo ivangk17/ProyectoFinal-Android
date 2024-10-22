@@ -1,22 +1,14 @@
 package com.example.login.ui.viewmodels.forms
 
-import android.util.Log
-import androidx.compose.material3.Text
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.login.components.SwitchCustom
-import com.example.login.data.models.fields.CheckField
 import com.example.login.data.models.fields.FormField
 import com.example.login.data.models.fields.TipoCampo
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.models.solicitud.datosSiniestros.HuboDenuncia
 import com.example.login.data.network.GetServicePolizas
 import com.example.login.utilities.ValidacionesCampos.validarCampos
-import java.lang.IllegalStateException
 
 
 class F3ViewModel (getServicePolizas: GetServicePolizas
@@ -54,14 +46,15 @@ class F3ViewModel (getServicePolizas: GetServicePolizas
         if (campos.all { it.error.value == null }) { //similar a un foreach
             Solicitud.conductorAsegurado.nombre = campos[0].value.value
             Solicitud.conductorAsegurado.apellido = campos[1].value.value
-            //Solicitud.conductorAsegurado.domicilio = campos[2].value.value
-            //Solicitud.conductorAsegurado.localidad = campos[3].value.value
-            //Solicitud.conductorAsegurado.codigoPostal = campos[4].value.value
-            //Solicitud.conductorAsegurado.provincia = campos[5].value.value
-            //Solicitud.conductorAsegurado.pais = campos[6].value.value
+            Solicitud.conductorAsegurado.domicilio.calle = campos[2].value.value
+            Solicitud.conductorAsegurado.domicilio.localidad = campos[3].value.value
+            Solicitud.conductorAsegurado.domicilio.codigoPostal = campos[4].value.value
+            Solicitud.conductorAsegurado.domicilio.provincia = campos[5].value.value
+            Solicitud.conductorAsegurado.domicilio.pais = campos[6].value.value
             Solicitud.conductorAsegurado.cuit = campos[7].value.value
             Solicitud.conductorAsegurado.email = campos[8].value.value
             Solicitud.conductorAsegurado.telefono = campos[9].value.value
+            //falta cargar datos del vehículo a la entidad conductor asegurado
             //Solicitud.conductorAsegurado.marcaymodelo = campos[10].value.value
             //Solicitud.conductorAsegurado.color = campos[11].value.value
             //Solicitud.conductorAsegurado.anio = campos[12].value.value
