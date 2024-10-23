@@ -39,24 +39,24 @@ fun PolizaCard(poliza: Poliza, onClick: () -> Unit) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             // Aquí debes colocar el ícono del vehículo, según corresponda
-            Image(
-                painter = painterResource(id = getVehicleIcon(poliza.dominio)), // Esto es un ejemplo, ajusta según tu recurso
-                contentDescription = "Vehicle Icon",
-                contentScale = ContentScale.Fit,
-                modifier = Modifier
-                    .size(48.dp)
-                    .padding(end = 16.dp)
-            )
+//            Image(
+//                painter = painterResource(id = getVehicleIcon(poliza.vehiculo.dominio)), // Esto es un ejemplo, ajusta según tu recurso
+//                contentDescription = "Vehicle Icon",
+//                contentScale = ContentScale.Fit,
+//                modifier = Modifier
+//                    .size(48.dp)
+//                    .padding(end = 16.dp)
+//            )
 
             Column {
                 Text(
-                    text = "${poliza.dominio} - ${"poliza.marca"} ${"poliza.modelo"}",
+                    text = "${poliza.vehiculo.dominio} - ${"poliza.marca"} ${"poliza.modelo"}",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.Black
                 )
                 Text(
-                    text = "Patente: ${poliza.dominio}",
+                    text = "Patente: ${poliza.vehiculo.dominio}",
                     fontSize = 16.sp,
                     color = Color.Gray
                 )

@@ -16,12 +16,12 @@ data class ConductorAsegurado(
     override var sexo: String = "",
     override var domicilio: Domicilio = Domicilio(),
 
-
     var nroRegistro: String = "",
     var claseRegistro: String = "",
     var relacionAsegurado: String = "",
     var fechaExpedicion: String = "",
     var fechaVencimiento: String = "",
+    var idPoliza: String = "",
     var vehiculo : Vehiculo = Vehiculo()
 ): Persona(
     id,

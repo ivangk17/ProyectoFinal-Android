@@ -1,6 +1,7 @@
-package com.example.login.data.network
+package com.example.login.data.network.services
 
 import com.example.login.data.models.poliza.Poliza
+import com.example.login.data.network.Api
 import com.example.login.tokens.Token
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -9,7 +10,11 @@ import retrofit2.Response
 class GetServicePolizas(
     private val api: Api
 ) {
-    suspend fun execute(): Response<List<Poliza>> = withContext(Dispatchers.IO){
+    suspend fun getPolizas(): Response<List<Poliza>> = withContext(Dispatchers.IO){
         api.getPolizas("Bearer ${Token.token}")
+    }
+
+    suspend fun getPoliza(): Poliza = withContext(Dispatchers.IO){
+        api.getPoliza("Bearer ${Token.token}", "")
     }
 }

@@ -31,7 +31,7 @@ import androidx.navigation.NavController
 import com.example.login.data.models.ErrorResponse
 import com.example.login.utilities.LastCharVisibleTransformation
 import com.example.login.data.network.RetrofitClient
-import com.example.login.data.models.User
+import com.example.login.data.models.UserLogin
 import com.example.login.components.Field
 import com.example.login.navigation.Rutas
 import com.example.login.tokens.Token
@@ -46,7 +46,7 @@ fun isEmailValid(email: String): Boolean {
     return Patterns.EMAIL_ADDRESS.matcher(email).matches()
 }
 
-suspend fun handleLogin(user: User, context: Context, navController: NavController) {
+suspend fun handleLogin(user: UserLogin, context: Context, navController: NavController) {
     try {
         val response = RetrofitClient.apiService.login(user)
         Token.token = response.token
@@ -123,7 +123,7 @@ fun RegisterText(modifier: Modifier = Modifier, navController: NavController) {
         Spacer(modifier = Modifier.height(16.dp))
         Button(
             onClick = {
-                val user = User(email.text, password.text)
+                val user = UserLogin(email.text, password.text)
                 CoroutineScope(Dispatchers.Main).launch {
                     handleLogin(user, context, navController)
                 }

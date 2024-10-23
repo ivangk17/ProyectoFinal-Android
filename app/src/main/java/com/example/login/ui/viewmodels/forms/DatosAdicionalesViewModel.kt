@@ -8,9 +8,8 @@ import com.example.login.data.models.fields.CheckField
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.models.solicitud.datosSiniestros.EstadoCamino
 import com.example.login.data.models.solicitud.datosSiniestros.EstadoTiempo
-import com.example.login.data.models.solicitud.datosSiniestros.HuboDenuncia
 import com.example.login.data.models.solicitud.datosSiniestros.TipoCamino
-import com.example.login.data.network.GetServicePolizas
+import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.utilities.validarFecha
 
 class DatosAdicionalesViewModel(

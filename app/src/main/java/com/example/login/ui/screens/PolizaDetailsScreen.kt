@@ -18,7 +18,7 @@ fun PolizaDetailsScreen(
     navController: NavHostController
 ) {
 
-    Text("DOMINIO: ${poliza.dominio}", modifier = Modifier.fillMaxSize(), textAlign = TextAlign.Center)
+    Text("DOMINIO: ${poliza.vehiculo.dominio}", modifier = Modifier.fillMaxSize(), textAlign = TextAlign.Center)
     Button(
         onClick = {
             val polizaJson = gson.toJson(poliza)

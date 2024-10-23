@@ -4,7 +4,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.login.data.network.GetStatus
+import com.example.login.data.network.services.GetStatus
 import kotlinx.coroutines.launch
 
 class MainActivityViewModel(
