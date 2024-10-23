@@ -70,7 +70,7 @@ fun InformacionAdicional(
 
                 if (solicitud != null) {
                     crearSolicitudViewModel.envioInformacionAdicional(solicitud)
-                    navController.navigate(route = "${Rutas.DatosPropietarioVehiculoTercero.ruta}/${polizaJson}")
+                    navController.navigate(route = "${Rutas.DatosPropietarioVehiculoAsegurado.ruta}/${polizaJson}")
                 } else {
                     Log.d("solicitud", "no se creo")
                 }

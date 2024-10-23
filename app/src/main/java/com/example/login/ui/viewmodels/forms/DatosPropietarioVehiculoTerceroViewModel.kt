@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.login.data.models.fields.FormField
 import com.example.login.data.models.fields.TipoCampo
 import com.example.login.data.models.solicitud.Solicitud
-import com.example.login.data.network.GetServicePolizas
+import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.utilities.ValidacionesCampos.validarCampos
 import com.example.login.utilities.validarFecha
 
@@ -66,15 +66,15 @@ class DatosPropietarioVehiculoTerceroViewModel (
             Solicitud.propietarioAfectado.cuit = campos[7].value.value
             Solicitud.propietarioAfectado.email = campos[8].value.value
             Solicitud.propietarioAfectado.telefono = campos[9].value.value
-            Solicitud.propietarioAfectado.vehiculoPropietadoAfectado.marca = campos[10].value.value
-            Solicitud.propietarioAfectado.vehiculoPropietadoAfectado.modelo = campos[11].value.value
-            Solicitud.propietarioAfectado.vehiculoPropietadoAfectado.color = campos[12].value.value
-            Solicitud.propietarioAfectado.vehiculoPropietadoAfectado.anio = campos[13].value.value
-            Solicitud.propietarioAfectado.vehiculoPropietadoAfectado.dominio = campos[14].value.value
-            Solicitud.propietarioAfectado.vehiculoPropietadoAfectado.aseguradora = campos[15].value.value
-            Solicitud.propietarioAfectado.vehiculoPropietadoAfectado.poliza = campos[16].value.value
+            Solicitud.propietarioAfectado.vehiculo.marca = campos[10].value.value
+            Solicitud.propietarioAfectado.vehiculo.modelo = campos[11].value.value
+            Solicitud.propietarioAfectado.vehiculo.color = campos[12].value.value
+            Solicitud.propietarioAfectado.vehiculo.anio = campos[13].value.value
+            Solicitud.propietarioAfectado.vehiculo.dominio = campos[14].value.value
+            Solicitud.propietarioAfectado.vehiculo.aseguradora = campos[15].value.value
+            Solicitud.propietarioAfectado.vehiculo.poliza = campos[16].value.value
 
-            Solicitud.propietarioAfectado.vehiculoPropietadoAfectado.fechaVencimiento = fechaDeVencimiento.value!!
+            Solicitud.propietarioAfectado.vehiculo.fechaVencimiento = fechaDeVencimiento.value!!
         }else{
         return null
     }

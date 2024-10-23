@@ -15,7 +15,7 @@ class GetServiceUser(
 ) {
     suspend fun execute(): UserInfoResponse = withContext(Dispatchers.IO) {
         val token = TokenForJson(Token.token)
-        Log.d("JSON", Gson().toJson(token))  // Esto imprimirá {"token":"tu_token_aqui"}
+        Log.d("JSON", Gson().toJson(token))
         api.getInfoUser(token)
     }
 }

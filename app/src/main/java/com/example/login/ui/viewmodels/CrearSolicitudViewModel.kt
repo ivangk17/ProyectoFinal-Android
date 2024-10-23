@@ -50,13 +50,13 @@ class CrearSolicitudViewModel: ViewModel()  {
         _solicitud.propietarioAfectado.cuit = solicitud.propietarioAfectado.cuit
         _solicitud.propietarioAfectado.email = solicitud.propietarioAfectado.email
         _solicitud.propietarioAfectado.telefono = solicitud.propietarioAfectado.telefono
-        _solicitud.propietarioAfectado.vehiculoPropietadoAfectado.marca = solicitud.propietarioAfectado.vehiculoPropietadoAfectado.marca
-        _solicitud.propietarioAfectado.vehiculoPropietadoAfectado.modelo = solicitud.propietarioAfectado.vehiculoPropietadoAfectado.modelo
-        _solicitud.propietarioAfectado.vehiculoPropietadoAfectado.color = solicitud.propietarioAfectado.vehiculoPropietadoAfectado.color
-        _solicitud.propietarioAfectado.vehiculoPropietadoAfectado.anio = solicitud.propietarioAfectado.vehiculoPropietadoAfectado.anio
-        _solicitud.propietarioAfectado.vehiculoPropietadoAfectado.dominio = solicitud.propietarioAfectado.vehiculoPropietadoAfectado.dominio
-        _solicitud.propietarioAfectado.vehiculoPropietadoAfectado.aseguradora = solicitud.propietarioAfectado.vehiculoPropietadoAfectado.aseguradora
-        _solicitud.propietarioAfectado.vehiculoPropietadoAfectado.poliza = solicitud.propietarioAfectado.vehiculoPropietadoAfectado.poliza
+        _solicitud.propietarioAfectado.vehiculo.marca = solicitud.propietarioAfectado.vehiculo.marca
+        _solicitud.propietarioAfectado.vehiculo.modelo = solicitud.propietarioAfectado.vehiculo.modelo
+        _solicitud.propietarioAfectado.vehiculo.color = solicitud.propietarioAfectado.vehiculo.color
+        _solicitud.propietarioAfectado.vehiculo.anio = solicitud.propietarioAfectado.vehiculo.anio
+        _solicitud.propietarioAfectado.vehiculo.dominio = solicitud.propietarioAfectado.vehiculo.dominio
+        _solicitud.propietarioAfectado.vehiculo.aseguradora = solicitud.propietarioAfectado.vehiculo.aseguradora
+        _solicitud.propietarioAfectado.vehiculo.poliza = solicitud.propietarioAfectado.vehiculo.poliza
 
         _solicitud.conductorAsegurado.fechaVencimiento = solicitud.conductorAsegurado.fechaVencimiento
 

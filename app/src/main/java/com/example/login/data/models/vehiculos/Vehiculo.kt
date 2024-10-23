@@ -8,7 +8,7 @@ data class Vehiculo(
     var anio: String = "",
     var dominio: String = "",
     var color: String = "",
-
+    var usoDelVehiculo : UsoDelVehiculo = UsoDelVehiculo.PARTICULAR,
     var aseguradora: String ="",
     var poliza: String = "",
     var fechaVencimiento: String = ""
