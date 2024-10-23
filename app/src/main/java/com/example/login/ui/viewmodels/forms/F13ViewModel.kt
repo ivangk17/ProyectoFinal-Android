@@ -50,8 +50,8 @@ class F13ViewModel(
         validarCampos(campos)
         if (campos.all { it.error.value == null }) {
             Solicitud.datosSiniestro.lugarAsistencia!!.nombreCentro = campos[0].value.value
-            Solicitud.datosSiniestro.lugarAsistencia!!.quedaInternado = camposCheckeables[0].value.value
-            Solicitud.datosSiniestro.lugarAsistencia!!.estadoLesiones = estadoLesiones.value
+
+            cargarCheckeables()
 
         }else{
             return null
@@ -59,6 +59,11 @@ class F13ViewModel(
 
 
         return Solicitud
+    }
+
+    private fun cargarCheckeables(){
+        Solicitud.datosSiniestro.lugarAsistencia!!.quedaInternado = camposCheckeables[0].value.value
+        Solicitud.datosSiniestro.lugarAsistencia!!.estadoLesiones = estadoLesiones.value
     }
 
     companion object{
