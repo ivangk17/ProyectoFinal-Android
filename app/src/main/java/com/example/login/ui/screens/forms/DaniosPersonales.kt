@@ -1,7 +1,6 @@
 package com.example.login.ui.screens.forms
 
 import android.util.Log
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -20,12 +19,17 @@ import com.example.login.components.FieldStringForms
 import com.example.login.components.SwitchCustom
 import com.example.login.data.models.personas.Sexo
 import com.example.login.data.models.poliza.Poliza
-import com.example.login.navigation.Rutas
 import com.example.login.ui.screens.gson
+import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.forms.DaniosPersonalesViewModel
 
 @Composable
-fun DaniosPersonales(navController: NavController, viewModel: DaniosPersonalesViewModel, poliza: Poliza){
+fun DaniosPersonales(
+    navController: NavController,
+    viewModel: DaniosPersonalesViewModel,
+    poliza: Poliza,
+    crearSolicitudViewModel: CrearSolicitudViewModel
+){
     val options = Sexo.entries
 
     LazyColumn(
@@ -82,10 +86,10 @@ fun DaniosPersonales(navController: NavController, viewModel: DaniosPersonalesVi
                 onClick = {
                     val solicitud = viewModel.crearSolicitud()
                     val polizaJson = gson.toJson(poliza)
-                    //TODO COMPLETAR
-                    //navController.navigate("${Rutas.ConsecuenciaSiniestro.ruta}/${polizaJson}")
                     if (solicitud != null) {
-                        Log.d("SOLICITUD", viewModel.solicitud.toString())
+                        crearSolicitudViewModel.daniosPersonales(solicitud)
+                        //TODO COMPLETAR
+                        //navController.navigate("${Rutas.ConsecuenciaSiniestro.ruta}/${polizaJson}")
                     } else {
                         Log.d("solicitud", "no se creo")
                     }

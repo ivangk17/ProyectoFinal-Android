@@ -49,7 +49,9 @@ class DatosAdicionalesViewModel(
             solicitud.datosSiniestro.tipoCamino = tipoCamino.value
             solicitud.datosSiniestro.estadoCamino = estadoCamino.value
             solicitud.datosSiniestro.estadoTiempo = estadoTiempo.value
-
+            solicitud.datosSiniestro.asistioGrua = camposCheckeables[0].value.value
+            solicitud.datosSiniestro.asistioAmbulancia = camposCheckeables[1].value.value
+            solicitud.datosSiniestro.asistioBomberos = camposCheckeables[2].value.value
             solicitud.datosSiniestro.observaciones = observaciones.value.toString()
         }else{
             return null

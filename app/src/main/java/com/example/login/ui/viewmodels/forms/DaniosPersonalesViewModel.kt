@@ -34,6 +34,7 @@ class DaniosPersonalesViewModel(
         FormField("CUIT", mutableStateOf(""), tipo = TipoCampo.TEXTO),
         FormField("Email", mutableStateOf(""), tipo = TipoCampo.TEXTO),
         FormField("Telefono", mutableStateOf(""), tipo = TipoCampo.TEXTO),
+        FormField("Sexo", mutableStateOf(""), tipo = TipoCampo.TEXTO),
         FormField("Estado Civil", mutableStateOf(""), tipo = TipoCampo.TEXTO),
         FormField("Telefono Alternativo", mutableStateOf(""), tipo = TipoCampo.TEXTO),
     )
@@ -78,8 +79,9 @@ class DaniosPersonalesViewModel(
             solicitud.lesiones.lesionado.cuit = campos[7].value.value
             solicitud.lesiones.lesionado.email = campos[8].value.value
             solicitud.lesiones.lesionado.telefono = campos[9].value.value
-            solicitud.lesiones.lesionado.estadoCivil = campos[10].value.value
-            solicitud.lesiones.lesionado.telefonoAlternativo = campos[11].value.value
+            solicitud.lesiones.lesionado.sexo = campos[10].value.value
+            solicitud.lesiones.lesionado.estadoCivil = campos[11].value.value
+            solicitud.lesiones.lesionado.telefonoAlternativo = campos[12].value.value
 
             solicitud.lesiones.lesionado.fechaDeNacimiento = fechaNacimiento.value!!
 

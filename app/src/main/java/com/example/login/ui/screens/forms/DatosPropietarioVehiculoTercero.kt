@@ -21,10 +21,16 @@ import com.example.login.components.FieldStringForms
 import com.example.login.data.models.poliza.Poliza
 import com.example.login.navigation.Rutas
 import com.example.login.ui.screens.gson
+import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.forms.DatosPropietarioVehiculoTerceroViewModel
 
 @Composable
-fun DatosPropietarioVehiculoTercero(navController: NavController, viewModel: DatosPropietarioVehiculoTerceroViewModel, poliza: Poliza) {
+fun DatosPropietarioVehiculoTercero(
+    navController: NavController,
+    viewModel: DatosPropietarioVehiculoTerceroViewModel,
+    poliza: Poliza,
+    crearSolicitudViewModel: CrearSolicitudViewModel
+) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -55,9 +61,9 @@ fun DatosPropietarioVehiculoTercero(navController: NavController, viewModel: Dat
         item {
             DatePicker(
                 label = "Fecha de vencimiento de la poliza",
-                valor = viewModel.FechaVencimiento,
+                valor = viewModel.fechaDeVencimiento,
                 error = viewModel.errorFechaVencimiento,
-                onDateSelected = { newValue -> viewModel.onFechaChange(newValue) }
+                onDateSelected = { newValue -> viewModel.setFechaDeVencimiento(newValue) }
             )
         }
 
@@ -69,10 +75,9 @@ fun DatosPropietarioVehiculoTercero(navController: NavController, viewModel: Dat
                     onClick = {
                         val solicitud = viewModel.crearSolicitudPoliza()
                         val polizaJson = gson.toJson(poliza)
-                        navController.navigate(route = "${Rutas.ConductorVehiculoAsegurado.ruta}/${polizaJson}")
                         if (solicitud != null) {
-                            Log.d("solicitud", "se creo")
-                            Log.d("solicitud", "${viewModel.FechaVencimiento.value} ")
+                            crearSolicitudViewModel.datosPropietarioVehiculoTercero(solicitud)
+                            navController.navigate(route = "${Rutas.ConductorVehiculoAsegurado.ruta}/${polizaJson}")
                         } else {
                             Log.d("solicitud", "no se creo")
                         }

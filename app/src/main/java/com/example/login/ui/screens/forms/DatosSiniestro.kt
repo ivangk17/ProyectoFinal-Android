@@ -8,29 +8,37 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.login.components.DatePicker
 import com.example.login.components.FieldStringForms
+import com.example.login.components.TimePicker
 import com.example.login.data.models.poliza.Poliza
 import com.example.login.navigation.Rutas
 import com.example.login.ui.screens.gson
-import com.example.login.ui.viewmodels.CrearPolizaViewModel
+import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.forms.DatosSiniestroViewModel
 
 @SuppressLint("SuspiciousIndentation")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DatosSiniestro(navController: NavController, viewModel: DatosSiniestroViewModel, poliza: Poliza) {
-    val crearPolizaViewModel: CrearPolizaViewModel = viewModel(
-        factory = CrearPolizaViewModel.provideFactory()
-    )
+fun DatosSiniestro(
+    navController: NavController,
+    viewModel: DatosSiniestroViewModel,
+    poliza: Poliza,
+    crearSolicitudViewModel: CrearSolicitudViewModel
+) {
         Column {
-//            DataPicker(onDateSelected = { date ->
-//                viewModel.FechaOcurrencia.value = date
-//            })
-//            TimePicker(onTimeSelected = { time ->
-//                viewModel.HoraOcurriencia.value = time
-//            })
+            DatePicker(
+                label = "Fecha de ocurrencia del siniestro",
+                valor = viewModel.fechaOcurrencia,
+                error = viewModel.errorFechaOcurrencua,
+                onDateSelected = { newValue -> viewModel.setFechaOcurrencia(newValue) }
+            )
+            TimePicker(
+                label = "Fecha de ocurrencia del siniestro",
+                valor = viewModel.horaOcurriencia,
+                error = viewModel.errorHoraOcurrencua,
+                onTimeSelected = { newValue -> viewModel.setHoraOcurrencia(newValue) })
             LazyColumn {
                 items(viewModel.campos.size) { index ->
                     val campo = viewModel.campos[index]
@@ -47,11 +55,11 @@ fun DatosSiniestro(navController: NavController, viewModel: DatosSiniestroViewMo
                     Button(onClick = {
                         val solicitud = viewModel.crearSolicitudPoliza()
                         val polizaJson = gson.toJson(poliza)
-                        navController.navigate(route = "${Rutas.InformacionAdicional.ruta}/${polizaJson}")
+
                         if (solicitud != null) {
-                            Log.d("solicitud", "se creo")
-                            Log.d("solicitud", "${solicitud.toString()} ")
-                            Log.d("Fecha ocurrencia", "${viewModel.HoraOcurriencia}")
+                            crearSolicitudViewModel.envioDatosSiniestros(solicitud)
+                            Log.d("solicitud", solicitud.toString())
+                            navController.navigate(route = "${Rutas.InformacionAdicional.ruta}/${polizaJson}")
                         }else{
                             Log.d("solicitud", "no se creo")
                         }

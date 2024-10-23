@@ -21,6 +21,7 @@ import com.example.login.ui.screens.forms.DatosPropietarioVehiculoTercero
 import com.example.login.ui.screens.forms.DatosSiniestro
 import com.example.login.ui.screens.forms.InformacionAdicional
 import com.example.login.ui.screens.forms.RelatoAccidente
+import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.PolizaDetailsViewModel
 import com.example.login.ui.viewmodels.forms.ConductorVehiculoAseguradoViewModel
 import com.example.login.ui.viewmodels.forms.ConductorVehiculoTerceroViewModel
@@ -33,11 +34,16 @@ import com.example.login.ui.viewmodels.forms.DatosPropietarioVehiculoTerceroView
 import com.example.login.ui.viewmodels.forms.DatosSiniestroViewModel
 import com.example.login.ui.viewmodels.forms.InformacionAdicionalViewModel
 import com.example.login.ui.viewmodels.forms.RelatoAccidenteViewModel
+import com.example.login.utilities.daniosVehiculoAsegurado
+import com.example.login.utilities.daniosVehiculosTercero
 
 
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
+    val crearSolicitudViewModel: CrearSolicitudViewModel = viewModel(
+        factory = CrearSolicitudViewModel.provideFactory()
+    )
     NavHost(navController = navController, startDestination = Rutas.HomeScreen.ruta, builder = {
         composable(Rutas.HomeScreen.ruta) {
             val homeViewModel: HomeViewModel = viewModel(
@@ -70,7 +76,7 @@ fun AppNavigation() {
                     .create(DatosSiniestroViewModel::class.java)
             }
         ) { poliza, viewModel ->
-            DatosSiniestro(navController, viewModel, poliza)
+            DatosSiniestro(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
         rutaComposable(
@@ -80,7 +86,7 @@ fun AppNavigation() {
                     .create(InformacionAdicionalViewModel::class.java)
             }
         ) { poliza, viewModel ->
-            InformacionAdicional(navController, viewModel, poliza)
+            InformacionAdicional(navController, viewModel, poliza,crearSolicitudViewModel)
         }
         rutaComposable(
             route = Rutas.DatosPropietarioVehiculoTercero.ruta,
@@ -89,7 +95,7 @@ fun AppNavigation() {
                     .create(DatosPropietarioVehiculoTerceroViewModel::class.java)
             }
         ) { poliza, viewModel ->
-            DatosPropietarioVehiculoTercero(navController, viewModel, poliza)
+            DatosPropietarioVehiculoTercero(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
         rutaComposable(
@@ -99,7 +105,7 @@ fun AppNavigation() {
                     .create(ConductorVehiculoAseguradoViewModel::class.java)
             }
         ) { poliza, viewModel ->
-            ConductorVehiculoAsegurado(navController, viewModel, poliza)
+            ConductorVehiculoAsegurado(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
         rutaComposable(
@@ -109,7 +115,7 @@ fun AppNavigation() {
                     .create(ConductorVehiculoTerceroViewModel::class.java)
             }
         ) { poliza, viewModel ->
-            ConductorVehiculoTercero(navController, viewModel, poliza)
+            ConductorVehiculoTercero(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
         rutaComposable(
@@ -119,7 +125,15 @@ fun AppNavigation() {
                     .create(DaniosVehiculoAseguradoViewModel::class.java)
             }
         ) { poliza, viewModel ->
-            DaniosDeVehiculos("Daños del Vehiculo Asegurado", navController ,viewModel, poliza,  Rutas.DaniosVehiculosTercero)
+            DaniosDeVehiculos(
+                "Daños del Vehiculo Asegurado",
+                navController,
+                viewModel,
+                crearSolicitudViewModel,
+                poliza,
+                Rutas.DaniosVehiculosTercero,
+                onEnviar = ::daniosVehiculoAsegurado
+            )
         }
 
         rutaComposable(
@@ -133,8 +147,10 @@ fun AppNavigation() {
                 "Daños del Vehiculo Tercero",
                 navController,
                 viewModel,
+                crearSolicitudViewModel,
                 poliza,
-                Rutas.DatosAdicionales
+                Rutas.DatosAdicionales,
+                onEnviar = ::daniosVehiculosTercero
             )
         }
 
@@ -145,7 +161,7 @@ fun AppNavigation() {
                     .create(DatosAdicionalesViewModel::class.java)
             }
         ) { poliza, viewModel ->
-            DatosAdicionales(navController, viewModel, poliza)
+            DatosAdicionales(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
         rutaComposable(
@@ -155,7 +171,7 @@ fun AppNavigation() {
                     .create(ConsecuenciaSiniestroViewModel::class.java)
             }
         ) { poliza, viewModel ->
-            ConsecuenciaSiniestro(navController, viewModel, poliza)
+            ConsecuenciaSiniestro(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
         rutaComposable(
@@ -165,7 +181,7 @@ fun AppNavigation() {
                     .create(RelatoAccidenteViewModel::class.java)
             }
         ) { poliza, viewModel ->
-            RelatoAccidente(navController, viewModel, poliza)
+            RelatoAccidente(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
         rutaComposable(
@@ -175,7 +191,7 @@ fun AppNavigation() {
                     .create(DaniosPersonalesViewModel::class.java)
             }
         ) { poliza, viewModel ->
-            DaniosPersonales(navController, viewModel, poliza)
+            DaniosPersonales(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
 //        polizaComposable(

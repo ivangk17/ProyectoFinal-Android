@@ -16,10 +16,16 @@ import com.example.login.data.models.solicitud.datosSiniestros.EstadoTiempo
 import com.example.login.data.models.solicitud.datosSiniestros.TipoCamino
 import com.example.login.navigation.Rutas
 import com.example.login.ui.screens.gson
+import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.forms.DatosAdicionalesViewModel
 
 @Composable
-fun DatosAdicionales(navController: NavController, viewModel: DatosAdicionalesViewModel, poliza: Poliza){
+fun DatosAdicionales(
+    navController: NavController,
+    viewModel: DatosAdicionalesViewModel,
+    poliza: Poliza,
+    crearSolicitudViewModel: CrearSolicitudViewModel
+){
     val optionsTipoCamino = TipoCamino.entries
     val optionEstadoCamino = EstadoCamino.entries
     val optionEstadoTiempo = EstadoTiempo.entries
@@ -75,9 +81,10 @@ fun DatosAdicionales(navController: NavController, viewModel: DatosAdicionalesVi
                 onClick = {
                     val solicitud = viewModel.crearSolicitud()
                     val polizaJson = gson.toJson(poliza)
-                    navController.navigate("${Rutas.ConsecuenciaSiniestro.ruta}/${polizaJson}")
                     if (solicitud != null) {
-                        Log.d("SOLICITUD", viewModel.solicitud.toString())
+                        crearSolicitudViewModel.datosAdicionales(solicitud)
+                        Log.d("GRUA", solicitud.datosSiniestro.asistioGrua.toString())
+                        navController.navigate("${Rutas.ConsecuenciaSiniestro.ruta}/${polizaJson}")
                     } else {
                         Log.d("solicitud", "no se creo")
                     }

@@ -14,11 +14,16 @@ import com.example.login.components.SwitchCustom
 import com.example.login.data.models.poliza.Poliza
 import com.example.login.navigation.Rutas
 import com.example.login.ui.screens.gson
+import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.forms.ConsecuenciaSiniestroViewModel
-import com.example.login.ui.viewmodels.forms.DatosAdicionalesViewModel
 
 @Composable
-fun ConsecuenciaSiniestro(navController: NavController, viewModel: ConsecuenciaSiniestroViewModel, poliza: Poliza){
+fun ConsecuenciaSiniestro(
+    navController: NavController,
+    viewModel: ConsecuenciaSiniestroViewModel,
+    poliza: Poliza,
+    crearSolicitudViewModel: CrearSolicitudViewModel
+){
     Column(modifier = Modifier.fillMaxSize()) {
         LazyColumn(modifier = Modifier.weight(1f)) {
             items(viewModel.camposCheckeables.size) { index ->
@@ -36,10 +41,9 @@ fun ConsecuenciaSiniestro(navController: NavController, viewModel: ConsecuenciaS
                     onClick = {
                         val solicitud = viewModel.crearSolicitudPoliza()
                         val polizaJson = gson.toJson(poliza)
-                        navController.navigate("${Rutas.RelatoAccidente.ruta}/${polizaJson}")
                         if (solicitud != null) {
-                            Log.d("solicitud", "se creo")
-                            Log.d("solicitud", solicitud.datosSiniestro.consecuenciaSiniestro.toString())
+                            crearSolicitudViewModel.consecuenciaSiniestro(solicitud)
+                            navController.navigate("${Rutas.RelatoAccidente.ruta}/${polizaJson}")
                         } else {
                             Log.d("solicitud", "no se creo")
                         }

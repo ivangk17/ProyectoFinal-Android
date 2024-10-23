@@ -54,6 +54,7 @@ class InformacionAdicionalViewModel(
 
             cargarCheckeables()
             Solicitud.datosSiniestro.huboDenuncia = huboDenunciaSeleccion.value
+
         }else{
             return null
         }
@@ -68,6 +69,7 @@ class InformacionAdicionalViewModel(
         Solicitud.datosSiniestro.hubieronTestigos = camposCheckeables[2].value.value
 
     }
+
 
     companion object{
         fun provideFactory(getServicePolizas: GetServicePolizas): ViewModelProvider.Factory = object : ViewModelProvider.Factory {

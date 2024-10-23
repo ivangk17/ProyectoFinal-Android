@@ -8,6 +8,7 @@ import com.example.login.data.models.fields.TipoCampo
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.network.GetServicePolizas
 import com.example.login.utilities.ValidacionesCampos.validarCampos
+import com.example.login.utilities.validarFecha
 
 class DatosPropietarioVehiculoTerceroViewModel (
     getServicePolizas: GetServicePolizas
@@ -15,7 +16,7 @@ class DatosPropietarioVehiculoTerceroViewModel (
 
     var Solicitud = Solicitud()
 
-    var FechaVencimiento = mutableStateOf<String?>(null)
+    var fechaDeVencimiento = mutableStateOf<String?>(null)
     var errorFechaVencimiento = mutableStateOf<String?>(null)
 
     val campos = listOf(
@@ -29,7 +30,8 @@ class DatosPropietarioVehiculoTerceroViewModel (
         FormField("CUIT", mutableStateOf(""), tipo = TipoCampo.TEXTO),
         FormField("Email", mutableStateOf(""), tipo = TipoCampo.TEXTO),
         FormField("Telefono", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Marca y modelo", mutableStateOf(""), tipo = TipoCampo.TEXTO),
+        FormField("Marca", mutableStateOf(""), tipo = TipoCampo.TEXTO),
+        FormField("Modelo", mutableStateOf(""), tipo = TipoCampo.TEXTO),
         FormField("Color de auto", mutableStateOf(""), tipo = TipoCampo.TEXTO),
         FormField("Año del auto", mutableStateOf(""), tipo = TipoCampo.TEXTO),
         FormField("Dominio", mutableStateOf(""), tipo = TipoCampo.TEXTO),
@@ -44,40 +46,35 @@ class DatosPropietarioVehiculoTerceroViewModel (
     }
 
 
-    fun onFechaChange(newValue: String) {
-        FechaVencimiento.value = newValue
+    fun setFechaDeVencimiento(newValue: String) {
+        fechaDeVencimiento.value = newValue
         errorFechaVencimiento.value = null
     }
 
     fun crearSolicitudPoliza(): Solicitud? {
         validarCampos(campos)
+        validarFecha(fechaDeVencimiento, errorFechaVencimiento, "Debes completar la fecha de vencimiento")
 
-        if(FechaVencimiento.value.isNullOrEmpty()){
-            errorFechaVencimiento.value = "Debes completar la fecha de vencimiento"
-        }
-        else{
+        if(campos.all { it.error.value == null }){
             Solicitud.propietarioAfectado.nombre = campos[0].value.value
             Solicitud.propietarioAfectado.apellido = campos[1].value.value
             Solicitud.propietarioAfectado.domicilio.calle = campos[2].value.value
-            Solicitud.propietarioAfectado.apellido = campos[3].value.value
-            Solicitud.propietarioAfectado.domicilio.localidad = campos[4].value.value
-            Solicitud.propietarioAfectado.domicilio.codigoPostal = campos[5].value.value
-            Solicitud.propietarioAfectado.domicilio.provincia = campos[6].value.value
-            Solicitud.propietarioAfectado.domicilio.pais = campos[7].value.value
-            Solicitud.propietarioAfectado.cuit = campos[8].value.value
-            Solicitud.propietarioAfectado.email = campos[9].value.value
-            Solicitud.propietarioAfectado.telefono = campos[10].value.value
-            Solicitud.propietarioAfectado.vehiculoPropietadoAfectado.color = campos[11].value.value
-            Solicitud.propietarioAfectado.vehiculoPropietadoAfectado.anio = campos[12].value.value
-            Solicitud.propietarioAfectado.vehiculoPropietadoAfectado.dominio = campos[13].value.value
-            Solicitud.propietarioAfectado.vehiculoPropietadoAfectado.aseguradora = campos[14].value.value
-            Solicitud.propietarioAfectado.vehiculoPropietadoAfectado.poliza = campos[15].value.value
+            Solicitud.propietarioAfectado.domicilio.localidad = campos[3].value.value
+            Solicitud.propietarioAfectado.domicilio.codigoPostal = campos[4].value.value
+            Solicitud.propietarioAfectado.domicilio.provincia = campos[5].value.value
+            Solicitud.propietarioAfectado.domicilio.pais = campos[6].value.value
+            Solicitud.propietarioAfectado.cuit = campos[7].value.value
+            Solicitud.propietarioAfectado.email = campos[8].value.value
+            Solicitud.propietarioAfectado.telefono = campos[9].value.value
+            Solicitud.propietarioAfectado.vehiculoPropietadoAfectado.marca = campos[10].value.value
+            Solicitud.propietarioAfectado.vehiculoPropietadoAfectado.modelo = campos[11].value.value
+            Solicitud.propietarioAfectado.vehiculoPropietadoAfectado.color = campos[12].value.value
+            Solicitud.propietarioAfectado.vehiculoPropietadoAfectado.anio = campos[13].value.value
+            Solicitud.propietarioAfectado.vehiculoPropietadoAfectado.dominio = campos[14].value.value
+            Solicitud.propietarioAfectado.vehiculoPropietadoAfectado.aseguradora = campos[15].value.value
+            Solicitud.propietarioAfectado.vehiculoPropietadoAfectado.poliza = campos[16].value.value
 
-            Solicitud.conductorAsegurado.fechaVencimiento = FechaVencimiento.value!!
-        }
-
-        if (campos.all { it.error.value == null } ) {
-            Solicitud.conductorAsegurado.nombre = campos[0].value.value
+            Solicitud.propietarioAfectado.vehiculoPropietadoAfectado.fechaVencimiento = fechaDeVencimiento.value!!
         }else{
         return null
     }

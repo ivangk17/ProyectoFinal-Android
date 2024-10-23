@@ -17,10 +17,16 @@ import com.example.login.data.models.poliza.Poliza
 import com.example.login.data.models.solicitud.datosSiniestros.HuboDenuncia
 import com.example.login.navigation.Rutas
 import com.example.login.ui.screens.gson
+import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.forms.InformacionAdicionalViewModel
 
 @Composable
-fun InformacionAdicional(navController: NavController, viewModel: InformacionAdicionalViewModel, poliza: Poliza){
+fun InformacionAdicional(
+    navController: NavController,
+    viewModel: InformacionAdicionalViewModel,
+    poliza: Poliza,
+    crearSolicitudViewModel: CrearSolicitudViewModel
+){
     val options = HuboDenuncia.entries
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -61,10 +67,10 @@ fun InformacionAdicional(navController: NavController, viewModel: InformacionAdi
             onClick = {
                 val solicitud = viewModel.crearSolicitudPoliza()
                 val polizaJson = gson.toJson(poliza)
-                navController.navigate(route = "${Rutas.DatosPropietarioVehiculoTercero.ruta}/${polizaJson}")
+
                 if (solicitud != null) {
-                    Log.d("solicitud", "se creo")
-                    Log.d("solicitud", "${viewModel.Solicitud.datosSiniestro} ")
+                    crearSolicitudViewModel.envioInformacionAdicional(solicitud)
+                    navController.navigate(route = "${Rutas.DatosPropietarioVehiculoTercero.ruta}/${polizaJson}")
                 } else {
                     Log.d("solicitud", "no se creo")
                 }

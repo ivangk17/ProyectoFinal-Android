@@ -14,10 +14,16 @@ import com.example.login.components.MultipleLine
 import com.example.login.data.models.poliza.Poliza
 import com.example.login.navigation.Rutas
 import com.example.login.ui.screens.gson
+import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.forms.RelatoAccidenteViewModel
 
 @Composable
-fun RelatoAccidente(navController: NavController, viewModel: RelatoAccidenteViewModel, poliza: Poliza){
+fun RelatoAccidente(
+    navController: NavController,
+    viewModel: RelatoAccidenteViewModel,
+    poliza: Poliza,
+    crearSolicitudViewModel: CrearSolicitudViewModel
+){
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -34,9 +40,9 @@ fun RelatoAccidente(navController: NavController, viewModel: RelatoAccidenteView
             onClick = {
                 val solicitud = viewModel.crearSolicitud()
                 val polizaJson = gson.toJson(poliza)
-                navController.navigate("${Rutas.DaniosPersonales.ruta}/${polizaJson}")
                 if (solicitud != null) {
-                    Log.d("SOLICITUD", viewModel.solicitud.datosSiniestro.relato.toString())
+                    crearSolicitudViewModel.relatoAccidente(solicitud)
+                    navController.navigate("${Rutas.DaniosPersonales.ruta}/${polizaJson}")
                 } else {
                     Log.d("solicitud", "no se creo")
                 }

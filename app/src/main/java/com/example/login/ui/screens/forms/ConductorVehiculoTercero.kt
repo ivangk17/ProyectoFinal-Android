@@ -21,11 +21,17 @@ import com.example.login.components.FieldStringForms
 import com.example.login.data.models.poliza.Poliza
 import com.example.login.navigation.Rutas
 import com.example.login.ui.screens.gson
+import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.forms.ConductorVehiculoTerceroViewModel
 
 
 @Composable
-fun ConductorVehiculoTercero(navController: NavController, viewModel: ConductorVehiculoTerceroViewModel, poliza: Poliza) {
+fun ConductorVehiculoTercero(
+    navController: NavController,
+    viewModel: ConductorVehiculoTerceroViewModel,
+    poliza: Poliza,
+    crearSolicitudViewModel: CrearSolicitudViewModel
+) {
 
     LazyColumn(
         modifier = Modifier
@@ -86,9 +92,9 @@ fun ConductorVehiculoTercero(navController: NavController, viewModel: ConductorV
                     onClick = {
                         val solicitud = viewModel.crearSolicitudPoliza()
                         val polizaJson = gson.toJson(poliza)
-                        navController.navigate(route = "${Rutas.DaniosVehiculoAsegurado.ruta}/${polizaJson}")
                         if (solicitud != null) {
-                            Log.d("solicitud", "se creo ${solicitud}")
+                            crearSolicitudViewModel.conductorVehiculoTercero(solicitud)
+                            navController.navigate(route = "${Rutas.DaniosVehiculoAsegurado.ruta}/${polizaJson}")
                         } else {
                             Log.d("solicitud", "no se creo")
                         }

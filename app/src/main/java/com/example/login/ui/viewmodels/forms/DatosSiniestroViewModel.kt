@@ -7,14 +7,15 @@ import com.example.login.data.models.fields.FormField
 import com.example.login.data.models.fields.TipoCampo
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.network.GetServicePolizas
-import com.example.login.ui.viewmodels.CrearPolizaViewModel
+import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.utilities.ValidacionesCampos.validarCampos
+import com.example.login.utilities.validarFecha
 
 
 class DatosSiniestroViewModel(
     getServicePolizas: GetServicePolizas
 ) : ViewModel() {
-    val crearPolizaViewModel : CrearPolizaViewModel = CrearPolizaViewModel()
+    val crearSolicitudViewModel : CrearSolicitudViewModel = CrearSolicitudViewModel()
     val Solicitud = Solicitud()
     val campos = listOf(
         FormField("Lugar de Ocurrencia", mutableStateOf(""), tipo = TipoCampo.TEXTO),
@@ -25,9 +26,11 @@ class DatosSiniestroViewModel(
         FormField("Cantidad de autos que participaron en el siniestro", mutableStateOf(""), tipo = TipoCampo.NUMERICO),
         FormField("Interseccion", mutableStateOf(""), tipo = TipoCampo.TEXTO)
     )
-    var FechaOcurrencia = mutableStateOf<String?>(null)
-    var HoraOcurriencia = mutableStateOf<String?>(null)
+    var fechaOcurrencia = mutableStateOf<String?>(null)
+    var errorFechaOcurrencua = mutableStateOf<String?>(null)
 
+    var horaOcurriencia = mutableStateOf<String?>(null)
+    var errorHoraOcurrencua = mutableStateOf<String?>(null)
 
 
     fun onCampoChange(index: Int, newValue: String) {
@@ -35,9 +38,21 @@ class DatosSiniestroViewModel(
         campos[index].error.value = null
     }
 
+    fun setFechaOcurrencia(newValue: String) {
+        fechaOcurrencia.value = newValue
+        errorFechaOcurrencua.value = null
+    }
+
+    fun setHoraOcurrencia(newValue: String) {
+        horaOcurriencia.value = newValue
+        errorHoraOcurrencua.value = null
+    }
+
 
     fun crearSolicitudPoliza(): Solicitud? {
         validarCampos(campos)
+        validarFecha(fechaOcurrencia, errorFechaOcurrencua, "Se debe completar la fecha de ocurrencia")
+        validarFecha(horaOcurriencia, errorHoraOcurrencua, "Se debe completar la hora de ocurrencia")
 
         if (campos.all { it.error.value == null }) {
             Solicitud.datosSiniestro.lugaarOcurrencia = campos[0].value.value
@@ -47,9 +62,10 @@ class DatosSiniestroViewModel(
             Solicitud.datosSiniestro.pais = campos[4].value.value
             Solicitud.datosSiniestro.cantidadAutosParticipantes = campos[5].value.value.toIntOrNull()!!
             Solicitud.datosSiniestro.interseccion = campos[6].value.value
-            Solicitud.datosSiniestro.fechaOcurrencia = FechaOcurrencia.value
 
-            crearPolizaViewModel.envioF1(Solicitud)
+            Solicitud.datosSiniestro.fechaOcurrencia = fechaOcurrencia.value
+            Solicitud.datosSiniestro.horaOcurrencia = horaOcurriencia.value.toString()
+
 
         }else{
             return null
