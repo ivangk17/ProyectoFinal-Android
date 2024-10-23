@@ -1,6 +1,7 @@
 package com.example.login.data.models.personas
 
 import com.example.login.data.models.Domicilio
+import com.example.login.data.models.vehiculos.Vehiculo
 import java.util.Date
 
 data class ConductorAsegurado(
@@ -15,11 +16,13 @@ data class ConductorAsegurado(
     override var sexo: String = "",
     override var domicilio: Domicilio = Domicilio(),
 
+
     var nroRegistro: String = "",
     var claseRegistro: String = "",
     var relacionAsegurado: String = "",
     var fechaExpedicion: String = "",
-    var fechaVencimiento: String = ""
+    var fechaVencimiento: String = "",
+    var vehiculo : Vehiculo = Vehiculo()
 ): Persona(
     id,
     nombre,

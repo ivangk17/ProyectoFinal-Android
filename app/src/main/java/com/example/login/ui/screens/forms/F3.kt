@@ -16,11 +16,12 @@ import com.example.login.components.FieldStringForms
 import com.example.login.components.SwitchCustom
 import com.example.login.data.models.poliza.Poliza
 import com.example.login.data.models.solicitud.datosSiniestros.HuboDenuncia
+import com.example.login.data.models.vehiculos.UsoDelVehiculo
 import com.example.login.ui.viewmodels.forms.F3ViewModel
 
 @Composable
 fun F3(navController: NavController, viewModel: F3ViewModel, poliza: Poliza){
-    val options = HuboDenuncia.entries
+    val options = UsoDelVehiculo.entries //esto devuelve una lista de opciones
 
     Column (modifier = Modifier.fillMaxSize()){
         LazyColumn (modifier = Modifier.weight(1f)) {
@@ -35,7 +36,18 @@ fun F3(navController: NavController, viewModel: F3ViewModel, poliza: Poliza){
                     onValueChange = { newValue -> viewModel.onCampoChange(index, newValue) }
                     )
                 }
+
+            item {
+                DropdownMenuSample(
+                    options = options,
+                    selectedOption = viewModel.usoDelVehiculo.value,
+                    onOptionSelected = { viewModel.usoDelVehiculo.value = it },
+                    label = { it.name }
+                )
             }
+
+        }
+
             Button(
                 onClick = {
                     val solicitud = viewModel.crearSolicitudPoliza()

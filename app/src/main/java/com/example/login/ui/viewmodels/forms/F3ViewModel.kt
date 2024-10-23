@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.login.data.models.fields.FormField
 import com.example.login.data.models.fields.TipoCampo
 import com.example.login.data.models.solicitud.Solicitud
-import com.example.login.data.models.solicitud.datosSiniestros.HuboDenuncia
+import com.example.login.data.models.vehiculos.UsoDelVehiculo
 import com.example.login.data.network.GetServicePolizas
 import com.example.login.utilities.ValidacionesCampos.validarCampos
 
@@ -14,7 +14,8 @@ import com.example.login.utilities.ValidacionesCampos.validarCampos
 class F3ViewModel (getServicePolizas: GetServicePolizas
 ): ViewModel() {
     var Solicitud = Solicitud()
-    var huboDenuncia = mutableStateOf(HuboDenuncia.NO)
+    var usoDelVehiculo = mutableStateOf(UsoDelVehiculo.PARTICULAR)
+
 
     val campos = listOf(
         FormField("Nombre: ", tipo = TipoCampo.TEXTO),
@@ -55,14 +56,11 @@ class F3ViewModel (getServicePolizas: GetServicePolizas
             Solicitud.conductorAsegurado.email = campos[8].value.value
             Solicitud.conductorAsegurado.telefono = campos[9].value.value
             //falta cargar datos del vehículo a la entidad conductor asegurado
-            //Solicitud.conductorAsegurado.marcaymodelo = campos[10].value.value
-            //Solicitud.conductorAsegurado.color = campos[11].value.value
-            //Solicitud.conductorAsegurado.anio = campos[12].value.value
-            //Solicitud.conductorAsegurado.dominio = campos[13].value.value
-            //Solicitud.conductorAsegurado.usodelvehiculo = campos[14].value.value
-            //Solicitud.conductorAsegurado.particular = campos[15].value.value
-           // Solicitud.conductorAsegurado.comercial = campos[16].value.value
-
+            Solicitud.conductorAsegurado.vehiculo.marca = campos[10].value.value
+            Solicitud.conductorAsegurado.vehiculo.modelo = campos[11].value.value
+            Solicitud.conductorAsegurado.vehiculo.anio = campos[12].value.value
+            Solicitud.conductorAsegurado.vehiculo.dominio = campos[13].value.value
+            Solicitud.conductorAsegurado.vehiculo.usoDelVehiculo = usoDelVehiculo.value
 
         }else{
             return null
