@@ -167,12 +167,16 @@ class CrearSolicitudViewModel: ViewModel()  {
         _solicitud.lesiones.conductorAsegurado = solicitud.lesiones.conductorAsegurado
         _solicitud.lesiones.relacionConPropietario = solicitud.lesiones.relacionConPropietario
 
-        Log.d("SOLICITUD TOTAL", _solicitud.toString())
+
 
     }
 
     fun lugarAsistencia(solicitud: Solicitud) {
-        // Implementación para enviar lugar de asistencia
+        _solicitud.datosSiniestro.lugarAsistencia.nombreCentro = solicitud.datosSiniestro.lugarAsistencia.nombreCentro
+        _solicitud.datosSiniestro.lugarAsistencia.quedaInternado = solicitud.datosSiniestro.lugarAsistencia.quedaInternado
+        _solicitud.datosSiniestro.lugarAsistencia.estadoLesiones = solicitud.datosSiniestro.lugarAsistencia.estadoLesiones
+        _solicitud.datosSiniestro.lugarAsistencia.descripcionLesiones = solicitud.datosSiniestro.lugarAsistencia.descripcionLesiones
+        Log.d("SOLICITUD TOTAL", _solicitud.datosSiniestro.lugarAsistencia.toString())
     }
 
 

@@ -13,14 +13,12 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import com.example.login.components.DropdownMenuSample
 import com.example.login.components.FieldStringForms
-import com.example.login.components.SwitchCustom
 import com.example.login.data.models.poliza.Poliza
-import com.example.login.data.models.solicitud.datosSiniestros.HuboDenuncia
 import com.example.login.data.models.vehiculos.UsoDelVehiculo
-import com.example.login.ui.viewmodels.forms.F3ViewModel
+import com.example.login.ui.viewmodels.forms.DatosPropietarioVehiculoAseguradoViewModel
 
 @Composable
-fun F3(navController: NavController, viewModel: F3ViewModel, poliza: Poliza){
+fun F3(navController: NavController, viewModel: DatosPropietarioVehiculoAseguradoViewModel, poliza: Poliza){
     val options = UsoDelVehiculo.entries //esto devuelve una lista de opciones
 
     Column (modifier = Modifier.fillMaxSize()){
@@ -39,6 +37,7 @@ fun F3(navController: NavController, viewModel: F3ViewModel, poliza: Poliza){
 
             item {
                 DropdownMenuSample(
+                    title = "Uso del vehiculo",
                     options = options,
                     selectedOption = viewModel.usoDelVehiculo.value,
                     onOptionSelected = { viewModel.usoDelVehiculo.value = it },

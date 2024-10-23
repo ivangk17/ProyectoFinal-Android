@@ -11,7 +11,7 @@ import com.example.login.data.network.GetServicePolizas
 import com.example.login.utilities.ValidacionesCampos.validarCampos
 
 
-class F3ViewModel (getServicePolizas: GetServicePolizas
+class DatosPropietarioVehiculoAseguradoViewModel (getServicePolizas: GetServicePolizas
 ): ViewModel() {
     var Solicitud = Solicitud()
     var usoDelVehiculo = mutableStateOf(UsoDelVehiculo.PARTICULAR)
@@ -73,7 +73,7 @@ class F3ViewModel (getServicePolizas: GetServicePolizas
         fun provideFactory(getServicePolizas: GetServicePolizas): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return F3ViewModel(getServicePolizas) as T
+                return DatosPropietarioVehiculoAseguradoViewModel(getServicePolizas) as T
             }
         }
     }

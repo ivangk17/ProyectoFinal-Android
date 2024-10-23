@@ -12,14 +12,21 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import com.example.login.components.DropdownMenuSample
 import com.example.login.components.FieldStringForms
+import com.example.login.components.MultipleLine
 import com.example.login.components.SwitchCustom
 import com.example.login.data.models.poliza.Poliza
 import com.example.login.data.models.solicitud.datosSiniestros.asistencia.EstadoLesiones
-import com.example.login.ui.viewmodels.forms.F13ViewModel
+import com.example.login.ui.viewmodels.CrearSolicitudViewModel
+import com.example.login.ui.viewmodels.forms.LugarAsistenciaViewModel
 
 
 @Composable
-fun F13(navController: NavController, viewModel: F13ViewModel, poliza: Poliza){
+fun LugarAsistencia(
+    navController: NavController,
+    viewModel: LugarAsistenciaViewModel,
+    poliza: Poliza,
+    crearSolicitudViewModel: CrearSolicitudViewModel
+){
     val options = EstadoLesiones.entries
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -46,14 +53,19 @@ fun F13(navController: NavController, viewModel: F13ViewModel, poliza: Poliza){
 
             item {
                 DropdownMenuSample(
+                    title = "Seleccione el estado de las lesiones",
                     options = options,
                     selectedOption = viewModel.estadoLesiones.value,
                     onOptionSelected = { viewModel.estadoLesiones.value = it },
                     label = { it.name }
                 )
+                MultipleLine(
+                    titulo = "Descripcion de las lesiones",
+                    valor = viewModel.descripcionLesiones,
+                    onValueChange = { newValue -> viewModel.onDescripcionChange(newValue) },
+                    error = viewModel.errorDescripcionLesiones
+                )
             }
-
-
         }
 
         Button(
@@ -61,7 +73,8 @@ fun F13(navController: NavController, viewModel: F13ViewModel, poliza: Poliza){
                 val solicitud = viewModel.crearSolicitudPoliza()
                 if (solicitud != null) {
                     Log.d("solicitud", "se creo")
-                    Log.d("solicitud", "${viewModel.Solicitud.datosSiniestro} ")
+                    Log.d("solicitud", "${viewModel.Solicitud.datosSiniestro.lugarAsistencia} ")
+                    crearSolicitudViewModel.lugarAsistencia(solicitud)
                 } else {
                     Log.d("solicitud", "no se creo")
                 }

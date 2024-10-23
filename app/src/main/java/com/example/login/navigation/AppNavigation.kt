@@ -20,6 +20,7 @@ import com.example.login.ui.screens.forms.DatosAdicionales
 import com.example.login.ui.screens.forms.DatosPropietarioVehiculoTercero
 import com.example.login.ui.screens.forms.DatosSiniestro
 import com.example.login.ui.screens.forms.InformacionAdicional
+import com.example.login.ui.screens.forms.LugarAsistencia
 import com.example.login.ui.screens.forms.RelatoAccidente
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.PolizaDetailsViewModel
@@ -33,6 +34,7 @@ import com.example.login.ui.viewmodels.forms.DatosAdicionalesViewModel
 import com.example.login.ui.viewmodels.forms.DatosPropietarioVehiculoTerceroViewModel
 import com.example.login.ui.viewmodels.forms.DatosSiniestroViewModel
 import com.example.login.ui.viewmodels.forms.InformacionAdicionalViewModel
+import com.example.login.ui.viewmodels.forms.LugarAsistenciaViewModel
 import com.example.login.ui.viewmodels.forms.RelatoAccidenteViewModel
 import com.example.login.utilities.daniosVehiculoAsegurado
 import com.example.login.utilities.daniosVehiculosTercero
@@ -194,15 +196,15 @@ fun AppNavigation() {
             DaniosPersonales(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
-//        polizaComposable(
-//            route = Rutas.LugarAsistencia.ruta,
-//            viewModelFactory = {
-//                LugarAsistenciaViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
-//                    .create(LugarAsistenciaViewModel::class.java)
-//            }
-//        ) { poliza, viewModel ->
-//            LugarAsistencia(navController, viewModel, poliza)
-//        }
+        rutaComposable(
+            route = Rutas.LugarAsistencia.ruta,
+            viewModelFactory = {
+                LugarAsistenciaViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
+                    .create(LugarAsistenciaViewModel::class.java)
+            }
+        ) { poliza, viewModel ->
+            LugarAsistencia(navController, viewModel, poliza,crearSolicitudViewModel)
+        }
 
     }
     )

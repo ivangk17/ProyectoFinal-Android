@@ -11,12 +11,16 @@ import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.models.solicitud.datosSiniestros.asistencia.EstadoLesiones
 import com.example.login.data.network.GetServicePolizas
 import com.example.login.utilities.ValidacionesCampos.validarCampos
+import com.example.login.utilities.validarFecha
 
-class F13ViewModel(
+class LugarAsistenciaViewModel(
     getServicePolizas: GetServicePolizas
 ) : ViewModel() {
     var Solicitud = Solicitud()
     var estadoLesiones = mutableStateOf(EstadoLesiones.LEVE)
+
+    var descripcionLesiones = mutableStateOf<String?>(null)
+    var errorDescripcionLesiones= mutableStateOf<String?>(null)
 
     val camposCheckeables = listOf(
         CheckField("¿Queda internado?"),
@@ -40,13 +44,20 @@ class F13ViewModel(
         camposCheckeables[index].value.value = newState
     }
 
+    fun onDescripcionChange(valor: String){
+        descripcionLesiones.value = valor
+        errorDescripcionLesiones.value = null
+    }
+
 
     fun crearSolicitudPoliza(): Solicitud? {
         validarCampos(campos)
+        validarFecha(descripcionLesiones,errorDescripcionLesiones,"Faltan la descripcion de las lesiones")
         if (campos.all { it.error.value == null }) {
-            Solicitud.datosSiniestro.lugarAsistencia!!.nombreCentro = campos[0].value.value
+            Solicitud.datosSiniestro.lugarAsistencia.nombreCentro = campos[0].value.value
 
             cargarCheckeables()
+            Solicitud.datosSiniestro.lugarAsistencia.descripcionLesiones = descripcionLesiones.value.toString()
 
         }else{
             return null
@@ -57,15 +68,15 @@ class F13ViewModel(
     }
 
     private fun cargarCheckeables(){
-        Solicitud.datosSiniestro.lugarAsistencia!!.quedaInternado = camposCheckeables[0].value.value
-        Solicitud.datosSiniestro.lugarAsistencia!!.estadoLesiones = estadoLesiones.value
+        Solicitud.datosSiniestro.lugarAsistencia.quedaInternado = camposCheckeables[0].value.value
+        Solicitud.datosSiniestro.lugarAsistencia.estadoLesiones = estadoLesiones.value
     }
 
     companion object{
         fun provideFactory(getServicePolizas: GetServicePolizas): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return F13ViewModel(getServicePolizas) as T
+                return LugarAsistenciaViewModel(getServicePolizas) as T
             }
         }
     }

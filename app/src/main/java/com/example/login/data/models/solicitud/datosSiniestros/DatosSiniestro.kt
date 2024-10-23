@@ -5,7 +5,7 @@ import com.example.login.data.models.solicitud.datosSiniestros.asistencia.LugarA
 import java.util.Date
 
 data class DatosSiniestro(
-    val lugarAsistencia: LugarAsistencia? = null,
+    var lugarAsistencia: LugarAsistencia = LugarAsistencia(),
     var fechaOcurrencia: String? = null,
     var horaOcurrencia: String = "",
     var lugaarOcurrencia: String = "",
