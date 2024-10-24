@@ -18,13 +18,14 @@ import com.example.login.components.PolizaCard
 import com.example.login.navigation.Rutas
 import com.example.login.tokens.Token
 import com.example.login.tokens.Utility
-import com.example.login.ui.screens.navigationdrawer.NavDrawer
+import com.example.login.ui.navigationdrawer.NavDrawer
+import com.example.login.ui.viewmodels.navdrawerviewmodel.DrawerViewModel
 import com.google.gson.Gson
 
 val gson = Gson()
 
 @Composable
-fun HomeScreen(navController: NavHostController, homeViewModel: HomeViewModel) {
+fun HomeScreen(navController: NavHostController, homeViewModel: HomeViewModel, drawerViewModel: DrawerViewModel) {
     val user = Utility().decodeJWT(Token.token)
     val scope = rememberCoroutineScope()
     val polizas by homeViewModel.Polizas
@@ -32,7 +33,7 @@ fun HomeScreen(navController: NavHostController, homeViewModel: HomeViewModel) {
     LaunchedEffect(Unit) {
         homeViewModel.loadPolizas()
     }
-    NavDrawer(navController) {
+    NavDrawer(navController, drawerViewModel) {
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Top,

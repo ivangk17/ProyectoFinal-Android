@@ -1,4 +1,4 @@
-package com.example.login.ui.screens.navigationdrawer
+package com.example.login.ui.navigationdrawer
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,20 +16,30 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.example.login.ui.viewmodels.navdrawerviewmodel.DrawerViewModel
+import com.example.login.ui.viewmodels.navdrawerviewmodel.DrawerViewModelFactory
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NavDrawer(
     navController: NavHostController,
+    drawerViewModel: DrawerViewModel,
     content: @Composable () -> Unit
 ) {
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
+    val viewModel: DrawerViewModel = viewModel(factory = DrawerViewModelFactory())
+    var selectedItem by remember { mutableStateOf(viewModel.drawerItems[0]) }
 
     ModalNavigationDrawer(
         drawerState = drawerState,
@@ -37,7 +47,15 @@ fun NavDrawer(
             ModalDrawerSheet {
                 DrawerHeader()
                 DrawerContent(
-                )
+                    drawerViewModel,
+                    selectedItem,
+                    drawerState,
+                    scope
+                ) { newItem ->
+                    selectedItem = newItem
+                    scope.launch { drawerState.close() }
+                    navController.navigate(newItem.route)
+                }
             }
         },
         content = {
@@ -67,6 +85,3 @@ fun NavDrawer(
         }
     )
 }
-
-
-

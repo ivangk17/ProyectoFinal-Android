@@ -1,4 +1,4 @@
-package com.example.login.ui.screens.navigationdrawer
+package com.example.login.ui.navigationdrawer
 
 import androidx.compose.ui.graphics.vector.ImageVector
 
