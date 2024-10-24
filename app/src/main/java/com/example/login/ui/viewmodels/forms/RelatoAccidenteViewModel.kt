@@ -21,10 +21,11 @@ class RelatoAccidenteViewModel(
     }
 
     fun crearSolicitud(): Solicitud?{
-        validarFecha(relatoAccidente,errorRelatoAccidente,"Se debe completar el relato")
+        //validarFecha(relatoAccidente,errorRelatoAccidente,"Se debe completar el relato")
 
         if(errorRelatoAccidente.value == null){
-            solicitud.datosSiniestro.relato = relatoAccidente.value.toString()
+            //solicitud.datosSiniestro.relato = relatoAccidente.value.toString()
+            solicitud.datosSiniestro.relato = "Relato del accidente"
         }else{
             return  null
         }

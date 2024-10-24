@@ -1,6 +1,8 @@
 package com.example.login.data.models.poliza
 
 import com.example.login.data.models.vehiculos.Vehiculo
+import com.example.login.data.models.vehiculos.VehiculoPoliza
+import com.example.login.data.models.vehiculos.VehiculoPropietarioAsegurado
 
 data class Poliza(
     val dniAsegurado: String = "",
@@ -9,7 +11,8 @@ data class Poliza(
     val aseguradora: String = "",
     val primaSegura: String = "",
     val deducible: String = "",
-    val vehiculo: Vehiculo = Vehiculo(),
+    val vehiculo: VehiculoPoliza = VehiculoPoliza()
+    //val vehiculo: VehiculoPropietarioAsegurado = VehiculoPropietarioAsegurado()
 
 
 )

@@ -16,7 +16,7 @@ import com.example.login.utilities.validarFecha
 class LugarAsistenciaViewModel(
     getServicePolizas: GetServicePolizas
 ) : ViewModel() {
-    var Solicitud = Solicitud()
+    var solicitud = Solicitud()
     var estadoLesiones = mutableStateOf(EstadoLesiones.LEVE)
 
     var descripcionLesiones = mutableStateOf<String?>(null)
@@ -51,25 +51,30 @@ class LugarAsistenciaViewModel(
 
 
     fun crearSolicitudPoliza(): Solicitud? {
-        validarCampos(campos)
-        validarFecha(descripcionLesiones,errorDescripcionLesiones,"Faltan la descripcion de las lesiones")
+        //validarCampos(campos)
+        //validarFecha(descripcionLesiones,errorDescripcionLesiones,"Faltan la descripcion de las lesiones")
         if (campos.all { it.error.value == null }) {
-            Solicitud.datosSiniestro.lugarAsistencia.nombreCentro = campos[0].value.value
+//            solicitud.datosSiniestro.lugarAsistencia.nombreCentro = campos[0].value.value
+//
+//            cargarCheckeables()
+//            solicitud.datosSiniestro.lugarAsistencia.descripcionLesiones = descripcionLesiones.value.toString()
 
-            cargarCheckeables()
-            Solicitud.datosSiniestro.lugarAsistencia.descripcionLesiones = descripcionLesiones.value.toString()
+            solicitud.datosSiniestro.lugarAsistencia.nombreCentro = "Nombre del Centro";
+            solicitud.datosSiniestro.lugarAsistencia.quedaInternado = true; // Ejemplo booleano
+            solicitud.datosSiniestro.lugarAsistencia.estadoLesiones = EstadoLesiones.MUERTE
+            solicitud.datosSiniestro.lugarAsistencia.descripcionLesiones = "Descripción de las Lesiones";
 
         }else{
             return null
         }
 
 
-        return Solicitud
+        return solicitud
     }
 
     private fun cargarCheckeables(){
-        Solicitud.datosSiniestro.lugarAsistencia.quedaInternado = camposCheckeables[0].value.value
-        Solicitud.datosSiniestro.lugarAsistencia.estadoLesiones = estadoLesiones.value
+        solicitud.datosSiniestro.lugarAsistencia.quedaInternado = camposCheckeables[0].value.value
+        //Solicitud.datosSiniestro.lugarAsistencia.estadoLesiones = estadoLesiones.value
     }
 
     companion object{

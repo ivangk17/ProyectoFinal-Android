@@ -43,10 +43,11 @@ class DaniosPersonalesViewModel(
         CheckField("Peatón/Ciclista"),
         CheckField("Conductor vehículo del tercero"),
         CheckField("Ocupante vehículo del tercero"),
-        CheckField("Ocupante vehículo asegurado"),
+        CheckField("Conductor vehiculo asegurado"),
         CheckField("Asegurado"),
         CheckField("Conductor"),
-        CheckField("Relacion con propietario"),
+        CheckField("Propietario vehiculo asegurado"),
+        CheckField("Relacion con el propietario"),
     )
 
     fun onCampoChange(index: Int, newValue: String) {
@@ -65,25 +66,51 @@ class DaniosPersonalesViewModel(
     }
 
     fun crearSolicitud(): Solicitud?{
-        validarCampos(campos)
-        validarFecha(fechaNacimiento, errorFechaNacimiento, "Debes completar la fecha de nacimiento")
+//        validarCampos(campos)
+//        validarFecha(fechaNacimiento, errorFechaNacimiento, "Debes completar la fecha de nacimiento")
 
         if (campos.all { it.error.value == null }) {
-            solicitud.lesiones.lesionado.nombre = campos[0].value.value
-            solicitud.lesiones.lesionado.apellido = campos[1].value.value
-            solicitud.lesiones.lesionado.domicilio.calle = campos[2].value.value
-            solicitud.lesiones.lesionado.domicilio.localidad = campos[3].value.value
-            solicitud.lesiones.lesionado.domicilio.codigoPostal = campos[4].value.value
-            solicitud.lesiones.lesionado.domicilio.provincia = campos[5].value.value
-            solicitud.lesiones.lesionado.domicilio.pais = campos[6].value.value
-            solicitud.lesiones.lesionado.cuit = campos[7].value.value
-            solicitud.lesiones.lesionado.email = campos[8].value.value
-            solicitud.lesiones.lesionado.telefono = campos[9].value.value
-            solicitud.lesiones.lesionado.sexo = campos[10].value.value
-            solicitud.lesiones.lesionado.estadoCivil = campos[11].value.value
-            solicitud.lesiones.lesionado.telefonoAlternativo = campos[12].value.value
+//            solicitud.lesiones.lesionado.datosPersona.nombre = campos[0].value.value
+//            solicitud.lesiones.lesionado.datosPersona.apellido = campos[1].value.value
+//            solicitud.lesiones.lesionado.datosPersona.domicilio.calle = campos[2].value.value
+//            solicitud.lesiones.lesionado.datosPersona.domicilio.localidad = campos[3].value.value
+//            solicitud.lesiones.lesionado.datosPersona.domicilio.codigoPostal = campos[4].value.value.toInt()
+//            solicitud.lesiones.lesionado.datosPersona.domicilio.provincia = campos[5].value.value
+//            solicitud.lesiones.lesionado.datosPersona.domicilio.pais = campos[6].value.value
+//            solicitud.lesiones.lesionado.datosPersona.cuit = campos[7].value.value.toInt()
+//            solicitud.lesiones.lesionado.datosPersona.email = campos[8].value.value
+//            solicitud.lesiones.lesionado.datosPersona.telefono = campos[9].value.value
+//            solicitud.lesiones.lesionado.datosPersona.sexo = campos[10].value.value
+//            solicitud.lesiones.lesionado.estadoCivil = campos[11].value.value
+//            solicitud.lesiones.lesionado.telefonoAlternativo = campos[12].value.value
+//
+//            solicitud.lesiones.lesionado.datosPersona.fechaDeNacimiento = fechaNacimiento.value!!
 
-            solicitud.lesiones.lesionado.fechaDeNacimiento = fechaNacimiento.value!!
+            solicitud.lesiones.lesionado.datosPersona.nombre = "Nombre";
+            solicitud.lesiones.lesionado.datosPersona.apellido = "Apellido";
+            solicitud.lesiones.lesionado.datosPersona.nombreCompleto = "Nombre Apellido";
+            solicitud.lesiones.lesionado.datosPersona.domicilio.calle = "Calle";
+            solicitud.lesiones.lesionado.datosPersona.domicilio.localidad = "Localidad";
+            solicitud.lesiones.lesionado.datosPersona.domicilio.codigoPostal = 7300;
+            solicitud.lesiones.lesionado.datosPersona.domicilio.provincia = "Provincia";
+            solicitud.lesiones.lesionado.datosPersona.domicilio.pais = "Pais";
+            solicitud.lesiones.lesionado.datosPersona.cuit = 209876428428;
+            solicitud.lesiones.lesionado.datosPersona.email = "email@example.com";
+            solicitud.lesiones.lesionado.datosPersona.telefono = "123456789";
+            solicitud.lesiones.lesionado.datosPersona.sexo = Sexo.MUJER;
+            solicitud.lesiones.lesionado.estadoCivil = "Estado Civil";
+            solicitud.lesiones.lesionado.telefonoAlternativo = "987654321";
+
+            solicitud.lesiones.lesionado.datosPersona.fechaDeNacimiento = "1990-10-10"; // Ejemplo de fecha exacta
+
+            solicitud.lesiones.peatonOCiclista =true
+            solicitud.lesiones.conductorTercero =true
+            solicitud.lesiones.ocupanteTercero =true
+            solicitud.lesiones.conductorAsegurado =true
+            solicitud.lesiones.asegurado =true
+            solicitud.lesiones.conductor =true
+            solicitud.lesiones.propietarioVehiculoAsegurado =true
+            solicitud.lesiones.relacionConPropietario =true
 
             cargarCheckeables()
         }else{
@@ -97,10 +124,11 @@ class DaniosPersonalesViewModel(
         solicitud.lesiones.peatonOCiclista = camposCheckeables[0].value.value
         solicitud.lesiones.conductorTercero = camposCheckeables[1].value.value
         solicitud.lesiones.ocupanteTercero = camposCheckeables[2].value.value
-        solicitud.lesiones.ocupanteAsgurado = camposCheckeables[3].value.value
+        solicitud.lesiones.conductorAsegurado = camposCheckeables[3].value.value
         solicitud.lesiones.asegurado = camposCheckeables[4].value.value
-        solicitud.lesiones.conductorAsegurado = camposCheckeables[5].value.value
-        solicitud.lesiones.relacionConPropietario = camposCheckeables[6].value.value
+        solicitud.lesiones.conductor = camposCheckeables[5].value.value
+        solicitud.lesiones.propietarioVehiculoAsegurado = camposCheckeables[6].value.value
+        solicitud.lesiones.relacionConPropietario = camposCheckeables[7].value.value
     }
 
     companion object{

@@ -28,6 +28,7 @@ fun LugarAsistencia(
     crearSolicitudViewModel: CrearSolicitudViewModel
 ){
     val options = EstadoLesiones.entries
+    //val solicitud = crearSolicitudViewModel.inicializar()
 
     Column(modifier = Modifier.fillMaxSize()) {
         LazyColumn(modifier = Modifier.weight(1f)) {
@@ -73,8 +74,8 @@ fun LugarAsistencia(
                 val solicitud = viewModel.crearSolicitudPoliza()
                 if (solicitud != null) {
                     Log.d("solicitud", "se creo")
-                    Log.d("solicitud", "${viewModel.Solicitud.datosSiniestro.lugarAsistencia} ")
-                    crearSolicitudViewModel.lugarAsistencia(solicitud)
+                    Log.d("solicitud", "${viewModel.solicitud.datosSiniestro.lugarAsistencia} ")
+                        crearSolicitudViewModel.lugarAsistencia(solicitud)
                 } else {
                     Log.d("solicitud", "no se creo")
                 }

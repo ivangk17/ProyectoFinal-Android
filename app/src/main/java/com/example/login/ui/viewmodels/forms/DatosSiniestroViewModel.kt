@@ -16,7 +16,8 @@ class DatosSiniestroViewModel(
     getServicePolizas: GetServicePolizas
 ) : ViewModel() {
     val crearSolicitudViewModel : CrearSolicitudViewModel = CrearSolicitudViewModel()
-    val Solicitud = Solicitud()
+    val solicitud = Solicitud()
+
     val campos = listOf(
         FormField("Lugar de Ocurrencia", mutableStateOf(""), tipo = TipoCampo.TEXTO),
         FormField("Codigo Postal", mutableStateOf(""), tipo = TipoCampo.NUMERICO),
@@ -26,6 +27,7 @@ class DatosSiniestroViewModel(
         FormField("Cantidad de autos que participaron en el siniestro", mutableStateOf(""), tipo = TipoCampo.NUMERICO),
         FormField("Interseccion", mutableStateOf(""), tipo = TipoCampo.TEXTO)
     )
+
     var fechaOcurrencia = mutableStateOf<String?>(null)
     var errorFechaOcurrencua = mutableStateOf<String?>(null)
 
@@ -50,28 +52,42 @@ class DatosSiniestroViewModel(
 
 
     fun crearSolicitudPoliza(): Solicitud? {
-        validarCampos(campos)
-        validarFecha(fechaOcurrencia, errorFechaOcurrencua, "Se debe completar la fecha de ocurrencia")
-        validarFecha(horaOcurriencia, errorHoraOcurrencua, "Se debe completar la hora de ocurrencia")
+//        validarCampos(campos)
+//        validarFecha(fechaOcurrencia, errorFechaOcurrencua, "Se debe completar la fecha de ocurrencia")
+//        validarFecha(horaOcurriencia, errorHoraOcurrencua, "Se debe completar la hora de ocurrencia")
 
         if (campos.all { it.error.value == null }) {
-            Solicitud.datosSiniestro.lugaarOcurrencia = campos[0].value.value
-            Solicitud.datosSiniestro.codigoPostal = campos[1].value.value
-            Solicitud.datosSiniestro.localidad = campos[2].value.value
-            Solicitud.datosSiniestro.provincia = campos[3].value.value
-            Solicitud.datosSiniestro.pais = campos[4].value.value
-            Solicitud.datosSiniestro.cantidadAutosParticipantes = campos[5].value.value.toIntOrNull()!!
-            Solicitud.datosSiniestro.interseccion = campos[6].value.value
+//            solicitud.datosSiniestro.lugarOcurrencia = campos[0].value.value
+//            solicitud.datosSiniestro.codigoPostal = campos[1].value.value
+//            solicitud.datosSiniestro.localidad = campos[2].value.value
+//            solicitud.datosSiniestro.provincia = campos[3].value.value
+//            solicitud.datosSiniestro.pais = campos[4].value.value
+//            solicitud.datosSiniestro.cantidadAutosParticipantes = campos[5].value.value.toIntOrNull()!!
+//            solicitud.datosSiniestro.interseccion = campos[6].value.value
+//
+//            solicitud.datosSiniestro.fechaOcurrencia = fechaOcurrencia.value
+//            solicitud.datosSiniestro.horaOcurrencia = horaOcurriencia.value.toString()
 
-            Solicitud.datosSiniestro.fechaOcurrencia = fechaOcurrencia.value
-            Solicitud.datosSiniestro.horaOcurrencia = horaOcurriencia.value.toString()
+
+            solicitud.datosSiniestro.fechaOcurrencia = "2020-10-10";
+            solicitud.datosSiniestro.horaOcurrencia = "14:30:00"; // Ejemplo de hora exacta
+            solicitud.datosSiniestro.lugarOcurrencia = "Lugar Ocurrencia";
+            solicitud.datosSiniestro.codigoPostal = 7300;
+            solicitud.datosSiniestro.localidad = "Localidad";
+            solicitud.datosSiniestro.provincia = "Provincia";
+            solicitud.datosSiniestro.pais = "Pais";
+            solicitud.datosSiniestro.cantidadAutosParticipantes = 2; // Ejemplo de cantidad
+            solicitud.datosSiniestro.interseccion = "Intersección";
+
+
+
 
 
         }else{
             return null
         }
 
-        return Solicitud
+        return solicitud
     }
 
     companion object{

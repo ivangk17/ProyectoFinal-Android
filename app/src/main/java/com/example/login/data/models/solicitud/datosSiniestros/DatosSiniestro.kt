@@ -1,15 +1,15 @@
 package com.example.login.data.models.solicitud.datosSiniestros
 
-import com.example.login.data.models.solicitud.datosSiniestros.asistencia.EstadoLesiones
 import com.example.login.data.models.solicitud.datosSiniestros.asistencia.LugarAsistencia
-import java.util.Date
 
 data class DatosSiniestro(
     var lugarAsistencia: LugarAsistencia = LugarAsistencia(),
+
+
     var fechaOcurrencia: String? = null,
     var horaOcurrencia: String = "",
-    var lugaarOcurrencia: String = "",
-    var codigoPostal: String = "",
+    var lugarOcurrencia: String = "",
+    var codigoPostal: Int = -1,
     var localidad: String = "",
     var provincia: String= "",
     var pais: String = "",

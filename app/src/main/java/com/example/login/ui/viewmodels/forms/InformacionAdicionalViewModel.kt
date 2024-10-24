@@ -15,7 +15,7 @@ import com.example.login.utilities.ValidacionesCampos.validarCampos
 class InformacionAdicionalViewModel(
     getServicePolizas: GetServicePolizas
 ) : ViewModel() {
-    var Solicitud = Solicitud()
+    var solicitud = Solicitud()
     var huboDenunciaSeleccion =  mutableStateOf(HuboDenuncia.NO)
 
 
@@ -45,28 +45,39 @@ class InformacionAdicionalViewModel(
     }
 
     fun crearSolicitudPoliza(): Solicitud? {
-        validarCampos(campos)
+       //validarCampos(campos)
         if (campos.all { it.error.value == null }) {
-            Solicitud.datosSiniestro.vigencia = campos[0].value.value
-            Solicitud.datosSiniestro.cobertura = campos[1].value.value
-            Solicitud.datosSiniestro.franquicia = campos[2].value.value
-            Solicitud.datosSiniestro.cobranza = campos[3].value.value
+//            solicitud.datosSiniestro.vigencia = campos[0].value.value
+//            solicitud.datosSiniestro.cobertura = campos[1].value.value
+//            solicitud.datosSiniestro.franquicia = campos[2].value.value
+//            solicitud.datosSiniestro.cobranza = campos[3].value.value
+//
+//            cargarCheckeables()
+//            solicitud.datosSiniestro.huboDenuncia = huboDenunciaSeleccion.value
 
-            cargarCheckeables()
-            Solicitud.datosSiniestro.huboDenuncia = huboDenunciaSeleccion.value
+            solicitud.datosSiniestro.hubieronDaniosPersonales = true; // Ejemplo booleano
+            solicitud.datosSiniestro.hubieronDaniosMateriales = true; // Ejemplo booleano
+            solicitud.datosSiniestro.hubieronTestigos = true; // Ejemplo booleano
+            solicitud.datosSiniestro.huboDenuncia = HuboDenuncia.SI;
+            solicitud.datosSiniestro.vigencia = "Vigencia";
+            solicitud.datosSiniestro.cobertura = "Cobertura";
+            solicitud.datosSiniestro.franquicia = "Franquicia";
+            solicitud.datosSiniestro.cobranza = "Cobranza";
+
+
 
         }else{
             return null
         }
 
 
-        return Solicitud
+        return solicitud
     }
 
     private fun cargarCheckeables() {
-        Solicitud.datosSiniestro.hubieronDaniosPersonales = camposCheckeables[0].value.value
-        Solicitud.datosSiniestro.hubieronDaniosMateriales = camposCheckeables[1].value.value
-        Solicitud.datosSiniestro.hubieronTestigos = camposCheckeables[2].value.value
+        solicitud.datosSiniestro.hubieronDaniosPersonales = camposCheckeables[0].value.value
+        solicitud.datosSiniestro.hubieronDaniosMateriales = camposCheckeables[1].value.value
+        solicitud.datosSiniestro.hubieronTestigos = camposCheckeables[2].value.value
 
     }
 

@@ -10,7 +10,7 @@ data class Domicilio(
     var localidad: String = "",
 
     @SerializedName("zip_code")
-    var codigoPostal: String = "",
+    var codigoPostal: Int = -1,
 
     @SerializedName("province")
     var provincia: String = "",

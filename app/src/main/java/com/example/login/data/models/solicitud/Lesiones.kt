@@ -8,8 +8,9 @@ data class Lesiones(
     var peatonOCiclista: Boolean = false,
     var conductorTercero: Boolean = false,
     var ocupanteTercero: Boolean = false,
-    var ocupanteAsgurado: Boolean = false,
-    var asegurado: Boolean = false,
     var conductorAsegurado: Boolean = false,
+    var asegurado: Boolean = false,
+    var conductor: Boolean = false,
+    var propietarioVehiculoAsegurado: Boolean = false,
     var relacionConPropietario: Boolean = false
 )

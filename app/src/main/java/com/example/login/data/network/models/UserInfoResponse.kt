@@ -17,12 +17,12 @@ data class UserInfoResponse(
     var nombreCompleto: String = "${nombre} ${apellido} ",
 
     @SerializedName("dni")
-    var cuit: String = "",
+    var cuit: Number = -1,
 
     var email: String = "",
 
     @SerializedName("phone")
-    var telefono: String = "",
+    var telefono: Number = -1,
 
     @SerializedName("date_of_birth")
     var  fechaDeNacimiento: String = "",

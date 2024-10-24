@@ -25,6 +25,7 @@ class DaniosVehiculoTerceroViewModel(
 
         if (errorDescription.value == null) {
             solicitud.daniosVehiculoAfectado = descripcionDanios.value.toString()
+            solicitud.daniosVehiculoAfectado = "Daños vehiculos afectado"
         } else {
             return null
         }

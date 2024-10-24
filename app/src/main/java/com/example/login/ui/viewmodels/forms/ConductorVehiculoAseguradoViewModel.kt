@@ -5,10 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.login.data.models.fields.FormField
 import com.example.login.data.models.fields.TipoCampo
+import com.example.login.data.models.personas.Sexo
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.network.services.GetServicePolizas
-import com.example.login.utilities.ValidacionesCampos.validarCampos
-import com.example.login.utilities.validarFecha
 
 class ConductorVehiculoAseguradoViewModel (
     getServicePolizas: GetServicePolizas
@@ -67,33 +66,50 @@ class ConductorVehiculoAseguradoViewModel (
 
 
     fun crearSolicitudPoliza(): Solicitud? {
-        validarCampos(campos)
-
-        validarFecha(fechaNacimiento, errorFechaNacimiento, "Debes completar la fecha de nacimiento")
-        validarFecha(fechaExpedicion, errorFechaExpedicion, "Debes completar la fecha de expedicion")
-        validarFecha(fechaDeVencimiento, errorFechaVencimiento, "Debes completar la fecha de vencimiento")
+//        validarCampos(campos)
+//
+//        validarFecha(fechaNacimiento, errorFechaNacimiento, "Debes completar la fecha de nacimiento")
+//        validarFecha(fechaExpedicion, errorFechaExpedicion, "Debes completar la fecha de expedicion")
+//        validarFecha(fechaDeVencimiento, errorFechaVencimiento, "Debes completar la fecha de vencimiento")
 
         if (campos.all { it.error.value == null }) {
-            solicitud.conductorAsegurado.nombre = campos[0].value.value
-            solicitud.conductorAsegurado.apellido = campos[1].value.value
-            solicitud.conductorAsegurado.domicilio.calle = campos[2].value.value
-            solicitud.conductorAsegurado.domicilio.localidad = campos[3].value.value
-            solicitud.conductorAsegurado.domicilio.codigoPostal = campos[6].value.value
-            solicitud.conductorAsegurado.domicilio.provincia = campos[4].value.value
-            solicitud.conductorAsegurado.domicilio.pais = campos[5].value.value
-            solicitud.conductorAsegurado.cuit = campos[7].value.value
-            solicitud.conductorAsegurado.telefono = campos[8].value.value
-            solicitud.conductorAsegurado.sexo = campos[9].value.value
-            solicitud.conductorAsegurado.email = campos[10].value.value
-            solicitud.conductorAsegurado.nroRegistro = campos[11].value.value
-            solicitud.conductorAsegurado.claseRegistro = campos[12].value.value
-            solicitud.conductorAsegurado.relacionAsegurado = campos[13].value.value
+//            solicitud.conductorAsegurado.datosPersona.nombre = campos[0].value.value
+//            solicitud.conductorAsegurado.datosPersona.apellido = campos[1].value.value
+//            solicitud.conductorAsegurado.datosPersona.domicilio.calle = campos[2].value.value
+//            solicitud.conductorAsegurado.datosPersona.domicilio.localidad = campos[3].value.value
+//            solicitud.conductorAsegurado.datosPersona.domicilio.codigoPostal = campos[6].value.value.toInt()
+//            solicitud.conductorAsegurado.datosPersona.domicilio.provincia = campos[4].value.value
+//            solicitud.conductorAsegurado.datosPersona.domicilio.pais = campos[5].value.value
+//            solicitud.conductorAsegurado.datosPersona.cuit = campos[7].value.value.toInt()
+//            solicitud.conductorAsegurado.datosPersona.telefono = campos[8].value.value
+//            solicitud.conductorAsegurado.datosPersona.sexo = campos[9].value.value
+//            solicitud.conductorAsegurado.datosPersona.email = campos[10].value.value
+//            solicitud.conductorAsegurado.nroRegistro = campos[11].value.value
+//            solicitud.conductorAsegurado.claseRegistro = campos[12].value.value
+//            solicitud.conductorAsegurado.relacionAsegurado = campos[13].value.value
+//
+//            solicitud.conductorAsegurado.datosPersona.fechaDeNacimiento = fechaNacimiento.value!!
+//            solicitud.conductorAsegurado.fechaVencimiento = fechaDeVencimiento.value!!
+//            solicitud.conductorAsegurado.fechaExpedicion = fechaExpedicion.value!!
 
-            solicitud.conductorAsegurado.fechaDeNacimiento = fechaNacimiento.value!!
-            solicitud.conductorAsegurado.fechaVencimiento = fechaDeVencimiento.value!!
-            solicitud.conductorAsegurado.fechaExpedicion = fechaExpedicion.value!!
+            solicitud.conductorAsegurado.datosPersona.nombre = "Nombre";
+            solicitud.conductorAsegurado.datosPersona.apellido = "Apellido";
+            solicitud.conductorAsegurado.datosPersona.domicilio.calle = "Calle";
+            solicitud.conductorAsegurado.datosPersona.domicilio.localidad = "Localidad";
+            solicitud.conductorAsegurado.datosPersona.domicilio.codigoPostal = 7300;
+            solicitud.conductorAsegurado.datosPersona.domicilio.provincia = "Provincia";
+            solicitud.conductorAsegurado.datosPersona.domicilio.pais = "Pais";
+            solicitud.conductorAsegurado.datosPersona.cuit = 209876428428;
+            solicitud.conductorAsegurado.datosPersona.fechaDeNacimiento = "1990-10-10"; // Ejemplo de fecha exacta
 
-
+            solicitud.conductorAsegurado.datosPersona.telefono = "123456789";
+            solicitud.conductorAsegurado.datosPersona.sexo = Sexo.MUJER;
+            solicitud.conductorAsegurado.datosPersona.email = "email@example.com";
+            solicitud.conductorAsegurado.nroRegistro = "NroRegistro";
+            solicitud.conductorAsegurado.claseRegistro = "ClaseRegistro";
+            solicitud.conductorAsegurado.fechaRegistroExpedicion = "2020-10-10"; // Ejemplo de fecha exacta
+            solicitud.conductorAsegurado.fechaRegistroVencimiento = "2025-10-10"; // Ejemplo de fecha exacta
+            solicitud.conductorAsegurado.relacionAsegurado = "RelacionAsegurado";
         }
         else{
             return null

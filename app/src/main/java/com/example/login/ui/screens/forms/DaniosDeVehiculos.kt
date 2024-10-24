@@ -39,7 +39,10 @@ fun <T> DaniosDeVehiculos(
                 val solicitud = viewModel.crearSolicitud()
                 val polizaJson = gson.toJson(poliza)
                 if (solicitud != null) {
+
                     onEnviar(crearSolicitudViewModel, solicitud)
+                    Log.d("danio", solicitud.daniosVehiculoAsegurado)
+                    Log.d("danio", solicitud.daniosVehiculoAfectado)
                     navController.navigate(route = "${proximaRuta.ruta}/${polizaJson}")
                 } else {
                     Log.d("solicitud", "no se creo")
