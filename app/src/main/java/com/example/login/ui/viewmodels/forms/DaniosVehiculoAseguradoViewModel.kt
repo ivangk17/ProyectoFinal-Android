@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.network.services.GetServicePolizas
-import com.example.login.utilities.validarFecha
+import com.example.login.utilities.validarCampoMutable
 
 class DaniosVehiculoAseguradoViewModel(
     getServicePolizas: GetServicePolizas
@@ -21,11 +21,11 @@ class DaniosVehiculoAseguradoViewModel(
     }
 
     override fun crearSolicitud(): Solicitud? {
-        validarFecha(descripcionDanios, errorDescription, "Se debe completar el campo")
+        validarCampoMutable(descripcionDanios, errorDescription, "Se debe completar el campo")
 
         if (errorDescription.value == null) {
             solicitud.daniosVehiculoAsegurado = descripcionDanios.value.toString()
-            solicitud.daniosVehiculoAsegurado = "Daños vehiculos asegurado"
+            //solicitud.daniosVehiculoAsegurado = "Daños vehiculos asegurado"
         } else {
             return null
         }

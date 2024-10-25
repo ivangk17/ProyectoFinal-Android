@@ -8,12 +8,18 @@ import com.example.login.data.models.fields.TipoCampo
 import com.example.login.data.models.personas.Sexo
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.network.services.GetServicePolizas
+import com.example.login.utilities.ValidacionesCampos.validarCampos
+import com.example.login.utilities.validarCampoMutable
+import com.example.login.utilities.validarMail
 
 class ConductorVehiculoAseguradoViewModel (
     getServicePolizas: GetServicePolizas
 ) : ViewModel() {
 
     var solicitud = Solicitud()
+
+    var sexoSeleccionado =  mutableStateOf(Sexo.INDEFINIDO)
+
     var fechaNacimiento = mutableStateOf<String?>(null)
     var errorFechaNacimiento = mutableStateOf<String?>(null)
 
@@ -34,8 +40,7 @@ class ConductorVehiculoAseguradoViewModel (
         FormField("Provincia", tipo = TipoCampo.TEXTO),
         FormField("Pais", tipo = TipoCampo.TEXTO),
         FormField("CUIT", tipo = TipoCampo.NUMERICO),
-        FormField("Telefono", tipo = TipoCampo.TEXTO),
-        FormField("Sexo", tipo = TipoCampo.TEXTO),
+        FormField("Telefono", tipo = TipoCampo.NUMERICO),
         FormField("Email", tipo = TipoCampo.TEXTO),
         FormField("Nro Registro de Conducir", tipo = TipoCampo.TEXTO),
         FormField("Clase del Registro de Conducir", tipo = TipoCampo.TEXTO),
@@ -67,30 +72,32 @@ class ConductorVehiculoAseguradoViewModel (
 
     fun crearSolicitudPoliza(): Solicitud? {
 //        validarCampos(campos)
-//
-//        validarFecha(fechaNacimiento, errorFechaNacimiento, "Debes completar la fecha de nacimiento")
-//        validarFecha(fechaExpedicion, errorFechaExpedicion, "Debes completar la fecha de expedicion")
-//        validarFecha(fechaDeVencimiento, errorFechaVencimiento, "Debes completar la fecha de vencimiento")
+//        validarMail(campos[9])
+//        validarCampoMutable(fechaNacimiento, errorFechaNacimiento, "Debes completar la fecha de nacimiento")
+//        validarCampoMutable(fechaExpedicion, errorFechaExpedicion, "Debes completar la fecha de expedicion")
+//        validarCampoMutable(fechaDeVencimiento, errorFechaVencimiento, "Debes completar la fecha de vencimiento")
 
         if (campos.all { it.error.value == null }) {
 //            solicitud.conductorAsegurado.datosPersona.nombre = campos[0].value.value
 //            solicitud.conductorAsegurado.datosPersona.apellido = campos[1].value.value
 //            solicitud.conductorAsegurado.datosPersona.domicilio.calle = campos[2].value.value
 //            solicitud.conductorAsegurado.datosPersona.domicilio.localidad = campos[3].value.value
-//            solicitud.conductorAsegurado.datosPersona.domicilio.codigoPostal = campos[6].value.value.toInt()
-//            solicitud.conductorAsegurado.datosPersona.domicilio.provincia = campos[4].value.value
-//            solicitud.conductorAsegurado.datosPersona.domicilio.pais = campos[5].value.value
+//            solicitud.conductorAsegurado.datosPersona.domicilio.codigoPostal = campos[4].value.value.toInt()
+//            solicitud.conductorAsegurado.datosPersona.domicilio.provincia = campos[5].value.value
+//            solicitud.conductorAsegurado.datosPersona.domicilio.pais = campos[6].value.value
 //            solicitud.conductorAsegurado.datosPersona.cuit = campos[7].value.value.toInt()
 //            solicitud.conductorAsegurado.datosPersona.telefono = campos[8].value.value
-//            solicitud.conductorAsegurado.datosPersona.sexo = campos[9].value.value
-//            solicitud.conductorAsegurado.datosPersona.email = campos[10].value.value
-//            solicitud.conductorAsegurado.nroRegistro = campos[11].value.value
-//            solicitud.conductorAsegurado.claseRegistro = campos[12].value.value
-//            solicitud.conductorAsegurado.relacionAsegurado = campos[13].value.value
+//            solicitud.conductorAsegurado.datosPersona.sexo = sexoSeleccionado.value
+//            solicitud.conductorAsegurado.datosPersona.email = campos[9].value.value
+//            solicitud.conductorAsegurado.nroRegistro = campos[10].value.value
+//            solicitud.conductorAsegurado.claseRegistro = campos[11].value.value
+//            solicitud.conductorAsegurado.relacionAsegurado = campos[12].value.value
 //
 //            solicitud.conductorAsegurado.datosPersona.fechaDeNacimiento = fechaNacimiento.value!!
-//            solicitud.conductorAsegurado.fechaVencimiento = fechaDeVencimiento.value!!
-//            solicitud.conductorAsegurado.fechaExpedicion = fechaExpedicion.value!!
+//            solicitud.conductorAsegurado.fechaRegistroVencimiento = fechaDeVencimiento.value!!
+//            solicitud.conductorAsegurado.fechaRegistroExpedicion = fechaExpedicion.value!!
+
+
 
             solicitud.conductorAsegurado.datosPersona.nombre = "Nombre";
             solicitud.conductorAsegurado.datosPersona.apellido = "Apellido";

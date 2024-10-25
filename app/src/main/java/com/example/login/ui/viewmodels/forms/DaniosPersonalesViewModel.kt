@@ -11,7 +11,8 @@ import com.example.login.data.models.personas.Sexo
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.utilities.ValidacionesCampos.validarCampos
-import com.example.login.utilities.validarFecha
+import com.example.login.utilities.validarCampoMutable
+import com.example.login.utilities.validarMail
 
 class DaniosPersonalesViewModel(
     getServicePolizas: GetServicePolizas
@@ -28,15 +29,14 @@ class DaniosPersonalesViewModel(
         FormField("Apellido", mutableStateOf(""), tipo = TipoCampo.TEXTO),
         FormField("Domicilio", mutableStateOf(""), tipo = TipoCampo.TEXTO),
         FormField("Localidad", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Codigo Postal", mutableStateOf(""), tipo = TipoCampo.TEXTO),
+        FormField("Codigo Postal", mutableStateOf(""), tipo = TipoCampo.NUMERICO),
         FormField("Provincia", mutableStateOf(""), tipo = TipoCampo.TEXTO),
         FormField("Pais", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("CUIT", mutableStateOf(""), tipo = TipoCampo.TEXTO),
+        FormField("CUIT", mutableStateOf(""), tipo = TipoCampo.NUMERICO),
         FormField("Email", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Telefono", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Sexo", mutableStateOf(""), tipo = TipoCampo.TEXTO),
+        FormField("Telefono", mutableStateOf(""), tipo = TipoCampo.NUMERICO),
         FormField("Estado Civil", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Telefono Alternativo", mutableStateOf(""), tipo = TipoCampo.TEXTO),
+        FormField("Telefono Alternativo", mutableStateOf(""), tipo = TipoCampo.NUMERICO),
     )
 
     val camposCheckeables = listOf(
@@ -67,7 +67,8 @@ class DaniosPersonalesViewModel(
 
     fun crearSolicitud(): Solicitud?{
 //        validarCampos(campos)
-//        validarFecha(fechaNacimiento, errorFechaNacimiento, "Debes completar la fecha de nacimiento")
+//        validarMail(campos[8])
+//        validarCampoMutable(fechaNacimiento, errorFechaNacimiento, "Debes completar la fecha de nacimiento")
 
         if (campos.all { it.error.value == null }) {
 //            solicitud.lesiones.lesionado.datosPersona.nombre = campos[0].value.value
@@ -80,9 +81,9 @@ class DaniosPersonalesViewModel(
 //            solicitud.lesiones.lesionado.datosPersona.cuit = campos[7].value.value.toInt()
 //            solicitud.lesiones.lesionado.datosPersona.email = campos[8].value.value
 //            solicitud.lesiones.lesionado.datosPersona.telefono = campos[9].value.value
-//            solicitud.lesiones.lesionado.datosPersona.sexo = campos[10].value.value
-//            solicitud.lesiones.lesionado.estadoCivil = campos[11].value.value
-//            solicitud.lesiones.lesionado.telefonoAlternativo = campos[12].value.value
+//            solicitud.lesiones.lesionado.datosPersona.sexo = sexoLesionado.value
+//            solicitud.lesiones.lesionado.estadoCivil = campos[10].value.value
+//            solicitud.lesiones.lesionado.telefonoAlternativo = campos[11].value.value
 //
 //            solicitud.lesiones.lesionado.datosPersona.fechaDeNacimiento = fechaNacimiento.value!!
 

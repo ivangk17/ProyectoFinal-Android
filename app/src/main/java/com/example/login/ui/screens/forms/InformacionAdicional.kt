@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
+import com.example.login.components.DatePicker
 import com.example.login.components.DropdownMenuSample
 import com.example.login.components.FieldStringForms
 import com.example.login.components.SwitchCustom
@@ -33,7 +34,6 @@ fun InformacionAdicional(
         LazyColumn(modifier = Modifier.weight(1f)) {
             items(viewModel.camposCheckeables.size){ index ->
                 val campo = viewModel.camposCheckeables[index]
-
                 SwitchCustom(
                     checked = campo.value.value,
                     onCheckedChange = { newState -> viewModel.onSwitchChange(index, newState) },
@@ -48,6 +48,13 @@ fun InformacionAdicional(
                     selectedOption = viewModel.huboDenunciaSeleccion.value,
                     onOptionSelected = { viewModel.huboDenunciaSeleccion.value = it },
                     label = { it.name }
+                )
+
+                DatePicker(
+                    label = "Vigencia hasta",
+                    valor = viewModel.vigenciaHasta,
+                    error = viewModel.errorVigenciaHasta,
+                    onDateSelected = { newValue -> viewModel.setVigencia(newValue) }
                 )
             }
 

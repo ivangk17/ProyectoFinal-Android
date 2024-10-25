@@ -17,8 +17,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.login.components.DatePicker
+import com.example.login.components.DropdownMenuSample
 import com.example.login.components.FieldStringForms
+import com.example.login.data.models.personas.Sexo
 import com.example.login.data.models.poliza.Poliza
+import com.example.login.data.models.vehiculos.TipoVehiculo
 import com.example.login.navigation.Rutas
 import com.example.login.ui.screens.gson
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
@@ -31,6 +34,8 @@ fun DatosPropietarioVehiculoTercero(
     poliza: Poliza,
     crearSolicitudViewModel: CrearSolicitudViewModel
 ) {
+    val optionsSexo = Sexo.entries
+    val optionsTipoVehiculo = TipoVehiculo.entries
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -56,6 +61,30 @@ fun DatosPropietarioVehiculoTercero(
                 error = campo.error,
                 onValueChange = { newValue -> viewModel.onCampoChange(index, newValue) }
             )
+            if(index == 7){
+                DatePicker(
+                    label = "Fecha de nacimiento",
+                    valor = viewModel.fechaNacimiento,
+                    error = viewModel.errorFechaNacimiento,
+                    onDateSelected = { newValue -> viewModel.setFechaNacimiento(newValue) }
+                )
+                DropdownMenuSample(
+                    title = "Sexo",
+                    options = optionsSexo,
+                    selectedOption = viewModel.sexoSeleccionado.value,
+                    onOptionSelected = { viewModel.sexoSeleccionado.value = it },
+                    label = { it.name }
+                )
+            }
+            if (index == 10){
+                DropdownMenuSample(
+                    title = "Tipo de vehiculo",
+                    options = optionsTipoVehiculo,
+                    selectedOption = viewModel.tipoVehiculo.value,
+                    onOptionSelected = { viewModel.tipoVehiculo.value = it },
+                    label = { it.name }
+                )
+            }
         }
 
         item {

@@ -17,7 +17,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.login.components.DatePicker
+import com.example.login.components.DropdownMenuSample
 import com.example.login.components.FieldStringForms
+import com.example.login.data.models.personas.Sexo
 import com.example.login.data.models.poliza.Poliza
 import com.example.login.navigation.Rutas
 import com.example.login.ui.screens.gson
@@ -32,7 +34,7 @@ fun ConductorVehiculoTercero(
     poliza: Poliza,
     crearSolicitudViewModel: CrearSolicitudViewModel
 ) {
-
+    val optionsSexo = Sexo.entries
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -69,8 +71,17 @@ fun ConductorVehiculoTercero(
                     onDateSelected = { newValue -> viewModel.setFechaNacimiento(newValue) }
                 )
             }
+            if(index == 8){
+                DropdownMenuSample(
+                    title = "Sexo",
+                    options = optionsSexo,
+                    selectedOption = viewModel.sexoSeleccionado.value,
+                    onOptionSelected = { viewModel.sexoSeleccionado.value = it },
+                    label = { it.name }
+                )
+            }
 
-            if( index == 12){
+            if( index == 11){
                 DatePicker(
                     label = "Fecha de expedicion",
                     valor = viewModel.fechaExpedicion,

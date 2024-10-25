@@ -9,7 +9,7 @@ import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.utilities.ValidacionesCampos.validarCampos
-import com.example.login.utilities.validarFecha
+import com.example.login.utilities.validarCampoMutable
 
 
 class DatosSiniestroViewModel(
@@ -52,37 +52,33 @@ class DatosSiniestroViewModel(
 
 
     fun crearSolicitudPoliza(): Solicitud? {
-//        validarCampos(campos)
-//        validarFecha(fechaOcurrencia, errorFechaOcurrencua, "Se debe completar la fecha de ocurrencia")
-//        validarFecha(horaOcurriencia, errorHoraOcurrencua, "Se debe completar la hora de ocurrencia")
+        validarCampos(campos)
+        validarCampoMutable(fechaOcurrencia, errorFechaOcurrencua, "Se debe completar la fecha de ocurrencia")
+        validarCampoMutable(horaOcurriencia, errorHoraOcurrencua, "Se debe completar la hora de ocurrencia")
 
         if (campos.all { it.error.value == null }) {
-//            solicitud.datosSiniestro.lugarOcurrencia = campos[0].value.value
-//            solicitud.datosSiniestro.codigoPostal = campos[1].value.value
-//            solicitud.datosSiniestro.localidad = campos[2].value.value
-//            solicitud.datosSiniestro.provincia = campos[3].value.value
-//            solicitud.datosSiniestro.pais = campos[4].value.value
-//            solicitud.datosSiniestro.cantidadAutosParticipantes = campos[5].value.value.toIntOrNull()!!
-//            solicitud.datosSiniestro.interseccion = campos[6].value.value
-//
-//            solicitud.datosSiniestro.fechaOcurrencia = fechaOcurrencia.value
-//            solicitud.datosSiniestro.horaOcurrencia = horaOcurriencia.value.toString()
-
-
-            solicitud.datosSiniestro.fechaOcurrencia = "2020-10-10";
-            solicitud.datosSiniestro.horaOcurrencia = "14:30:00"; // Ejemplo de hora exacta
-            solicitud.datosSiniestro.lugarOcurrencia = "Lugar Ocurrencia";
-            solicitud.datosSiniestro.codigoPostal = 7300;
-            solicitud.datosSiniestro.localidad = "Localidad";
-            solicitud.datosSiniestro.provincia = "Provincia";
-            solicitud.datosSiniestro.pais = "Pais";
-            solicitud.datosSiniestro.cantidadAutosParticipantes = 2; // Ejemplo de cantidad
-            solicitud.datosSiniestro.interseccion = "Intersección";
+            solicitud.datosSiniestro.fechaOcurrencia = fechaOcurrencia.value
+            solicitud.datosSiniestro.horaOcurrencia = horaOcurriencia.value.toString()
+            solicitud.datosSiniestro.lugarOcurrencia = campos[0].value.value
+            solicitud.datosSiniestro.codigoPostal = campos[1].value.value.toInt()
+            solicitud.datosSiniestro.localidad = campos[2].value.value
+            solicitud.datosSiniestro.provincia = campos[3].value.value
+            solicitud.datosSiniestro.pais = campos[4].value.value
+            solicitud.datosSiniestro.cantidadAutosParticipantes = campos[5].value.value.toIntOrNull()!!
+            solicitud.datosSiniestro.interseccion = campos[6].value.value
 
 
 
 
-
+//            solicitud.datosSiniestro.fechaOcurrencia = "2020-10-10";
+//            solicitud.datosSiniestro.horaOcurrencia = "14:30:00"; // Ejemplo de hora exacta
+//            solicitud.datosSiniestro.lugarOcurrencia = "Lugar Ocurrencia";
+//            solicitud.datosSiniestro.codigoPostal = 7300;
+//            solicitud.datosSiniestro.localidad = "Localidad";
+//            solicitud.datosSiniestro.provincia = "Provincia";
+//            solicitud.datosSiniestro.pais = "Pais";
+//            solicitud.datosSiniestro.cantidadAutosParticipantes = 2; // Ejemplo de cantidad
+//            solicitud.datosSiniestro.interseccion = "Intersección";
         }else{
             return null
         }

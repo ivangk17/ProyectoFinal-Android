@@ -1,6 +1,5 @@
 package com.example.login.ui.viewmodels.forms
 
-import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -27,10 +26,12 @@ class DatosPropietarioVehiculoAseguradoViewModel (
     var usoDelVehiculo = mutableStateOf(UsoDelVehiculo.PARTICULAR)
     var poliza = Poliza()
     var user = mutableStateOf(UserInfoResponse())
+    var sexoSeleccionado =  mutableStateOf(Sexo.INDEFINIDO)
 
-    fun loadInfoUser() {
+    fun loadInfoUser(polizaParametro: Poliza) {
         viewModelScope.launch {
             user.value = getServiceUser.execute()
+            initializeFieldsWithPoliza(polizaParametro)
         }
     }
 
@@ -71,18 +72,23 @@ class DatosPropietarioVehiculoAseguradoViewModel (
             Solicitud.propietarioAsegurado.datosPersona.cuit = campos[7].value.value.toInt()
             Solicitud.propietarioAsegurado.datosPersona.email = campos[8].value.value
             Solicitud.propietarioAsegurado.datosPersona.telefono = campos[9].value.value
-            Solicitud.propietarioAsegurado.datosPersona.sexo = Sexo.MUJER
-            Solicitud.propietarioAsegurado.datosPersona.fechaDeNacimiento = "2000-10-10"
-//          Solicitud.propietarioAsegurado.datosPersona.fechaDeNacimiento = //todo agregar selecionar fecha nacimiento
-//          Solicitud.propietarioAsegurado.datosPersona.sexo = //todo agregar selecionar sexo
-//          Solicitud.propietarioAsegurado.vehiculoPropietadoAfectado.datosVehiculo.tipoVehiculo = //todo agregar seleccionar tipo de vehiculo
-            //falta cargar datos del vehículo a la entidad conductor asegurado
+            Solicitud.propietarioAsegurado.datosPersona.sexo = sexoSeleccionado.value
+            Solicitud.propietarioAsegurado.datosPersona.fechaDeNacimiento = user.value.fechaDeNacimiento
+            Solicitud.propietarioAsegurado.vehiculo.datosVehiculo.tipoVehiculo = poliza.vehiculo.tipoVehiculo
             Solicitud.propietarioAsegurado.vehiculo.datosVehiculo.marca = campos[10].value.value
             Solicitud.propietarioAsegurado.vehiculo.datosVehiculo.modelo = campos[11].value.value
             Solicitud.propietarioAsegurado.vehiculo.datosVehiculo.color = campos[12].value.value
             Solicitud.propietarioAsegurado.vehiculo.datosVehiculo.anio = campos[13].value.value.toInt()
             Solicitud.propietarioAsegurado.vehiculo.datosVehiculo.dominio = campos[14].value.value
             Solicitud.propietarioAsegurado.vehiculo.usoDelVehiculo = usoDelVehiculo.value
+
+            val tipo = poliza.vehiculo.tipoVehiculo.name
+            if(tipo== "AUTO"){
+                Solicitud.propietarioAsegurado.vehiculo.datosVehiculo.tipoVehiculo = TipoVehiculo.AUTO
+            }else if ( tipo == "MOTO"){
+                Solicitud.propietarioAsegurado.vehiculo.datosVehiculo.tipoVehiculo = TipoVehiculo.MOTO
+            }
+            Solicitud.propietarioAsegurado.vehiculo.datosVehiculo.tipoVehiculo = TipoVehiculo.CAMION
 
         }else{
             return null
@@ -91,7 +97,6 @@ class DatosPropietarioVehiculoAseguradoViewModel (
     }
 
     fun initializeFieldsWithPoliza(poliza: Poliza) {
-            Log.d("Email", user.value.email)
         campos[0].value.value = user.value.nombre
         campos[1].value.value = user.value.apellido
         campos[2].value.value = user.value.domicilio.calle
@@ -102,9 +107,6 @@ class DatosPropietarioVehiculoAseguradoViewModel (
         campos[7].value.value = user.value.cuit.toString()
         campos[8].value.value = user.value.email
         campos[9].value.value = user.value.telefono.toString()
-        Solicitud.propietarioAfectado.datosPersona.sexo = Sexo.MUJER
-        Solicitud.propietarioAsegurado.datosPersona.fechaDeNacimiento = "2000-10-10"
-        Solicitud.propietarioAsegurado.vehiculo.datosVehiculo.tipoVehiculo = TipoVehiculo.CAMION
         campos[10].value.value = poliza.vehiculo.marca
         campos[11].value.value = poliza.vehiculo.modelo
         campos[12].value.value = poliza.vehiculo.color
@@ -114,6 +116,14 @@ class DatosPropietarioVehiculoAseguradoViewModel (
             usoDelVehiculo.value = UsoDelVehiculo.PARTICULAR
         }else{
             usoDelVehiculo.value = UsoDelVehiculo.COMERCIAL
+        }
+
+        val sexo = user.value.sexo
+
+        if (sexo == "HOMBRE"){
+            sexoSeleccionado.value = Sexo.HOMBRE
+        }else {
+            sexoSeleccionado.value = Sexo.MUJER
         }
 
     }

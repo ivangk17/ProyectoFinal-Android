@@ -18,7 +18,7 @@ data class DatosSiniestro(
     var hubieronDaniosPersonales: Boolean? = null,
     var hubieronDaniosMateriales: Boolean? = null,
     var hubieronTestigos: Boolean? = null,
-    var vigencia: String = "",
+    var vigencia: String?= null,
     var cobertura: String= "",
     var franquicia: String= "",
     var cobranza: String= "",

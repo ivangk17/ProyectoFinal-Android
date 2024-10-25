@@ -9,9 +9,10 @@ import com.example.login.data.models.fields.FormField
 import com.example.login.data.models.fields.TipoCampo
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.models.solicitud.datosSiniestros.asistencia.EstadoLesiones
+import com.example.login.data.models.vehiculos.TipoVehiculo
 import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.utilities.ValidacionesCampos.validarCampos
-import com.example.login.utilities.validarFecha
+import com.example.login.utilities.validarCampoMutable
 
 class LugarAsistenciaViewModel(
     getServicePolizas: GetServicePolizas
@@ -51,18 +52,19 @@ class LugarAsistenciaViewModel(
 
 
     fun crearSolicitudPoliza(): Solicitud? {
-        //validarCampos(campos)
-        //validarFecha(descripcionLesiones,errorDescripcionLesiones,"Faltan la descripcion de las lesiones")
+        validarCampos(campos)
+        validarCampoMutable(descripcionLesiones,errorDescripcionLesiones,"Faltan la descripcion de las lesiones")
         if (campos.all { it.error.value == null }) {
-//            solicitud.datosSiniestro.lugarAsistencia.nombreCentro = campos[0].value.value
-//
-//            cargarCheckeables()
-//            solicitud.datosSiniestro.lugarAsistencia.descripcionLesiones = descripcionLesiones.value.toString()
+            solicitud.datosSiniestro.lugarAsistencia.nombreCentro = campos[0].value.value
+            cargarCheckeables()
+            solicitud.datosSiniestro.lugarAsistencia.descripcionLesiones = descripcionLesiones.value.toString()
 
-            solicitud.datosSiniestro.lugarAsistencia.nombreCentro = "Nombre del Centro";
-            solicitud.datosSiniestro.lugarAsistencia.quedaInternado = true; // Ejemplo booleano
-            solicitud.datosSiniestro.lugarAsistencia.estadoLesiones = EstadoLesiones.MUERTE
-            solicitud.datosSiniestro.lugarAsistencia.descripcionLesiones = "Descripción de las Lesiones";
+            solicitud.datosSiniestro.lugarAsistencia.estadoLesiones = estadoLesiones.value
+
+//            solicitud.datosSiniestro.lugarAsistencia.nombreCentro = "Nombre del Centro";
+//            solicitud.datosSiniestro.lugarAsistencia.quedaInternado = true; // Ejemplo booleano
+//            solicitud.datosSiniestro.lugarAsistencia.estadoLesiones = EstadoLesiones.MUERTE
+//            solicitud.datosSiniestro.lugarAsistencia.descripcionLesiones = "Descripción de las Lesiones";
 
         }else{
             return null
