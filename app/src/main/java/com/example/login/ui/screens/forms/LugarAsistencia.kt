@@ -16,6 +16,8 @@ import com.example.login.components.MultipleLine
 import com.example.login.components.SwitchCustom
 import com.example.login.data.models.poliza.Poliza
 import com.example.login.data.models.solicitud.datosSiniestros.asistencia.EstadoLesiones
+import com.example.login.navigation.Rutas
+import com.example.login.ui.screens.gson
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.forms.LugarAsistenciaViewModel
 
@@ -72,10 +74,12 @@ fun LugarAsistencia(
         Button(
             onClick = {
                 val solicitud = viewModel.crearSolicitudPoliza()
+                val polizaJson = gson.toJson(poliza)
                 if (solicitud != null) {
                     Log.d("solicitud", "se creo")
                     Log.d("solicitud", "${viewModel.solicitud.datosSiniestro.lugarAsistencia} ")
                         crearSolicitudViewModel.lugarAsistencia(solicitud)
+                    navController.navigate("${Rutas.LoadingScreen.ruta}/$polizaJson/${Rutas.SolicitudEnviada.ruta}")
                 } else {
                     Log.d("solicitud", "no se creo")
                 }

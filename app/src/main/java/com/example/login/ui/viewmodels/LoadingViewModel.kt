@@ -4,11 +4,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.data.network.services.GetStatus
 import kotlinx.coroutines.launch
 
-class MainActivityViewModel(
-    private val getStatus: GetStatus
+class LoadingViewModel(
+    private val getStatus: GetStatus,
+    getServicePolizas: GetServicePolizas
 ) : ViewModel() {
 
     var _status = mutableStateOf<Boolean>(false)
@@ -47,11 +49,11 @@ class MainActivityViewModel(
 
 
     companion object {
-        fun provideFactory(getStatus: GetStatus): ViewModelProvider.Factory =
+        fun provideFactory(getStatus: GetStatus, getServicePolizas: GetServicePolizas): ViewModelProvider.Factory =
             object : ViewModelProvider.Factory {
                 @Suppress("UNCHECKED_CAST")
                 override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                    return MainActivityViewModel(getStatus) as T
+                    return LoadingViewModel(getStatus, getServicePolizas) as T
                 }
             }
     }

@@ -55,27 +55,26 @@ class InformacionAdicionalViewModel(
     }
 
 
-
     fun crearSolicitudPoliza(): Solicitud? {
-        validarCampoMutable(vigenciaHasta, errorVigenciaHasta,"Se debe seleccionar la vigencia")
-       validarCampos(campos)
+//        validarCampoMutable(vigenciaHasta, errorVigenciaHasta,"Se debe seleccionar la vigencia")
+//       validarCampos(campos)
         if (campos.all { it.error.value == null }) {
-            solicitud.datosSiniestro.vigencia = vigenciaHasta.value!!
-            solicitud.datosSiniestro.cobertura = campos[0].value.value
-            solicitud.datosSiniestro.franquicia = campos[1].value.value
-            solicitud.datosSiniestro.cobranza = campos[2].value.value
+//            solicitud.datosSiniestro.vigencia = vigenciaHasta.value!!
+//            solicitud.datosSiniestro.cobertura = campos[0].value.value
+//            solicitud.datosSiniestro.franquicia = campos[1].value.value
+//            solicitud.datosSiniestro.cobranza = campos[2].value.value
+//
+//            cargarCheckeables()
+//            solicitud.datosSiniestro.huboDenuncia = huboDenunciaSeleccion.value
 
-            cargarCheckeables()
-            solicitud.datosSiniestro.huboDenuncia = huboDenunciaSeleccion.value
-
-//            solicitud.datosSiniestro.hubieronDaniosPersonales = true; // Ejemplo booleano
-//            solicitud.datosSiniestro.hubieronDaniosMateriales = true; // Ejemplo booleano
-//            solicitud.datosSiniestro.hubieronTestigos = true; // Ejemplo booleano
-//            solicitud.datosSiniestro.huboDenuncia = HuboDenuncia.SI;
-//            solicitud.datosSiniestro.vigencia = "2025-10-10"
-//            solicitud.datosSiniestro.cobertura = "Cobertura";
-//            solicitud.datosSiniestro.franquicia = "Franquicia";
-//            solicitud.datosSiniestro.cobranza = "Cobranza";
+            solicitud.datosSiniestro.hubieronDaniosPersonales = true; // Ejemplo booleano
+            solicitud.datosSiniestro.hubieronDaniosMateriales = true; // Ejemplo booleano
+            solicitud.datosSiniestro.hubieronTestigos = true; // Ejemplo booleano
+            solicitud.datosSiniestro.huboDenuncia = HuboDenuncia.SI;
+            solicitud.datosSiniestro.vigencia = "2025-10-10"
+            solicitud.datosSiniestro.cobertura = "Cobertura";
+            solicitud.datosSiniestro.franquicia = "Franquicia";
+            solicitud.datosSiniestro.cobranza = "Cobranza";
 
 
 

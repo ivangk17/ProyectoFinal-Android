@@ -16,30 +16,47 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.example.login.ui.viewmodels.MainActivityViewModel
+import com.example.login.ui.viewmodels.LoadingViewModel
 import androidx.compose.runtime.LaunchedEffect
+import androidx.navigation.NavController
+import com.example.login.data.models.poliza.Poliza
+import com.example.login.navigation.Rutas
 import kotlinx.coroutines.delay
 
 @Composable
-fun LoadingScreen(viewModel: MainActivityViewModel) {
+fun LoadingScreen(
+    poliza: Poliza,
+    viewModel: LoadingViewModel,
+    navController: NavController,
+    nextRoute: String,
+) {
     var showLoading by remember { mutableStateOf(true) }
+    var showRetryButton by remember { mutableStateOf(false) }
     val MAX_ATTEMPTS = 10
 
     LaunchedEffect(showLoading) {
         if (showLoading) {
             while (viewModel.getAttemps() < MAX_ATTEMPTS && !viewModel.getStatus()) {
                 viewModel.loadStatus()
-                delay(1000)
-                if (viewModel.getStatus()) {
-                    showLoading = false
+                delay(100)
+            }
+            if (viewModel.getStatus()) {
+                Log.d("nextRoute", nextRoute)
+                if(nextRoute == "solicitudEnviada"){
+                    navController.navigate("${nextRoute}"){
+                        popUpTo(Rutas.LoadingScreen.ruta) { inclusive = true }
+                    }
+                }else{
+                    navController.navigate("${nextRoute}/${gson.toJson(poliza)}"){
+                        popUpTo(Rutas.LoadingScreen.ruta) { inclusive = true }
+                    }
                 }
+
+            } else {
+                showRetryButton = true
             }
-            if (viewModel.getAttemps() >= MAX_ATTEMPTS) {
-                showLoading = false
-            }
+            showLoading = false
         }
     }
 
@@ -51,16 +68,11 @@ fun LoadingScreen(viewModel: MainActivityViewModel) {
         if (showLoading) {
             IndeterminateCircularIndicator()
         } else {
-            if (viewModel.getStatus()) {
-                //ACA deberia ir directamente al AppNavigation
-
-                Button(onClick = { /* Navegar a otra pantalla */ }) {
-                    Text("Conectado")
-                }
-            } else {
+            if (showRetryButton) {
                 Button(onClick = {
-                    viewModel.setAttemps(0) // Reinicia los intentos
-                    showLoading = true // Muestra el cargador de nuevo
+                    viewModel.setAttemps(0)
+                    showLoading = true
+                    showRetryButton = false
                 }) {
                     Text("En este momento no hay conexión, reintentar")
                 }
@@ -68,6 +80,7 @@ fun LoadingScreen(viewModel: MainActivityViewModel) {
         }
     }
 }
+
 
 @Composable
 fun IndeterminateCircularIndicator() {

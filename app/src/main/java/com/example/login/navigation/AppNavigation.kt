@@ -1,7 +1,10 @@
 package com.example.login.navigation
 
+import android.util.Log
 import com.example.login.ui.screens.HomeScreen
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -10,6 +13,8 @@ import com.example.login.ui.viewmodels.HomeViewModel
 import com.example.login.data.network.RetrofitClient
 import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.data.network.services.GetServiceUser
+import com.example.login.data.network.services.GetStatus
+import com.example.login.ui.screens.LoadingScreen
 import com.example.login.ui.screens.LoginScreen
 import com.example.login.ui.screens.PolizaDetailsScreen
 import com.example.login.ui.screens.forms.ConductorVehiculoAsegurado
@@ -24,7 +29,9 @@ import com.example.login.ui.screens.forms.DatosSiniestro
 import com.example.login.ui.screens.forms.InformacionAdicional
 import com.example.login.ui.screens.forms.LugarAsistencia
 import com.example.login.ui.screens.forms.RelatoAccidente
+import com.example.login.ui.screens.forms.SolicitudEnviadaScreen
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
+import com.example.login.ui.viewmodels.LoadingViewModel
 import com.example.login.ui.viewmodels.PolizaDetailsViewModel
 import com.example.login.ui.viewmodels.forms.ConductorVehiculoAseguradoViewModel
 import com.example.login.ui.viewmodels.forms.ConductorVehiculoTerceroViewModel
@@ -62,6 +69,18 @@ fun AppNavigation() {
         }
         composable(Rutas.LoginScreen.ruta) {
             LoginScreen(navController)
+        }
+
+        rutaComposableLoading(
+            route = Rutas.LoadingScreen.ruta,
+            viewModelFactory = {
+                LoadingViewModel.provideFactory(GetStatus(RetrofitClient.apiService),GetServicePolizas(RetrofitClient.apiService))
+                    .create(LoadingViewModel::class.java)
+            }
+        ) { poliza, viewModel, nextRoute ->
+            LoadingScreen(
+                poliza, viewModel, navController, nextRoute
+            )
         }
 
         rutaComposable(
@@ -219,6 +238,10 @@ fun AppNavigation() {
             }
         ) { poliza, viewModel ->
             LugarAsistencia(navController, viewModel, poliza,crearSolicitudViewModel)
+        }
+
+        composable(Rutas.SolicitudEnviada.ruta) {
+            SolicitudEnviadaScreen(navController)
         }
 
     }

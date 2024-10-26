@@ -70,60 +70,60 @@ class DatosPropietarioVehiculoTerceroViewModel (
 
 
     fun crearSolicitudPoliza(): Solicitud? {
-        validarCampos(campos)
-        validarMail(campos[8])
-        validarCampoMutable(fechaDeVencimiento, errorFechaVencimiento, "Debes completar la fecha de vencimiento")
-        validarCampoMutable(fechaNacimiento, errorFechaNacimiento, "Debes completar la fecha de vencimiento")
+//        validarCampos(campos)
+//        validarMail(campos[8])
+//        validarCampoMutable(fechaDeVencimiento, errorFechaVencimiento, "Debes completar la fecha de vencimiento")
+//        validarCampoMutable(fechaNacimiento, errorFechaNacimiento, "Debes completar la fecha de vencimiento")
 
         if(campos.all { it.error.value == null }){
-            solicitud.propietarioAfectado.datosPersona.nombre = campos[0].value.value
-            solicitud.propietarioAfectado.datosPersona.apellido = campos[1].value.value
-            solicitud.propietarioAfectado.datosPersona.domicilio.calle = campos[2].value.value
-            solicitud.propietarioAfectado.datosPersona.domicilio.localidad = campos[3].value.value
-            solicitud.propietarioAfectado.datosPersona.domicilio.codigoPostal = campos[4].value.value.toInt()
-            solicitud.propietarioAfectado.datosPersona.domicilio.provincia = campos[5].value.value
-            solicitud.propietarioAfectado.datosPersona.domicilio.pais = campos[6].value.value
-            solicitud.propietarioAfectado.datosPersona.cuit = campos[7].value.value.toInt()
-            solicitud.propietarioAfectado.datosPersona.email = campos[8].value.value
-            solicitud.propietarioAfectado.datosPersona.telefono = campos[9].value.value
-            solicitud.propietarioAsegurado.datosPersona.sexo = sexoSeleccionado.value
-            solicitud.propietarioAfectado.datosPersona.fechaDeNacimiento = fechaNacimiento.value!!
-            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.tipoVehiculo = tipoVehiculo.value
-            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.marca = campos[10].value.value
-            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.modelo = campos[11].value.value
-            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.color = campos[12].value.value
-            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.anio = campos[13].value.value.toInt()
-            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.dominio = campos[14].value.value
-            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.aseguradora = campos[15].value.value
-            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.poliza = campos[16].value.value
-            solicitud.propietarioAfectado.fechaVencimientoPoliza = fechaDeVencimiento.value!!
+//            solicitud.propietarioAfectado.datosPersona.nombre = campos[0].value.value
+//            solicitud.propietarioAfectado.datosPersona.apellido = campos[1].value.value
+//            solicitud.propietarioAfectado.datosPersona.domicilio.calle = campos[2].value.value
+//            solicitud.propietarioAfectado.datosPersona.domicilio.localidad = campos[3].value.value
+//            solicitud.propietarioAfectado.datosPersona.domicilio.codigoPostal = campos[4].value.value.toInt()
+//            solicitud.propietarioAfectado.datosPersona.domicilio.provincia = campos[5].value.value
+//            solicitud.propietarioAfectado.datosPersona.domicilio.pais = campos[6].value.value
+//            solicitud.propietarioAfectado.datosPersona.cuit = campos[7].value.value.toInt()
+//            solicitud.propietarioAfectado.datosPersona.email = campos[8].value.value
+//            solicitud.propietarioAfectado.datosPersona.telefono = campos[9].value.value
+//            solicitud.propietarioAsegurado.datosPersona.sexo = sexoSeleccionado.value
+//            solicitud.propietarioAfectado.datosPersona.fechaDeNacimiento = fechaNacimiento.value!!
+//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.tipoVehiculo = tipoVehiculo.value
+//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.marca = campos[10].value.value
+//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.modelo = campos[11].value.value
+//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.color = campos[12].value.value
+//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.anio = campos[13].value.value.toInt()
+//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.dominio = campos[14].value.value
+//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.aseguradora = campos[15].value.value
+//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.poliza = campos[16].value.value
+//            solicitud.propietarioAfectado.fechaVencimientoPoliza = fechaDeVencimiento.value!!
 
 
 
 
-//            solicitud.propietarioAfectado.datosPersona.nombre = "Nombre";
-//            solicitud.propietarioAfectado.datosPersona.apellido = "Apellido";
-//            solicitud.propietarioAfectado.datosPersona.domicilio.calle = "Calle";
-//            solicitud.propietarioAfectado.datosPersona.domicilio.localidad = "Localidad";
-//            solicitud.propietarioAfectado.datosPersona.domicilio.codigoPostal = 7300;
-//            solicitud.propietarioAfectado.datosPersona.domicilio.provincia = "Provincia";
-//            solicitud.propietarioAfectado.datosPersona.domicilio.pais = "Pais";
-//            solicitud.propietarioAfectado.datosPersona.cuit = 209876428428;
-//            solicitud.propietarioAfectado.datosPersona.email = "email@example.com";
-//            solicitud.propietarioAfectado.datosPersona.telefono = "123456789";
-//            solicitud.propietarioAfectado.datosPersona.sexo = Sexo.MUJER
-//            solicitud.propietarioAfectado.datosPersona.fechaDeNacimiento = "1990-10-10"
-//
-//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.tipoVehiculo = TipoVehiculo.CAMION
-//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.marca = "Marca";
-//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.modelo = "Modelo";
-//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.color = "Color";
-//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.anio = 2020; // Ejemplo de año
-//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.dominio = "Dominio";
-//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.aseguradora = "Aseguradora";
-//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.poliza = "Poliza";
-//
-//            solicitud.propietarioAfectado.fechaVencimientoPoliza = "1990-10-10"; // Ejemplo de fecha exacta
+            solicitud.propietarioAfectado.datosPersona.nombre = "Nombre";
+            solicitud.propietarioAfectado.datosPersona.apellido = "Apellido";
+            solicitud.propietarioAfectado.datosPersona.domicilio.calle = "Calle";
+            solicitud.propietarioAfectado.datosPersona.domicilio.localidad = "Localidad";
+            solicitud.propietarioAfectado.datosPersona.domicilio.codigoPostal = 7300;
+            solicitud.propietarioAfectado.datosPersona.domicilio.provincia = "Provincia";
+            solicitud.propietarioAfectado.datosPersona.domicilio.pais = "Pais";
+            solicitud.propietarioAfectado.datosPersona.cuit = 209876428428;
+            solicitud.propietarioAfectado.datosPersona.email = "email@example.com";
+            solicitud.propietarioAfectado.datosPersona.telefono = "123456789";
+            solicitud.propietarioAfectado.datosPersona.sexo = Sexo.MUJER
+            solicitud.propietarioAfectado.datosPersona.fechaDeNacimiento = "1990-10-10"
+
+            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.tipoVehiculo = TipoVehiculo.CAMION
+            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.marca = "Marca";
+            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.modelo = "Modelo";
+            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.color = "Color";
+            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.anio = 2020; // Ejemplo de año
+            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.dominio = "Dominio";
+            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.aseguradora = "Aseguradora";
+            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.poliza = "Poliza";
+
+            solicitud.propietarioAfectado.fechaVencimientoPoliza = "1990-10-10"; // Ejemplo de fecha exacta
 
         }else{
         return null

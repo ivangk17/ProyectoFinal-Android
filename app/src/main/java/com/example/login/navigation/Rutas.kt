@@ -4,6 +4,7 @@ sealed class Rutas(val ruta: String) {
     object LoginScreen : Rutas("loginScreen")
     object HomeScreen : Rutas("homeScreen")
     object PolizaDetalleScreen : Rutas("polizaDetalleScreen")
+    object LoadingScreen : Rutas("loadingScreen")
     object SolicitudPolizaScreen : Rutas("solicitudPolizaScreen")
     object DatosSiniestro: Rutas("DatosSiniestroScreen")
     object InformacionAdicional : Rutas("informacionAdicionalScreen")
@@ -18,5 +19,6 @@ sealed class Rutas(val ruta: String) {
     object RelatoAccidente : Rutas("relatoAccidenteScreen")
     object DaniosPersonales : Rutas("daniosPersonalesScreen")
     object LugarAsistencia : Rutas("lugarAsistenciaScreen")
+    object SolicitudEnviada: Rutas("solicitudEnviada")
 
 }
