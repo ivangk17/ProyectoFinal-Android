@@ -11,16 +11,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import com.example.login.ui.viewmodels.HomeViewModel
 import com.example.login.components.PolizaCard
 import com.example.login.navigation.Rutas
 import com.example.login.tokens.Token
 import com.example.login.tokens.Utility
 import com.example.login.ui.navigationdrawer.NavDrawer
+import com.example.login.ui.viewmodels.HomeViewModel
 import com.example.login.ui.viewmodels.navdrawerviewmodel.DrawerViewModel
 import com.google.gson.Gson
+
 
 val gson = Gson()
 
@@ -30,8 +30,10 @@ fun HomeScreen(navController: NavHostController, homeViewModel: HomeViewModel, d
     val scope = rememberCoroutineScope()
     val polizas by homeViewModel.Polizas
 
+
     LaunchedEffect(Unit) {
         homeViewModel.loadPolizas()
+
     }
     NavDrawer(navController, drawerViewModel) {
         Column(

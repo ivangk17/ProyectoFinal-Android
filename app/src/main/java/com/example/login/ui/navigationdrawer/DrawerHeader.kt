@@ -1,10 +1,13 @@
 package com.example.login.ui.navigationdrawer
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -18,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -25,12 +29,13 @@ import androidx.compose.ui.unit.sp
 import com.example.login.R
 
 @Composable
-fun DrawerHeader(modifier: Modifier = Modifier) {
+fun DrawerHeader(email: String, modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
+            .border(BorderStroke(5.dp, colorResource(R.color.light_blue_1)))
             .fillMaxWidth()
-            .height(300.dp)
-            .background(Color(0xFFDFE6FA)), // Color de fondo amarillo
+            .height(200.dp)
+            .background(colorResource(R.color.light_gray)),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -42,15 +47,17 @@ fun DrawerHeader(modifier: Modifier = Modifier) {
                 painter = painterResource(id = R.drawable.baseline_face_18),
                 contentDescription = "Profile pic",
                 modifier = modifier
-                    .size(80.dp)
+                    .size(60.dp)
                     .clip(CircleShape)
             )
+
+            Spacer(modifier = Modifier.height(20.dp))
             Text(
-                text = "Juan Pérez",
+                text = email,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 2.dp),
-                fontSize = 18.sp,
+                fontSize = 20.sp,
                 textAlign = TextAlign.Center
             )
         }
