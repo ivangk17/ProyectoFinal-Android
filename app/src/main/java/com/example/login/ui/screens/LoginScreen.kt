@@ -94,7 +94,7 @@ fun RegisterText(modifier: Modifier = Modifier, navController: NavController) {
     ) {
         Spacer(modifier = Modifier.height(100.dp))
         Text(
-            text = "Register",
+            text = "Login",
             fontSize = 36.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
@@ -130,7 +130,7 @@ fun RegisterText(modifier: Modifier = Modifier, navController: NavController) {
             },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Crear cuenta")
+            Text("Iniciar Sesion")
         }
     }
 }
