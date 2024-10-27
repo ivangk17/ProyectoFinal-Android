@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Login</string>
+
+`Drawer_menu`
+    <string name="drawer_home_icon">Home</string>
+    <string name="drawer_solicitudes_icon">Solicitudes realizadas</string>
+
 </resources>

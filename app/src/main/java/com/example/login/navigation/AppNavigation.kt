@@ -46,12 +46,13 @@ import com.example.login.ui.viewmodels.forms.DatosSiniestroViewModel
 import com.example.login.ui.viewmodels.forms.InformacionAdicionalViewModel
 import com.example.login.ui.viewmodels.forms.LugarAsistenciaViewModel
 import com.example.login.ui.viewmodels.forms.RelatoAccidenteViewModel
+import com.example.login.ui.viewmodels.navdrawerviewmodel.DrawerViewModel
 import com.example.login.utilities.daniosVehiculoAsegurado
 import com.example.login.utilities.daniosVehiculosTercero
 
 
 @Composable
-fun AppNavigation() {
+fun AppNavigation(drawerViewModel: DrawerViewModel) {
     val navController = rememberNavController()
     val crearSolicitudViewModel: CrearSolicitudViewModel = viewModel(
         factory = CrearSolicitudViewModel.provideFactory()
@@ -64,7 +65,7 @@ fun AppNavigation() {
                 )
             )
 
-            HomeScreen(navController, homeViewModel)
+            HomeScreen(navController, homeViewModel,drawerViewModel)
 
         }
         composable(Rutas.LoginScreen.ruta) {

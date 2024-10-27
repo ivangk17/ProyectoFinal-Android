@@ -11,45 +11,51 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import com.example.login.ui.viewmodels.HomeViewModel
+import androidx.navigation.NavHostController
 import com.example.login.components.PolizaCard
 import com.example.login.navigation.Rutas
 import com.example.login.tokens.Token
 import com.example.login.tokens.Utility
+import com.example.login.ui.navigationdrawer.NavDrawer
+import com.example.login.ui.viewmodels.HomeViewModel
+import com.example.login.ui.viewmodels.navdrawerviewmodel.DrawerViewModel
 import com.google.gson.Gson
+
 
 val gson = Gson()
 
 @Composable
-fun HomeScreen(navController: NavController, homeViewModel: HomeViewModel) {
+fun HomeScreen(navController: NavHostController, homeViewModel: HomeViewModel, drawerViewModel: DrawerViewModel) {
     val user = Utility().decodeJWT(Token.token)
     val scope = rememberCoroutineScope()
     val polizas by homeViewModel.Polizas
 
+
     LaunchedEffect(Unit) {
         homeViewModel.loadPolizas()
-    }
 
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        if (polizas.isNotEmpty()) {
-            polizas.forEach { poliza ->
-                PolizaCard(poliza){
-                    Log.e("poliza", poliza.vehiculo.dominio)
-                    val polizaJson = gson.toJson(poliza)
-                    navController.navigate("${Rutas.PolizaDetalleScreen.ruta}/$polizaJson")
+    }
+    NavDrawer(navController, drawerViewModel) {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            if (polizas.isNotEmpty()) {
+                polizas.forEach { poliza ->
+                    PolizaCard(poliza) {
+                        Log.e("poliza", poliza.vehiculo.dominio)
+                        val polizaJson = gson.toJson(poliza)
+                        navController.navigate("${Rutas.PolizaDetalleScreen.ruta}/$polizaJson")
+                    }
                 }
+            } else {
+                Text(
+                    text = "Loading polizas...",
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold
+                )
             }
-        } else {
-            Text(
-                text = "Loading polizas...",
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold
-            )
         }
     }
 }
