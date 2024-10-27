@@ -1,5 +1,5 @@
 [versions]
-agp = "8.5.2"
+agp = "8.5.1"
 converterGson = "2.9.0"
 jwtdecode = "2.0.0"
 kotlin = "1.9.0"
@@ -13,6 +13,8 @@ composeBom = "2024.04.01"
 material3IconsExtended = "1.1.0"
 navigationCompose = "2.8.0"
 retrofit = "2.9.0"
+runtimeLivedata = "1.7.3"
+protoliteWellKnownTypes = "18.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -34,6 +36,8 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 jwtdecode = { module = "com.auth0.android:jwtdecode", version.ref = "jwtdecode" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
+protolite-well-known-types = { group = "com.google.firebase", name = "protolite-well-known-types", version.ref = "protoliteWellKnownTypes" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

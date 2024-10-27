@@ -1,8 +1,24 @@
 package com.example.login.navigation
 
-object Rutas {
-    const val LOGIN_SCREEN = "loginScreen"
-    const val HOME_SCREEN = "homeScreen"
-    const val  POLIZA_DETALLE_SCREEN = "polizaDetalleScreen"
+sealed class Rutas(val ruta: String) {
+    object LoginScreen : Rutas("loginScreen")
+    object HomeScreen : Rutas("homeScreen")
+    object PolizaDetalleScreen : Rutas("polizaDetalleScreen")
+    object LoadingScreen : Rutas("loadingScreen")
+    object SolicitudPolizaScreen : Rutas("solicitudPolizaScreen")
+    object DatosSiniestro: Rutas("DatosSiniestroScreen")
+    object InformacionAdicional : Rutas("informacionAdicionalScreen")
+    object DatosPropietarioVehiculoAsegurado : Rutas("datosPropietarioVehiculoAseguradoScreen")
+    object DatosPropietarioVehiculoTercero : Rutas("datosPropietarioVehiculoTerceroScreen")
+    object ConductorVehiculoAsegurado : Rutas("conductorVehiculoAseguradoScreen")
+    object ConductorVehiculoTercero : Rutas("conductorVehiculoTerceroScreen")
+    object DaniosVehiculoAsegurado : Rutas("daniosVehiculoAseguradoScreen")
+    object DaniosVehiculosTercero : Rutas("daniosVehiculosTerceroScreen")
+    object DatosAdicionales : Rutas("datosAdicionalesScreen")
+    object ConsecuenciaSiniestro : Rutas("consecuenciaSiniestroScreen")
+    object RelatoAccidente : Rutas("relatoAccidenteScreen")
+    object DaniosPersonales : Rutas("daniosPersonalesScreen")
+    object LugarAsistencia : Rutas("lugarAsistenciaScreen")
+    object SolicitudEnviada: Rutas("solicitudEnviada")
 
 }
