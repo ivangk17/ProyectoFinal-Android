@@ -1,5 +1,6 @@
 package com.example.login.ui.viewmodels.forms
 
+import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -112,6 +113,8 @@ class DatosPropietarioVehiculoAseguradoViewModel (
         campos[12].value.value = poliza.vehiculo.color
         campos[13].value.value = poliza.vehiculo.anio.toString()
         campos[14].value.value = poliza.vehiculo.dominio
+        Solicitud.idAsegurado = poliza.asegurado
+        Solicitud.idAsegurador = poliza.asegurador
         if(poliza.vehiculo.usoDelVehiculo.name == "PARTICULAR"){
             usoDelVehiculo.value = UsoDelVehiculo.PARTICULAR
         }else{

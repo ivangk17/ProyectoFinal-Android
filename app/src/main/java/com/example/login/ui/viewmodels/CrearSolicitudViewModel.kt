@@ -12,148 +12,6 @@ import kotlinx.coroutines.launch
 class CrearSolicitudViewModel: ViewModel()  {
     private val _solicitud = Solicitud()
 
-//     fun inicializar(): Solicitud{
-//            _solicitud.datosSiniestro.lugarOcurrencia = "Lugar Ocurrencia";
-//            _solicitud.datosSiniestro.codigoPostal = "Codigo Postal";
-//            _solicitud.datosSiniestro.localidad = "Localidad";
-//            _solicitud.datosSiniestro.provincia = "Provincia";
-//            _solicitud.datosSiniestro.pais = "Pais";
-//            _solicitud.datosSiniestro.cantidadAutosParticipantes = 2; // Ejemplo de cantidad
-//            _solicitud.datosSiniestro.interseccion = "Intersección";
-//            _solicitud.datosSiniestro.fechaOcurrencia = "10-10-2020";
-//            _solicitud.datosSiniestro.horaOcurrencia = "14:30:00"; // Ejemplo de hora exacta
-//
-//            _solicitud.datosSiniestro.vigencia = "Vigencia";
-//            _solicitud.datosSiniestro.cobertura = "Cobertura";
-//            _solicitud.datosSiniestro.franquicia = "Franquicia";
-//            _solicitud.datosSiniestro.cobranza = "Cobranza";
-//            _solicitud.datosSiniestro.huboDenuncia = HuboDenuncia.SI;
-//            _solicitud.datosSiniestro.hubieronDaniosPersonales = true; // Ejemplo booleano
-//            _solicitud.datosSiniestro.hubieronDaniosMateriales = true; // Ejemplo booleano
-//            _solicitud.datosSiniestro.hubieronTestigos = true; // Ejemplo booleano
-//
-//
-//            _solicitud.propietarioAfectado.datosPersona.nombre = "Nombre";
-//            _solicitud.propietarioAfectado.datosPersona.apellido = "Apellido";
-//            _solicitud.propietarioAfectado.datosPersona.domicilio.calle = "Calle";
-//            _solicitud.propietarioAfectado.datosPersona.domicilio.localidad = "Localidad";
-//            _solicitud.propietarioAfectado.datosPersona.domicilio.codigoPostal = 7300;
-//            _solicitud.propietarioAfectado.datosPersona.domicilio.provincia = "Provincia";
-//            _solicitud.propietarioAfectado.datosPersona.domicilio.pais = "Pais";
-//            _solicitud.propietarioAfectado.datosPersona.cuit = 209876428428;
-//            _solicitud.propietarioAfectado.datosPersona.email = "email@example.com";
-//            _solicitud.propietarioAfectado.datosPersona.telefono = "123456789";
-//
-//            _solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.marca = "Marca";
-//            _solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.modelo = "Modelo";
-//            _solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.color = "Color";
-//            _solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.anio = 2020; // Ejemplo de año
-//            _solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.dominio = "Dominio";
-//            _solicitud.propietarioAfectado.vehiculoPropietadoAfectado.aseguradora = "Aseguradora";
-//            _solicitud.propietarioAfectado.vehiculoPropietadoAfectado.poliza = "Poliza";
-//
-//            _solicitud.conductorAsegurado.fechaVencimiento = "10-10-2025"; // Ejemplo de fecha exacta
-//
-//            _solicitud.conductorAsegurado.datosPersona.nombre = "Nombre";
-//            _solicitud.conductorAsegurado.datosPersona.apellido = "Apellido";
-//            _solicitud.conductorAsegurado.datosPersona.domicilio.calle = "Calle";
-//            _solicitud.conductorAsegurado.datosPersona.domicilio.localidad = "Localidad";
-//            _solicitud.conductorAsegurado.datosPersona.domicilio.codigoPostal = 7300;
-//            _solicitud.conductorAsegurado.datosPersona.domicilio.provincia = "Provincia";
-//            _solicitud.conductorAsegurado.datosPersona.domicilio.pais = "Pais";
-//            _solicitud.conductorAsegurado.datosPersona.cuit = 209876428428;
-//            _solicitud.conductorAsegurado.datosPersona.telefono = "123456789";
-//            _solicitud.conductorAsegurado.datosPersona.sexo = "Sexo";
-//            _solicitud.conductorAsegurado.datosPersona.email = "email@example.com";
-//            _solicitud.conductorAsegurado.nroRegistro = "NroRegistro";
-//            _solicitud.conductorAsegurado.claseRegistro = "ClaseRegistro";
-//            _solicitud.conductorAsegurado.relacionAsegurado = "RelacionAsegurado";
-//
-//            _solicitud.conductorAsegurado.datosPersona.fechaDeNacimiento = "10-10-1990"; // Ejemplo de fecha exacta
-//            _solicitud.conductorAsegurado.fechaVencimiento = "10-10-2025"; // Ejemplo de fecha exacta
-//            _solicitud.conductorAsegurado.fechaExpedicion = "10-10-2020"; // Ejemplo de fecha exacta
-//
-//
-//            _solicitud.conductorAsegurado.datosPersona.nombre = "Nombre";
-//            _solicitud.conductorAsegurado.datosPersona.apellido = "Apellido";
-//            _solicitud.conductorAsegurado.datosPersona.domicilio.calle = "Calle";
-//            _solicitud.conductorAsegurado.datosPersona.domicilio.localidad = "Localidad";
-//            _solicitud.conductorAsegurado.datosPersona.domicilio.codigoPostal = 7300;
-//            _solicitud.conductorAsegurado.datosPersona.domicilio.provincia = "Provincia";
-//            _solicitud.conductorAsegurado.datosPersona.domicilio.pais = "Pais";
-//            _solicitud.conductorAsegurado.datosPersona.cuit = 209876428428;
-//            _solicitud.conductorAsegurado.datosPersona.telefono = "123456789";
-//            _solicitud.conductorAsegurado.datosPersona.sexo = "Sexo";
-//            _solicitud.conductorAsegurado.datosPersona.email = "email@example.com";
-//            _solicitud.conductorAsegurado.nroRegistro = "NroRegistro";
-//            _solicitud.conductorAsegurado.claseRegistro = "ClaseRegistro";
-//            _solicitud.conductorAsegurado.relacionAsegurado = "RelacionAsegurado";
-//
-//            _solicitud.conductorAsegurado.datosPersona.fechaDeNacimiento = "10-10-1990"; // Ejemplo de fecha exacta
-//            _solicitud.conductorAsegurado.fechaVencimiento = "10-10-2025"; // Ejemplo de fecha exacta
-//            _solicitud.conductorAsegurado.fechaExpedicion = "10-10-2020"; // Ejemplo de fecha exacta
-//
-//
-//            _solicitud.daniosVehiculoAsegurado = "Daños vehiculos asegurado"
-//
-//            _solicitud.daniosVehiculoAsegurado = "Daños vehiculos afectado"
-//
-//            _solicitud.datosSiniestro.tipoCamino = TipoCamino.RIPIO
-//            _solicitud.datosSiniestro.estadoCamino = EstadoCamino.MALO
-//            _solicitud.datosSiniestro.estadoTiempo = EstadoTiempo.NIEVE
-//            _solicitud.datosSiniestro.asistioGrua = true
-//            _solicitud.datosSiniestro.asistioAmbulancia = true
-//            _solicitud.datosSiniestro.asistioBomberos = true
-//            _solicitud.datosSiniestro.observaciones = "Observaciones datos sieniestros"
-//
-//            _solicitud.datosSiniestro.consecuenciaSiniestro.danioParcial = true
-//            _solicitud.datosSiniestro.consecuenciaSiniestro.roboRueda = true
-//            _solicitud.datosSiniestro.consecuenciaSiniestro.roboParcial = true
-//            _solicitud.datosSiniestro.consecuenciaSiniestro.danioTerceros = true
-//            _solicitud.datosSiniestro.consecuenciaSiniestro.incendioTotal = true
-//            _solicitud.datosSiniestro.consecuenciaSiniestro.otros = true
-//            _solicitud.datosSiniestro.consecuenciaSiniestro.destruccionTotal = true
-//            _solicitud.datosSiniestro.consecuenciaSiniestro.roboTotal = true
-//            _solicitud.datosSiniestro.consecuenciaSiniestro.roturaCristales = true
-//            _solicitud.datosSiniestro.consecuenciaSiniestro.incendioParcial = true
-//
-//            _solicitud.datosSiniestro.relato = "Relato del accidente"
-//
-//            _solicitud.lesiones.lesionado.datosPersona.nombre = "Nombre";
-//            _solicitud.lesiones.lesionado.datosPersona.apellido = "Apellido";
-//            _solicitud.lesiones.lesionado.datosPersona.nombreCompleto = "Nombre Apellido";
-//            _solicitud.lesiones.lesionado.datosPersona.domicilio.calle = "Calle";
-//            _solicitud.lesiones.lesionado.datosPersona.domicilio.localidad = "Localidad";
-//            _solicitud.lesiones.lesionado.datosPersona.domicilio.codigoPostal = 7300;
-//            _solicitud.lesiones.lesionado.datosPersona.domicilio.provincia = "Provincia";
-//            _solicitud.lesiones.lesionado.datosPersona.domicilio.pais = "Pais";
-//            _solicitud.lesiones.lesionado.datosPersona.cuit = 209876428428;
-//            _solicitud.lesiones.lesionado.datosPersona.email = "email@example.com";
-//            _solicitud.lesiones.lesionado.datosPersona.telefono = "123456789";
-//            _solicitud.lesiones.lesionado.datosPersona.sexo = "Sexo";
-//            _solicitud.lesiones.lesionado.estadoCivil = "Estado Civil";
-//            _solicitud.lesiones.lesionado.telefonoAlternativo = "987654321";
-//
-//            _solicitud.lesiones.lesionado.datosPersona.fechaDeNacimiento = "10-10-1990"; // Ejemplo de fecha exacta
-//
-//            _solicitud.lesiones.peatonOCiclista = true; // Ejemplo booleano
-//            _solicitud.lesiones.conductorTercero = true; // Ejemplo booleano
-//            _solicitud.lesiones.ocupanteTercero = true; // Ejemplo booleano
-//            _solicitud.lesiones.conductorAsegurado = true; // Ejemplo booleano
-//            _solicitud.lesiones.asegurado = true; // Ejemplo booleano
-//            _solicitud.lesiones.conductor = true; // Ejemplo booleano
-//            _solicitud.lesiones.propietarioVehiculoAsegurado = true; // Ejemplo booleano
-//            _solicitud.lesiones.relacionConPropietario = true
-//
-//            _solicitud.datosSiniestro.lugarAsistencia.nombreCentro = "Nombre del Centro";
-//            _solicitud.datosSiniestro.lugarAsistencia.quedaInternado = true; // Ejemplo booleano
-//            _solicitud.datosSiniestro.lugarAsistencia.estadoLesiones = EstadoLesiones.MUERTE
-//            _solicitud.datosSiniestro.lugarAsistencia.descripcionLesiones = "Descripción de las Lesiones";
-//
-//         soli.value = _solicitud
-//         return _solicitud
-//    }
-
 
     fun envioDatosSiniestros(solicitud: Solicitud) {
         _solicitud.datosSiniestro.fechaOcurrencia = solicitud.datosSiniestro.fechaOcurrencia
@@ -207,6 +65,8 @@ class CrearSolicitudViewModel: ViewModel()  {
         _solicitud.propietarioAsegurado.vehiculo.datosVehiculo.anio = solicitud.propietarioAsegurado.vehiculo.datosVehiculo.anio
         _solicitud.propietarioAsegurado.vehiculo.datosVehiculo.dominio = solicitud.propietarioAsegurado.vehiculo.datosVehiculo.dominio
         _solicitud.propietarioAsegurado.vehiculo.usoDelVehiculo = solicitud.propietarioAsegurado.vehiculo.usoDelVehiculo
+        _solicitud.idAsegurado = solicitud.idAsegurado
+        _solicitud.idAsegurador = solicitud.idAsegurador
     }
 
     fun datosPropietarioVehiculoTercero(solicitud: Solicitud) {
