@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,7 +31,11 @@ fun PolizaCard(poliza: Poliza, onClick: () -> Unit) {
             .padding(8.dp)
             .fillMaxWidth()
             .clickable { onClick() },
-        elevation = CardDefaults.cardElevation(4.dp)
+        elevation = CardDefaults.cardElevation(4.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Color(0xFF009B77), //Card background color
+            contentColor = Color.White  //Card content color,e.g.text
+        )
     ) {
         Row(
             modifier = Modifier
@@ -39,18 +44,18 @@ fun PolizaCard(poliza: Poliza, onClick: () -> Unit) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             // Aquí debes colocar el ícono del vehículo, según corresponda
-//            Image(
-//                painter = painterResource(id = getVehicleIcon(poliza.vehiculo.dominio)), // Esto es un ejemplo, ajusta según tu recurso
-//                contentDescription = "Vehicle Icon",
-//                contentScale = ContentScale.Fit,
-//                modifier = Modifier
-//                    .size(48.dp)
-//                    .padding(end = 16.dp)
-//            )
+            Image(
+                painter = painterResource(id = getVehicleIcon(poliza.vehiculo.dominio)), // Esto es un ejemplo, ajusta según tu recurso
+                contentDescription = "Vehicle Icon",
+                contentScale = ContentScale.Fit,
+                modifier = Modifier
+                    .size(48.dp)
+                    .padding(end = 16.dp)
+            )
 
             Column {
                 Text(
-                    text = "${poliza.vehiculo.dominio} - ${"poliza.marca"} ${"poliza.modelo"}",
+                    text = "${poliza.vehiculo.dominio} - ${poliza.vehiculo.marca} ${poliza.vehiculo.modelo}",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.Black
@@ -58,7 +63,7 @@ fun PolizaCard(poliza: Poliza, onClick: () -> Unit) {
                 Text(
                     text = "Patente: ${poliza.vehiculo.dominio}",
                     fontSize = 16.sp,
-                    color = Color.Gray
+                    color = Color.Black
                 )
             }
         }
