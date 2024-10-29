@@ -20,8 +20,7 @@ import com.example.login.ui.screens.forms.SolicitudDetailsScreen
 
 @Composable
 fun DatosSiniestroDetails() {
-    LazyColumn {
-        item {
+    Column {
             Surface(
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier
@@ -58,8 +57,6 @@ fun DatosSiniestroDetails() {
                     }
                 }
             }
-
-        }
     }
 }
 

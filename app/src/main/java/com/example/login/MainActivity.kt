@@ -4,11 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
-import com.example.login.data.network.services.GetStatus
-import com.example.login.data.network.RetrofitClient
 import com.example.login.navigation.AppNavigation
-import com.example.login.ui.viewmodels.LoadingViewModel
+import com.example.login.ui.screens.forms.SolicitudDetailsScreen
 
 class MainActivity : ComponentActivity() {
 
@@ -17,8 +14,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AppNavigation()
+            //SolicitudDetailsScreen()
         }
     }
+
 }
 
 
