@@ -20,5 +20,15 @@ sealed class Rutas(val ruta: String) {
     object DaniosPersonales : Rutas("daniosPersonalesScreen")
     object LugarAsistencia : Rutas("lugarAsistenciaScreen")
     object SolicitudEnviada: Rutas("solicitudEnviada")
+    object SolicitudesScreen : Rutas("solicitudesScreen")
+
+
+    object SolicitudDetalle : Rutas("solicitudDetalle/{solicitudId}") {
+        fun rutaConId(solicitudId: String) = "solicitudDetalle/$solicitudId"
+    }
+
+
+
+
 
 }

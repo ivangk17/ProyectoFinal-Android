@@ -1,4 +1,4 @@
-package com.example.login.ui.viewmodels.navdrawerviewmodel
+package com.example.login.ui.viewmodels
 
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.ViewModel
