@@ -13,5 +13,9 @@
     <color name="texto_principal">#FF333333</color>
     <color name="btn_principales">#FF009B77</color>
 
+    `Solicitudes screen`
+    <color name="texto_Secundario">#424287</color>
+
+
 </resources>
 
