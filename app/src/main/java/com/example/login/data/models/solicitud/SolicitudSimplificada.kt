@@ -3,17 +3,18 @@ package com.example.login.data.models.solicitud
 import com.google.gson.annotations.SerializedName
 
 
-
 data class SolicitudSimplificada(
-    @SerializedName("id")
+
+    val idSolicitud: String,
     val estado: Estado = Estado.PENDIENTE,
     val idAsegurado: String? = "",
     val nombreAsegurado: String,
     val fechaOcurrencia: String? = null
 )
 
-fun Solicitud.aSolicitudSimplificada(): SolicitudSimplificada {
+fun Solicitud.aSolicitudSimplificada(token: String): SolicitudSimplificada {
     return SolicitudSimplificada(
+        idSolicitud = getId(token),
         estado = estado,
         idAsegurado = idAsegurado,
         nombreAsegurado = conductorAsegurado.datosPersona.nombreCompleto ?: "Nombre no disponible",

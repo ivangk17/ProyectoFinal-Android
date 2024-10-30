@@ -7,7 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.models.solicitud.SolicitudSimplificada
 import com.example.login.data.models.solicitud.aSolicitudSimplificada
-import com.example.login.data.repositories.solicitudesrepositories.SolicitudesRepositoryImpl
+import com.example.login.data.repositories.SolicitudesRepositoryImpl
+import com.example.login.tokens.Token
 import kotlinx.coroutines.launch
 
 
@@ -35,9 +36,9 @@ class SolicitudesViewModel(private val repository: SolicitudesRepositoryImpl) : 
                         response.body() ?: emptyList()
 
                     // Publica la lista (aunque sea vacía) en _solicitudes
-                    _solicitudes.postValue( solicitudesList.map { it.aSolicitudSimplificada() })
+                    _solicitudes.postValue( solicitudesList.map { it.aSolicitudSimplificada(Token.token) })
                 } else {
-                    // Manejo de errores si la respuesta no es exitosa
+
                     _error.postValue("Error en la respuesta: ${response.code()}")
                 }
             } catch (e: Exception) {

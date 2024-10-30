@@ -101,10 +101,13 @@ fun SolicitudesList(solicitudes: List<SolicitudSimplificada>, navController: Nav
             ) {
                 Column(modifier = Modifier.padding(8.dp)) {
 
-                    Text(text = "ID Asegurado: ${solicitud.idAsegurado ?: "No disponible"}")
+                    Text(text = "ID de la solicitud: ${solicitud.idSolicitud}")
                     Text(text = "Estado: ${solicitud.estado}")
-                    Text(text = "Fecha de Ocurrencia: ${solicitud.fechaOcurrencia ?: "Fecha no disponible"}")
-                    Text(text = "Nombre Asegurado: ${solicitud.nombreAsegurado}")
+                    Text(text = "Fecha del siniestro: ${solicitud.fechaOcurrencia ?: "Fecha no disponible"}")
+                    Text(text = "Datos del cliente asegurado:", modifier = Modifier.padding(top = 3.dp))
+                    Text(text = "ID: ${solicitud.idAsegurado ?: "No disponible"}")
+                    Text(text = "Apellido y nombre: ${solicitud.nombreAsegurado}")
+
 
                 }
             }

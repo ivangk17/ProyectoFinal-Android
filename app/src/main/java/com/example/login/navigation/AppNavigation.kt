@@ -9,7 +9,7 @@ import com.example.login.data.network.RetrofitClient
 import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.data.network.services.GetServiceUser
 import com.example.login.data.network.services.GetStatus
-import com.example.login.data.repositories.solicitudesrepositories.SolicitudesRepositoryImpl
+import com.example.login.data.repositories.SolicitudesRepositoryImpl
 import com.example.login.ui.screens.HomeScreen
 import com.example.login.ui.screens.LoadingScreen
 import com.example.login.ui.screens.LoginScreen
