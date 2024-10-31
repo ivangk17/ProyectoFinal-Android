@@ -33,7 +33,7 @@ class DrawerViewModel(): ViewModel() {
         DrawerItems(
             userIcon = Icons.Default.Info,
             text = "Solicitudes",
-            route = Rutas.PolizaDetalleScreen.ruta
+            route = Rutas.SolicitudesScreen.ruta
         )
     )
 

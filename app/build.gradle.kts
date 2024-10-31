@@ -65,6 +65,7 @@ dependencies {
     implementation (libs.androidx.navigation.compose)
     implementation(libs.jwtdecode)
     implementation(libs.androidx.runtime.livedata)
+    implementation(libs.play.services.basement)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -75,5 +76,6 @@ dependencies {
     implementation(kotlin("script-runtime"))
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
+
 
 }
