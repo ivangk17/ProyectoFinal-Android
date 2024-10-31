@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class SolicitudSimplificada(
 
-    val _id: String? =" ",
+    val _id: String?="",
     val estado: Estado = Estado.PENDIENTE,
     val idAsegurado: String? = "",
     val nombreAsegurado: String,

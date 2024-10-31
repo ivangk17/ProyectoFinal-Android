@@ -6,15 +6,16 @@ data class Domicilio(
     @SerializedName("address")
     var calle: String = "",
 
-    @SerializedName("locality")
-    var localidad: String = "",
+    @SerializedName("number")
+    var numero: Int = -1,
+
+    @SerializedName("floor")
+    var piso: Int? = null,
+
+    @SerializedName("apartment")
+    var departamento: String?= null,
 
     @SerializedName("zip_code")
     var codigoPostal: Int = -1,
 
-    @SerializedName("province")
-    var provincia: String = "",
-
-    @SerializedName("country")
-    var pais: String = ""
 )

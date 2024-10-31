@@ -3,8 +3,10 @@ package com.example.login.ui.viewmodels
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.network.RetrofitClient
+import com.example.login.navigation.Rutas
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -47,11 +49,12 @@ class CrearSolicitudViewModel: ViewModel()  {
     fun datosPropietarioVehiculoAsegurado(solicitud: Solicitud) {
         _solicitud.propietarioAsegurado.datosPersona.nombre = solicitud.propietarioAsegurado.datosPersona.nombre
         _solicitud.propietarioAsegurado.datosPersona.apellido = solicitud.propietarioAsegurado.datosPersona.apellido
+
         _solicitud.propietarioAsegurado.datosPersona.domicilio.calle = solicitud.propietarioAsegurado.datosPersona.domicilio.calle
-        _solicitud.propietarioAsegurado.datosPersona.domicilio.localidad = solicitud.propietarioAsegurado.datosPersona.domicilio.localidad
+        _solicitud.propietarioAsegurado.datosPersona.domicilio.numero = solicitud.propietarioAsegurado.datosPersona.domicilio.numero
+        _solicitud.propietarioAsegurado.datosPersona.domicilio.piso = solicitud.propietarioAsegurado.datosPersona.domicilio.piso
+        _solicitud.propietarioAsegurado.datosPersona.domicilio.departamento = solicitud.propietarioAsegurado.datosPersona.domicilio.departamento
         _solicitud.propietarioAsegurado.datosPersona.domicilio.codigoPostal = solicitud.propietarioAsegurado.datosPersona.domicilio.codigoPostal
-        _solicitud.propietarioAsegurado.datosPersona.domicilio.provincia = solicitud.propietarioAsegurado.datosPersona.domicilio.provincia
-        _solicitud.propietarioAsegurado.datosPersona.domicilio.pais = solicitud.propietarioAsegurado.datosPersona.domicilio.pais
         _solicitud.propietarioAsegurado.datosPersona.cuit = solicitud.propietarioAsegurado.datosPersona.cuit
         _solicitud.propietarioAsegurado.datosPersona.email = solicitud.propietarioAsegurado.datosPersona.email
         _solicitud.propietarioAsegurado.datosPersona.telefono =solicitud.propietarioAsegurado.datosPersona.telefono
@@ -72,11 +75,12 @@ class CrearSolicitudViewModel: ViewModel()  {
     fun datosPropietarioVehiculoTercero(solicitud: Solicitud) {
         _solicitud.propietarioAfectado.datosPersona.nombre = solicitud.propietarioAfectado.datosPersona.nombre
         _solicitud.propietarioAfectado.datosPersona.apellido = solicitud.propietarioAfectado.datosPersona.apellido
+
         _solicitud.propietarioAfectado.datosPersona.domicilio.calle = solicitud.propietarioAfectado.datosPersona.domicilio.calle
-        _solicitud.propietarioAfectado.datosPersona.domicilio.localidad = solicitud.propietarioAfectado.datosPersona.domicilio.localidad
+        _solicitud.propietarioAfectado.datosPersona.domicilio.numero = solicitud.propietarioAfectado.datosPersona.domicilio.numero
+        _solicitud.propietarioAfectado.datosPersona.domicilio.piso = solicitud.propietarioAfectado.datosPersona.domicilio.piso
+        _solicitud.propietarioAfectado.datosPersona.domicilio.departamento = solicitud.propietarioAfectado.datosPersona.domicilio.departamento
         _solicitud.propietarioAfectado.datosPersona.domicilio.codigoPostal = solicitud.propietarioAfectado.datosPersona.domicilio.codigoPostal
-        _solicitud.propietarioAfectado.datosPersona.domicilio.provincia = solicitud.propietarioAfectado.datosPersona.domicilio.provincia
-        _solicitud.propietarioAfectado.datosPersona.domicilio.pais = solicitud.propietarioAfectado.datosPersona.domicilio.pais
         _solicitud.propietarioAfectado.datosPersona.cuit = solicitud.propietarioAfectado.datosPersona.cuit
         _solicitud.propietarioAfectado.datosPersona.email = solicitud.propietarioAfectado.datosPersona.email
         _solicitud.propietarioAfectado.datosPersona.telefono = solicitud.propietarioAfectado.datosPersona.telefono
@@ -98,14 +102,14 @@ class CrearSolicitudViewModel: ViewModel()  {
     }
 
     fun conductorVehiculoAsegurado(solicitud: Solicitud) {
-        Log.d("Conductor asegurado", solicitud.conductorAsegurado.toString())
         _solicitud.conductorAsegurado.datosPersona.nombre = solicitud.conductorAsegurado.datosPersona.nombre
         _solicitud.conductorAsegurado.datosPersona.apellido = solicitud.conductorAsegurado.datosPersona.apellido
+
         _solicitud.conductorAsegurado.datosPersona.domicilio.calle = solicitud.conductorAsegurado.datosPersona.domicilio.calle
-        _solicitud.conductorAsegurado.datosPersona.domicilio.localidad = solicitud.conductorAsegurado.datosPersona.domicilio.localidad
+        _solicitud.conductorAsegurado.datosPersona.domicilio.numero = solicitud.conductorAsegurado.datosPersona.domicilio.numero
+        _solicitud.conductorAsegurado.datosPersona.domicilio.piso = solicitud.conductorAsegurado.datosPersona.domicilio.piso
+        _solicitud.conductorAsegurado.datosPersona.domicilio.departamento = solicitud.conductorAsegurado.datosPersona.domicilio.departamento
         _solicitud.conductorAsegurado.datosPersona.domicilio.codigoPostal = solicitud.conductorAsegurado.datosPersona.domicilio.codigoPostal
-        _solicitud.conductorAsegurado.datosPersona.domicilio.provincia = solicitud.conductorAsegurado.datosPersona.domicilio.provincia
-        _solicitud.conductorAsegurado.datosPersona.domicilio.pais = solicitud.conductorAsegurado.datosPersona.domicilio.pais
         _solicitud.conductorAsegurado.datosPersona.cuit = solicitud.conductorAsegurado.datosPersona.cuit
         _solicitud.conductorAsegurado.datosPersona.fechaDeNacimiento = solicitud.conductorAsegurado.datosPersona.fechaDeNacimiento
         _solicitud.conductorAsegurado.datosPersona.telefono = solicitud.conductorAsegurado.datosPersona.telefono
@@ -121,13 +125,13 @@ class CrearSolicitudViewModel: ViewModel()  {
     fun conductorVehiculoTercero(solicitud: Solicitud) {
         _solicitud.conductorAfectado.datosPersona.nombre = solicitud.conductorAfectado.datosPersona.nombre
         _solicitud.conductorAfectado.datosPersona.apellido = solicitud.conductorAfectado.datosPersona.apellido
-        _solicitud.conductorAfectado.datosPersona.nombreCompleto = "${solicitud.conductorAfectado.datosPersona.nombre} ${solicitud.conductorAfectado.datosPersona.apellido}"
         _solicitud.conductorAfectado.datosPersona.domicilio.calle = solicitud.conductorAfectado.datosPersona.domicilio.calle
-        _solicitud.conductorAfectado.datosPersona.domicilio.localidad = solicitud.conductorAfectado.datosPersona.domicilio.localidad
+        _solicitud.conductorAfectado.datosPersona.domicilio.numero = solicitud.conductorAfectado.datosPersona.domicilio.numero
+        _solicitud.conductorAfectado.datosPersona.domicilio.piso = solicitud.conductorAfectado.datosPersona.domicilio.piso
+        _solicitud.conductorAfectado.datosPersona.domicilio.departamento = solicitud.conductorAfectado.datosPersona.domicilio.departamento
         _solicitud.conductorAfectado.datosPersona.domicilio.codigoPostal = solicitud.conductorAfectado.datosPersona.domicilio.codigoPostal
-        _solicitud.conductorAfectado.datosPersona.domicilio.provincia = solicitud.conductorAfectado.datosPersona.domicilio.provincia
-        _solicitud.conductorAfectado.datosPersona.domicilio.pais = solicitud.conductorAfectado.datosPersona.domicilio.pais
         _solicitud.conductorAfectado.datosPersona.cuit = solicitud.conductorAfectado.datosPersona.cuit
+
         _solicitud.conductorAfectado.datosPersona.fechaDeNacimiento = solicitud.conductorAfectado.datosPersona.fechaDeNacimiento
         _solicitud.conductorAfectado.datosPersona.telefono = solicitud.conductorAfectado.datosPersona.telefono
         _solicitud.conductorAfectado.datosPersona.sexo = solicitud.conductorAfectado.datosPersona.sexo
@@ -181,14 +185,15 @@ class CrearSolicitudViewModel: ViewModel()  {
     }
 
     fun daniosPersonales(solicitud: Solicitud) {
+
         _solicitud.lesiones.lesionado.datosPersona.nombre = solicitud.lesiones.lesionado.datosPersona.nombre
         _solicitud.lesiones.lesionado.datosPersona.apellido = solicitud.lesiones.lesionado.datosPersona.apellido
         _solicitud.lesiones.lesionado.datosPersona.nombreCompleto = "${solicitud.lesiones.lesionado.datosPersona.nombre} ${solicitud.lesiones.lesionado.datosPersona.apellido}"
         _solicitud.lesiones.lesionado.datosPersona.domicilio.calle = solicitud.lesiones.lesionado.datosPersona.domicilio.calle
-        _solicitud.lesiones.lesionado.datosPersona.domicilio.localidad = solicitud.lesiones.lesionado.datosPersona.domicilio.localidad
+        _solicitud.lesiones.lesionado.datosPersona.domicilio.numero = solicitud.lesiones.lesionado.datosPersona.domicilio.numero
+        _solicitud.lesiones.lesionado.datosPersona.domicilio.piso = solicitud.lesiones.lesionado.datosPersona.domicilio.piso
+        _solicitud.lesiones.lesionado.datosPersona.domicilio.departamento = solicitud.lesiones.lesionado.datosPersona.domicilio.departamento
         _solicitud.lesiones.lesionado.datosPersona.domicilio.codigoPostal = solicitud.lesiones.lesionado.datosPersona.domicilio.codigoPostal
-        _solicitud.lesiones.lesionado.datosPersona.domicilio.provincia = solicitud.lesiones.lesionado.datosPersona.domicilio.provincia
-        _solicitud.lesiones.lesionado.datosPersona.domicilio.pais = solicitud.lesiones.lesionado.datosPersona.domicilio.pais
         _solicitud.lesiones.lesionado.datosPersona.cuit = solicitud.lesiones.lesionado.datosPersona.cuit
         _solicitud.lesiones.lesionado.datosPersona.email = solicitud.lesiones.lesionado.datosPersona.email
         _solicitud.lesiones.lesionado.datosPersona.telefono = solicitud.lesiones.lesionado.datosPersona.telefono
@@ -209,24 +214,24 @@ class CrearSolicitudViewModel: ViewModel()  {
 
     }
 
-    fun lugarAsistencia(solicitud: Solicitud) {
+    fun lugarAsistencia(solicitud: Solicitud, navController: NavController, polizaJson: String) {
         _solicitud.datosSiniestro.lugarAsistencia.nombreCentro = solicitud.datosSiniestro.lugarAsistencia.nombreCentro
         _solicitud.datosSiniestro.lugarAsistencia.quedaInternado = solicitud.datosSiniestro.lugarAsistencia.quedaInternado
         _solicitud.datosSiniestro.lugarAsistencia.estadoLesiones = solicitud.datosSiniestro.lugarAsistencia.estadoLesiones
         _solicitud.datosSiniestro.lugarAsistencia.descripcionLesiones = solicitud.datosSiniestro.lugarAsistencia.descripcionLesiones
 
-        enviarSolicitud()
+        enviarSolicitud(navController, polizaJson)
     }
 
-     private fun enviarSolicitud(){
+     private fun enviarSolicitud(navController: NavController, polizaJson: String){
          //val solicitudJson = gson.toJson(_solicitud)
          Log.d("SOLICITU A ENVIAR", _solicitud.toString())
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val respuesta = RetrofitClient.apiService.enviarSolicitud(_solicitud)
                 if (respuesta.isSuccessful) {
-                    // Manejar la respuesta exitosa
                     println("Solicitud enviada exitosamente")
+                    navController.navigate("${Rutas.LoadingScreen.ruta}/$polizaJson/${Rutas.SolicitudEnviada.ruta}")
                 } else {
                     // Manejar el error
                     println("Error al enviar la solicitud: ${respuesta.errorBody()?.string()}")

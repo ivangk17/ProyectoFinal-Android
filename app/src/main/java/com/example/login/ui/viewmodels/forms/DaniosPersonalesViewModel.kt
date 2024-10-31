@@ -25,18 +25,18 @@ class DaniosPersonalesViewModel(
     var sexoLesionado =  mutableStateOf(Sexo.INDEFINIDO)
 
     val campos = listOf(
-        FormField("Nombre", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Apellido", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Domicilio", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Localidad", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Codigo Postal", mutableStateOf(""), tipo = TipoCampo.NUMERICO),
-        FormField("Provincia", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Pais", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("CUIT", mutableStateOf(""), tipo = TipoCampo.NUMERICO),
-        FormField("Email", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Telefono", mutableStateOf(""), tipo = TipoCampo.NUMERICO),
-        FormField("Estado Civil", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Telefono Alternativo", mutableStateOf(""), tipo = TipoCampo.NUMERICO),
+        FormField("Nombre: ", tipo = TipoCampo.TEXTO),
+        FormField("Apellido", tipo = TipoCampo.TEXTO),
+        FormField("Calle", tipo = TipoCampo.TEXTO),
+        FormField("Numero", tipo = TipoCampo.NUMERICO),
+        FormField("Piso", tipo = TipoCampo.NUMERICO),
+        FormField("Departamento", tipo = TipoCampo.TEXTO),
+        FormField("Codigo Postal", tipo = TipoCampo.TEXTO),
+        FormField("CUIT", tipo = TipoCampo.NUMERICO),
+        FormField("Email", tipo = TipoCampo.TEXTO),
+        FormField("Telefono", tipo = TipoCampo.NUMERICO),
+        FormField("Estado Civil", tipo = TipoCampo.TEXTO),
+        FormField("Telefono Alternativo", tipo = TipoCampo.NUMERICO),
     )
 
     val camposCheckeables = listOf(
@@ -74,10 +74,10 @@ class DaniosPersonalesViewModel(
 //            solicitud.lesiones.lesionado.datosPersona.nombre = campos[0].value.value
 //            solicitud.lesiones.lesionado.datosPersona.apellido = campos[1].value.value
 //            solicitud.lesiones.lesionado.datosPersona.domicilio.calle = campos[2].value.value
-//            solicitud.lesiones.lesionado.datosPersona.domicilio.localidad = campos[3].value.value
-//            solicitud.lesiones.lesionado.datosPersona.domicilio.codigoPostal = campos[4].value.value.toInt()
-//            solicitud.lesiones.lesionado.datosPersona.domicilio.provincia = campos[5].value.value
-//            solicitud.lesiones.lesionado.datosPersona.domicilio.pais = campos[6].value.value
+//            solicitud.lesiones.lesionado.datosPersona.domicilio.numero = campos[3].value.value.toInt()
+//            solicitud.lesiones.lesionado.datosPersona.domicilio.piso = campos[4].value.value.toInt()
+//            solicitud.lesiones.lesionado.datosPersona.domicilio.departamento = campos[5].value.value
+//            solicitud.lesiones.lesionado.datosPersona.domicilio.codigoPostal = campos[6].value.value.toInt()
 //            solicitud.lesiones.lesionado.datosPersona.cuit = campos[7].value.value.toInt()
 //            solicitud.lesiones.lesionado.datosPersona.email = campos[8].value.value
 //            solicitud.lesiones.lesionado.datosPersona.telefono = campos[9].value.value
@@ -89,13 +89,12 @@ class DaniosPersonalesViewModel(
 
             solicitud.lesiones.lesionado.datosPersona.nombre = "Nombre";
             solicitud.lesiones.lesionado.datosPersona.apellido = "Apellido";
-            solicitud.lesiones.lesionado.datosPersona.nombreCompleto = "Nombre Apellido";
             solicitud.lesiones.lesionado.datosPersona.domicilio.calle = "Calle";
-            solicitud.lesiones.lesionado.datosPersona.domicilio.localidad = "Localidad";
+            solicitud.lesiones.lesionado.datosPersona.domicilio.numero = 1020
+            solicitud.lesiones.lesionado.datosPersona.domicilio.piso = null
+            solicitud.lesiones.lesionado.datosPersona.domicilio.departamento = null
             solicitud.lesiones.lesionado.datosPersona.domicilio.codigoPostal = 7300;
-            solicitud.lesiones.lesionado.datosPersona.domicilio.provincia = "Provincia";
-            solicitud.lesiones.lesionado.datosPersona.domicilio.pais = "Pais";
-            solicitud.lesiones.lesionado.datosPersona.cuit = 209876428428;
+            solicitud.lesiones.lesionado.datosPersona.cuit = 20987642848;
             solicitud.lesiones.lesionado.datosPersona.email = "email@example.com";
             solicitud.lesiones.lesionado.datosPersona.telefono = "123456789";
             solicitud.lesiones.lesionado.datosPersona.sexo = Sexo.MUJER;

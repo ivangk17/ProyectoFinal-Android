@@ -30,25 +30,25 @@ class DatosPropietarioVehiculoTerceroViewModel (
     var errorFechaVencimiento = mutableStateOf<String?>(null)
 
     val campos = listOf(
-        FormField("Nombre", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Apellido", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Domicilio", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Localidad", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Codigo Postal", mutableStateOf(""), tipo = TipoCampo.NUMERICO),
-        FormField("Provincia", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Pais", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("CUIT", mutableStateOf(""), tipo = TipoCampo.NUMERICO),
-        FormField("Email", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Telefono", mutableStateOf(""), tipo = TipoCampo.NUMERICO),
+        FormField("Nombre: ", tipo = TipoCampo.TEXTO),
+        FormField("Apellido", tipo = TipoCampo.TEXTO),
+        FormField("Calle", tipo = TipoCampo.TEXTO),
+        FormField("Numero", tipo = TipoCampo.NUMERICO),
+        FormField("Piso", tipo = TipoCampo.NUMERICO),
+        FormField("Departamento", tipo = TipoCampo.TEXTO),
+        FormField("Codigo Postal", tipo = TipoCampo.TEXTO),
+        FormField("CUIT", tipo = TipoCampo.NUMERICO),
+        FormField("Email", tipo = TipoCampo.TEXTO),
+        FormField("Telefono", tipo = TipoCampo.NUMERICO),
 
 
-        FormField("Marca", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Modelo", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Color de auto", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Año del auto", mutableStateOf(""), tipo = TipoCampo.NUMERICO),
-        FormField("Dominio", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Aseguradora", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Poliza", mutableStateOf(""), tipo = TipoCampo.TEXTO),
+        FormField("Marca", tipo = TipoCampo.TEXTO),
+        FormField("Modelo", tipo = TipoCampo.TEXTO),
+        FormField("Color de auto", tipo = TipoCampo.TEXTO),
+        FormField("Año del auto", tipo = TipoCampo.NUMERICO),
+        FormField("Dominio", tipo = TipoCampo.TEXTO),
+        FormField("Aseguradora", tipo = TipoCampo.TEXTO),
+        FormField("Poliza", tipo = TipoCampo.TEXTO),
     )
 
 
@@ -79,14 +79,14 @@ class DatosPropietarioVehiculoTerceroViewModel (
 //            solicitud.propietarioAfectado.datosPersona.nombre = campos[0].value.value
 //            solicitud.propietarioAfectado.datosPersona.apellido = campos[1].value.value
 //            solicitud.propietarioAfectado.datosPersona.domicilio.calle = campos[2].value.value
-//            solicitud.propietarioAfectado.datosPersona.domicilio.localidad = campos[3].value.value
-//            solicitud.propietarioAfectado.datosPersona.domicilio.codigoPostal = campos[4].value.value.toInt()
-//            solicitud.propietarioAfectado.datosPersona.domicilio.provincia = campos[5].value.value
-//            solicitud.propietarioAfectado.datosPersona.domicilio.pais = campos[6].value.value
+//            solicitud.propietarioAfectado.datosPersona.domicilio.numero = campos[3].value.value.toInt()
+//            solicitud.propietarioAfectado.datosPersona.domicilio.piso = campos[4].value.value.toInt()
+//            solicitud.propietarioAfectado.datosPersona.domicilio.departamento = campos[5].value.value
+//            solicitud.propietarioAfectado.datosPersona.domicilio.codigoPostal = campos[6].value.value.toInt()
 //            solicitud.propietarioAfectado.datosPersona.cuit = campos[7].value.value.toInt()
 //            solicitud.propietarioAfectado.datosPersona.email = campos[8].value.value
 //            solicitud.propietarioAfectado.datosPersona.telefono = campos[9].value.value
-//            solicitud.propietarioAsegurado.datosPersona.sexo = sexoSeleccionado.value
+//            solicitud.propietarioAfectado.datosPersona.sexo = sexoSeleccionado.value
 //            solicitud.propietarioAfectado.datosPersona.fechaDeNacimiento = fechaNacimiento.value!!
 //            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.tipoVehiculo = tipoVehiculo.value
 //            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.marca = campos[10].value.value
@@ -104,11 +104,11 @@ class DatosPropietarioVehiculoTerceroViewModel (
             solicitud.propietarioAfectado.datosPersona.nombre = "Nombre";
             solicitud.propietarioAfectado.datosPersona.apellido = "Apellido";
             solicitud.propietarioAfectado.datosPersona.domicilio.calle = "Calle";
-            solicitud.propietarioAfectado.datosPersona.domicilio.localidad = "Localidad";
+            solicitud.propietarioAfectado.datosPersona.domicilio.numero = 1020
+            solicitud.propietarioAfectado.datosPersona.domicilio.piso = null
+            solicitud.propietarioAfectado.datosPersona.domicilio.departamento = null
             solicitud.propietarioAfectado.datosPersona.domicilio.codigoPostal = 7300;
-            solicitud.propietarioAfectado.datosPersona.domicilio.provincia = "Provincia";
-            solicitud.propietarioAfectado.datosPersona.domicilio.pais = "Pais";
-            solicitud.propietarioAfectado.datosPersona.cuit = 209876428428;
+            solicitud.propietarioAfectado.datosPersona.cuit = 20987642848;
             solicitud.propietarioAfectado.datosPersona.email = "email@example.com";
             solicitud.propietarioAfectado.datosPersona.telefono = "123456789";
             solicitud.propietarioAfectado.datosPersona.sexo = Sexo.MUJER

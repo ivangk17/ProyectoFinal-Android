@@ -28,6 +28,7 @@ import com.example.login.data.models.UserLogin
 import com.example.login.components.Field
 import com.example.login.navigation.Rutas
 import com.example.login.tokens.Token
+import com.example.login.utilities.showToastError
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import kotlinx.coroutines.CoroutineScope
@@ -61,19 +62,6 @@ suspend fun handleLogin(user: UserLogin, context: Context, navController: NavCon
     }
 }
 
-fun showToastError(context: Context, message: String) {
-    val inflater = LayoutInflater.from(context)
-    val layout: View = inflater.inflate(R.layout.custom_toast, null)
-
-    val text: TextView = layout.findViewById(R.id.toast_text)
-    text.text = message
-
-    with (Toast(context)) {
-        duration = Toast.LENGTH_SHORT
-        view = layout
-        show()
-    }
-}
 
 @Composable
 fun LoginScreen(navController: NavController) {

@@ -40,11 +40,11 @@ class DatosPropietarioVehiculoAseguradoViewModel (
     val campos = listOf(
         FormField("Nombre: ", tipo = TipoCampo.TEXTO),
         FormField("Apellido", tipo = TipoCampo.TEXTO),
-        FormField("Domicilio", tipo = TipoCampo.TEXTO),
-        FormField("Localidad", tipo = TipoCampo.TEXTO),
+        FormField("Calle", tipo = TipoCampo.TEXTO),
+        FormField("Numero", tipo = TipoCampo.NUMERICO),
+        FormField("Piso", tipo = TipoCampo.NUMERICO),
+        FormField("Departamento", tipo = TipoCampo.TEXTO),
         FormField("Codigo Postal", tipo = TipoCampo.TEXTO),
-        FormField("Provincia.", tipo = TipoCampo.TEXTO),
-        FormField("País", tipo = TipoCampo.TEXTO),
         FormField("CUIT", tipo = TipoCampo.TEXTO),
         FormField("E-mail", tipo = TipoCampo.TEXTO),
         FormField("TEL", tipo = TipoCampo.TEXTO),
@@ -66,10 +66,10 @@ class DatosPropietarioVehiculoAseguradoViewModel (
             Solicitud.propietarioAsegurado.datosPersona.nombre = campos[0].value.value
             Solicitud.propietarioAsegurado.datosPersona.apellido = campos[1].value.value
             Solicitud.propietarioAsegurado.datosPersona.domicilio.calle = campos[2].value.value
-            Solicitud.propietarioAsegurado.datosPersona.domicilio.localidad = campos[3].value.value
-            Solicitud.propietarioAsegurado.datosPersona.domicilio.codigoPostal = campos[4].value.value.toInt()
-            Solicitud.propietarioAsegurado.datosPersona.domicilio.provincia = campos[5].value.value
-            Solicitud.propietarioAsegurado.datosPersona.domicilio.pais = campos[6].value.value
+            Solicitud.propietarioAsegurado.datosPersona.domicilio.numero = campos[3].value.value.toInt()
+            Solicitud.propietarioAsegurado.datosPersona.domicilio.piso = campos[4].value.value.toInt()
+            Solicitud.propietarioAsegurado.datosPersona.domicilio.departamento = campos[5].value.value
+            Solicitud.propietarioAsegurado.datosPersona.domicilio.codigoPostal = campos[6].value.value.toInt()
             Solicitud.propietarioAsegurado.datosPersona.cuit = campos[7].value.value.toInt()
             Solicitud.propietarioAsegurado.datosPersona.email = campos[8].value.value
             Solicitud.propietarioAsegurado.datosPersona.telefono = campos[9].value.value
@@ -101,10 +101,23 @@ class DatosPropietarioVehiculoAseguradoViewModel (
         campos[0].value.value = user.value.nombre
         campos[1].value.value = user.value.apellido
         campos[2].value.value = user.value.domicilio.calle
-        campos[3].value.value = user.value.domicilio.localidad
-        campos[4].value.value = user.value.domicilio.codigoPostal.toString()
-        campos[5].value.value = user.value.domicilio.provincia
-        campos[6].value.value = user.value.domicilio.pais
+        campos[3].value.value = user.value.domicilio.numero.toString()
+        if(user.value.domicilio.numero == -1){
+            campos[3].value.value = ""
+        }else{
+            campos[3].value.value = user.value.domicilio.numero.toString()
+        }
+        if(user.value.domicilio.piso == null){
+            campos[4].value.value = ""
+        }else{
+            campos[4].value.value = user.value.domicilio.piso.toString()
+        }
+        if (user.value.domicilio.departamento == null){
+            campos[5].value.value = ""
+        }else{
+            campos[5].value.value = user.value.domicilio.departamento.toString()
+        }
+        campos[6].value.value = user.value.domicilio.codigoPostal.toString()
         campos[7].value.value = user.value.cuit.toString()
         campos[8].value.value = user.value.email
         campos[9].value.value = user.value.telefono.toString()
