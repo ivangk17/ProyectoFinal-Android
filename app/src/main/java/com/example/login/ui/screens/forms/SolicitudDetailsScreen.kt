@@ -2,7 +2,6 @@ package com.example.login.ui.screens.forms
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.login.components.MultipleLineText
 import com.example.login.components.solicituddetails.ConductorDetails
 import com.example.login.components.solicituddetails.ConsecuenciaSiniestroDetails
@@ -10,6 +9,8 @@ import com.example.login.components.solicituddetails.DatosAdicionalesDetails
 import com.example.login.components.solicituddetails.DatosSiniestroDetails
 import com.example.login.components.solicituddetails.HeaderDetails
 import com.example.login.components.solicituddetails.InformacionAdicionalDetails
+import com.example.login.components.solicituddetails.DaniosPersonalesDetails
+import com.example.login.components.solicituddetails.LugarAsistenciaDetails
 import com.example.login.components.solicituddetails.PropietarioAfectadoDetails
 import com.example.login.components.solicituddetails.PropietarioAseguradoDetails
 
@@ -18,30 +19,39 @@ fun SolicitudDetailsScreen() {
     LazyColumn {
         item {
             DatosSiniestroDetails()
-            HeaderDetails("INFORMACION ADICIONA"){
+            HeaderDetails("Informacion Adicional"){
                 InformacionAdicionalDetails()
             }
-            HeaderDetails("DATOS DEL PROPIETARIOS DEL VEHICULO ASEGURADO"){
+            HeaderDetails("Datos del Propietario del Vehiculo Asegurado"){
                 PropietarioAseguradoDetails()
             }
-            HeaderDetails("DATOS DEL PROPIETARIOS DEL VEHICULO AFECTADO"){
+            HeaderDetails("Datos del Propietario del Vehiculo Afectado"){
                 PropietarioAfectadoDetails()
             }
-            HeaderDetails("CONDUCTOR DEL VEHICULO ASEGURADO"){
+            HeaderDetails("Conductor del Vehiculo Asegurado"){
                 ConductorDetails()
             }
-            HeaderDetails("CONDUCTOR DEL VEHICULO     AFECTADO"){
+            HeaderDetails("Conductor del Vehiculo Afectado"){
                 ConductorDetails()
             }
-            MultipleLineText("DAÑOS DEL VEHICULO ASEGURADO")
+            MultipleLineText("Daños del  Vechiculo Asegurado")
 
-            MultipleLineText("DAÑOS DEL VEHICULO AFECTADO")
+            MultipleLineText("Daños del  Vechiculo Afectado")
 
             HeaderDetails("Datos Adicionales"){
                 DatosAdicionalesDetails()
             }
-            HeaderDetails("Datos Adicionales"){
+            HeaderDetails("Consecuencia del Siniestro"){
                 ConsecuenciaSiniestroDetails()
+            }
+
+            MultipleLineText("Relato del Accidente")
+
+            HeaderDetails("Daños Personales"){
+                DaniosPersonalesDetails()
+            }
+            HeaderDetails("Lugar de Asistencia"){
+                LugarAsistenciaDetails()
             }
         }
     }

@@ -17,60 +17,30 @@ fun ConsecuenciaSiniestroDetails(){
         Row(
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Text(
-                "Daño parcial"
-            )
-            Checkbox(checked = true, onCheckedChange = { })
-            Text(
-                "Robo de rueda"
-            )
-            Checkbox(checked = true, onCheckedChange = { })
-            Text(
-                "Robo parcial"
-            )
-            Checkbox(checked = true, onCheckedChange = { })
+            CamposCheckeablesDetails("Daño parcial")
+            CamposCheckeablesDetails("Robo de rueda")
+            CamposCheckeablesDetails("Robo parcial")
         }
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
         )  {
-            Text(
-                "Daño a terceros"
-            )
-            Checkbox(checked = true, onCheckedChange = { })
-            Text(
-                "Incendio total"
-            )
-            Checkbox(checked = true, onCheckedChange = { })
-            Text(
-                "Otros"
-            )
-            Checkbox(checked = true, onCheckedChange = { })
+            CamposCheckeablesDetails("Daño a terceros")
+            CamposCheckeablesDetails("Incendio total")
+            CamposCheckeablesDetails("Otros")
         }
 
     }
     Row(
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Text(
-            "Destruccion total"
-        )
-        Checkbox(checked = true, onCheckedChange = { })
-        Text(
-            "Robo/Hurto total"
-        )
-        Checkbox(checked = true, onCheckedChange = { })
-        Text(
-            "Rotura de cristales"
-        )
-        Checkbox(checked = true, onCheckedChange = { })
+        CamposCheckeablesDetails("Destruccion total")
+        CamposCheckeablesDetails("Robo/Hurto total")
+        CamposCheckeablesDetails("Rotura de cristales")
     }
     Row(
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Text(
-            "Incendio parcial"
-        )
-        Checkbox(checked = true, onCheckedChange = { })
+        CamposCheckeablesDetails("Incendio parcial")
     }
 }

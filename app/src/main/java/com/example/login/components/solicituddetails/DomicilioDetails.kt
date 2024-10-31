@@ -12,9 +12,9 @@ import com.example.login.components.TextSolicitudDetails
 @Composable
 fun DomicilioDetails(){
     TituloH2Details("Datos Domiciliares")
-    TextSolicitudDetails("Direccion:", "Av. Libertador 2035")
-    TextSolicitudDetails("Localidad:", "Belgrano")
+    TextSolicitudDetails("Calle:", "Av. Libertador")
+    TextSolicitudDetails("Numero:", "2035")
+    TextSolicitudDetails("Piso:", "")
+    TextSolicitudDetails("Departamento:", "")
     TextSolicitudDetails("CP:", "1424")
-    TextSolicitudDetails("Provincia:", "Buenos Aires")
-    TextSolicitudDetails("Ciudad:", "Capital Federal")
 }
