@@ -28,11 +28,6 @@ fun SwitchCustom(
             checked = checked,
             onCheckedChange = onCheckedChange,
             colors = SwitchDefaults.colors(
-//                checkedThumbColor = MaterialTheme.colorScheme.primary,
-//                checkedTrackColor = MaterialTheme.colorScheme.primaryContainer,
-//                uncheckedThumbColor = MaterialTheme.colorScheme.secondary,
-//                uncheckedTrackColor = MaterialTheme.colorScheme.secondaryContainer,
-                //disabledCheckedTrackColor = Color.Red,
                 checkedTrackColor = MaterialTheme.colorScheme.primary,
                 uncheckedTrackColor = MaterialTheme.colorScheme.secondary
             )
