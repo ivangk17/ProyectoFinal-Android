@@ -7,7 +7,7 @@
 
     `Solicitudes screen`
     <string name="id_solicitud">ID de la solicitud: %s </string>
-    <string name="estado">ID Estado: %s </string>
+    <string name="estado">Estado: %s </string>
     <string name="fecha_siniestro">Fecha del siniestro: %s </string>">
     <string name="dato_no_disponible">Dato no disponible</string>
     <string name="Solicitudes_titulo">Solicitudes</string>

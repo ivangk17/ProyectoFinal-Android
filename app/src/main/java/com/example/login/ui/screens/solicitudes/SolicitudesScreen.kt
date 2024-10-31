@@ -1,5 +1,7 @@
 package com.example.login.ui.screens.solicitudes
 
+import android.icu.text.CaseMap
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,6 +14,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SliderDefaults.Thumb
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
@@ -22,6 +25,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -59,7 +65,8 @@ fun SolicitudesScreen(
 
     NavDrawer(navController, drawerViewModel) {
         Scaffold(
-            snackbarHost = { SnackbarHost(hostState = snackbarHostState) } // Snackbar host
+            snackbarHost = { SnackbarHost(hostState = snackbarHostState) }, // Snackbar host
+            modifier = Modifier.background(colorResource(id = R.color.fondo_principal))
 
         ) { innerPadding ->
             Column(
@@ -73,9 +80,9 @@ fun SolicitudesScreen(
                     text = stringResource(R.string.Solicitudes_titulo),
                     fontSize = 30.sp,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(top = 4.dp),
+                    modifier = Modifier.padding(bottom = 25.dp),
                     color = colorResource(id = R.color.texto_principal)
-                )
+,                )
                 SolicitudesList(solicitudes, navController)
             }
         }
@@ -100,27 +107,49 @@ fun SolicitudesList(solicitudes: List<SolicitudSimplificada>, navController: Nav
             items(solicitudes) { solicitud ->
                 Card(
                     modifier = Modifier
-                        .padding(15.dp)
+                        .padding(8.dp)
+                        .padding(horizontal = 16.dp)
                         .fillMaxWidth()
                         .clickable {
                             // navController.navigate(Rutas.SolicitudDetalle.rutaConId(solicitud.id))
 
                         }
                 ) {
-                    Column(modifier = Modifier.padding(8.dp)) {
 
-                        Text(text = stringResource(R.string.id_solicitud, solicitud.idSolicitud))
-                        Text(text = stringResource(R.string.estado, solicitud.estado))
-                        Text(
-                            text = stringResource(
-                                id = R.string.fecha_siniestro,
-                                solicitud.fechaOcurrencia
-                                    ?: stringResource(id = R.string.dato_no_disponible)
+
+                    Box(
+                        modifier = Modifier
+                            .background(
+                                Brush.linearGradient(
+                                    colors = listOf(Color(0xFFD0CFCF), Color(0xFBCECECE)),
+                                    start = Offset(0f, 0f),
+                                    end = Offset(400f, 400f) // Ajusta esto para cambiar la dirección del gradiente
+                                )
                             )
-                        )
+                            .padding(16.dp) // Padding para el contenido de la tarjeta
+                    ) {
 
+                        Column(modifier = Modifier.padding(8.dp)) {
+
+
+
+                            Text(text = stringResource(R.string.estado, solicitud.estado))
+                            Text(
+                                text = stringResource(
+                                    id = R.string.fecha_siniestro,
+                                    solicitud.fechaOcurrencia
+                                        ?: stringResource(id = R.string.dato_no_disponible)
+                                )
+                            )
+
+
+
+                        }
 
                     }
+
+
+
                 }
             }
         }

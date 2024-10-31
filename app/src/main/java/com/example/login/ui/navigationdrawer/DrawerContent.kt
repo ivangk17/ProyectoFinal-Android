@@ -74,11 +74,11 @@ fun DrawerContent(
             ),
             modifier = Modifier
                 .padding(start = 10.dp)
-                .width(150.dp)
-                .height(40.dp)
+                .width(165.dp)
+                .height(55.dp)
 
         ) {
-            Text(text = "Cerrar Sesión", textAlign = TextAlign.Center)
+            Text(text = "Cerrar Sesión", textAlign = TextAlign.Center, modifier = Modifier.padding(bottom = 7.dp))
         }
 
         Spacer(modifier = Modifier.weight(0.02f))

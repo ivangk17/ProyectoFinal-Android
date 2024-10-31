@@ -12,6 +12,7 @@
     <color name="light_gray">#FFDFE6FA</color>
     <color name="texto_principal">#FF333333</color>
     <color name="btn_principales">#FF009B77</color>
+    <color name="fondo_principal">#FFF7F7F7</color>
 
     `Solicitudes screen`
     <color name="texto_Secundario">#424287</color>

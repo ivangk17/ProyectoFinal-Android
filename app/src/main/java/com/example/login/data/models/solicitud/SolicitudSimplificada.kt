@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class SolicitudSimplificada(
 
-    val idSolicitud: String,
+    val _id: String? =" ",
     val estado: Estado = Estado.PENDIENTE,
     val idAsegurado: String? = "",
     val nombreAsegurado: String,
@@ -14,7 +14,7 @@ data class SolicitudSimplificada(
 
 fun Solicitud.aSolicitudSimplificada(token: String): SolicitudSimplificada {
     return SolicitudSimplificada(
-        idSolicitud = getId(token),
+        _id = _id,
         estado = estado,
         idAsegurado = idAsegurado,
         nombreAsegurado = conductorAsegurado.datosPersona.nombreCompleto ?: "Nombre no disponible",

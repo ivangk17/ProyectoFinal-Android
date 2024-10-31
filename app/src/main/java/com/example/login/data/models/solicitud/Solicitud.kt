@@ -18,11 +18,6 @@ data class Solicitud(
     val conductorAfectado: ConductorAsegurado = ConductorAsegurado(),
     val propietarioAsegurado: PropietarioAsegurado = PropietarioAsegurado(),
     val lesiones: Lesiones = Lesiones(),
-    val datosSiniestro: DatosSiniestro = DatosSiniestro()
-)
+    val datosSiniestro: DatosSiniestro = DatosSiniestro(),
+    val _id: String? = "")
 
-fun getId(token: String): String {
-    val user = Utility().decodeJWT(Token.token)
-    val id = user.email
-    return id
-}
