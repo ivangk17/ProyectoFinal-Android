@@ -1,23 +1,15 @@
 package com.example.login.ui.screens
 
 import android.content.Context
-import android.util.Log
 import android.util.Patterns
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -28,6 +20,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.login.R
 import com.example.login.data.models.ErrorResponse
 import com.example.login.utilities.LastCharVisibleTransformation
 import com.example.login.data.network.RetrofitClient
@@ -35,6 +28,7 @@ import com.example.login.data.models.UserLogin
 import com.example.login.components.Field
 import com.example.login.navigation.Rutas
 import com.example.login.tokens.Token
+import com.example.login.utilities.showToastError
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import kotlinx.coroutines.CoroutineScope
@@ -50,7 +44,6 @@ suspend fun handleLogin(user: UserLogin, context: Context, navController: NavCon
     try {
         val response = RetrofitClient.apiService.login(user)
         Token.token = response.token
-        Toast.makeText(context, "Login exitoso, Token: ${response.token}", Toast.LENGTH_SHORT).show()
         navController.navigate(route = Rutas.HomeScreen.ruta)
     } catch (e: Exception) {
         val errorMessage = when (e) {
@@ -59,26 +52,22 @@ suspend fun handleLogin(user: UserLogin, context: Context, navController: NavCon
                 val errorResponse = try {
                     Gson().fromJson(errorBody, ErrorResponse::class.java)
                 } catch (jsonException: JsonSyntaxException) {
-                    ErrorResponse(errorBody ?: "Error desconocido")
+                    ErrorResponse(errorBody ?: "Error desconocido contactar con el asegurador")
                 }
-                errorResponse?.message ?: "Error desconocido"
+                errorResponse?.error ?: "Error desconocido contactar con el asegurador"
             }
-            else -> e.message ?: "Error desconocido"
+            else -> e.message ?: "Error desconocido contactar con el asegurador"
         }
-        Log.e("TAG", "Error en la ejection: $errorMessage", e)
-        Toast.makeText(context, "Error al hacer login, error: $errorMessage", Toast.LENGTH_SHORT).show()
+        showToastError(context, "Error al iniciar sesión, $errorMessage")
     }
 }
 
 
-
 @Composable
-
 fun LoginScreen(navController: NavController) {
-
     RegisterText(navController = navController)
-
 }
+
 @Composable
 fun RegisterText(modifier: Modifier = Modifier, navController: NavController) {
     var email by remember { mutableStateOf(TextFieldValue("")) }
@@ -94,7 +83,7 @@ fun RegisterText(modifier: Modifier = Modifier, navController: NavController) {
     ) {
         Spacer(modifier = Modifier.height(100.dp))
         Text(
-            text = "Login",
+            text = "Iniciar Sesion",
             fontSize = 36.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
@@ -113,12 +102,12 @@ fun RegisterText(modifier: Modifier = Modifier, navController: NavController) {
         Field(
             value = password,
             onValueChange = { password = it },
-            label = "Password",
+            label = "Contraseña",
             errorMessage = "La contraseña debe tener al menos 4 caracteres",
             isValid = { it.length >= 4 },
             keyboardType = KeyboardType.Password,
             imeAction = ImeAction.Done,
-            visualTransformation = LastCharVisibleTransformation()
+            visualTransformation = LastCharVisibleTransformation(),
         )
         Spacer(modifier = Modifier.height(16.dp))
         Button(
@@ -130,7 +119,7 @@ fun RegisterText(modifier: Modifier = Modifier, navController: NavController) {
             },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Iniciar Sesion")
+            Text("Iniciar Sesión")
         }
     }
 }

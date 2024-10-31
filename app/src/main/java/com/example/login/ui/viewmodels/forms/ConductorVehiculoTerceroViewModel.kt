@@ -31,13 +31,13 @@ class ConductorVehiculoTerceroViewModel (
 
 
     val campos = listOf(
-        FormField("Nombre", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Apellido", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Domicilio", tipo = TipoCampo.TEXTO),
-        FormField("Localidad", tipo = TipoCampo.TEXTO),
-        FormField("Codigo Postal", tipo = TipoCampo.NUMERICO),
-        FormField("Provincia", tipo = TipoCampo.TEXTO),
-        FormField("Pais", tipo = TipoCampo.TEXTO),
+        FormField("Nombre: ", tipo = TipoCampo.TEXTO),
+        FormField("Apellido", tipo = TipoCampo.TEXTO),
+        FormField("Calle", tipo = TipoCampo.TEXTO),
+        FormField("Numero", tipo = TipoCampo.NUMERICO),
+        FormField("Piso", tipo = TipoCampo.NUMERICO),
+        FormField("Departamento", tipo = TipoCampo.TEXTO),
+        FormField("Codigo Postal", tipo = TipoCampo.TEXTO),
         FormField("CUIT", tipo = TipoCampo.NUMERICO),
         FormField("Telefono", tipo = TipoCampo.NUMERICO),
         FormField("Email", tipo = TipoCampo.TEXTO),
@@ -80,10 +80,10 @@ class ConductorVehiculoTerceroViewModel (
 //            solicitud.conductorAfectado.datosPersona.nombre = campos[0].value.value
 //            solicitud.conductorAfectado.datosPersona.apellido = campos[1].value.value
 //            solicitud.conductorAfectado.datosPersona.domicilio.calle = campos[2].value.value
-//            solicitud.conductorAfectado.datosPersona.domicilio.localidad = campos[3].value.value
-//            solicitud.conductorAfectado.datosPersona.domicilio.codigoPostal = campos[4].value.value.toInt()
-//            solicitud.conductorAfectado.datosPersona.domicilio.provincia = campos[5].value.value
-//            solicitud.conductorAfectado.datosPersona.domicilio.pais = campos[6].value.value
+//            solicitud.conductorAfectado.datosPersona.domicilio.numero = campos[3].value.value.toInt()
+//            solicitud.conductorAfectado.datosPersona.domicilio.piso = campos[4].value.value.toInt()
+//            solicitud.conductorAfectado.datosPersona.domicilio.departamento = campos[5].value.value
+//            solicitud.conductorAfectado.datosPersona.domicilio.codigoPostal = campos[6].value.value.toInt()
 //            solicitud.conductorAfectado.datosPersona.cuit = campos[7].value.value.toInt()
 //            solicitud.conductorAfectado.datosPersona.telefono = campos[8].value.value
 //            solicitud.conductorAfectado.datosPersona.sexo = sexoSeleccionado.value
@@ -100,11 +100,11 @@ class ConductorVehiculoTerceroViewModel (
             solicitud.conductorAfectado.datosPersona.nombre = "Nombre";
             solicitud.conductorAfectado.datosPersona.apellido = "Apellido";
             solicitud.conductorAfectado.datosPersona.domicilio.calle = "Calle";
-            solicitud.conductorAfectado.datosPersona.domicilio.localidad = "Localidad";
+            solicitud.conductorAfectado.datosPersona.domicilio.numero = 1020
+            solicitud.conductorAfectado.datosPersona.domicilio.piso = null
+            solicitud.conductorAfectado.datosPersona.domicilio.departamento = null
             solicitud.conductorAfectado.datosPersona.domicilio.codigoPostal = 7300;
-            solicitud.conductorAfectado.datosPersona.domicilio.provincia = "Provincia";
-            solicitud.conductorAfectado.datosPersona.domicilio.pais = "Pais";
-            solicitud.conductorAfectado.datosPersona.cuit = 209876428428;
+            solicitud.conductorAfectado.datosPersona.cuit = 20987642848;
             solicitud.conductorAfectado.datosPersona.fechaDeNacimiento = "1990-10-10"; // Ejemplo de fecha exacta
             solicitud.conductorAfectado.datosPersona.telefono = "123456789";
             solicitud.conductorAfectado.datosPersona.sexo = Sexo.MUJER;

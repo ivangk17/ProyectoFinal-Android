@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
 import com.example.login.components.MultipleLine
@@ -14,6 +15,7 @@ import com.example.login.navigation.Rutas
 import com.example.login.ui.screens.gson
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.forms.DaniosViewModel
+import com.example.login.utilities.showToastError
 
 
 @Composable
@@ -26,7 +28,7 @@ fun <T> DaniosDeVehiculos(
     proximaRuta: Rutas,
     onEnviar: (CrearSolicitudViewModel, Solicitud) -> Unit
 ) where T : ViewModel, T : DaniosViewModel {
-
+    val context = LocalContext.current
     Column {
         MultipleLine(
             titulo = title,
@@ -39,12 +41,10 @@ fun <T> DaniosDeVehiculos(
                 val solicitud = viewModel.crearSolicitud()
                 val polizaJson = gson.toJson(poliza)
                 if (solicitud != null) {
-
                     onEnviar(crearSolicitudViewModel, solicitud)
-                    Log.d("danio", solicitud.daniosVehiculoAsegurado)
-                    Log.d("danio", solicitud.daniosVehiculoAfectado)
                     navController.navigate(route = "${proximaRuta.ruta}/${polizaJson}")
                 } else {
+                    showToastError(context, "error: No se puede crear la solicitud")
                     Log.d("solicitud", "no se creo")
                 }
             }

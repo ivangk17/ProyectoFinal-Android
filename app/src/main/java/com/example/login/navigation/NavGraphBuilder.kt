@@ -9,7 +9,7 @@ import androidx.navigation.navArgument
 import com.example.login.data.models.poliza.Poliza
 import com.example.login.utilities.obtenerObjetoDeNavegacion
 
-fun <T : ViewModel> NavGraphBuilder.rutaComposable(
+fun <T : ViewModel> NavGraphBuilder.rutaComposablePoliza(
     route: String,
     viewModelFactory: () -> T,
     content: @Composable (Poliza, T) -> Unit

@@ -6,6 +6,7 @@ import com.example.login.data.models.TokenForJson
 import com.example.login.data.models.poliza.Poliza
 import com.example.login.data.models.UserLogin
 import com.example.login.data.models.solicitud.Solicitud
+import com.example.login.data.models.solicitud.SolicitudSimplificada
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -34,6 +35,10 @@ interface Api {
 
     @POST("api/solicitudes/send")
     suspend fun enviarSolicitud(@Body solicitud: Solicitud?): Response<Unit>
+
+    //Para obtener las solicitudes simplificadas
+    @GET("/api/solicitudes/list")
+    suspend fun getSolicitudes(@Header("Authorization") token: String): Response <List<Solicitud>>
 
 
 }

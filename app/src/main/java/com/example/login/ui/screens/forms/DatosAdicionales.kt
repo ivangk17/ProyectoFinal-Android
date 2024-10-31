@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import com.example.login.components.DropdownMenuSample
 import com.example.login.components.MultipleLine
@@ -18,6 +19,7 @@ import com.example.login.navigation.Rutas
 import com.example.login.ui.screens.gson
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.forms.DatosAdicionalesViewModel
+import com.example.login.utilities.showToastError
 
 @Composable
 fun DatosAdicionales(
@@ -29,6 +31,7 @@ fun DatosAdicionales(
     val optionsTipoCamino = TipoCamino.entries
     val optionEstadoCamino = EstadoCamino.entries
     val optionEstadoTiempo = EstadoTiempo.entries
+    val context = LocalContext.current
 
     LazyColumn {
         item {
@@ -83,9 +86,9 @@ fun DatosAdicionales(
                     val polizaJson = gson.toJson(poliza)
                     if (solicitud != null) {
                         crearSolicitudViewModel.datosAdicionales(solicitud)
-                        Log.d("GRUA", solicitud.datosSiniestro.asistioGrua.toString())
                         navController.navigate("${Rutas.ConsecuenciaSiniestro.ruta}/${polizaJson}")
                     } else {
+                        showToastError(context, "error: No se puede crear la solicitud")
                         Log.d("solicitud", "no se creo")
                     }
                 }

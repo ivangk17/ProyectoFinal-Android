@@ -42,7 +42,6 @@ fun LoadingScreen(
                 delay(100)
             }
             if (viewModel.getStatus()) {
-                Log.d("nextRoute", nextRoute)
                 if(nextRoute == "solicitudEnviada"){
                     navController.navigate("${nextRoute}"){
                         popUpTo(Rutas.LoadingScreen.ruta) { inclusive = true }

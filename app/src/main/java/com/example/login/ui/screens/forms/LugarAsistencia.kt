@@ -9,6 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import com.example.login.components.DropdownMenuSample
 import com.example.login.components.FieldStringForms
@@ -16,10 +17,10 @@ import com.example.login.components.MultipleLine
 import com.example.login.components.SwitchCustom
 import com.example.login.data.models.poliza.Poliza
 import com.example.login.data.models.solicitud.datosSiniestros.asistencia.EstadoLesiones
-import com.example.login.navigation.Rutas
 import com.example.login.ui.screens.gson
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.forms.LugarAsistenciaViewModel
+import com.example.login.utilities.showToastError
 
 
 @Composable
@@ -30,6 +31,7 @@ fun LugarAsistencia(
     crearSolicitudViewModel: CrearSolicitudViewModel
 ){
     val options = EstadoLesiones.entries
+    val context = LocalContext.current
     //val solicitud = crearSolicitudViewModel.inicializar()
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -76,11 +78,10 @@ fun LugarAsistencia(
                 val solicitud = viewModel.crearSolicitudPoliza()
                 val polizaJson = gson.toJson(poliza)
                 if (solicitud != null) {
-                    Log.d("solicitud", "se creo")
-                    Log.d("solicitud", "${viewModel.solicitud.datosSiniestro.lugarAsistencia} ")
-                        crearSolicitudViewModel.lugarAsistencia(solicitud)
-                    navController.navigate("${Rutas.LoadingScreen.ruta}/$polizaJson/${Rutas.SolicitudEnviada.ruta}")
+                        crearSolicitudViewModel.lugarAsistencia(solicitud, navController, polizaJson)
+
                 } else {
+                    showToastError(context, "error: No se puede crear la solicitud")
                     Log.d("solicitud", "no se creo")
                 }
             },

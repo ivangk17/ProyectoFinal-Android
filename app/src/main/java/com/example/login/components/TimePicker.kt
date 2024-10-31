@@ -1,21 +1,22 @@
 package com.example.login.components
 
-import android.graphics.drawable.Icon
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
@@ -26,8 +27,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
+import com.example.login.R
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -50,24 +54,38 @@ fun TimePicker(label: String, valor: MutableState<String?>, error: MutableState<
     }
 
     Column(modifier = Modifier.fillMaxWidth()) {
-        OutlinedTextField(
-            value = valor.value ?: "",
-            onValueChange = { },
-            label = { Text(label) },
-            readOnly = true,
-            trailingIcon = {
+        val shapeClockIcon = RoundedCornerShape(25.dp)
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(8.dp)
+        ) {
+            OutlinedTextField(
+                value = valor.value ?: "",
+                onValueChange = { },
+                label = { Text(label) },
+                readOnly = true,
+                modifier = Modifier
+                    .height(64.dp),
+                isError = error.value != null,
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.Transparent,
+                    unfocusedContainerColor = Color.Transparent,
+                    disabledContainerColor = Color.Gray,
+                    errorContainerColor = Color.Red.copy(alpha = 0.1f),
+                    focusedIndicatorColor = MaterialTheme.colorScheme.primary,
+                    unfocusedIndicatorColor = Color.Gray
+                )
+            )
                 IconButton(onClick = { showTimePicker = !showTimePicker }) {
                     Icon(
-                        imageVector = Icons.Default.DateRange,
+                        modifier = Modifier.padding(start = 8.dp)
+                            .background(MaterialTheme.colorScheme.secondary, shape = shapeClockIcon)
+                            .border(width = 1.dp, color = Color.Black, shape = shapeClockIcon),
+                        painter = painterResource(id = R.drawable.ic_clock),
                         contentDescription = "Select time"
                     )
                 }
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(64.dp),
-            isError = error.value != null
-        )
+        }
 
         if (error.value != null) {
             Text(

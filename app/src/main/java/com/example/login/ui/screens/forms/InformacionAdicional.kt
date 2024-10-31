@@ -9,6 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import com.example.login.components.DatePicker
 import com.example.login.components.DropdownMenuSample
@@ -20,6 +21,7 @@ import com.example.login.navigation.Rutas
 import com.example.login.ui.screens.gson
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.forms.InformacionAdicionalViewModel
+import com.example.login.utilities.showToastError
 
 @Composable
 fun InformacionAdicional(
@@ -29,7 +31,7 @@ fun InformacionAdicional(
     crearSolicitudViewModel: CrearSolicitudViewModel
 ){
     val options = HuboDenuncia.entries
-
+    val context = LocalContext.current
     Column(modifier = Modifier.fillMaxSize()) {
         LazyColumn(modifier = Modifier.weight(1f)) {
             items(viewModel.camposCheckeables.size){ index ->
@@ -79,6 +81,8 @@ fun InformacionAdicional(
                     crearSolicitudViewModel.envioInformacionAdicional(solicitud)
                     navController.navigate("${Rutas.LoadingScreen.ruta}/$polizaJson/${Rutas.DatosPropietarioVehiculoAsegurado.ruta}")
                 } else {
+
+                    showToastError(context, "error: No se puede crear la solicitud")
                     Log.d("solicitud", "no se creo")
                 }
             },

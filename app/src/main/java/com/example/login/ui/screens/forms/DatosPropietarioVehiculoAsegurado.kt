@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import com.example.login.components.DropdownMenuSample
 import com.example.login.components.FieldStringForms
@@ -20,6 +21,7 @@ import com.example.login.navigation.Rutas
 import com.example.login.ui.screens.gson
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.forms.DatosPropietarioVehiculoAseguradoViewModel
+import com.example.login.utilities.showToastError
 
 @Composable
 fun DatosPropietarioVehiculoAsegurado(
@@ -28,6 +30,7 @@ fun DatosPropietarioVehiculoAsegurado(
     polizaParametro: Poliza,
     crearSolicitudViewModel: CrearSolicitudViewModel
 ){
+    val context = LocalContext.current
     val optionsUsoVehiculo = UsoDelVehiculo.entries //esto devuelve una lista de opciones
     val optionsSexo = Sexo.entries
     val user = viewModel.loadInfoUser(polizaParametro) //TODO NO BORRAR ESTA VARIABLE (porque sino no carga la info del usuario logueado)
@@ -77,8 +80,8 @@ fun DatosPropietarioVehiculoAsegurado(
                         if (solicitud != null) {
                             crearSolicitudViewModel.datosPropietarioVehiculoAsegurado(solicitud)
                             navController.navigate(route = "${Rutas.DatosPropietarioVehiculoTercero.ruta}/${polizaJson}")
-                            Log.d("solicitud", "${solicitud}")
                         } else {
+                            showToastError(context, "error: No se puede crear la solicitud")
                             Log.d("solicitud", "no se creo")
                         }
                     },

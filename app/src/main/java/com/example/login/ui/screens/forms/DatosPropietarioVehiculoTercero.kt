@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
@@ -26,6 +27,7 @@ import com.example.login.navigation.Rutas
 import com.example.login.ui.screens.gson
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.forms.DatosPropietarioVehiculoTerceroViewModel
+import com.example.login.utilities.showToastError
 
 @Composable
 fun DatosPropietarioVehiculoTercero(
@@ -34,6 +36,7 @@ fun DatosPropietarioVehiculoTercero(
     poliza: Poliza,
     crearSolicitudViewModel: CrearSolicitudViewModel
 ) {
+    val context = LocalContext.current
     val optionsSexo = Sexo.entries
     val optionsTipoVehiculo = TipoVehiculo.entries
     LazyColumn(
@@ -108,6 +111,7 @@ fun DatosPropietarioVehiculoTercero(
                             crearSolicitudViewModel.datosPropietarioVehiculoTercero(solicitud)
                             navController.navigate(route = "${Rutas.ConductorVehiculoAsegurado.ruta}/${polizaJson}")
                         } else {
+                            showToastError(context, "error: No se puede crear la solicitud")
                             Log.d("solicitud", "no se creo")
                         }
                     },

@@ -12,17 +12,13 @@ data class Solicitud(
     val estado: Estado = Estado.PENDIENTE,
     var daniosVehiculoAsegurado: String = "aaa",
     var daniosVehiculoAfectado: String = "aaa",
-    var idPropietarioAsegurado: String = "ID del propietario asegurado",
+    var idAsegurado: String? = "",
+    var idAsegurador: String= "",
     val conductorAsegurado: ConductorAsegurado = ConductorAsegurado(),
     val propietarioAfectado: PropietarioAfectado = PropietarioAfectado(),
     val conductorAfectado: ConductorAsegurado = ConductorAsegurado(),
     val propietarioAsegurado: PropietarioAsegurado = PropietarioAsegurado(),
     val lesiones: Lesiones = Lesiones(),
-    val datosSiniestro: DatosSiniestro = DatosSiniestro()
-)
+    val datosSiniestro: DatosSiniestro = DatosSiniestro(),
+    val _id: String? ="")
 
-fun getId(token: String): String {
-    val user = Utility().decodeJWT(Token.token)
-    val id = user.email
-    return id
-}

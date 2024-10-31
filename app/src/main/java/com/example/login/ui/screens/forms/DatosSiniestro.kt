@@ -8,6 +8,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import com.example.login.components.DatePicker
 import com.example.login.components.FieldStringForms
@@ -17,6 +18,7 @@ import com.example.login.navigation.Rutas
 import com.example.login.ui.screens.gson
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.forms.DatosSiniestroViewModel
+import com.example.login.utilities.showToastError
 
 @SuppressLint("SuspiciousIndentation")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -27,6 +29,7 @@ fun DatosSiniestro(
     poliza: Poliza,
     crearSolicitudViewModel: CrearSolicitudViewModel
 ) {
+    val context = LocalContext.current
         Column {
             DatePicker(
                 label = "Fecha de ocurrencia del siniestro",
@@ -35,7 +38,7 @@ fun DatosSiniestro(
                 onDateSelected = { newValue -> viewModel.setFechaOcurrencia(newValue) }
             )
             TimePicker(
-                label = "Fecha de ocurrencia del siniestro",
+                label = "Hora de ocurrencia del siniestro",
                 valor = viewModel.horaOcurriencia,
                 error = viewModel.errorHoraOcurrencua,
                 onTimeSelected = { newValue -> viewModel.setHoraOcurrencia(newValue) })
@@ -58,9 +61,9 @@ fun DatosSiniestro(
 
                         if (solicitud != null) {
                             crearSolicitudViewModel.envioDatosSiniestros(solicitud)
-                            Log.d("solicitud", solicitud.toString())
                             navController.navigate(route = "${Rutas.InformacionAdicional.ruta}/${polizaJson}")
                         }else{
+                            showToastError(context, "error: No se puede crear la solicitud")
                             Log.d("solicitud", "no se creo")
                         }
                     }) {

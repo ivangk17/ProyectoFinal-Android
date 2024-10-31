@@ -1,19 +1,16 @@
 package com.example.login.navigation
 
-import android.util.Log
-import com.example.login.ui.screens.HomeScreen
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.remember
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.login.ui.viewmodels.HomeViewModel
 import com.example.login.data.network.RetrofitClient
 import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.data.network.services.GetServiceUser
 import com.example.login.data.network.services.GetStatus
+import com.example.login.data.repositories.SolicitudesRepositoryImpl
+import com.example.login.ui.screens.HomeScreen
 import com.example.login.ui.screens.LoadingScreen
 import com.example.login.ui.screens.LoginScreen
 import com.example.login.ui.screens.PolizaDetailsScreen
@@ -30,7 +27,9 @@ import com.example.login.ui.screens.forms.InformacionAdicional
 import com.example.login.ui.screens.forms.LugarAsistencia
 import com.example.login.ui.screens.forms.RelatoAccidente
 import com.example.login.ui.screens.forms.SolicitudEnviadaScreen
+import com.example.login.ui.screens.solicitudes.SolicitudesScreen
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
+import com.example.login.ui.viewmodels.HomeViewModel
 import com.example.login.ui.viewmodels.LoadingViewModel
 import com.example.login.ui.viewmodels.PolizaDetailsViewModel
 import com.example.login.ui.viewmodels.forms.ConductorVehiculoAseguradoViewModel
@@ -46,17 +45,20 @@ import com.example.login.ui.viewmodels.forms.DatosSiniestroViewModel
 import com.example.login.ui.viewmodels.forms.InformacionAdicionalViewModel
 import com.example.login.ui.viewmodels.forms.LugarAsistenciaViewModel
 import com.example.login.ui.viewmodels.forms.RelatoAccidenteViewModel
+import com.example.login.ui.viewmodels.navdrawerviewmodel.DrawerViewModel
+import com.example.login.ui.viewmodels.solicitudesviewmod.SolicitudesViewModel
+import com.example.login.ui.viewmodels.solicitudesviewmod.SolicitudesViewModelFactory
 import com.example.login.utilities.daniosVehiculoAsegurado
 import com.example.login.utilities.daniosVehiculosTercero
 
 
 @Composable
-fun AppNavigation() {
+fun AppNavigation(drawerViewModel: DrawerViewModel) {
     val navController = rememberNavController()
     val crearSolicitudViewModel: CrearSolicitudViewModel = viewModel(
         factory = CrearSolicitudViewModel.provideFactory()
     )
-    NavHost(navController = navController, startDestination = Rutas.LoginScreen.ruta, builder = {
+        NavHost(navController = navController, startDestination = Rutas.HomeScreen.ruta, builder = {
         composable(Rutas.HomeScreen.ruta) {
             val homeViewModel: HomeViewModel = viewModel(
                 factory = HomeViewModel.provideFactory(
@@ -64,7 +66,7 @@ fun AppNavigation() {
                 )
             )
 
-            HomeScreen(navController, homeViewModel)
+            HomeScreen(navController, homeViewModel, drawerViewModel)
 
         }
         composable(Rutas.LoginScreen.ruta) {
@@ -74,7 +76,10 @@ fun AppNavigation() {
         rutaComposableLoading(
             route = Rutas.LoadingScreen.ruta,
             viewModelFactory = {
-                LoadingViewModel.provideFactory(GetStatus(RetrofitClient.apiService),GetServicePolizas(RetrofitClient.apiService))
+                LoadingViewModel.provideFactory(
+                    GetStatus(RetrofitClient.apiService),
+                    GetServicePolizas(RetrofitClient.apiService)
+                )
                     .create(LoadingViewModel::class.java)
             }
         ) { poliza, viewModel, nextRoute ->
@@ -83,7 +88,7 @@ fun AppNavigation() {
             )
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.PolizaDetalleScreen.ruta,
             viewModelFactory = {
                 PolizaDetailsViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
@@ -93,7 +98,7 @@ fun AppNavigation() {
             PolizaDetailsScreen(poliza, viewModel, navController)
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.DatosSiniestro.ruta,
             viewModelFactory = {
                 DatosSiniestroViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
@@ -103,38 +108,55 @@ fun AppNavigation() {
             DatosSiniestro(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.InformacionAdicional.ruta,
             viewModelFactory = {
                 InformacionAdicionalViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
                     .create(InformacionAdicionalViewModel::class.java)
             }
         ) { poliza, viewModel ->
-            InformacionAdicional(navController, viewModel, poliza,crearSolicitudViewModel)
+            InformacionAdicional(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.DatosPropietarioVehiculoAsegurado.ruta,
             viewModelFactory = {
                 val service = RetrofitClient.apiService
-                DatosPropietarioVehiculoAseguradoViewModel.provideFactory(GetServicePolizas(service), GetServiceUser(service))
+                DatosPropietarioVehiculoAseguradoViewModel.provideFactory(
+                    GetServicePolizas(service),
+                    GetServiceUser(service)
+                )
                     .create(DatosPropietarioVehiculoAseguradoViewModel::class.java)
             }
         ) { poliza, viewModel ->
-            DatosPropietarioVehiculoAsegurado(navController, viewModel, poliza, crearSolicitudViewModel)
+            DatosPropietarioVehiculoAsegurado(
+                navController,
+                viewModel,
+                poliza,
+                crearSolicitudViewModel
+            )
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.DatosPropietarioVehiculoTercero.ruta,
             viewModelFactory = {
-                DatosPropietarioVehiculoTerceroViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
+                DatosPropietarioVehiculoTerceroViewModel.provideFactory(
+                    GetServicePolizas(
+                        RetrofitClient.apiService
+                    )
+                )
                     .create(DatosPropietarioVehiculoTerceroViewModel::class.java)
             }
         ) { poliza, viewModel ->
-            DatosPropietarioVehiculoTercero(navController, viewModel, poliza, crearSolicitudViewModel)
+            DatosPropietarioVehiculoTercero(
+                navController,
+                viewModel,
+                poliza,
+                crearSolicitudViewModel
+            )
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.ConductorVehiculoAsegurado.ruta,
             viewModelFactory = {
                 ConductorVehiculoAseguradoViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
@@ -144,7 +166,7 @@ fun AppNavigation() {
             ConductorVehiculoAsegurado(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.ConductorVehiculoTercero.ruta,
             viewModelFactory = {
                 ConductorVehiculoTerceroViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
@@ -154,7 +176,7 @@ fun AppNavigation() {
             ConductorVehiculoTercero(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.DaniosVehiculoAsegurado.ruta,
             viewModelFactory = {
                 DaniosVehiculoAseguradoViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
@@ -172,7 +194,7 @@ fun AppNavigation() {
             )
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.DaniosVehiculosTercero.ruta,
             viewModelFactory = {
                 DaniosVehiculoTerceroViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
@@ -190,7 +212,7 @@ fun AppNavigation() {
             )
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.DatosAdicionales.ruta,
             viewModelFactory = {
                 DatosAdicionalesViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
@@ -200,7 +222,7 @@ fun AppNavigation() {
             DatosAdicionales(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.ConsecuenciaSiniestro.ruta,
             viewModelFactory = {
                 ConsecuenciaSiniestroViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
@@ -210,7 +232,7 @@ fun AppNavigation() {
             ConsecuenciaSiniestro(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.RelatoAccidente.ruta,
             viewModelFactory = {
                 RelatoAccidenteViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
@@ -220,7 +242,7 @@ fun AppNavigation() {
             RelatoAccidente(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.DaniosPersonales.ruta,
             viewModelFactory = {
                 DaniosPersonalesViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
@@ -230,18 +252,26 @@ fun AppNavigation() {
             DaniosPersonales(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.LugarAsistencia.ruta,
             viewModelFactory = {
                 LugarAsistenciaViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
                     .create(LugarAsistenciaViewModel::class.java)
             }
         ) { poliza, viewModel ->
-            LugarAsistencia(navController, viewModel, poliza,crearSolicitudViewModel)
+            LugarAsistencia(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
         composable(Rutas.SolicitudEnviada.ruta) {
             SolicitudEnviadaScreen(navController)
+        }
+
+        composable(Rutas.SolicitudesScreen.ruta) {
+            val repository = SolicitudesRepositoryImpl()
+            val solicitudesViewModel: SolicitudesViewModel = viewModel(
+                factory = SolicitudesViewModelFactory(repository)
+            )
+            SolicitudesScreen(solicitudesViewModel, navController,drawerViewModel)
         }
 
     }
