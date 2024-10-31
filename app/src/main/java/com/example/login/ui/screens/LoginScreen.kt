@@ -95,7 +95,7 @@ fun RegisterText(modifier: Modifier = Modifier, navController: NavController) {
     ) {
         Spacer(modifier = Modifier.height(100.dp))
         Text(
-            text = "Login",
+            text = "Iniciar Sesion",
             fontSize = 36.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
@@ -114,7 +114,7 @@ fun RegisterText(modifier: Modifier = Modifier, navController: NavController) {
         Field(
             value = password,
             onValueChange = { password = it },
-            label = "Password",
+            label = "Contraseña",
             errorMessage = "La contraseña debe tener al menos 4 caracteres",
             isValid = { it.length >= 4 },
             keyboardType = KeyboardType.Password,
