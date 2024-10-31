@@ -35,7 +35,7 @@ fun DatosSiniestro(
                 onDateSelected = { newValue -> viewModel.setFechaOcurrencia(newValue) }
             )
             TimePicker(
-                label = "Fecha de ocurrencia del siniestro",
+                label = "Hora de ocurrencia del siniestro",
                 valor = viewModel.horaOcurriencia,
                 error = viewModel.errorHoraOcurrencua,
                 onTimeSelected = { newValue -> viewModel.setHoraOcurrencia(newValue) })
