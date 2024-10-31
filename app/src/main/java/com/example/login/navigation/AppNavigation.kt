@@ -88,7 +88,7 @@ fun AppNavigation(drawerViewModel: DrawerViewModel) {
             )
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.PolizaDetalleScreen.ruta,
             viewModelFactory = {
                 PolizaDetailsViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
@@ -98,7 +98,7 @@ fun AppNavigation(drawerViewModel: DrawerViewModel) {
             PolizaDetailsScreen(poliza, viewModel, navController)
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.DatosSiniestro.ruta,
             viewModelFactory = {
                 DatosSiniestroViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
@@ -108,7 +108,7 @@ fun AppNavigation(drawerViewModel: DrawerViewModel) {
             DatosSiniestro(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.InformacionAdicional.ruta,
             viewModelFactory = {
                 InformacionAdicionalViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
@@ -118,7 +118,7 @@ fun AppNavigation(drawerViewModel: DrawerViewModel) {
             InformacionAdicional(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.DatosPropietarioVehiculoAsegurado.ruta,
             viewModelFactory = {
                 val service = RetrofitClient.apiService
@@ -137,7 +137,7 @@ fun AppNavigation(drawerViewModel: DrawerViewModel) {
             )
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.DatosPropietarioVehiculoTercero.ruta,
             viewModelFactory = {
                 DatosPropietarioVehiculoTerceroViewModel.provideFactory(
@@ -156,7 +156,7 @@ fun AppNavigation(drawerViewModel: DrawerViewModel) {
             )
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.ConductorVehiculoAsegurado.ruta,
             viewModelFactory = {
                 ConductorVehiculoAseguradoViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
@@ -166,7 +166,7 @@ fun AppNavigation(drawerViewModel: DrawerViewModel) {
             ConductorVehiculoAsegurado(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.ConductorVehiculoTercero.ruta,
             viewModelFactory = {
                 ConductorVehiculoTerceroViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
@@ -176,7 +176,7 @@ fun AppNavigation(drawerViewModel: DrawerViewModel) {
             ConductorVehiculoTercero(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.DaniosVehiculoAsegurado.ruta,
             viewModelFactory = {
                 DaniosVehiculoAseguradoViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
@@ -194,7 +194,7 @@ fun AppNavigation(drawerViewModel: DrawerViewModel) {
             )
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.DaniosVehiculosTercero.ruta,
             viewModelFactory = {
                 DaniosVehiculoTerceroViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
@@ -212,7 +212,7 @@ fun AppNavigation(drawerViewModel: DrawerViewModel) {
             )
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.DatosAdicionales.ruta,
             viewModelFactory = {
                 DatosAdicionalesViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
@@ -222,7 +222,7 @@ fun AppNavigation(drawerViewModel: DrawerViewModel) {
             DatosAdicionales(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.ConsecuenciaSiniestro.ruta,
             viewModelFactory = {
                 ConsecuenciaSiniestroViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
@@ -232,7 +232,7 @@ fun AppNavigation(drawerViewModel: DrawerViewModel) {
             ConsecuenciaSiniestro(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.RelatoAccidente.ruta,
             viewModelFactory = {
                 RelatoAccidenteViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
@@ -242,7 +242,7 @@ fun AppNavigation(drawerViewModel: DrawerViewModel) {
             RelatoAccidente(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.DaniosPersonales.ruta,
             viewModelFactory = {
                 DaniosPersonalesViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
@@ -252,7 +252,7 @@ fun AppNavigation(drawerViewModel: DrawerViewModel) {
             DaniosPersonales(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.LugarAsistencia.ruta,
             viewModelFactory = {
                 LugarAsistenciaViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
