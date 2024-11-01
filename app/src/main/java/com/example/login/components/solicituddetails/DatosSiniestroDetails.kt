@@ -4,22 +4,20 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.login.components.TextSolicitudDetails
-import com.example.login.ui.screens.forms.SolicitudDetailsScreen
+import com.example.login.data.models.solicitud.Solicitud
 
 
 @Composable
-fun DatosSiniestroDetails() {
+fun DatosSiniestroDetails(solicitud: Solicitud) {
     Column {
             Surface(
                 color = MaterialTheme.colorScheme.primary,
@@ -40,20 +38,20 @@ fun DatosSiniestroDetails() {
                         TextSolicitudDetails("N° de Póiliza:", "NUMERO DE POLIZA")
                         TextSolicitudDetails("Aseguradora:", "Seguros ORT")
                         Row{
-                            TextSolicitudDetails("Fecha Ocurrencia:", "10-10-2002")
-                            TextSolicitudDetails("Hora Ocurrencia:", "10:00")
+                            TextSolicitudDetails("Fecha Ocurrencia:", solicitud.datosSiniestro.fechaOcurrencia.toString())
+                            TextSolicitudDetails("Hora Ocurrencia:", solicitud.datosSiniestro.horaOcurrencia)
                         }
                         Row{
-                            TextSolicitudDetails("Lugar de Ocurrencia:", "Av. Libertador 1574")
-                            TextSolicitudDetails("CP:", "7300")
+                            TextSolicitudDetails("Lugar de Ocurrencia:", solicitud.datosSiniestro.lugarOcurrencia)
+                            TextSolicitudDetails("CP:", solicitud.datosSiniestro.codigoPostal.toString())
                         }
                         Row {
-                            TextSolicitudDetails("Localidad:", "Venado Tuerto")
-                            TextSolicitudDetails("Provincia:", "Buenos Aires")
+                            //TextSolicitudDetails("Localidad:", solicitud.datosSiniestro.localidad)
+                            //TextSolicitudDetails("Provincia:", solicitud.datosSiniestro.provincia)
                         }
-                        TextSolicitudDetails("Pais:", "Argentina")
-                        TextSolicitudDetails("Cantidad de autos que participaron:", "100")
-                        TextSolicitudDetails("Interseccion:", "Cordoba y Av. Comandante Franco")
+                        //TextSolicitudDetails("Pais:", solicitud.datosSiniestro.pais)
+                        TextSolicitudDetails("Cantidad de autos que participaron:", solicitud.datosSiniestro.cantidadAutosParticipantes.toString())
+                        TextSolicitudDetails("Interseccion:", solicitud.datosSiniestro.interseccion)
                     }
                 }
             }

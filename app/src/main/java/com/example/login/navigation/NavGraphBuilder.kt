@@ -25,3 +25,19 @@ fun <T : ViewModel> NavGraphBuilder.rutaComposablePoliza(
         }
     }
 }
+fun <T : ViewModel> NavGraphBuilder.rutaComposableSolicitud(
+    route: String,
+    viewModelFactory: () -> T,
+    content: @Composable (String, T) -> Unit
+) {
+    composable(
+        route = "$route/{solicitudId}",
+        arguments = listOf(navArgument("solicitudId") { type = NavType.StringType })
+    ) { backStackEntry ->
+        val solicitudId = backStackEntry.arguments?.getString("solicitudId")
+        if (solicitudId != null) {
+            val viewModel = viewModelFactory()
+            content(solicitudId, viewModel)
+        }
+    }
+}

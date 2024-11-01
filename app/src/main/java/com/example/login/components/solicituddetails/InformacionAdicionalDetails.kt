@@ -2,10 +2,10 @@ package com.example.login.components.solicituddetails
 
 import androidx.compose.runtime.Composable
 import com.example.login.components.TextSolicitudDetails
-import com.example.login.navigation.Rutas
+import com.example.login.data.models.solicitud.Solicitud
 
 @Composable
-fun InformacionAdicionalDetails(){
+fun InformacionAdicionalDetails(solicitud: Solicitud) {
     TextSolicitudDetails("¿Hubieron Daños Materiales?:", "SI")
     TextSolicitudDetails("¿Hubieron Daños Personales?:", "SI")
     TextSolicitudDetails("¿Hubieron Testigos?:", "SI")

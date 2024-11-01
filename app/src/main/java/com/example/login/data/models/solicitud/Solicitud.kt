@@ -8,7 +8,6 @@ import com.example.login.tokens.Token
 import com.example.login.tokens.Utility
 
 data class Solicitud(
-    val _id: String = "",
     val estado: Estado = Estado.PENDIENTE,
     var daniosVehiculoAsegurado: String = "aaa",
     var daniosVehiculoAfectado: String = "aaa",

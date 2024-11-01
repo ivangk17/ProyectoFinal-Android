@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.login.data.network.RetrofitClient
 import com.example.login.data.network.services.GetServicePolizas
+import com.example.login.data.network.services.GetServiceSolicitudes
 import com.example.login.data.network.services.GetServiceUser
 import com.example.login.data.network.services.GetStatus
 import com.example.login.data.repositories.SolicitudesRepositoryImpl
@@ -26,6 +27,7 @@ import com.example.login.ui.screens.forms.DatosSiniestro
 import com.example.login.ui.screens.forms.InformacionAdicional
 import com.example.login.ui.screens.forms.LugarAsistencia
 import com.example.login.ui.screens.forms.RelatoAccidente
+import com.example.login.ui.screens.forms.SolicitudDetailsScreen
 import com.example.login.ui.screens.forms.SolicitudEnviadaScreen
 import com.example.login.ui.screens.solicitudes.SolicitudesScreen
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
@@ -46,6 +48,7 @@ import com.example.login.ui.viewmodels.forms.InformacionAdicionalViewModel
 import com.example.login.ui.viewmodels.forms.LugarAsistenciaViewModel
 import com.example.login.ui.viewmodels.forms.RelatoAccidenteViewModel
 import com.example.login.ui.viewmodels.navdrawerviewmodel.DrawerViewModel
+import com.example.login.ui.viewmodels.solicitudesviewmod.SolicitudDetailsViewModel
 import com.example.login.ui.viewmodels.solicitudesviewmod.SolicitudesViewModel
 import com.example.login.ui.viewmodels.solicitudesviewmod.SolicitudesViewModelFactory
 import com.example.login.utilities.daniosVehiculoAsegurado
@@ -274,6 +277,15 @@ fun AppNavigation(drawerViewModel: DrawerViewModel) {
             SolicitudesScreen(solicitudesViewModel, navController,drawerViewModel)
         }
 
+            rutaComposableSolicitud(
+                route = Rutas.SolicitudDetalle.ruta,
+                viewModelFactory = {
+                    SolicitudDetailsViewModel.provideFactory(GetServiceSolicitudes(RetrofitClient.apiService))
+                        .create(SolicitudDetailsViewModel::class.java)
+                }
+            ) { solicitudId, viewModel ->
+                SolicitudDetailsScreen(solicitudId, viewModel, navController)
+            }
     }
     )
 }

@@ -12,6 +12,8 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Query
+
 interface Api {
 
     // Login endpoint, which returns a token
@@ -39,6 +41,9 @@ interface Api {
     //Para obtener las solicitudes simplificadas
     @GET("/api/solicitudes/list")
     suspend fun getSolicitudes(@Header("Authorization") token: String): Response <List<Solicitud>>
+
+    @GET("/api/solicitudes/buscarSolicitud")
+    suspend fun  getSolicitud(@Header("Authorization") token: String, @Query("idSolicitud") idSolicitud: String): Solicitud
 
 
 }
