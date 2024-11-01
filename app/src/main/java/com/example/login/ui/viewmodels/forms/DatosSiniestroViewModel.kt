@@ -21,9 +21,6 @@ class DatosSiniestroViewModel(
     val campos = listOf(
         FormField("Lugar de Ocurrencia", mutableStateOf(""), tipo = TipoCampo.TEXTO),
         FormField("Codigo Postal", mutableStateOf(""), tipo = TipoCampo.NUMERICO),
-        FormField("Localidad", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Provincia", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Pais", mutableStateOf(""), tipo = TipoCampo.TEXTO),
         FormField("Cantidad de autos que participaron en el siniestro", mutableStateOf(""), tipo = TipoCampo.NUMERICO),
         FormField("Interseccion", mutableStateOf(""), tipo = TipoCampo.TEXTO)
     )
@@ -74,9 +71,6 @@ class DatosSiniestroViewModel(
             solicitud.datosSiniestro.horaOcurrencia = "14:30:00"; // Ejemplo de hora exacta
             solicitud.datosSiniestro.lugarOcurrencia = "Lugar Ocurrencia";
             solicitud.datosSiniestro.codigoPostal = 7300;
-            solicitud.datosSiniestro.localidad = "Localidad";
-            solicitud.datosSiniestro.provincia = "Provincia";
-            solicitud.datosSiniestro.pais = "Pais";
             solicitud.datosSiniestro.cantidadAutosParticipantes = 2; // Ejemplo de cantidad
             solicitud.datosSiniestro.interseccion = "Intersección";
         }else{

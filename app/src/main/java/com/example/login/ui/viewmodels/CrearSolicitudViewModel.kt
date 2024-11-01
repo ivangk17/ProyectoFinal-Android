@@ -22,9 +22,6 @@ class CrearSolicitudViewModel: ViewModel()  {
 
         _solicitud.datosSiniestro.lugarOcurrencia = solicitud.datosSiniestro.lugarOcurrencia
         _solicitud.datosSiniestro.codigoPostal = solicitud.datosSiniestro.codigoPostal
-        _solicitud.datosSiniestro.localidad = solicitud.datosSiniestro.localidad
-        _solicitud.datosSiniestro.provincia = solicitud.datosSiniestro.provincia
-        _solicitud.datosSiniestro.pais = solicitud.datosSiniestro.pais
         _solicitud.datosSiniestro.cantidadAutosParticipantes = solicitud.datosSiniestro.cantidadAutosParticipantes
         _solicitud.datosSiniestro.interseccion = solicitud.datosSiniestro.interseccion
 
