@@ -280,7 +280,7 @@ fun AppNavigation(drawerViewModel: DrawerViewModel) {
             rutaComposableSolicitud(
                 route = Rutas.SolicitudDetalle.ruta,
                 viewModelFactory = {
-                    SolicitudDetailsViewModel.provideFactory(GetServiceSolicitudes(RetrofitClient.apiService))
+                    SolicitudDetailsViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService),GetServiceSolicitudes(RetrofitClient.apiService))
                         .create(SolicitudDetailsViewModel::class.java)
                 }
             ) { solicitudId, viewModel ->

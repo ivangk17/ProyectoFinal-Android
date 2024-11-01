@@ -13,11 +13,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.login.components.TextSolicitudDetails
+import com.example.login.data.models.poliza.Poliza
 import com.example.login.data.models.solicitud.Solicitud
 
 
 @Composable
-fun DatosSiniestroDetails(solicitud: Solicitud) {
+fun DatosSiniestroDetails(solicitud: Solicitud, poliza: Poliza) {
     Column {
             Surface(
                 color = MaterialTheme.colorScheme.primary,
@@ -35,8 +36,7 @@ fun DatosSiniestroDetails(solicitud: Solicitud) {
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(bottom = 15.dp)
                         )
-                        TextSolicitudDetails("N° de Póiliza:", "NUMERO DE POLIZA")
-                        TextSolicitudDetails("Aseguradora:", "Seguros ORT")
+                        TextSolicitudDetails("Aseguradora:", poliza.aseguradora)
                         Row{
                             TextSolicitudDetails("Fecha Ocurrencia:", solicitud.datosSiniestro.fechaOcurrencia.toString())
                             TextSolicitudDetails("Hora Ocurrencia:", solicitud.datosSiniestro.horaOcurrencia)
@@ -45,11 +45,6 @@ fun DatosSiniestroDetails(solicitud: Solicitud) {
                             TextSolicitudDetails("Lugar de Ocurrencia:", solicitud.datosSiniestro.lugarOcurrencia)
                             TextSolicitudDetails("CP:", solicitud.datosSiniestro.codigoPostal.toString())
                         }
-                        Row {
-                            //TextSolicitudDetails("Localidad:", solicitud.datosSiniestro.localidad)
-                            //TextSolicitudDetails("Provincia:", solicitud.datosSiniestro.provincia)
-                        }
-                        //TextSolicitudDetails("Pais:", solicitud.datosSiniestro.pais)
                         TextSolicitudDetails("Cantidad de autos que participaron:", solicitud.datosSiniestro.cantidadAutosParticipantes.toString())
                         TextSolicitudDetails("Interseccion:", solicitud.datosSiniestro.interseccion)
                     }

@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun MultipleLineText(label: String) {
+fun MultipleLineText(label: String, texto: String) {
     Surface(
         color = MaterialTheme.colorScheme.primary,
         modifier = Modifier
@@ -27,8 +27,7 @@ fun MultipleLineText(label: String) {
             horizontalAlignment = Alignment.CenterHorizontally // Alinea el contenido horizontalmente en el centro
         ) {
             Text(label, style = TextStyle(fontSize = 20.sp), modifier = Modifier.padding(10.dp))
-            Text("Esto es un texto muy largo que ocupara todo el capo que se encarga de describir los daños del vehiculo, la idea es poder ver como se adapta el componente" +
-                    "a un extenso texto",
+            Text(texto,
                 modifier = Modifier.padding(8.dp),
                 color = Color(red = 33, green = 33, blue = 33, alpha = 205)
             )

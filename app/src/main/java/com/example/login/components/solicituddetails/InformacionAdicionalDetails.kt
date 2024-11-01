@@ -6,12 +6,28 @@ import com.example.login.data.models.solicitud.Solicitud
 
 @Composable
 fun InformacionAdicionalDetails(solicitud: Solicitud) {
-    TextSolicitudDetails("¿Hubieron Daños Materiales?:", "SI")
-    TextSolicitudDetails("¿Hubieron Daños Personales?:", "SI")
-    TextSolicitudDetails("¿Hubieron Testigos?:", "SI")
-    TextSolicitudDetails("¿Hubo Denuncia Policial?:", "COMISARIA")
-    TextSolicitudDetails("Vigencia:", "10-10-200")
-    TextSolicitudDetails("Cobertura:", "Contra Terceros")
-    TextSolicitudDetails("Franquicia:", "$50000")
-    TextSolicitudDetails("Cobranza:", "$7000")
+    var daniosMateriales = "NO"
+    var daniosPersonales = "NO"
+    var hubieronTestigos = "NO"
+
+    if(solicitud.datosSiniestro.hubieronDaniosMateriales == true){
+        daniosMateriales = "SI"
+    }
+
+    if(solicitud.datosSiniestro.hubieronDaniosPersonales == true){
+        daniosPersonales = "SI"
+    }
+
+    if(solicitud.datosSiniestro.hubieronTestigos == true){
+        hubieronTestigos = "SI"
+    }
+
+    TextSolicitudDetails("¿Hubieron Daños Materiales?:",daniosMateriales)
+    TextSolicitudDetails("¿Hubieron Daños Personales?:", daniosPersonales)
+    TextSolicitudDetails("¿Hubieron Testigos?:", hubieronTestigos)
+    TextSolicitudDetails("¿Hubo Denuncia Policial?:", solicitud.datosSiniestro.huboDenuncia.toString())
+    TextSolicitudDetails("Vigencia:", solicitud.datosSiniestro.vigencia.toString())
+    TextSolicitudDetails("Cobertura:", solicitud.datosSiniestro.cobertura)
+    TextSolicitudDetails("Franquicia:", solicitud.datosSiniestro.franquicia)
+    TextSolicitudDetails("Cobranza:", solicitud.datosSiniestro.cobranza)
 }

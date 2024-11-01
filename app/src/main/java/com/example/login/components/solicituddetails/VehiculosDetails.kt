@@ -2,14 +2,15 @@ package com.example.login.components.solicituddetails
 
 import androidx.compose.runtime.Composable
 import com.example.login.components.TextSolicitudDetails
+import com.example.login.data.models.vehiculos.Vehiculo
 
 @Composable
-fun VehiculosDetails(){
+fun VehiculosDetails(vehiculo: Vehiculo){
     TituloH2Details("Datos del Vehiculo")
-    TextSolicitudDetails("Marca:", "Marca")
-    TextSolicitudDetails("Modelo:", "Modelo")
-    TextSolicitudDetails("Tipo del Vehiculo:", "Tipo del Vehiculo")
-    TextSolicitudDetails("Color:", "Color")
-    TextSolicitudDetails("Año:", "Año")
-    TextSolicitudDetails("Dominio:", "Dominio")
+    TextSolicitudDetails("Marca:", vehiculo.marca)
+    TextSolicitudDetails("Modelo:", vehiculo.modelo)
+    TextSolicitudDetails("Tipo del Vehiculo:", vehiculo.tipoVehiculo.toString())
+    TextSolicitudDetails("Color:", vehiculo.color)
+    TextSolicitudDetails("Año:", vehiculo.anio.toString())
+    TextSolicitudDetails("Dominio:", vehiculo.dominio)
 }

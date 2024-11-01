@@ -25,45 +25,47 @@ fun SolicitudDetailsScreen(
 ) {
     val solicitudCarga = viewModel.loadInfoSolicitud(solicitudId)
     val solicitud =viewModel.solicitud.value
+    val poliza =viewModel.poliza.value
+
 
         Text(viewModel.solicitud.value.daniosVehiculoAfectado)
 
     LazyColumn {
         item {
-            DatosSiniestroDetails(solicitud)
+            DatosSiniestroDetails(solicitud, poliza)
             HeaderDetails("Informacion Adicional"){
                 InformacionAdicionalDetails(solicitud)
             }
             HeaderDetails("Datos del Propietario del Vehiculo Asegurado"){
-                PropietarioAseguradoDetails()
+                PropietarioAseguradoDetails(solicitud)
             }
             HeaderDetails("Datos del Propietario del Vehiculo Afectado"){
-                PropietarioAfectadoDetails()
+                PropietarioAfectadoDetails(solicitud)
             }
             HeaderDetails("Conductor del Vehiculo Asegurado"){
-                ConductorDetails()
+                ConductorDetails(solicitud.conductorAsegurado)
             }
             HeaderDetails("Conductor del Vehiculo Afectado"){
-                ConductorDetails()
+                ConductorDetails(solicitud.conductorAfectado)
             }
-            MultipleLineText("Daños del  Vechiculo Asegurado")
+            MultipleLineText("Daños del  Vechiculo Asegurado", solicitud.daniosVehiculoAsegurado)
 
-            MultipleLineText("Daños del  Vechiculo Afectado")
+            MultipleLineText("Daños del  Vechiculo Afectado", solicitud.daniosVehiculoAfectado)
 
             HeaderDetails("Datos Adicionales"){
-                DatosAdicionalesDetails()
+                DatosAdicionalesDetails(solicitud.datosSiniestro)
             }
             HeaderDetails("Consecuencia del Siniestro"){
-                ConsecuenciaSiniestroDetails()
+                ConsecuenciaSiniestroDetails(solicitud.datosSiniestro.consecuenciaSiniestro)
             }
 
-            MultipleLineText("Relato del Accidente")
+            MultipleLineText("Relato del Accidente", solicitud.datosSiniestro.relato)
 
             HeaderDetails("Daños Personales"){
-                DaniosPersonalesDetails()
+                DaniosPersonalesDetails(solicitud)
             }
             HeaderDetails("Lugar de Asistencia"){
-                LugarAsistenciaDetails()
+                LugarAsistenciaDetails(solicitud.datosSiniestro.lugarAsistencia)
             }
         }
     }

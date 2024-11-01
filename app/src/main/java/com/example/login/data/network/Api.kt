@@ -23,12 +23,6 @@ interface Api {
      @GET("api/polizas/list")
      suspend fun getPolizas(@Header("Authorization") token: String): Response<List<Poliza>>
 
-    @POST("api/polizas/getPoliza")
-    suspend fun getPoliza(
-        @Header("Authorization") token: String,
-        @Body idPoliza: String
-        ): Poliza
-
      @GET("api/test/getStatus")
      suspend fun getStatus(): Response<Boolean>
 
@@ -44,6 +38,9 @@ interface Api {
 
     @GET("/api/solicitudes/buscarSolicitud")
     suspend fun  getSolicitud(@Header("Authorization") token: String, @Query("idSolicitud") idSolicitud: String): Solicitud
+
+    @GET("api/polizas/buscarPolizaPorDominio")
+    suspend fun getPoliza(@Header("Authorization") token: String, @Query("dominio") dominio: String): Poliza
 
 
 }

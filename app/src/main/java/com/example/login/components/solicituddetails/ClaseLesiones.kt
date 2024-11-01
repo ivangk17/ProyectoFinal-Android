@@ -1,25 +1,40 @@
 package com.example.login.components.solicituddetails
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.material3.Checkbox
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import com.example.login.data.models.solicitud.Lesiones
 
 @Composable
-fun ClaseLesiones(){
+fun ClaseLesiones(lesiones: Lesiones) {
     TituloH2Details("Tipo de Lesionado")
     Column(
 
     ) {
-        CamposCheckeablesDetails("Peaton/Ciclista")
-        CamposCheckeablesDetails("Conductor vehiculo del tercero")
-        CamposCheckeablesDetails("Ocupante vehiculo del tercero")
-        CamposCheckeablesDetails("Ocupante vehiculo asegurado")
-        CamposCheckeablesDetails("Asegurado")
-        CamposCheckeablesDetails("Conductor")
-        CamposCheckeablesDetails("Propietario vehiculo asegurado")
-        CamposCheckeablesDetails("Relacion con propietario")
+        if(lesiones.peatonOCiclista){
+            CamposCheckeablesDetails("Peaton/Ciclista", lesiones.peatonOCiclista)
+        }
+
+        if (lesiones.conductorTercero) {
+            CamposCheckeablesDetails("Conductor vehiculo del tercero", lesiones.conductorTercero);
+        }
+        if (lesiones.ocupanteTercero) {
+            CamposCheckeablesDetails("Ocupante vehiculo del tercero", lesiones.ocupanteTercero);
+        }
+        if (lesiones.conductorAsegurado) {
+            CamposCheckeablesDetails("Ocupante vehiculo asegurado", lesiones.conductorAsegurado);
+        }
+        if (lesiones.asegurado) {
+            CamposCheckeablesDetails("Asegurado", lesiones.asegurado);
+        }
+        if (lesiones.conductor) {
+            CamposCheckeablesDetails("Conductor", lesiones.conductor);
+        }
+        if (lesiones.propietarioVehiculoAsegurado) {
+            CamposCheckeablesDetails("Propietario vehiculo asegurado", lesiones.propietarioVehiculoAsegurado);
+        }
+        if (lesiones.relacionConPropietario) {
+            CamposCheckeablesDetails("Relacion con propietario", lesiones.relacionConPropietario);
+        }
+
     }
 }

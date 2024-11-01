@@ -14,7 +14,7 @@ class GetServicePolizas(
         api.getPolizas("Bearer ${Token.token}")
     }
 
-    suspend fun getPoliza(): Poliza = withContext(Dispatchers.IO){
-        api.getPoliza("Bearer ${Token.token}", "")
+    suspend fun getPoliza(dominio: String): Poliza = withContext(Dispatchers.IO){
+        api.getPoliza("Bearer ${Token.token}", dominio)
     }
 }

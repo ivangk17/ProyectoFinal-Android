@@ -7,19 +7,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import com.example.login.components.MultipleLineText
 import com.example.login.components.TextSolicitudDetails
+import com.example.login.data.models.solicitud.datosSiniestros.asistencia.LugarAsistencia
 
 @Composable
-fun LugarAsistenciaDetails(){
-    TextSolicitudDetails("Nombre del centro:", "Hospital Italiano")
+fun LugarAsistenciaDetails(lugarAsistencia: LugarAsistencia) {
+    TextSolicitudDetails("Nombre del centro:", lugarAsistencia.nombreCentro)
     Row(
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Text(
-            "¿Queda internado?"
-        )
-        Checkbox(checked = true, onCheckedChange = { })
+        CamposCheckeablesDetails("¿Queda internado?", lugarAsistencia.quedaInternado)
     }
 
     TextSolicitudDetails("Estado de lesiones:", "Muy Grave")
-    MultipleLineText("Descripcion de lesiones")
+    MultipleLineText("Descripcion de lesiones", lugarAsistencia.descripcionLesiones)
 }
