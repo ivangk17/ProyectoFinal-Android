@@ -72,7 +72,6 @@ class DatosSiniestroViewModel(
             solicitud.datosSiniestro.lugarOcurrencia = "Lugar Ocurrencia";
             solicitud.datosSiniestro.codigoPostal = 7300;
             solicitud.datosSiniestro.cantidadAutosParticipantes = 2; // Ejemplo de cantidad
-            solicitud.datosSiniestro.interseccion = "Intersección";
         }else{
             return null
         }
