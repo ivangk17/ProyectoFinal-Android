@@ -11,7 +11,6 @@ data class DatosSiniestro(
     var lugarOcurrencia: String = "",
     var codigoPostal: Int = -1,
     var cantidadAutosParticipantes: Number = -1,
-    var interseccion: String = "",
     var hubieronDaniosPersonales: Boolean? = null,
     var hubieronDaniosMateriales: Boolean? = null,
     var hubieronTestigos: Boolean? = null,
