@@ -32,7 +32,7 @@ fun HeaderDetails(label: String, contenido: @Composable () -> Unit){
             .fillMaxWidth(1.0F)
 
     ){
-        Box(modifier = Modifier.fillMaxWidth()){
+
 
             Column(modifier = Modifier
                 .padding(24.dp)) {
@@ -40,21 +40,23 @@ fun HeaderDetails(label: String, contenido: @Composable () -> Unit){
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
+
                     Column(modifier = Modifier.weight(1f)) {
                         Text(label, style = TextStyle(fontSize = 20.sp), modifier = Modifier.padding(bottom = 10.dp))
                     }
                     if (!expanded.value) {
-                        BotonMostrarMas(expanded)
+                        BotonMostrarMas(expanded, Modifier.padding( end = 1.dp, bottom = 1.dp))
                     }
                 }
-                if(expanded.value){
-                    contenido()
+
+                    if(expanded.value){
+                        contenido()
+                        Box(modifier = Modifier.fillMaxWidth()){
+                        BotonMostrarMas(expanded, Modifier.align(Alignment.BottomEnd).padding( top = 10.dp, end = 1.dp, bottom = 1.dp))
+                    }
                 }
             }
-            if (expanded.value){
-                BotonMostrarMas(expanded, Modifier.align(Alignment.BottomEnd).padding(16.dp))
-            }
-        }
+
 
     }
 }

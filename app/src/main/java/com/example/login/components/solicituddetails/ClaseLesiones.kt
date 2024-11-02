@@ -7,9 +7,7 @@ import com.example.login.data.models.solicitud.Lesiones
 @Composable
 fun ClaseLesiones(lesiones: Lesiones) {
     TituloH2Details("Tipo de Lesionado")
-    Column(
-
-    ) {
+    Column {
         if(lesiones.peatonOCiclista){
             CamposCheckeablesDetails("Peaton/Ciclista", lesiones.peatonOCiclista)
         }

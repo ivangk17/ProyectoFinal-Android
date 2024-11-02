@@ -1,8 +1,11 @@
 package com.example.login.ui.screens.forms
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.login.components.MultipleLineText
 import com.example.login.components.solicituddetails.ConductorDetails
@@ -27,10 +30,8 @@ fun SolicitudDetailsScreen(
     val solicitud =viewModel.solicitud.value
     val poliza =viewModel.poliza.value
 
-
-        Text(viewModel.solicitud.value.daniosVehiculoAfectado)
-
-    LazyColumn {
+    LazyColumn(
+    ) {
         item {
             DatosSiniestroDetails(solicitud, poliza)
             HeaderDetails("Informacion Adicional"){

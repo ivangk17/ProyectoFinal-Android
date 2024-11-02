@@ -14,8 +14,6 @@ fun DaniosPersonalesDetails(solicitud: Solicitud) {
             TituloH2Details("Datos Externos")
             TextSolicitudDetails("Estado civil:", "CASADO")
             TextSolicitudDetails("Telefono alternativo:", "11895236")
-        }
-        Column {
             ClaseLesiones(solicitud.lesiones)
         }
     }

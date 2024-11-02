@@ -37,16 +37,13 @@ fun DatosSiniestroDetails(solicitud: Solicitud, poliza: Poliza) {
                             modifier = Modifier.padding(bottom = 15.dp)
                         )
                         TextSolicitudDetails("Aseguradora:", poliza.aseguradora)
-                        Row{
-                            TextSolicitudDetails("Fecha Ocurrencia:", solicitud.datosSiniestro.fechaOcurrencia.toString())
-                            TextSolicitudDetails("Hora Ocurrencia:", solicitud.datosSiniestro.horaOcurrencia)
-                        }
-                        Row{
-                            TextSolicitudDetails("Lugar de Ocurrencia:", solicitud.datosSiniestro.lugarOcurrencia)
-                            TextSolicitudDetails("CP:", solicitud.datosSiniestro.codigoPostal.toString())
-                        }
+                        TextSolicitudDetails("Fecha Ocurrencia:", solicitud.datosSiniestro.fechaOcurrencia.toString())
+                        TextSolicitudDetails("Hora Ocurrencia:", solicitud.datosSiniestro.horaOcurrencia)
+
+                        TextSolicitudDetails("Lugar de Ocurrencia:", solicitud.datosSiniestro.lugarOcurrencia)
+                        TextSolicitudDetails("CP:", solicitud.datosSiniestro.codigoPostal.toString())
+
                         TextSolicitudDetails("Cantidad de autos que participaron:", solicitud.datosSiniestro.cantidadAutosParticipantes.toString())
-                        TextSolicitudDetails("Interseccion:", solicitud.datosSiniestro.interseccion)
                     }
                 }
             }
