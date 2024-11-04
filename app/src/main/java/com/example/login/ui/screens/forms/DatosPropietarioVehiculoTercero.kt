@@ -92,7 +92,7 @@ fun DatosPropietarioVehiculoTercero(
 
         item {
             DatePicker(
-                label = "Fecha de vencimiento de la poliza",
+                label = "Fecha vencimiento de la poliza",
                 valor = viewModel.fechaDeVencimiento,
                 error = viewModel.errorFechaVencimiento,
                 onDateSelected = { newValue -> viewModel.setFechaDeVencimiento(newValue) }
@@ -117,7 +117,7 @@ fun DatosPropietarioVehiculoTercero(
                     },
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 ) {
-                    Text("Enviar Solicitud")
+                    Text("Siguiente")
                 }
             }
         }

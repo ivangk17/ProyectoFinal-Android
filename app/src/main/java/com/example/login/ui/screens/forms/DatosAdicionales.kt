@@ -2,11 +2,15 @@ package com.example.login.ui.screens.forms
 
 import android.util.Log
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.login.components.DropdownMenuSample
 import com.example.login.components.MultipleLine
@@ -33,7 +37,11 @@ fun DatosAdicionales(
     val optionEstadoTiempo = EstadoTiempo.entries
     val context = LocalContext.current
 
-    LazyColumn {
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(25.dp)
+    ) {
         item {
             Column {
                 DropdownMenuSample(

@@ -74,17 +74,19 @@ fun TimePicker(label: String, valor: MutableState<String?>, error: MutableState<
                     errorContainerColor = Color.Red.copy(alpha = 0.1f),
                     focusedIndicatorColor = MaterialTheme.colorScheme.primary,
                     unfocusedIndicatorColor = Color.Gray
-                )
-            )
-                IconButton(onClick = { showTimePicker = !showTimePicker }) {
-                    Icon(
-                        modifier = Modifier.padding(start = 8.dp)
-                            .background(MaterialTheme.colorScheme.secondary, shape = shapeClockIcon)
-                            .border(width = 1.dp, color = Color.Black, shape = shapeClockIcon),
-                        painter = painterResource(id = R.drawable.ic_clock),
-                        contentDescription = "Select time"
-                    )
+                ),
+                trailingIcon = {
+                    IconButton(onClick = { showTimePicker = !showTimePicker }) {
+                        Icon(
+//                            modifier = Modifier.padding(start = 8.dp)
+//                                .border(width = 1.dp, color = Color.Black, shape = shapeClockIcon),
+                            painter = painterResource(id = R.drawable.ic_clock),
+                            contentDescription = "Select time"
+                        )
+                    }
                 }
+            )
+
         }
 
         if (error.value != null) {

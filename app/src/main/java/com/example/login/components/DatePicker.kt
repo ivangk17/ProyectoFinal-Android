@@ -43,7 +43,11 @@ import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DatePicker(label: String, valor: MutableState<String?>, error: MutableState<String?>, onDateSelected: (String) -> Unit) {
+fun DatePicker(
+    label: String,
+    valor: MutableState<String?>,
+    error: MutableState<String?>,
+    onDateSelected: (String) -> Unit) {
     var showDatePicker by remember { mutableStateOf(false) }
     val datePickerState = rememberDatePickerState()
     val selectedDate = datePickerState.selectedDateMillis?.let {
@@ -57,17 +61,16 @@ fun DatePicker(label: String, valor: MutableState<String?>, error: MutableState<
         }
     }
 
-    Column(modifier = Modifier.fillMaxWidth()) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(8.dp)) {
+    Box(
+    ) {
+        Column(
+            modifier = Modifier.padding(8.dp)
+        ) {
             OutlinedTextField(
                 value = selectedDate,
                 onValueChange = { },
                 label = { Text(label) },
                 readOnly = true,
-                modifier = Modifier
-                    .height(64.dp),
                 isError = error.value != null,
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.Transparent,
@@ -76,30 +79,27 @@ fun DatePicker(label: String, valor: MutableState<String?>, error: MutableState<
                     errorContainerColor = Color.Red.copy(alpha = 0.1f),
                     focusedIndicatorColor = MaterialTheme.colorScheme.primary,
                     unfocusedIndicatorColor = Color.Gray
-                )
+                ),
+                trailingIcon = {
+                    IconButton(onClick = { showDatePicker = !showDatePicker }) {
+                        Icon(
+                            imageVector = Icons.Default.DateRange,
+                            contentDescription = "Select date"
+                        )
+                    }
+                },
+                modifier = Modifier
+                    .height(64.dp)
             )
-            IconButton(
-                modifier = Modifier.padding(8.dp),
-                onClick = { showDatePicker = true }) {
-                Icon(
-                    modifier = Modifier
-                        .background(MaterialTheme.colorScheme.secondary)
-                        .border(width = 1.dp, color = Color.Black)
-                        .size(30.dp),
-                    painter = painterResource(id = R.drawable.ic_calendar),
-                    contentDescription = "Select date"
+
+            if (error.value != null) {
+                Text(
+                    text = error.value ?: "",
+                    color = MaterialTheme.colorScheme.error,
+                    style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier.padding(top = 8.dp)
                 )
             }
-
-        }
-
-        if (error.value != null) {
-            Text(
-                text = error.value ?: "",
-                color = MaterialTheme.colorScheme.error,
-                style = MaterialTheme.typography.bodySmall,
-                modifier = Modifier.padding(top = 4.dp).background(Color.Black)
-            )
         }
 
         if (showDatePicker) {
@@ -115,7 +115,7 @@ fun DatePicker(label: String, valor: MutableState<String?>, error: MutableState<
                         .background(MaterialTheme.colorScheme.surface)
                         .padding(16.dp)
                 ) {
-                    DatePicker(
+                    androidx.compose.material3.DatePicker(
                         state = datePickerState,
                         showModeToggle = false
                     )
@@ -124,7 +124,6 @@ fun DatePicker(label: String, valor: MutableState<String?>, error: MutableState<
         }
     }
 }
-
 
 
 fun convertMillisToDate(millis: Long): String {

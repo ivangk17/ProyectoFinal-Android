@@ -4,6 +4,7 @@ package com.example.login.ui.screens.forms
 import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -11,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.login.components.DropdownMenuSample
 import com.example.login.components.FieldStringForms
@@ -40,7 +42,11 @@ fun DatosPropietarioVehiculoAsegurado(
 //
 //    }
 
-    Column (modifier = Modifier.fillMaxSize()){
+    Column (
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(25.dp)
+    ){
         LazyColumn (modifier = Modifier.weight(1f)) {
 
             items(viewModel.campos.size) { index ->
@@ -87,7 +93,7 @@ fun DatosPropietarioVehiculoAsegurado(
                     },
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 ) {
-                    Text("Enviar Solicitud")
+                    Text("Siguiente")
                 }
             }
         }

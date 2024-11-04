@@ -24,7 +24,7 @@ fun MultipleLineText(label: String, texto: String) {
     ) {
         Column(modifier = Modifier
             .padding(bottom = 10.dp),
-            horizontalAlignment = Alignment.CenterHorizontally // Alinea el contenido horizontalmente en el centro
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(label, style = TextStyle(fontSize = 20.sp), modifier = Modifier.padding(10.dp))
             Text(texto,

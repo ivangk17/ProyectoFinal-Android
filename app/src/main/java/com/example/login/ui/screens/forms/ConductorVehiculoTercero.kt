@@ -116,7 +116,7 @@ fun ConductorVehiculoTercero(
                     },
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 ) {
-                    Text("Enviar Solicitud")
+                    Text("Siguiente")
                 }
             }
         }

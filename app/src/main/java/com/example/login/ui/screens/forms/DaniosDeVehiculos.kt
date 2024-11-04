@@ -2,10 +2,14 @@ package com.example.login.ui.screens.forms
 
 import android.util.Log
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
 import com.example.login.components.MultipleLine
@@ -29,7 +33,11 @@ fun <T> DaniosDeVehiculos(
     onEnviar: (CrearSolicitudViewModel, Solicitud) -> Unit
 ) where T : ViewModel, T : DaniosViewModel {
     val context = LocalContext.current
-    Column {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(25.dp)
+    ) {
         MultipleLine(
             titulo = title,
             valor = viewModel.descripcionDanios,

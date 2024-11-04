@@ -3,6 +3,7 @@ package com.example.login.ui.screens.forms
 import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -10,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.login.components.DatePicker
 import com.example.login.components.DropdownMenuSample
@@ -32,7 +34,11 @@ fun InformacionAdicional(
 ){
     val options = HuboDenuncia.entries
     val context = LocalContext.current
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(25.dp)
+    ) {
         LazyColumn(modifier = Modifier.weight(1f)) {
             items(viewModel.camposCheckeables.size){ index ->
                 val campo = viewModel.camposCheckeables[index]
@@ -70,25 +76,27 @@ fun InformacionAdicional(
                     onValueChange = { newValue -> viewModel.onCampoChange(index, newValue) }
                 )
             }
-        }
 
-        Button(
-            onClick = {
-                val solicitud = viewModel.crearSolicitudPoliza()
-                val polizaJson = gson.toJson(poliza)
+            item {
+                Button(
+                    onClick = {
+                        val solicitud = viewModel.crearSolicitudPoliza()
+                        val polizaJson = gson.toJson(poliza)
 
-                if (solicitud != null) {
-                    crearSolicitudViewModel.envioInformacionAdicional(solicitud)
-                    navController.navigate("${Rutas.LoadingScreen.ruta}/$polizaJson/${Rutas.DatosPropietarioVehiculoAsegurado.ruta}")
-                } else {
+                        if (solicitud != null) {
+                            crearSolicitudViewModel.envioInformacionAdicional(solicitud)
+                            navController.navigate("${Rutas.LoadingScreen.ruta}/$polizaJson/${Rutas.DatosPropietarioVehiculoAsegurado.ruta}")
+                        } else {
 
-                    showToastError(context, "error: No se puede crear la solicitud")
-                    Log.d("solicitud", "no se creo")
+                            showToastError(context, "error: No se puede crear la solicitud")
+                            Log.d("solicitud", "no se creo")
+                        }
+                    },
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                ) {
+                    Text("Siguiente")
                 }
-            },
-            modifier = Modifier.align(Alignment.CenterHorizontally)
-        ) {
-            Text("Enviar Solicitud")
+            }
         }
     }
 }

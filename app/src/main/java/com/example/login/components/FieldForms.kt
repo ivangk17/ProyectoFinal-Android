@@ -40,6 +40,7 @@ fun FieldStringForms(
                 disabledContainerColor = Color.Gray,
                 errorContainerColor = Color.Red.copy(alpha = 0.1f),
                 focusedIndicatorColor = MaterialTheme.colorScheme.primary,
+
             )
         )
         if (isError) {

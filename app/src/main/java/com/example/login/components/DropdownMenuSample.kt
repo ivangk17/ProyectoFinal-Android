@@ -46,13 +46,14 @@ fun <T> DropdownMenuSample(
                 text = label(selectedOption),
                 modifier = Modifier
                     .clickable { expanded = true }
-                    .background(MaterialTheme.colorScheme.surface)
+                    .background(Color.Transparent)
                     .padding(16.dp)
             )
 
             DropdownMenu(
                 expanded = expanded,
-                onDismissRequest = { expanded = false }
+                onDismissRequest = { expanded = false },
+                modifier = Modifier.background(MaterialTheme.colorScheme.secondary)
             ) {
                 options.forEach { option ->
                     DropdownMenuItem(
