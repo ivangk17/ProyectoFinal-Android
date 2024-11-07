@@ -45,7 +45,7 @@ class CrearSolicitudViewModel: ViewModel()  {
     fun datosPropietarioVehiculoAsegurado(solicitud: Solicitud) {
         _solicitud.propietarioAsegurado.datosPersona.nombre = solicitud.propietarioAsegurado.datosPersona.nombre
         _solicitud.propietarioAsegurado.datosPersona.apellido = solicitud.propietarioAsegurado.datosPersona.apellido
-
+        _solicitud.propietarioAsegurado.datosPersona.nombreCompleto = solicitud.propietarioAsegurado.datosPersona.nombreCompleto
         _solicitud.propietarioAsegurado.datosPersona.domicilio.calle = solicitud.propietarioAsegurado.datosPersona.domicilio.calle
         _solicitud.propietarioAsegurado.datosPersona.domicilio.numero = solicitud.propietarioAsegurado.datosPersona.domicilio.numero
         _solicitud.propietarioAsegurado.datosPersona.domicilio.piso = solicitud.propietarioAsegurado.datosPersona.domicilio.piso

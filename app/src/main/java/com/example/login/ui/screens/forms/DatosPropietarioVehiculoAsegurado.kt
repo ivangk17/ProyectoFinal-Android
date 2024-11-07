@@ -65,7 +65,7 @@ fun DatosPropietarioVehiculoAsegurado(
                         options = optionsSexo,
                         selectedOption = viewModel.sexoSeleccionado.value,
                         onOptionSelected = { viewModel.sexoSeleccionado.value = it },
-                        label = { it.name }
+                        label = { it.displayName }
                     )
                 }
                 }
@@ -76,7 +76,7 @@ fun DatosPropietarioVehiculoAsegurado(
                     options = optionsUsoVehiculo,
                     selectedOption = viewModel.usoDelVehiculo.value,
                     onOptionSelected = { viewModel.usoDelVehiculo.value = it },
-                    label = { it.name }
+                    label = { it.displayName }
                 )
 
                 Button(

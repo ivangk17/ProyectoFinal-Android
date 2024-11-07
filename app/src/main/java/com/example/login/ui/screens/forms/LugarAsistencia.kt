@@ -68,7 +68,7 @@ fun LugarAsistencia(
                     options = options,
                     selectedOption = viewModel.estadoLesiones.value,
                     onOptionSelected = { viewModel.estadoLesiones.value = it },
-                    label = { it.name }
+                    label = { it.displayName }
                 )
                 MultipleLine(
                     titulo = "Descripcion de las lesiones",

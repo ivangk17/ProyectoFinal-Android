@@ -15,7 +15,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.login.components.DatePicker
-import com.example.login.components.DatePicker2
 import com.example.login.components.FieldStringForms
 import com.example.login.components.TimePicker
 import com.example.login.data.models.poliza.Poliza

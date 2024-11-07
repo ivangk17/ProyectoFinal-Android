@@ -49,21 +49,21 @@ fun DatosAdicionales(
                     options = optionsTipoCamino,
                     selectedOption = viewModel.tipoCamino.value,
                     onOptionSelected = { viewModel.tipoCamino.value = it },
-                    label = { it.name }
+                    label = { it.displayName }
                 )
                 DropdownMenuSample(
                     title = "Seleccionar el estado del camino",
                     options = optionEstadoCamino,
                     selectedOption = viewModel.estadoCamino.value,
                     onOptionSelected = { viewModel.estadoCamino.value = it },
-                    label = { it.name }
+                    label = { it.displayName }
                 )
                 DropdownMenuSample(
                     title = "Seleccionar el estado del tiempo",
                     options = optionEstadoTiempo,
                     selectedOption = viewModel.estadoTiempo.value,
                     onOptionSelected = { viewModel.estadoTiempo.value = it },
-                    label = { it.name }
+                    label = { it.displayName }
                 )
             }
         }

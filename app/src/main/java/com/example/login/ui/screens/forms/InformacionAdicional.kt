@@ -55,7 +55,7 @@ fun InformacionAdicional(
                     options = options,
                     selectedOption = viewModel.huboDenunciaSeleccion.value,
                     onOptionSelected = { viewModel.huboDenunciaSeleccion.value = it },
-                    label = { it.name }
+                    label = { it.displayName }
                 )
 
                 DatePicker(

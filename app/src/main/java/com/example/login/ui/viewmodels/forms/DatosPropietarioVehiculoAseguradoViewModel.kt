@@ -65,6 +65,7 @@ class DatosPropietarioVehiculoAseguradoViewModel (
         if (campos.all { it.error.value == null }) { //similar a un foreach
             Solicitud.propietarioAsegurado.datosPersona.nombre = campos[0].value.value
             Solicitud.propietarioAsegurado.datosPersona.apellido = campos[1].value.value
+            Solicitud.propietarioAsegurado.datosPersona.nombreCompleto = "${campos[0].value.value} ${campos[1].value.value}"
             Solicitud.propietarioAsegurado.datosPersona.domicilio.calle = campos[2].value.value
             Solicitud.propietarioAsegurado.datosPersona.domicilio.numero = campos[3].value.value.toInt()
             Solicitud.propietarioAsegurado.datosPersona.domicilio.piso = campos[4].value.value.toInt()

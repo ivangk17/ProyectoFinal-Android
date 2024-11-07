@@ -76,7 +76,7 @@ fun DatosPropietarioVehiculoTercero(
                     options = optionsSexo,
                     selectedOption = viewModel.sexoSeleccionado.value,
                     onOptionSelected = { viewModel.sexoSeleccionado.value = it },
-                    label = { it.name }
+                    label = { it.displayName }
                 )
             }
             if (index == 10){
@@ -85,7 +85,7 @@ fun DatosPropietarioVehiculoTercero(
                     options = optionsTipoVehiculo,
                     selectedOption = viewModel.tipoVehiculo.value,
                     onOptionSelected = { viewModel.tipoVehiculo.value = it },
-                    label = { it.name }
+                    label = { it.displayName }
                 )
             }
         }

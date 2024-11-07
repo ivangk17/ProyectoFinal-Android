@@ -80,7 +80,7 @@ fun ConductorVehiculoTercero(
                     options = optionsSexo,
                     selectedOption = viewModel.sexoSeleccionado.value,
                     onOptionSelected = { viewModel.sexoSeleccionado.value = it },
-                    label = { it.name }
+                    label = { it.displayName }
                 )
             }
 

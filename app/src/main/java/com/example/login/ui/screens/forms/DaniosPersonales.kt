@@ -71,7 +71,7 @@ fun DaniosPersonales(
                     options = options,
                     selectedOption = viewModel.sexoLesionado.value,
                     onOptionSelected = { viewModel.sexoLesionado.value = it },
-                    label = { it.name }
+                    label = { it.displayName }
                 )
             }
         }
