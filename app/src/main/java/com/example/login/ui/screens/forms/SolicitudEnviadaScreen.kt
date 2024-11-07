@@ -22,7 +22,7 @@ fun SolicitudEnviadaScreen(navController: NavHostController) {
     var ok by remember { mutableStateOf(false) }
 
     LaunchedEffect(ok) {
-        delay(1000)
+        delay(5000)
     }
 
     Column(

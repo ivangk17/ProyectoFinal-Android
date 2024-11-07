@@ -30,18 +30,23 @@ fun validarMail(email: FormField) {
 }
 
 private fun validarCampoNoVacio(campo: FormField): String? {
-    return if (campo.value.value.isEmpty()) "El campo ${campo.label} no puede estar vacío" else null
+    return if ((campo.label != "Departamento") && campo.value.value.isEmpty()) {
+        "El campo ${campo.label} no puede estar vacío"
+    } else {
+        null
+    }
 }
 
 private fun validarCampoNumerico(valor: FormField): String? {
     var resultado: String? = null
-    if(valor.value.value.toDoubleOrNull() == null){
-        resultado = "El campo ${valor.label} no puede estar vacío"
-    }
-    else if(valor.value.value.toDoubleOrNull()!! <= 0){
-        resultado = "El campo ${valor.label} no es valido"
-    }
 
+    if(valor.label != "Piso"){
+        if(valor.value.value.toDoubleOrNull() == null){
+            resultado = "El campo ${valor.label} no puede estar vacío"
+        }
+        else if(valor.value.value.toDoubleOrNull()!! <= 0){
+            resultado = "El campo ${valor.label} no es valido"
+        }
+    }
     return resultado
-
 }

@@ -10,6 +10,7 @@ import com.example.login.navigation.Rutas
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class CrearSolicitudViewModel: ViewModel()  {
     private val _solicitud = Solicitud()
@@ -19,15 +20,9 @@ class CrearSolicitudViewModel: ViewModel()  {
         _solicitud.datosSiniestro.fechaOcurrencia = solicitud.datosSiniestro.fechaOcurrencia
         _solicitud.datosSiniestro.horaOcurrencia = solicitud.datosSiniestro.horaOcurrencia
 
-
         _solicitud.datosSiniestro.lugarOcurrencia = solicitud.datosSiniestro.lugarOcurrencia
         _solicitud.datosSiniestro.codigoPostal = solicitud.datosSiniestro.codigoPostal
         _solicitud.datosSiniestro.cantidadAutosParticipantes = solicitud.datosSiniestro.cantidadAutosParticipantes
-
-
-
-
-
 
     }
 
@@ -220,20 +215,20 @@ class CrearSolicitudViewModel: ViewModel()  {
     }
 
      private fun enviarSolicitud(navController: NavController, polizaJson: String){
-         //val solicitudJson = gson.toJson(_solicitud)
          Log.d("SOLICITU A ENVIAR", _solicitud.toString())
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val respuesta = RetrofitClient.apiService.enviarSolicitud(_solicitud)
+                Log.d("respuesta", respuesta.toString())
                 if (respuesta.isSuccessful) {
                     println("Solicitud enviada exitosamente")
-                    navController.navigate("${Rutas.LoadingScreen.ruta}/$polizaJson/${Rutas.SolicitudEnviada.ruta}")
+                    withContext(Dispatchers.Main) {
+                        navController.navigate("${Rutas.LoadingScreen.ruta}/$polizaJson/${Rutas.SolicitudEnviada.ruta}")
+                    }
                 } else {
-                    // Manejar el error
                     println("Error al enviar la solicitud: ${respuesta.errorBody()?.string()}")
                 }
             } catch (e: Exception) {
-                // Manejar la excepción
                 println("Excepción al enviar la solicitud: ${e.message}")
             }
         }

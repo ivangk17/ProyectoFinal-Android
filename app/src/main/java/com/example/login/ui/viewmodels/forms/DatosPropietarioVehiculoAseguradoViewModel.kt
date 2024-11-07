@@ -68,13 +68,14 @@ class DatosPropietarioVehiculoAseguradoViewModel (
             Solicitud.propietarioAsegurado.datosPersona.nombreCompleto = "${campos[0].value.value} ${campos[1].value.value}"
             Solicitud.propietarioAsegurado.datosPersona.domicilio.calle = campos[2].value.value
             Solicitud.propietarioAsegurado.datosPersona.domicilio.numero = campos[3].value.value.toInt()
-            Solicitud.propietarioAsegurado.datosPersona.domicilio.piso = campos[4].value.value.toInt()
+            Solicitud.propietarioAsegurado.datosPersona.domicilio.piso = if (campos[4].value.value.isEmpty()) null else campos[4].value.value.toInt()
             Solicitud.propietarioAsegurado.datosPersona.domicilio.departamento = campos[5].value.value
             Solicitud.propietarioAsegurado.datosPersona.domicilio.codigoPostal = campos[6].value.value.toInt()
             Solicitud.propietarioAsegurado.datosPersona.cuit = campos[7].value.value.toInt()
             Solicitud.propietarioAsegurado.datosPersona.email = campos[8].value.value
             Solicitud.propietarioAsegurado.datosPersona.telefono = campos[9].value.value
             Solicitud.propietarioAsegurado.datosPersona.sexo = sexoSeleccionado.value
+            Log.d("fecha de nacimiento", user.value.fechaDeNacimiento)
             Solicitud.propietarioAsegurado.datosPersona.fechaDeNacimiento = user.value.fechaDeNacimiento
             Solicitud.propietarioAsegurado.vehiculo.datosVehiculo.tipoVehiculo = poliza.vehiculo.tipoVehiculo
             Solicitud.propietarioAsegurado.vehiculo.datosVehiculo.marca = campos[10].value.value

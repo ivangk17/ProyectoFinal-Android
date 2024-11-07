@@ -19,9 +19,9 @@ fun DomicilioDetails(domicilio: Domicilio) {
     }
     Row {
         Row (Modifier.padding(end = 25.dp)){
-            TextSolicitudDetails("Piso:", domicilio.piso.toString())
+            TextSolicitudDetails("Piso:", domicilio.piso?.toString() ?: "")
         }
-        TextSolicitudDetails("Departamento:", domicilio.departamento.toString())
+        TextSolicitudDetails("Departamento:", domicilio.departamento?.toString() ?: "")
     }
     TextSolicitudDetails("CP:", domicilio.codigoPostal.toString())
 }

@@ -81,7 +81,7 @@ class ConductorVehiculoTerceroViewModel (
 //            solicitud.conductorAfectado.datosPersona.apellido = campos[1].value.value
 //            solicitud.conductorAfectado.datosPersona.domicilio.calle = campos[2].value.value
 //            solicitud.conductorAfectado.datosPersona.domicilio.numero = campos[3].value.value.toInt()
-//            solicitud.conductorAfectado.datosPersona.domicilio.piso = campos[4].value.value.toInt()
+//            solicitud.conductorAfectado.datosPersona.domicilio.piso = if (campos[4].value.value.isEmpty()) null else campos[4].value.value.toInt()
 //            solicitud.conductorAfectado.datosPersona.domicilio.departamento = campos[5].value.value
 //            solicitud.conductorAfectado.datosPersona.domicilio.codigoPostal = campos[6].value.value.toInt()
 //            solicitud.conductorAfectado.datosPersona.cuit = campos[7].value.value.toInt()

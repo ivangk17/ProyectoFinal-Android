@@ -19,6 +19,7 @@ import com.example.login.components.MultipleLine
 import com.example.login.components.SwitchCustom
 import com.example.login.data.models.poliza.Poliza
 import com.example.login.data.models.solicitud.datosSiniestros.asistencia.EstadoLesiones
+import com.example.login.navigation.Rutas
 import com.example.login.ui.screens.gson
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.forms.LugarAsistenciaViewModel
@@ -85,7 +86,6 @@ fun LugarAsistencia(
                 val polizaJson = gson.toJson(poliza)
                 if (solicitud != null) {
                         crearSolicitudViewModel.lugarAsistencia(solicitud, navController, polizaJson)
-
                 } else {
                     showToastError(context, "error: No se puede crear la solicitud")
                     Log.d("solicitud", "no se creo")
