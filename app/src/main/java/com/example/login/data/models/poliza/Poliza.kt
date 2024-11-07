@@ -5,6 +5,7 @@ import com.example.login.data.models.vehiculos.VehiculoPoliza
 import com.example.login.data.models.vehiculos.VehiculoPropietarioAsegurado
 
 data class Poliza(
+    val _id: String = "",
     val asegurado: String = "",
     val asegurador: String = "",
     val dniAsegurado: String = "",
