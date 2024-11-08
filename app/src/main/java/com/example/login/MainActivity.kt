@@ -1,30 +1,27 @@
 package com.example.login
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.ViewModelProvider
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.DrawerValue.Closed
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.rememberDrawerState
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.login.components.MyAppTheme
 import com.example.login.components.topbars.NavigationTopBar
 import com.example.login.components.topbars.TopBar
-import com.example.login.data.network.services.GetStatus
-import com.example.login.data.network.RetrofitClient
-import com.example.login.navigation.AppNavigation
 import com.example.login.navigation.AppNavigationActions
+import com.example.login.ui.screens.MainScreen
 import com.example.login.ui.viewmodels.navdrawerviewmodel.DrawerViewModel
 import com.example.login.ui.viewmodels.navdrawerviewmodel.DrawerViewModelFactory
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
 
@@ -34,8 +31,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             val drawerViewModel = ViewModelProvider(this, DrawerViewModelFactory())
                 .get(DrawerViewModel::class.java)
-            val drawerState = rememberDrawerState(initialValue = Closed)
 
+/*
             MyAppTheme {
 
                 var lastScreen: String? = ""
@@ -69,15 +66,21 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                 ) { innerPadding ->
+
+
                     Box(
                         modifier = Modifier
                             .fillMaxSize()
                             .padding(innerPadding)
                     ){
-                        AppNavigation(navController,  drawerViewModel)
+                       // AppNavigation(navController,  drawerViewModel)
+
+                       // MainScreen(drawerViewModel)
                     }
                 }
             }
+            */
+            MainScreen()
 
         }
     }
