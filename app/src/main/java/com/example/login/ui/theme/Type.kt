@@ -15,6 +15,7 @@ val Typography = Typography(
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp
     )
+
     /* Other default text styles to override
     titleLarge = TextStyle(
         fontFamily = FontFamily.Default,
@@ -31,4 +32,10 @@ val Typography = Typography(
         letterSpacing = 0.5.sp
     )
     */
+)
+
+val TituloTopBar = TextStyle(
+    fontSize = 18.sp,
+    fontWeight = FontWeight.Bold,
+    lineHeight = 21.6.sp,
 )
