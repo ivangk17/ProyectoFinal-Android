@@ -30,7 +30,6 @@ import com.example.login.utilities.showToastError
 fun LugarAsistencia(
     navController: NavController,
     viewModel: LugarAsistenciaViewModel,
-    poliza: Poliza,
     crearSolicitudViewModel: CrearSolicitudViewModel
 ){
     val options = EstadoLesiones.entries
@@ -83,9 +82,8 @@ fun LugarAsistencia(
         Button(
             onClick = {
                 val solicitud = viewModel.crearSolicitudPoliza()
-                val polizaJson = gson.toJson(poliza)
                 if (solicitud != null) {
-                        crearSolicitudViewModel.lugarAsistencia(solicitud, navController, polizaJson)
+                        crearSolicitudViewModel.lugarAsistencia(solicitud, navController)
                 } else {
                     showToastError(context, "error: No se puede crear la solicitud")
                     Log.d("solicitud", "no se creo")

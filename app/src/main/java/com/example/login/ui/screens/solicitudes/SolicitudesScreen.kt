@@ -63,13 +63,6 @@ fun SolicitudesScreen(
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(
-                    text = stringResource(R.string.Solicitudes_titulo),
-                    fontSize = 30.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(bottom = 25.dp),
-                    color = colorResource(id = R.color.texto_principal),
-                )
                 SolicitudesLista(solicitudes, navController)
             }
         }

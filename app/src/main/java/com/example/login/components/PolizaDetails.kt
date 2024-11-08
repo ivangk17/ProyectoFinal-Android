@@ -37,10 +37,6 @@ fun PolizaDetails(poliza: Poliza){
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Box() {
-                    Text("Detalle de la Poliza",
-                        fontSize = 20.sp,
-                        modifier = Modifier.padding(top = 26.dp, bottom =  12.dp)
-                    )
                     Row(modifier =  Modifier.padding(bottom = 10.dp)) {
                         Text(text = "Poliza:",
                             fontWeight = FontWeight.Bold,

@@ -37,7 +37,7 @@ fun TopBar(
             Text(
                 text = title,
                 style = titleStyle,
-                color = Color.Black
+                color = titleColor
             )
             if (description.isNotEmpty()){
                 Text(

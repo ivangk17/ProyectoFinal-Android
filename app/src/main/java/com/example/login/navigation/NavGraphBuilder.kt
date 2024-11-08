@@ -9,6 +9,19 @@ import androidx.navigation.navArgument
 import com.example.login.data.models.poliza.Poliza
 import com.example.login.utilities.obtenerObjetoDeNavegacion
 
+fun <T : ViewModel> NavGraphBuilder.rutaComposable(
+    route: String,
+    viewModelFactory: () -> T,
+    content: @Composable ( T) -> Unit
+) {
+    composable(
+        route = route,
+    ) { backStackEntry ->
+            val viewModel = viewModelFactory()
+            content(viewModel)
+        }
+    }
+
 fun <T : ViewModel> NavGraphBuilder.rutaComposablePoliza(
     route: String,
     viewModelFactory: () -> T,
@@ -25,6 +38,7 @@ fun <T : ViewModel> NavGraphBuilder.rutaComposablePoliza(
         }
     }
 }
+
 fun <T : ViewModel> NavGraphBuilder.rutaComposableSolicitud(
     route: String,
     viewModelFactory: () -> T,

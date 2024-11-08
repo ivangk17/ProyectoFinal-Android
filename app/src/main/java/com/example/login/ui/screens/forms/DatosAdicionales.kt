@@ -29,7 +29,6 @@ import com.example.login.utilities.showToastError
 fun DatosAdicionales(
     navController: NavController,
     viewModel: DatosAdicionalesViewModel,
-    poliza: Poliza,
     crearSolicitudViewModel: CrearSolicitudViewModel
 ){
     val optionsTipoCamino = TipoCamino.entries
@@ -91,10 +90,9 @@ fun DatosAdicionales(
             Button(
                 onClick = {
                     val solicitud = viewModel.crearSolicitud()
-                    val polizaJson = gson.toJson(poliza)
                     if (solicitud != null) {
                         crearSolicitudViewModel.datosAdicionales(solicitud)
-                        navController.navigate("${Rutas.ConsecuenciaSiniestro.ruta}/${polizaJson}")
+                        navController.navigate(Rutas.ConsecuenciaSiniestro.ruta)
                     } else {
                         showToastError(context, "error: No se puede crear la solicitud")
                         Log.d("solicitud", "no se creo")

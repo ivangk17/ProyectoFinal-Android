@@ -28,7 +28,6 @@ fun <T> DaniosDeVehiculos(
     navController: NavHostController,
     viewModel: T,
     crearSolicitudViewModel: CrearSolicitudViewModel,
-    poliza: Poliza,
     proximaRuta: Rutas,
     onEnviar: (CrearSolicitudViewModel, Solicitud) -> Unit
 ) where T : ViewModel, T : DaniosViewModel {
@@ -47,10 +46,9 @@ fun <T> DaniosDeVehiculos(
         Button(
             onClick = {
                 val solicitud = viewModel.crearSolicitud()
-                val polizaJson = gson.toJson(poliza)
                 if (solicitud != null) {
                     onEnviar(crearSolicitudViewModel, solicitud)
-                    navController.navigate(route = "${proximaRuta.ruta}/${polizaJson}")
+                    navController.navigate(route = proximaRuta.ruta)
                 } else {
                     showToastError(context, "error: No se puede crear la solicitud")
                     Log.d("solicitud", "no se creo")
