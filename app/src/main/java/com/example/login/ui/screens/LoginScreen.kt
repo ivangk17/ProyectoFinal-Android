@@ -83,7 +83,7 @@ fun RegisterText(modifier: Modifier = Modifier, navController: NavController) {
     ) {
         Spacer(modifier = Modifier.height(100.dp))
         Text(
-            text = "Iniciar Sesion",
+            text = "Iniciar Sesión",
             fontSize = 36.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier

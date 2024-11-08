@@ -51,7 +51,7 @@ fun NavDrawer(
         drawerState = drawerState,
         drawerContent = {
             ModalDrawerSheet {
-                viewModel.updateEmail()  // Llamar a updateEmail aquí
+                viewModel.updateEmail()
                 DrawerHeader(email = viewModel.email.value)
                 DrawerContent(
                     drawerViewModel,

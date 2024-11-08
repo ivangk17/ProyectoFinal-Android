@@ -10,7 +10,9 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.DrawerValue.Closed
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.rememberDrawerState
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -32,6 +34,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             val drawerViewModel = ViewModelProvider(this, DrawerViewModelFactory())
                 .get(DrawerViewModel::class.java)
+            val drawerState = rememberDrawerState(initialValue = Closed)
+
             MyAppTheme {
 
                 var lastScreen: String? = ""

@@ -11,16 +11,27 @@ import com.example.login.tokens.Utility
 import com.example.login.data.models.DrawerItems
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 
 class DrawerViewModel(): ViewModel() {
 
     private val _email = MutableStateFlow("")
+    private val _drawerShouldBeOpened = MutableStateFlow(false)
+    val drawerShouldBeOpened = _drawerShouldBeOpened.asStateFlow()
     val email: StateFlow<String> = _email
 
     fun updateEmail() {
         val user = Utility().decodeJWT(Token.token)
         _email.value = user.email
+    }
+
+    fun openDrawer() {
+        _drawerShouldBeOpened.value = true
+    }
+
+    fun resetOpenDrawerAction() {
+        _drawerShouldBeOpened.value = false
     }
 
 
