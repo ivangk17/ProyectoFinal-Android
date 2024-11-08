@@ -34,19 +34,10 @@ val Typography = Typography(
     */
 )
 
-val TituloTopBar = TextStyle(
+val TitleBold = TextStyle(
     fontSize = 18.sp,
     fontWeight = FontWeight.Bold,
     lineHeight = 21.6.sp,
-)
-
-val TituloDetalle = TextStyle(
-    fontSize =  20.sp,
-)
-
-val TituloListas = TextStyle(
-    fontSize = 30.sp,
-    fontWeight = FontWeight.Bold,
 )
 
 val TituloFormulario = TextStyle(

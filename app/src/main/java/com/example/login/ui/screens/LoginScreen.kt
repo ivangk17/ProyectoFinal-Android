@@ -44,7 +44,9 @@ suspend fun handleLogin(user: UserLogin, context: Context, navController: NavCon
     try {
         val response = RetrofitClient.apiService.login(user)
         Token.token = response.token
-        navController.navigate(route = Rutas.HomeScreen.ruta)
+        navController.navigate(route = Rutas.HomeScreen.ruta){
+            popUpTo(0) { inclusive = true }
+        }
     } catch (e: Exception) {
         val errorMessage = when (e) {
             is HttpException -> {

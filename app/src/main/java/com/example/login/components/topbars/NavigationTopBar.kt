@@ -1,10 +1,12 @@
 package com.example.login.components.topbars
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -18,25 +20,34 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.login.R
+import com.example.login.navigation.Rutas
 
 @Composable
 fun NavigationTopBar(
-    onClick : () -> Unit,
-    quitScreen: () -> Unit,
+    onClick: () -> Unit,
+    quitScreen: Boolean,
     topBarColor: Color,
     title: String,
     titleStyle: TextStyle,
-    titleColor: Color
+    titleColor: Color,
+    navController: NavHostController,
+    moveText: Boolean
 ){
-    Box(modifier = Modifier
-        .background(topBarColor)
-        .padding(top = 30.dp, start = 25.dp, end = 25.dp)
-        .height(50.dp)
-        .fillMaxWidth(),
+    Box(
+        modifier = Modifier
+            .background(topBarColor)
+            .padding(top = 30.dp, start = 25.dp, end = 25.dp)
+            .height(50.dp)
+            .fillMaxWidth(),
         contentAlignment = Alignment.Center
-    ){
-        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically){
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+
             Icon(
                 painter = painterResource(id = R.drawable.back),
                 contentDescription = "Back",
@@ -45,20 +56,39 @@ fun NavigationTopBar(
                     .clickable { onClick() }
             )
 
-            Text(
-                text = title,
-                color = titleColor,
-                style = titleStyle,
-            )
-
-            Icon(
-                painter = painterResource(id = R.drawable.close),
-                contentDescription = "Close",
-                modifier = Modifier
-                    .size(20.dp)
-                    .clickable { quitScreen() }
-            )
+            if (moveText && !quitScreen) {
+                Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.CenterEnd) {
+                    Text(
+                        text = title,
+                        color = titleColor,
+                        style = titleStyle,
+                    )
+                }
+            } else {
+                Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
+                    Text(
+                        text = title,
+                        color = titleColor,
+                        style = titleStyle,
+                    )
+                }
+                if (quitScreen) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.close),
+                        contentDescription = "Close",
+                        modifier = Modifier
+                            .size(20.dp)
+                            .clickable { navController.navigate(Rutas.HomeScreen.ruta) }
+                    )
+                } else {
+                    Spacer(modifier = Modifier.size(20.dp))
+                }
+            }
         }
-
     }
 }
+
+
+
+
+

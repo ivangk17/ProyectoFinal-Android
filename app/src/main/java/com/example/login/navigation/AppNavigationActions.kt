@@ -8,10 +8,10 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.login.R
-import com.example.login.ui.theme.TituloDetalle
 import com.example.login.ui.theme.TituloFormulario
-import com.example.login.ui.theme.TituloListas
+import com.example.login.ui.theme.TitleBold
 
 class AppNavigationActions(
     navController: NavController
@@ -34,17 +34,18 @@ class AppNavigationActions(
     @Composable
     fun getTextTopBar(location: String?): String{
         Log.d("LOCATION", location.toString())
+        Log.d("LOCATION", "${Rutas.SolicitudDetalle.ruta}/{solicitudId}/{solicitudId}")
         return when(location){
-            Rutas.HomeScreen.ruta -> "Listado de polizas"
-            "${Rutas.PolizaDetalleScreen.ruta}/{polizaJson}" -> "Poliza"
+            Rutas.HomeScreen.ruta -> "Mis Polizas"
+            "${Rutas.PolizaDetalleScreen.ruta}/{polizaJson}" -> "Mi Poliza"
             "${Rutas.DatosSiniestro.ruta}/{polizaJson}" -> "Datos Del Siniestro"
             "${Rutas.InformacionAdicional.ruta}/{polizaJson}" -> "Informacion Adicional"
-            "${Rutas.DatosPropietarioVehiculoAsegurado.ruta}/{polizaJson}" -> "Datos Del Propietario Asegurado"
-            Rutas.DatosPropietarioVehiculoTercero .ruta -> "Datos Del Propietario Afectado"
-            Rutas.ConductorVehiculoAsegurado.ruta -> "Datos Del Conductor Asegurado"
-            Rutas.ConductorVehiculoTercero.ruta -> "Datos Del Conductor Afectado"
-            Rutas.DaniosVehiculoAsegurado.ruta -> "Daños Del Vehiculo Asegurado"
-            Rutas.DaniosVehiculosTercero.ruta -> "Daños Del Vehiculo Afectado"
+            "${Rutas.DatosPropietarioVehiculoAsegurado.ruta}/{polizaJson}" -> "Propietario Asegurado"
+            Rutas.DatosPropietarioVehiculoTercero .ruta -> "Propietario Afectado"
+            Rutas.ConductorVehiculoAsegurado.ruta -> "Conductor Asegurado"
+            Rutas.ConductorVehiculoTercero.ruta -> "Conductor Afectado"
+            Rutas.DaniosVehiculoAsegurado.ruta -> "Daños"
+            Rutas.DaniosVehiculosTercero.ruta -> "Daños"
             Rutas.DatosAdicionales.ruta -> "Datos Adicionales"
             Rutas.ConsecuenciaSiniestro.ruta -> "Consecuencia Del Siniestro"
             Rutas.RelatoAccidente.ruta -> "Relato Del Accidente"
@@ -53,7 +54,7 @@ class AppNavigationActions(
 
             "${Rutas.LoadingScreen.ruta}/{polizaJson}/{nextRoute}" -> ""
             Rutas.SolicitudesScreen.ruta -> stringResource(R.string.Solicitudes_titulo)
-            "${Rutas.SolicitudDetalle.ruta}/{solicitudId}/{solicitudId}" -> "Solicitud"
+            "${Rutas.SolicitudDetalle.ruta}/{solicitudId}" -> "Mi Solicitud"
 
             else -> ""
         }
@@ -61,11 +62,10 @@ class AppNavigationActions(
 
     fun getTitleStyleTopBar(location: String?): TextStyle {
         return when(location){
-            Rutas.HomeScreen.ruta -> TituloListas
-            Rutas.SolicitudesScreen.ruta -> TituloListas
-            "${Rutas.PolizaDetalleScreen.ruta}/{polizaJson}" -> TituloDetalle
-            "${Rutas.SolicitudDetalle.ruta}/{solicitudId}/{solicitudId}" -> TituloDetalle
-
+            Rutas.HomeScreen.ruta -> TitleBold
+            Rutas.SolicitudesScreen.ruta -> TitleBold
+            "${Rutas.PolizaDetalleScreen.ruta}/{polizaJson}" -> TitleBold
+            "${Rutas.SolicitudDetalle.ruta}/{solicitudId}" -> TitleBold
 
             else -> TituloFormulario
         }
@@ -77,7 +77,7 @@ class AppNavigationActions(
             Rutas.HomeScreen.ruta -> colorResource(id = R.color.texto_principal)
             Rutas.SolicitudesScreen.ruta -> colorResource(id = R.color.texto_principal)
 
-            else -> colorResource(id = R.color.black)
+            else -> colorResource(id = R.color.texto_principal)
         }
     }
 
@@ -89,7 +89,41 @@ class AppNavigationActions(
         return when(location){
             Rutas.LoginScreen.ruta -> false
             Rutas.HomeScreen.ruta -> false
-            Rutas.PolizaDetalleScreen.ruta -> true
+            Rutas.SolicitudEnviada.ruta -> false
+            else -> true
+        }
+    }
+
+    fun quitScreen(location: String?, navController: NavHostController): Boolean{
+        return when(location){
+            "${Rutas.DatosSiniestro.ruta}/{polizaJson}" -> true
+
+            "${Rutas.DatosSiniestro.ruta}/{polizaJson}" -> true
+            "${Rutas.InformacionAdicional.ruta}/{polizaJson}" -> true
+            "${Rutas.DatosPropietarioVehiculoAsegurado.ruta}/{polizaJson}" -> true
+            Rutas.DatosPropietarioVehiculoTercero .ruta -> true
+            Rutas.ConductorVehiculoAsegurado.ruta -> true
+            Rutas.ConductorVehiculoTercero.ruta -> true
+            Rutas.DaniosVehiculoAsegurado.ruta -> true
+            Rutas.DaniosVehiculosTercero.ruta -> true
+            Rutas.DatosAdicionales.ruta -> true
+            Rutas.ConsecuenciaSiniestro.ruta -> true
+            Rutas.RelatoAccidente.ruta -> true
+            Rutas.DaniosPersonales.ruta -> true
+            Rutas.LugarAsistencia.ruta -> true
+
+            else -> false
+        }
+
+        //navController.navigate(lastScreen.toString())
+    }
+
+    fun moveText(location: String?): Boolean{
+        return when(location){
+            "${Rutas.PolizaDetalleScreen.ruta}/{polizaJson}" -> true
+            "${Rutas.SolicitudDetalle.ruta}/{solicitudId}" -> true
+
+
             else -> false
         }
     }

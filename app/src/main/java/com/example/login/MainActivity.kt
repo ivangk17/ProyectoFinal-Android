@@ -1,12 +1,10 @@
 package com.example.login
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.ViewModelProvider
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -17,8 +15,6 @@ import androidx.navigation.compose.rememberNavController
 import com.example.login.components.MyAppTheme
 import com.example.login.components.topbars.NavigationTopBar
 import com.example.login.components.topbars.TopBar
-import com.example.login.data.network.services.GetStatus
-import com.example.login.data.network.RetrofitClient
 import com.example.login.navigation.AppNavigation
 import com.example.login.navigation.AppNavigationActions
 import com.example.login.ui.viewmodels.navdrawerviewmodel.DrawerViewModel
@@ -46,11 +42,13 @@ class MainActivity : ComponentActivity() {
                             if(navigationActions.getNavigationTopBar(currentLocation)) {
                                 NavigationTopBar(
                                     onClick = { navController.popBackStack() },
-                                    quitScreen = { navController.navigate(lastScreen.toString())} ,
+                                    quitScreen =  navigationActions.quitScreen(currentLocation, navController) ,
                                     topBarColor = navigationActions.getColorTopBar(currentLocation),
                                     title = navigationActions.getTextTopBar(currentLocation),
                                     titleStyle = navigationActions.getTitleStyleTopBar(currentLocation),
                                     titleColor = navigationActions.getTitleColorTopBar(currentLocation),
+                                    navController,
+                                    moveText = navigationActions.moveText(currentLocation)
                                 )
                             } else {
                                 lastScreen = currentLocation
