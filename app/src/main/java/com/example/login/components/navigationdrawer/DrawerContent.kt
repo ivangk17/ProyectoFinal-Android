@@ -1,4 +1,4 @@
-package com.example.login.ui.navigationdrawer
+package com.example.login.components.navigationdrawer
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,6 +23,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.login.R
+import com.example.login.data.models.DrawerItems
 import com.example.login.ui.viewmodels.navdrawerviewmodel.DrawerViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch

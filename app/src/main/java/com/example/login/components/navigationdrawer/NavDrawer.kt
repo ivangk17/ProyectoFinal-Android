@@ -1,4 +1,4 @@
-package com.example.login.ui.navigationdrawer
+package com.example.login.components.navigationdrawer
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box

@@ -1,4 +1,4 @@
-package com.example.login.ui.screens.solicitudes
+package com.example.login.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

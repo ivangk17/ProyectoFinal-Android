@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.login.R
-import com.example.login.ui.navigationdrawer.NavDrawer
+import com.example.login.components.navigationdrawer.NavDrawer
 import com.example.login.ui.viewmodels.navdrawerviewmodel.DrawerViewModel
 import com.example.login.ui.viewmodels.solicitudesviewmod.SolicitudesViewModel
 import kotlinx.coroutines.launch

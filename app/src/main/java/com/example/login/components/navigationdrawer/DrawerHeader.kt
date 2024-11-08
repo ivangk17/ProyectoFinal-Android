@@ -1,4 +1,4 @@
-package com.example.login.ui.navigationdrawer
+package com.example.login.components.navigationdrawer
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image

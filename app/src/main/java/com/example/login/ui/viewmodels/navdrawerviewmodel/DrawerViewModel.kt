@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.example.login.navigation.Rutas
 import com.example.login.tokens.Token
 import com.example.login.tokens.Utility
-import com.example.login.ui.navigationdrawer.DrawerItems
+import com.example.login.data.models.DrawerItems
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 

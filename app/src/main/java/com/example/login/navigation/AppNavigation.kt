@@ -61,7 +61,7 @@ import com.example.login.utilities.daniosVehiculosTercero
 @SuppressLint("SuspiciousIndentation")
 @Composable
 fun AppNavigation(
-    navController: NavHostController = rememberNavController(),
+    navController: NavHostController,
     drawerViewModel: DrawerViewModel
 ) {
     val crearSolicitudViewModel: CrearSolicitudViewModel = viewModel(

@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.login.R
+import com.example.login.components.SolicitudCard
 import com.example.login.data.models.solicitud.SolicitudSimplificada
 import com.example.login.navigation.Rutas
 
