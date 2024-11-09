@@ -13,6 +13,8 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -21,7 +23,8 @@ fun FieldStringForms(
     value: MutableState<String>,
     error: MutableState<String?> = mutableStateOf(null),
     onValueChange: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    isPassword: Boolean = false
 ) {
     val isError = error.value != null
 
@@ -34,13 +37,13 @@ fun FieldStringForms(
             label = { Text(label) },
             isError = isError,
             modifier = Modifier.fillMaxWidth(),
+            visualTransformation = if (isPassword) PasswordVisualTransformation() else VisualTransformation.None,
             colors = TextFieldDefaults.colors(
                 focusedContainerColor = Color.Transparent,
                 unfocusedContainerColor = Color.Transparent,
                 disabledContainerColor = Color.Gray,
                 errorContainerColor = Color.Red.copy(alpha = 0.1f),
                 focusedIndicatorColor = MaterialTheme.colorScheme.primary,
-
             )
         )
         if (isError) {

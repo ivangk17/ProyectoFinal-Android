@@ -50,3 +50,35 @@ private fun validarCampoNumerico(valor: FormField): String? {
     }
     return resultado
 }
+
+fun validatePassword(campos: List<FormField>, currentPassword: FormField) {
+    val pass1 = campos[0].value.value
+    val pass2 = campos[1].value.value
+
+    campos.forEach { campo ->
+        val pass = campo.value.value
+        when {
+            pass1 != pass2 -> {
+                campo.error.value = "Las contraseñas no coinciden."
+            }
+            pass.isNullOrEmpty() -> {
+                campo.error.value = "La contraseña no puede estar vacía."
+            }
+            pass.length < 8 -> {
+                campo.error.value = "La contraseña debe tener al menos 8 caracteres."
+            }
+            !pass.any { it.isUpperCase() } -> {
+                campo.error.value = "La contraseña debe contener al menos una letra mayúscula."
+            }
+            !pass.any { !it.isLetterOrDigit() } -> {
+                campo.error.value = "La contraseña debe contener al menos un signo."
+            }
+            currentPassword.value.value.isNullOrEmpty() ->{
+                currentPassword.error.value = "La contraseña no puede estar vacía."
+            }
+            else -> {
+                campo.error.value = null
+            }
+        }
+    }
+}

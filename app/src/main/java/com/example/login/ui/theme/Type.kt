@@ -44,3 +44,15 @@ val TituloFormulario = TextStyle(
     fontSize = 20.sp,
     fontWeight = FontWeight.Bold,
 )
+
+val TextBaseBold = TextStyle(
+    fontSize = 16.sp,
+    fontWeight = FontWeight.Bold,
+    lineHeight = 22.4.sp,
+)
+
+val TextXS1Regular = TextStyle(
+    fontSize = 14.sp,
+    fontWeight = FontWeight.Medium,
+    lineHeight = 19.6.sp,
+)
