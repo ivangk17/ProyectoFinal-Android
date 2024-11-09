@@ -19,15 +19,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.example.login.R
+import kotlinx.coroutines.Job
 
 @Composable
 fun NavigationTopBar(
-    onClick : () -> Unit,
+    onClick: () -> Unit,
     quitScreen: () -> Unit,
     topBarColor: Color,
     title: String,
     titleStyle: TextStyle,
-    titleColor: Color
+    titleColor: Color,
+    onMenuClick: () -> Unit
 ){
     Box(modifier = Modifier
         .background(topBarColor)

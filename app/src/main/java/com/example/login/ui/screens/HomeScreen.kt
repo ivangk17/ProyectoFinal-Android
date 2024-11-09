@@ -25,7 +25,7 @@ import com.google.gson.Gson
 val gson = Gson()
 
 @Composable
-fun HomeScreen(navController: NavHostController, homeViewModel: HomeViewModel, drawerViewModel: DrawerViewModel) {
+fun HomeScreen(navController: NavHostController, homeViewModel: HomeViewModel) {
     val user = Utility().decodeJWT(Token.token)
     val scope = rememberCoroutineScope()
     val polizas by homeViewModel.Polizas
@@ -35,7 +35,7 @@ fun HomeScreen(navController: NavHostController, homeViewModel: HomeViewModel, d
         homeViewModel.loadPolizas()
 
     }
-    NavDrawer(navController, drawerViewModel) {
+
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Top,
@@ -56,7 +56,7 @@ fun HomeScreen(navController: NavHostController, homeViewModel: HomeViewModel, d
                 )
             }
         }
-    }
+
 }
 
 

@@ -29,10 +29,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val drawerViewModel = ViewModelProvider(this, DrawerViewModelFactory())
-                .get(DrawerViewModel::class.java)
+          /*  val drawerViewModel = ViewModelProvider(this, DrawerViewModelFactory())
+                .get(DrawerViewModel::class.java) */
 
-/*
+            MyAppTheme {
+
+                /*
             MyAppTheme {
 
                 var lastScreen: String? = ""
@@ -80,8 +82,8 @@ class MainActivity : ComponentActivity() {
                 }
             }
             */
-            MainScreen()
-
+                MainScreen()
+            }
         }
     }
 }

@@ -32,8 +32,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun SolicitudesScreen(
     viewModel: SolicitudesViewModel,
-    navController: NavHostController,
-    drawerViewModel: DrawerViewModel
+    navController: NavHostController
 ) {
     val solicitudes by viewModel.solicitudes.observeAsState(emptyList())
     val error by viewModel.error.observeAsState()
@@ -50,22 +49,6 @@ fun SolicitudesScreen(
         }
     }
 
-    NavDrawer(navController, drawerViewModel) {
-        Scaffold(
-            snackbarHost = { SnackbarHost(hostState = snackbarHostState) }, // Snackbar host
-            modifier = Modifier.background(colorResource(id = R.color.fondo_principal))
-
-        ) { innerPadding ->
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding),
-                verticalArrangement = Arrangement.Top,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                SolicitudesLista(solicitudes, navController)
-            }
-        }
-    }
+    SolicitudesLista(solicitudes, navController)
 }
 

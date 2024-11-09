@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -34,43 +35,31 @@ import com.example.login.ui.viewmodels.navdrawerviewmodel.DrawerViewModelFactory
 import kotlinx.coroutines.launch
 
 @SuppressLint("StateFlowValueCalledInComposition")
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NavDrawer(
-    navController: NavHostController,
-    drawerViewModel: DrawerViewModel,
+
+    drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
     content: @Composable () -> Unit
 ) {
-    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+    /*
     val scope = rememberCoroutineScope()
     val viewModel: DrawerViewModel = viewModel(factory = DrawerViewModelFactory())
     var selectedItem by remember { mutableStateOf(viewModel.drawerItems[0]) }
     val email by viewModel.email.collectAsState()
+    //viewModel.updateEmail()
+    //  DrawerHeader(email = viewModel.email.value)
 
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
-            ModalDrawerSheet {
-                viewModel.updateEmail()
-                DrawerHeader(email = viewModel.email.value)
-                DrawerContent(
-                    drawerViewModel,
-                    navController,
-                    selectedItem,
-                    drawerState,
-                    scope
-                ) { newItem ->
-                    selectedItem = newItem
-                    scope.launch { drawerState.close() }
-                    navController.navigate(newItem.route)
-                }
-            }
-        },
-        content = {
-            Scaffold(
-                topBar = {
-                    TopAppBar(
-                        title = { Text(" ") },
+            drawerHeader,
+            DrawerContent2(),
+
+        }
+    ) */
+}
+
+          /*
 
                         navigationIcon = {
                             IconButton(onClick = {
@@ -79,18 +68,7 @@ fun NavDrawer(
                                 Icon(Icons.Filled.Menu, contentDescription = "Menu icon")
                             }
                         }
-                    )
-                }
-            ) { paddingValues ->
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(paddingValues),
-                    contentAlignment = Alignment.Center
-                ) {
-                    content()
-                }
-            }
-        }
-    )
-}
+
+           */
+
+

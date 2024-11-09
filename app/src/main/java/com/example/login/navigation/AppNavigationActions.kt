@@ -16,6 +16,11 @@ import com.example.login.ui.theme.TituloListas
 class AppNavigationActions(
     navController: NavController
 ){
+    val navController = navController;
+
+    fun navigateToLogin() {
+        navController.navigate(Rutas.LoginScreen.ruta)
+    }
 
     val hideTopBar= listOf(
         Rutas.LoginScreen.ruta,
@@ -59,6 +64,8 @@ class AppNavigationActions(
         }
     }
 
+
+
     fun getTitleStyleTopBar(location: String?): TextStyle {
         return when(location){
             Rutas.HomeScreen.ruta -> TituloListas
@@ -93,5 +100,8 @@ class AppNavigationActions(
             else -> false
         }
     }
+
+
+
 
 }

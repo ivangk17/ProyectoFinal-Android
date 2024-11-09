@@ -62,7 +62,7 @@ import com.example.login.utilities.daniosVehiculosTercero
 @Composable
 fun AppNavigation(
     navController: NavHostController,
-    drawerViewModel: DrawerViewModel
+   // drawerViewModel: DrawerViewModel
 ) {
     val crearSolicitudViewModel: CrearSolicitudViewModel = viewModel(
         factory = CrearSolicitudViewModel.provideFactory()
@@ -75,7 +75,7 @@ fun AppNavigation(
                 )
             )
 
-            HomeScreen(navController, homeViewModel, drawerViewModel)
+            HomeScreen(navController, homeViewModel)
 
         }
         composable(Rutas.LoginScreen.ruta) {
@@ -277,7 +277,7 @@ fun AppNavigation(
             val solicitudesViewModel: SolicitudesViewModel = viewModel(
                 factory = SolicitudesViewModelFactory(repository)
             )
-            SolicitudesScreen(solicitudesViewModel, navController,drawerViewModel)
+            SolicitudesScreen(solicitudesViewModel, navController)
         }
 
             rutaComposableSolicitud(

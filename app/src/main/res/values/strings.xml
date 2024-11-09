@@ -12,6 +12,9 @@
     <string name="dato_no_disponible">Dato no disponible</string>
     <string name="Solicitudes_titulo">Solicitudes</string>
     <string name="Sin_solicitudes">No se encontraron solicitudes</string>
+    <string name="home_text">Home</string>
+    <string name="solicitudes_text">Solicitudes\n</string>
+    <string name="legal_text">Legales\n</string>
 
 
 </resources>

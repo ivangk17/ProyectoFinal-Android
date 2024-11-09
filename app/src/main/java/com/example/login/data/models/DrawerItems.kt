@@ -9,12 +9,5 @@ import com.example.login.navigation.Rutas
 data class DrawerItems(
     var userIcon: ImageVector,
     var text: String,
-    var route: String
-){
-    companion object {
-        val defaultItems = listOf(
-            DrawerItems(Icons.Default.Home, "Home", Rutas.HomeScreen.ruta),
-            DrawerItems(Icons.Default.Info, "Solicitudes", Rutas.SolicitudesScreen.ruta)
-        )
-    }
-}
+   // var route: String
+)

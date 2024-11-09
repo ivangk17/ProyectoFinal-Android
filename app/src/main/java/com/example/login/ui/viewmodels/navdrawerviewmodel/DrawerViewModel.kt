@@ -35,19 +35,9 @@ class DrawerViewModel(): ViewModel() {
     }
 
 
-    val drawerItems = listOf(
-        DrawerItems(
-            userIcon = Icons.Default.Home,
-            text = "Home",
-            route = Rutas.HomeScreen.ruta
-        ),
-        DrawerItems(
-            userIcon = Icons.Default.Info,
-            text = "Solicitudes",
-            route = Rutas.SolicitudesScreen.ruta
-        )
-    )
 
     val loginRoute = Rutas.LoginScreen.ruta
 
 }
+//  route = Rutas.HomeScreen.ruta
+//     route = Rutas.SolicitudesScreen.ruta
