@@ -54,7 +54,8 @@ fun MainScreen() {
         drawerContent = {
             NavDrawer2(
                 drawerViewModel = drawerViewModel,
-                email = email
+                email = email,
+                navigationActions
             )
         },
         drawerState = drawerState

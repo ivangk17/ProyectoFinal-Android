@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.DrawerState
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -13,13 +12,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import com.example.login.R
-import com.example.login.data.models.DrawerItems
+import com.example.login.components.LogOutButton
+import com.example.login.navigation.AppNavigationActions
 import com.example.login.utilities.GetDrawerMenuItems
-import kotlinx.coroutines.CoroutineScope
 
 @Composable
-fun DrawerContent2(
-) {
+fun DrawerContent2(navigationActions: AppNavigationActions) {
     val drawerItems = GetDrawerMenuItems()
 
     Column(
@@ -40,5 +38,10 @@ fun DrawerContent2(
                 )
             }
         }
+
+        LogOutButton{
+            navigationActions.navigateToLogin()
+        }
     }
+
 }
