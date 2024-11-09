@@ -36,39 +36,35 @@ fun TopBar(
     Box(
         modifier = Modifier
             .background(MaterialTheme.colorScheme.background)
-            .padding(top = 30.dp, start = 25.dp, end = 25.dp)
+            .padding(top = 30.dp, start = 25.dp, end = 25.dp, bottom = 50.dp)
             .height(50.dp)
             .fillMaxWidth(),
         contentAlignment = align
     ) {
 
-
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            // Ícono de menú, solo visible si `onMenuClick` está definido
-            onMenuClick?.let {
-                IconButton(onClick = it) {
-                    Icon(Icons.Default.Menu, contentDescription = "Open Drawer")
-                }
+        onMenuClick?.let {
+            IconButton(
+                onClick = it,
+                modifier = Modifier.align(Alignment.CenterStart)
+            ) {
+                Icon(Icons.Default.Menu, contentDescription = "Open Drawer")
             }
+        }
 
 
-            Column {
+
+        Column {
+            Text(
+                text = title,
+                style = titleStyle,
+                color = titleColor
+            )
+            if (description.isNotEmpty()) {
                 Text(
-                    text = title,
-                    style = titleStyle,
-                    color = titleColor
+                    text = description,
+                    style = TextStyle(fontWeight = FontWeight.Normal),
+                    color = MaterialTheme.colorScheme.tertiary,
                 )
-                if (description.isNotEmpty()) {
-                    Text(
-                        text = description,
-                        style = TextStyle(fontWeight = FontWeight.Normal),
-                        color = MaterialTheme.colorScheme.tertiary,
-                    )
-                }
             }
         }
     }
