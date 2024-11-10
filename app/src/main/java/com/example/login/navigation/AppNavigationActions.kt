@@ -15,20 +15,25 @@ import com.example.login.ui.theme.TituloListas
 
 class AppNavigationActions(
     navController: NavController
-){
+) {
     val navController = navController;
 
     fun navigateToLogin() {
         navController.navigate(Rutas.LoginScreen.ruta)
     }
 
-    val hideTopBar= listOf(
+    val routesWithoutDrawer = listOf(
+        Rutas.LoginScreen.ruta,
+        Rutas.SolicitudDetalle.ruta,
+        Rutas.PolizaDetalleScreen.ruta)
+
+    val hideTopBar = listOf(
         Rutas.LoginScreen.ruta,
     )
 
     @Composable
-    fun getColorTopBar(location: String?): Color {
-        return when(location){
+    fun GetColorTopBar(location: String?): Color {
+        return when (location) {
             //Rutas.HomeScreen.ruta -> Color.White
             //AppDestinations.HOME_ROUTE -> Gray100
 
@@ -36,16 +41,17 @@ class AppNavigationActions(
         }
     }
 
+
     @Composable
-    fun getTextTopBar(location: String?): String{
+    fun GetTextTopBar(location: String?): String {
         Log.d("LOCATION", location.toString())
-        return when(location){
+        return when (location) {
             Rutas.HomeScreen.ruta -> "Listado de polizas"
             "${Rutas.PolizaDetalleScreen.ruta}/{polizaJson}" -> "Poliza"
             "${Rutas.DatosSiniestro.ruta}/{polizaJson}" -> "Datos Del Siniestro"
             "${Rutas.InformacionAdicional.ruta}/{polizaJson}" -> "Informacion Adicional"
             "${Rutas.DatosPropietarioVehiculoAsegurado.ruta}/{polizaJson}" -> "Datos Del Propietario Asegurado"
-            Rutas.DatosPropietarioVehiculoTercero .ruta -> "Datos Del Propietario Afectado"
+            Rutas.DatosPropietarioVehiculoTercero.ruta -> "Datos Del Propietario Afectado"
             Rutas.ConductorVehiculoAsegurado.ruta -> "Datos Del Conductor Asegurado"
             Rutas.ConductorVehiculoTercero.ruta -> "Datos Del Conductor Afectado"
             Rutas.DaniosVehiculoAsegurado.ruta -> "Daños Del Vehiculo Asegurado"
@@ -65,9 +71,8 @@ class AppNavigationActions(
     }
 
 
-
     fun getTitleStyleTopBar(location: String?): TextStyle {
-        return when(location){
+        return when (location) {
             Rutas.HomeScreen.ruta -> TituloListas
             Rutas.SolicitudesScreen.ruta -> TituloListas
             "${Rutas.PolizaDetalleScreen.ruta}/{polizaJson}" -> TituloDetalle
@@ -79,8 +84,8 @@ class AppNavigationActions(
     }
 
     @Composable
-    fun getTitleColorTopBar(location: String?): Color{
-        return when(location){
+    fun getTitleColorTopBar(location: String?): Color {
+        return when (location) {
             Rutas.HomeScreen.ruta -> colorResource(id = R.color.texto_principal)
             Rutas.SolicitudesScreen.ruta -> colorResource(id = R.color.texto_principal)
 
@@ -88,20 +93,18 @@ class AppNavigationActions(
         }
     }
 
-    fun hideTopBar(location: String?): Boolean{
+    fun hideTopBar(location: String?): Boolean {
         return hideTopBar.contains(location)
     }
 
-    fun getNavigationTopBar(location: String?): Boolean{
-        return when(location){
+    fun getNavigationTopBar(location: String?): Boolean {
+        return when (location) {
             Rutas.LoginScreen.ruta -> false
             Rutas.HomeScreen.ruta -> false
             Rutas.PolizaDetalleScreen.ruta -> true
             else -> false
         }
     }
-
-
 
 
 }

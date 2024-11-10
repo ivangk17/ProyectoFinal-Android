@@ -28,3 +28,5 @@ fun NavDrawer2(
         DrawerContent2(navigationActions)
     }
 }
+
+
