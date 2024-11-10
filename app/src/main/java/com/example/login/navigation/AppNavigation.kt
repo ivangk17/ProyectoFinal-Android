@@ -34,6 +34,8 @@ import com.example.login.ui.screens.forms.LugarAsistencia
 import com.example.login.ui.screens.forms.RelatoAccidente
 import com.example.login.ui.screens.forms.SolicitudDetailsScreen
 import com.example.login.ui.screens.forms.SolicitudEnviadaScreen
+import com.example.login.ui.screens.recoverpass.RecoverPassScreen
+import com.example.login.ui.screens.recoverpass.RecoverPassViewModel
 import com.example.login.ui.screens.solicitudes.SolicitudesScreen
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.HomeViewModel
@@ -70,7 +72,7 @@ fun AppNavigation(
     val crearSolicitudViewModel: CrearSolicitudViewModel = viewModel(
         factory = CrearSolicitudViewModel.provideFactory()
     )
-        NavHost(navController = navController, startDestination = Rutas.HomeScreen.ruta, builder = {
+        NavHost(navController = navController, startDestination = Rutas.LoginScreen.ruta, builder = {
         composable(Rutas.HomeScreen.ruta) {
             val homeViewModel: HomeViewModel = viewModel(
                 factory = HomeViewModel.provideFactory(
@@ -311,6 +313,13 @@ fun AppNavigation(
                     }
                 )
                 ChangePasswordScreen(changePasswordViewModel)
+            }
+
+            composable(Rutas.RecoverPass.ruta){
+                val recoverPassViewModel: RecoverPassViewModel = viewModel(
+                    factory =  RecoverPassViewModel.provideFactory(GetServiceUser(RetrofitClient.apiService))
+                )
+                RecoverPassScreen(recoverPassViewModel)
             }
     }
     )

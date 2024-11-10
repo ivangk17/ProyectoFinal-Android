@@ -26,4 +26,9 @@ class GetServiceUser(
         api.changePassword(userId, token, changePasswordRequest)
     }
 
+    suspend fun recoverPassword(email: String): Response<Unit> = withContext(Dispatchers.IO){
+        val token = "Bearer " + Token.token
+        api.recoverPassword(email)
+    }
+
 }

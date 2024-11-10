@@ -23,6 +23,7 @@ sealed class Rutas(val ruta: String) {
     object SolicitudesScreen : Rutas("solicitudesScreen")
     object PerfilScreen: Rutas("perfilScreen")
     object ChangePassword: Rutas("changePassword")
+    object RecoverPass: Rutas("recoverPass")
 
 
     object SolicitudDetalle : Rutas("solicitudDetalle/{solicitudId}") {
