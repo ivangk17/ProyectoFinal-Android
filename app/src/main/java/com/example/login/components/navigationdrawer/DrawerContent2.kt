@@ -18,6 +18,7 @@ import androidx.compose.ui.text.input.KeyboardType.Companion.Uri
 import androidx.compose.ui.unit.dp
 import com.example.login.R
 import com.example.login.components.AppButton
+import com.example.login.components.CardDivider
 import com.example.login.navigation.AppNavigationActions
 import com.example.login.utilities.GetDrawerMenuItems
 import kotlinx.coroutines.CoroutineScope
@@ -52,12 +53,11 @@ fun DrawerContent2(
             }
 
             if (index < drawerItems.size - 1) {
-                HorizontalDivider(
-                    color = colorResource(R.color.teal_700),
-                    modifier = Modifier.fillMaxWidth()
-                )
+                CardDivider()
             }
         }
+
+        CardDivider()
 
         AppButton(
             stringResource(
