@@ -3,6 +3,8 @@ package com.example.login.components.navigationdrawer
 import android.content.Intent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -37,7 +39,7 @@ fun DrawerContent2(
 
     Column(
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxSize()
             .padding(bottom = 15.dp)
             .background(
                 color = MaterialTheme.colorScheme.surface,
@@ -58,12 +60,12 @@ fun DrawerContent2(
         }
 
         CardDivider()
-
+        Spacer(modifier = Modifier.weight(1f))
         AppButton(
             stringResource(
                 R.string.log_out_text
             ),
-            modifier = Modifier.padding(5.dp)
+            modifier = Modifier.padding( start = 5.dp, top = 50.dp)
         ) {
             scope.launch {
                 navigationActions.navigateToLogin()

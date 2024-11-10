@@ -26,17 +26,16 @@ fun DrawerItem(item: DrawerItems, onItemClick: () -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .clickable { onItemClick() }
-            .padding(vertical = 18.dp)
-            .padding(end = 16.dp),
+            .padding(vertical = 18.dp, horizontal = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
+
     ) {
         Icon(
             imageVector = item.userIcon,
             contentDescription = item.text,
             tint = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier.size(30.dp)
-                .padding(start = 10.dp)
+
         )
 
         Spacer(modifier = Modifier.width(24.dp))
