@@ -1,6 +1,5 @@
 package com.example.login.ui.screens
 
-import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,9 +15,7 @@ import com.example.login.components.PolizaCard
 import com.example.login.navigation.Rutas
 import com.example.login.tokens.Token
 import com.example.login.tokens.Utility
-import com.example.login.components.navigationdrawer.NavDrawer
 import com.example.login.ui.viewmodels.HomeViewModel
-import com.example.login.ui.viewmodels.navdrawerviewmodel.DrawerViewModel
 import com.google.gson.Gson
 
 

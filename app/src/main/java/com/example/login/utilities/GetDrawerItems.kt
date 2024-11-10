@@ -1,16 +1,12 @@
 package com.example.login.utilities
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import com.example.login.R
 import com.example.login.data.models.DrawerItems
-
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.ui.graphics.vector.ImageVector
-
-import androidx.compose.ui.res.vectorResource
+import com.example.login.navigation.Rutas
 
 @Composable
 fun GetDrawerMenuItems(): List<DrawerItems> {
@@ -19,8 +15,7 @@ fun GetDrawerMenuItems(): List<DrawerItems> {
     val legalIcon = ImageVector.vectorResource(id = R.drawable.info_icon)
 
     return listOf(
-        DrawerItems(homeIcon, stringResource(R.string.home_text)),
-        DrawerItems(solicitudesIcon, stringResource(R.string.solicitudes_text)),
-        DrawerItems(legalIcon, stringResource(R.string.legal_text))
+        DrawerItems(homeIcon, stringResource(R.string.home_text), Rutas.HomeScreen.ruta),
+        DrawerItems(solicitudesIcon, stringResource(R.string.solicitudes_text), Rutas.SolicitudesScreen.ruta),
     )
 }

@@ -18,11 +18,11 @@ import com.example.login.data.models.DrawerItems
 
 
 @Composable
-fun DrawerItem(item: DrawerItems) {
+fun DrawerItem(item: DrawerItems, onItemClick: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { /*onClick() */}
+            .clickable { onItemClick() }
             .padding(vertical = 18.dp)
             .padding(end = 16.dp),
         verticalAlignment = Alignment.CenterVertically,

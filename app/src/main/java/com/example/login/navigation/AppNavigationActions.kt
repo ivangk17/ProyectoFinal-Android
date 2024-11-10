@@ -14,25 +14,30 @@ import com.example.login.ui.theme.TituloFormulario
 import com.example.login.ui.theme.TituloListas
 
 class AppNavigationActions(
-    navController: NavController
+    private val navController: NavController
 ) {
-    val navController = navController;
+
+    companion object {
+        val routesWithDrawer = listOf(
+            Rutas.HomeScreen.ruta,
+            Rutas.SolicitudesScreen.ruta
+        )
+    }
+    fun navigateToRoute(route: String): Unit {
+        navController.navigate(route)
+    }
+
 
     fun navigateToLogin() {
         navController.navigate(Rutas.LoginScreen.ruta)
     }
-
-    val routesWithoutDrawer = listOf(
-        Rutas.LoginScreen.ruta,
-        Rutas.SolicitudDetalle.ruta,
-        Rutas.PolizaDetalleScreen.ruta)
 
     val hideTopBar = listOf(
         Rutas.LoginScreen.ruta,
     )
 
     @Composable
-    fun GetColorTopBar(location: String?): Color {
+    fun getColorTopBar(location: String?): Color {
         return when (location) {
             //Rutas.HomeScreen.ruta -> Color.White
             //AppDestinations.HOME_ROUTE -> Gray100
@@ -43,7 +48,7 @@ class AppNavigationActions(
 
 
     @Composable
-    fun GetTextTopBar(location: String?): String {
+    fun getTextTopBar(location: String?): String {
         Log.d("LOCATION", location.toString())
         return when (location) {
             Rutas.HomeScreen.ruta -> "Listado de polizas"
@@ -97,13 +102,19 @@ class AppNavigationActions(
         return hideTopBar.contains(location)
     }
 
-    fun getNavigationTopBar(location: String?): Boolean {
-        return when (location) {
-            Rutas.LoginScreen.ruta -> false
-            Rutas.HomeScreen.ruta -> false
-            Rutas.PolizaDetalleScreen.ruta -> true
-            else -> false
+    /*
+        fun getNavigationTopBar(location: String?): Boolean {
+            return when (location) {
+                Rutas.LoginScreen.ruta -> false
+                Rutas.HomeScreen.ruta -> false
+                Rutas.PolizaDetalleScreen.ruta -> true
+                else -> false
+            }
         }
+
+     */
+    fun getNavigationTopBar(location: String?): Boolean {
+        return location in listOf(Rutas.PolizaDetalleScreen.ruta, Rutas.SolicitudDetalle.ruta)
     }
 
 

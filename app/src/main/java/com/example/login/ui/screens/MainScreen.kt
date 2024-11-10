@@ -15,7 +15,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -24,52 +23,56 @@ import com.example.login.components.topbars.NavigationTopBar
 import com.example.login.components.topbars.TopBar
 import com.example.login.navigation.AppNavigation
 import com.example.login.navigation.AppNavigationActions
-import com.example.login.navigation.Rutas
-import com.example.login.ui.viewmodels.navdrawerviewmodel.DrawerViewModel
-import com.example.login.ui.viewmodels.navdrawerviewmodel.DrawerViewModelFactory
+import com.example.login.ui.viewmodels.MainActivityViewmodel.MainViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen() {
+fun MainScreen(mainViewModel: MainViewModel) {
     val navController = rememberNavController()
-    val drawerViewModel: DrawerViewModel = viewModel(factory = DrawerViewModelFactory())
     val drawerState = rememberDrawerState(initialValue = Closed)
     val scope = rememberCoroutineScope()
-    val routesWithoutDrawer = listOf(Rutas.LoginScreen.ruta, Rutas.SolicitudDetalle.ruta,Rutas.PolizaDetalleScreen.ruta)
-
+    val isAuthenticated by mainViewModel.isAuthenticated.collectAsState()
+    val routesWithDrawer = AppNavigationActions.routesWithDrawer
     val currentLocation = navController.currentBackStackEntryAsState().value?.destination?.route
-    val email by drawerViewModel.email.collectAsState()
+    val email by mainViewModel.email.collectAsState()
+    // mainViewModel.updateEmail()
 
-    var lastScreen: String? = ""
- //   val navigationActions = AppNavigationActions(navController)
-
-
+    // var lastScreen: String? = ""
+    /*
+        LaunchedEffect(Unit) {
+            if (isAuthenticated) {
+                mainViewModel.updateEmail()
+            }
+        }
+    */
     // Abre el drawer cuando sea necesario
-    LaunchedEffect(drawerViewModel.drawerShouldBeOpened.collectAsState().value) {
-        if (drawerViewModel.drawerShouldBeOpened.value) {
+    LaunchedEffect(mainViewModel.drawerShouldBeOpened.collectAsState().value) {
+        if (mainViewModel.drawerShouldBeOpened.value && currentLocation in routesWithDrawer) {
             drawerState.open()
-            drawerViewModel.resetOpenDrawerAction()
+            mainViewModel.resetOpenDrawerAction()
         }
     }
 
-    if (currentLocation !in routesWithoutDrawer) {
-    ModalNavigationDrawer(
-        drawerContent = {
-            NavDrawer2(
-                drawerViewModel = drawerViewModel,
-                email = email,
-                navigationActions= AppNavigationActions(navController)
-            )
-        },
-        drawerState = drawerState,
-        gesturesEnabled = currentLocation !in routesWithoutDrawer
-    ) {
-        AppScaffoldContent(navController, currentLocation, drawerState, scope)
-    }
+    if (currentLocation in routesWithDrawer) {
+        ModalNavigationDrawer(
+            drawerContent = {
+                NavDrawer2(
+                    mainViewModel = mainViewModel,
+                    email = email,
+                    navigationActions = AppNavigationActions(navController),
+                    drawerState = drawerState,
+                    scope = scope
+                )
+            },
+            drawerState = drawerState,
+            gesturesEnabled = currentLocation in routesWithDrawer
+        ) {
+            AppScaffoldContent(navController, currentLocation, drawerState, scope)
+        }
     } else {
-        AppScaffoldContent(navController, currentLocation, drawerState, scope )
+        AppScaffoldContent(navController, currentLocation, drawerState, scope)
     }
 }
 
@@ -83,47 +86,47 @@ fun AppScaffoldContent(
     val navigationActions = AppNavigationActions(navController)
     var lastScreen: String? = ""
 
-        Scaffold(
-            topBar = {
-                if (!navigationActions.hideTopBar(currentLocation)) {
-                    if (navigationActions.getNavigationTopBar(currentLocation)) {
-                        NavigationTopBar(
-                            onClick = { navController.popBackStack() },
-                            quitScreen = { navController.navigate(lastScreen.toString()) },
-                            topBarColor = navigationActions.GetColorTopBar(currentLocation),
-                            title = navigationActions.GetTextTopBar(currentLocation),
-                            titleStyle = navigationActions.getTitleStyleTopBar(currentLocation),
-                            titleColor = navigationActions.getTitleColorTopBar(currentLocation),
-                            onMenuClick = {
-                                scope.launch {
-                                    drawerState.open() // Abre el drawer al hacer clic en el ícono de menú
-                                }
+    Scaffold(
+        topBar = {
+            if (!navigationActions.hideTopBar(currentLocation)) {
+                if (navigationActions.getNavigationTopBar(currentLocation)) {
+                    NavigationTopBar(
+                        onClick = { navController.popBackStack() },
+                        quitScreen = { navController.navigate(lastScreen.toString()) },
+                        topBarColor = navigationActions.getColorTopBar(currentLocation),
+                        title = navigationActions.getTextTopBar(currentLocation),
+                        titleStyle = navigationActions.getTitleStyleTopBar(currentLocation),
+                        titleColor = navigationActions.getTitleColorTopBar(currentLocation),
+                        onMenuClick = {
+                            scope.launch {
+                                drawerState.open() // Abre el drawer al hacer clic en el ícono de menú
                             }
-                        )
-                    } else {
-                        lastScreen = currentLocation
-                        TopBar(
-                            topBarColor = navigationActions.GetColorTopBar(currentLocation),
-                            title = navigationActions.GetTextTopBar(currentLocation),
-                            titleStyle = navigationActions.getTitleStyleTopBar(currentLocation),
-                            titleColor = navigationActions.getTitleColorTopBar(currentLocation),
-                            onMenuClick = {
-                                scope.launch {
-                                    drawerState.open() // Abre el drawer al hacer clic en el ícono de menú
-                                }
+                        }
+                    )
+                } else {
+                    lastScreen = currentLocation
+                    TopBar(
+                        topBarColor = navigationActions.getColorTopBar(currentLocation),
+                        title = navigationActions.getTextTopBar(currentLocation),
+                        titleStyle = navigationActions.getTitleStyleTopBar(currentLocation),
+                        titleColor = navigationActions.getTitleColorTopBar(currentLocation),
+                        onMenuClick = {
+                            scope.launch {
+                                drawerState.open() // Abre el drawer al hacer clic en el ícono de menú
                             }
-                        )
-                    }
-                }
-            },
-            content = { innerPadding ->
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(innerPadding)
-                ) {
-                    AppNavigation(navController)
+                        }
+                    )
                 }
             }
-        )
-    }
+        },
+        content = { innerPadding ->
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding)
+            ) {
+                AppNavigation(navController)
+            }
+        }
+    )
+}
