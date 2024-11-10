@@ -14,7 +14,6 @@ import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.utilities.ValidacionesCampos.validarCampos
 import com.example.login.utilities.validarCampoMutable
 import com.example.login.utilities.validarFechaNacimiento
-import com.example.login.utilities.validarMail
 
 class ConductorVehiculoAseguradoViewModel (
     getServicePolizas: GetServicePolizas
@@ -36,14 +35,14 @@ class ConductorVehiculoAseguradoViewModel (
 
 
     val campos = listOf(
-        FormField("Nombre: ", tipo = TipoCampo.TEXTO),
+        FormField("Nombre", tipo = TipoCampo.TEXTO),
         FormField("Apellido", tipo = TipoCampo.TEXTO),
         FormField("Calle", tipo = TipoCampo.TEXTO),
         FormField("Numero", tipo = TipoCampo.NUMERICO),
         FormField("Piso", tipo = TipoCampo.NUMERICO),
         FormField("Departamento", tipo = TipoCampo.TEXTO),
-        FormField("Codigo Postal", tipo = TipoCampo.TEXTO),
-        FormField("CUIT", tipo = TipoCampo.TEXTO),
+        FormField("Codigo Postal", tipo = TipoCampo.CODIGO_POSTAL),
+        FormField("DNI", tipo = TipoCampo.DNI),
         FormField("Telefono", tipo = TipoCampo.NUMERICO),
         FormField("Email", tipo = TipoCampo.TEXTO),
         FormField("Nro Registro de Conducir", tipo = TipoCampo.TEXTO),
@@ -77,7 +76,6 @@ class ConductorVehiculoAseguradoViewModel (
     @RequiresApi(Build.VERSION_CODES.O)
     fun crearSolicitudPoliza(): Solicitud? {
 //        validarCampos(campos)
-//        validarMail(campos[9])
         validarFechaNacimiento(fechaNacimiento, errorFechaNacimiento)
 //        validarCampoMutable(fechaExpedicion, errorFechaExpedicion, "Debes completar la fecha de expedicion")
 //        validarCampoMutable(fechaDeVencimiento, errorFechaVencimiento, "Debes completar la fecha de vencimiento")
@@ -90,7 +88,7 @@ class ConductorVehiculoAseguradoViewModel (
 //            solicitud.conductorAsegurado.datosPersona.domicilio.piso = if (campos[4].value.value.isEmpty()) null else campos[4].value.value.toInt()
 //            solicitud.conductorAsegurado.datosPersona.domicilio.departamento = campos[5].value.value
 //            solicitud.conductorAsegurado.datosPersona.domicilio.codigoPostal = campos[6].value.value.toInt()
-//            solicitud.conductorAsegurado.datosPersona.cuit = campos[7].value.value.toInt()
+//            solicitud.conductorAsegurado.datosPersona.dni = campos[7].value.value.toInt()
 //            solicitud.conductorAsegurado.datosPersona.telefono = campos[8].value.value
 //            solicitud.conductorAsegurado.datosPersona.sexo = sexoSeleccionado.value
 //            solicitud.conductorAsegurado.datosPersona.email = campos[9].value.value
@@ -111,7 +109,7 @@ class ConductorVehiculoAseguradoViewModel (
             solicitud.conductorAsegurado.datosPersona.domicilio.piso = null
             solicitud.conductorAsegurado.datosPersona.domicilio.departamento = null
             solicitud.conductorAsegurado.datosPersona.domicilio.codigoPostal = 7300;
-            solicitud.conductorAsegurado.datosPersona.cuit = 20987642842;
+//            solicitud.conductorAsegurado.datosPersona.dni = 98764284;
 //            solicitud.conductorAsegurado.datosPersona.fechaDeNacimiento = "1990-10-10"; // Ejemplo de fecha exacta
 
             solicitud.conductorAsegurado.datosPersona.telefono = "123456789";

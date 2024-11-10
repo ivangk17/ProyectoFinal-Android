@@ -38,15 +38,15 @@ class DatosPropietarioVehiculoAseguradoViewModel (
 
 
     val campos = listOf(
-        FormField("Nombre: ", tipo = TipoCampo.TEXTO),
+        FormField("Nombre", tipo = TipoCampo.TEXTO),
         FormField("Apellido", tipo = TipoCampo.TEXTO),
         FormField("Calle", tipo = TipoCampo.TEXTO),
         FormField("Numero", tipo = TipoCampo.NUMERICO),
         FormField("Piso", tipo = TipoCampo.NUMERICO),
         FormField("Departamento", tipo = TipoCampo.TEXTO),
-        FormField("Codigo Postal", tipo = TipoCampo.TEXTO),
-        FormField("CUIT", tipo = TipoCampo.TEXTO),
-        FormField("E-mail", tipo = TipoCampo.TEXTO),
+        FormField("Codigo Postal", tipo = TipoCampo.CODIGO_POSTAL),
+        FormField("DNI", tipo = TipoCampo.DNI),
+        FormField("Email", tipo = TipoCampo.TEXTO),
         FormField("TEL", tipo = TipoCampo.TEXTO),
         FormField("Marca", tipo = TipoCampo.TEXTO),
         FormField("Modelo", tipo = TipoCampo.TEXTO),
@@ -71,7 +71,7 @@ class DatosPropietarioVehiculoAseguradoViewModel (
             Solicitud.propietarioAsegurado.datosPersona.domicilio.piso = if (campos[4].value.value.isEmpty()) null else campos[4].value.value.toInt()
             Solicitud.propietarioAsegurado.datosPersona.domicilio.departamento = campos[5].value.value
             Solicitud.propietarioAsegurado.datosPersona.domicilio.codigoPostal = campos[6].value.value.toInt()
-            Solicitud.propietarioAsegurado.datosPersona.cuit = campos[7].value.value.toInt()
+            Solicitud.propietarioAsegurado.datosPersona.dni = campos[7].value.value.toInt()
             Solicitud.propietarioAsegurado.datosPersona.email = campos[8].value.value
             Solicitud.propietarioAsegurado.datosPersona.telefono = campos[9].value.value
             Solicitud.propietarioAsegurado.datosPersona.sexo = sexoSeleccionado.value
@@ -120,7 +120,7 @@ class DatosPropietarioVehiculoAseguradoViewModel (
             campos[5].value.value = user.value.domicilio.departamento.toString()
         }
         campos[6].value.value = user.value.domicilio.codigoPostal.toString()
-        campos[7].value.value = user.value.cuit.toString()
+        campos[7].value.value = user.value.dni.toString()
         campos[8].value.value = user.value.email
         campos[9].value.value = user.value.telefono.toString()
         campos[10].value.value = poliza.vehiculo.marca

@@ -24,7 +24,7 @@ class DatosSiniestroViewModel(
 
     val campos = listOf(
         FormField("Lugar de Ocurrencia", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Codigo Postal", mutableStateOf(""), tipo = TipoCampo.NUMERICO),
+        FormField("Codigo Postal", tipo = TipoCampo.CODIGO_POSTAL),
         FormField("Cantidad de autos que participaron en el siniestro", mutableStateOf(""), tipo = TipoCampo.NUMERICO),
         FormField("Interseccion", mutableStateOf(""), tipo = TipoCampo.TEXTO)
     )
