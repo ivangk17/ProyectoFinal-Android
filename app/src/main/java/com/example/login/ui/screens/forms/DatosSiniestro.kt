@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.login.components.AppButton
 import com.example.login.components.DatePicker
 import com.example.login.components.FieldStringForms
 import com.example.login.components.TimePicker
@@ -68,7 +69,10 @@ fun DatosSiniestro(
         }
 
         item {
-            Button(onClick = {
+            AppButton(
+                text = "Siguiente"
+            )
+            {
                 val solicitud = viewModel.crearSolicitudPoliza()
                 val polizaJson = gson.toJson(poliza)
 
@@ -79,8 +83,7 @@ fun DatosSiniestro(
                     showToastError(context, "error: No se puede crear la solicitud")
                     Log.d("solicitud", "no se creo")
                 }
-            }) {
-                Text("Siguiente")
+
             }
         }
 

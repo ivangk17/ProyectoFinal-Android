@@ -15,6 +15,7 @@
     <string name="home_text">Home</string>
     <string name="solicitudes_text">Solicitudes\n</string>
     <string name="legal_text">Legales\n</string>
+    <string name="log_out_text">Cerrar sesión</string>
 
 
 </resources>
