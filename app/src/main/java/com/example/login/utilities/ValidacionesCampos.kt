@@ -1,8 +1,14 @@
 package com.example.login.utilities
 
+import android.os.Build
+import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.MutableState
 import com.example.login.data.models.fields.FormField
 import com.example.login.data.models.fields.TipoCampo
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 
 object ValidacionesCampos {
 
@@ -21,6 +27,47 @@ fun validarCampoMutable(campo: MutableState<String?>, error: MutableState<String
         error.value = mensajeError
     }
 }
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun validarFechaActual(
+    fecha: MutableState<String?>,
+    errorFecha: MutableState<String?>
+) {
+    if (fecha.value.isNullOrEmpty()) {
+        errorFecha.value = "La fecha no puede ser nula o vacía."
+        Log.d("FECHA", "entro")
+    }else{
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val fechaIngresada = LocalDate.parse(fecha.value, formatter)
+        val fechaActual = LocalDate.now()
+
+        if (fechaIngresada.isAfter(fechaActual)){
+            errorFecha.value = "Fecha inválida."
+        }
+    }
+}
+
+
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun validarFechaNacimiento(
+    fecha: MutableState<String?>,
+    errorFecha: MutableState<String?>
+) {
+    if (fecha.value.isNullOrEmpty()) {
+        errorFecha.value = "La fecha no puede ser nula o vacía."
+    } else {
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val fechaIngresada = LocalDate.parse(fecha.value, formatter)
+        val fechaActual = LocalDate.now()
+        val edad = ChronoUnit.YEARS.between(fechaIngresada, fechaActual)
+        if (edad < 18){
+            Log.d("FECHA", "entro " + edad)
+            errorFecha.value = "Debe ser mayor de 18 años."
+        }
+    }
+}
+
 
 fun validarMail(email: FormField) {
     val emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$".toRegex()

@@ -1,5 +1,7 @@
 package com.example.login.ui.viewmodels.forms
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -10,6 +12,7 @@ import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.utilities.ValidacionesCampos.validarCampos
 import com.example.login.utilities.validarCampoMutable
+import com.example.login.utilities.validarFechaNacimiento
 import com.example.login.utilities.validarMail
 
 class ConductorVehiculoTerceroViewModel (
@@ -69,14 +72,15 @@ class ConductorVehiculoTerceroViewModel (
 
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun crearSolicitudPoliza(): Solicitud? {
 //        validarCampos(campos)
 //        validarMail(campos[9])
-//        validarCampoMutable(fechaNacimiento, errorFechaNacimiento, "Debes completar la fecha de nacimiento")
+        validarFechaNacimiento(fechaNacimiento, errorFechaNacimiento)
 //        validarCampoMutable(fechaExpedicion, errorFechaExpedicion, "Debes completar la fecha de expedicion")
 //        validarCampoMutable(fechaDeVencimiento, errorFechaVencimiento, "Debes completar la fecha de vencimiento")
 
-        if (campos.all { it.error.value == null }) {
+        if (campos.all { it.error.value == null } && errorFechaNacimiento.value == null) {
 //            solicitud.conductorAfectado.datosPersona.nombre = campos[0].value.value
 //            solicitud.conductorAfectado.datosPersona.apellido = campos[1].value.value
 //            solicitud.conductorAfectado.datosPersona.domicilio.calle = campos[2].value.value
@@ -92,7 +96,7 @@ class ConductorVehiculoTerceroViewModel (
 //            solicitud.conductorAfectado.claseRegistro = campos[11].value.value
 //            solicitud.conductorAfectado.relacionAsegurado = campos[12].value.value
 //
-//            solicitud.conductorAfectado.datosPersona.fechaDeNacimiento = fechaNacimiento.value!!
+            solicitud.conductorAfectado.datosPersona.fechaDeNacimiento = fechaNacimiento.value!!
 //            solicitud.conductorAfectado.fechaRegistroExpedicion = fechaExpedicion.value!!
 //            solicitud.conductorAfectado.fechaRegistroVencimiento = fechaDeVencimiento.value!!
 
@@ -105,7 +109,7 @@ class ConductorVehiculoTerceroViewModel (
             solicitud.conductorAfectado.datosPersona.domicilio.departamento = null
             solicitud.conductorAfectado.datosPersona.domicilio.codigoPostal = 7300;
             solicitud.conductorAfectado.datosPersona.cuit = 20987642848;
-            solicitud.conductorAfectado.datosPersona.fechaDeNacimiento = "1990-10-10"; // Ejemplo de fecha exacta
+//            solicitud.conductorAfectado.datosPersona.fechaDeNacimiento = "1990-10-10"; // Ejemplo de fecha exacta
             solicitud.conductorAfectado.datosPersona.telefono = "123456789";
             solicitud.conductorAfectado.datosPersona.sexo = Sexo.MUJER;
             solicitud.conductorAfectado.datosPersona.email = "email@example.com";

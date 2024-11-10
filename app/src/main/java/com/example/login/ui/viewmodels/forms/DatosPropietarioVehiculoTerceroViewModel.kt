@@ -1,5 +1,7 @@
 package com.example.login.ui.viewmodels.forms
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -11,6 +13,7 @@ import com.example.login.data.models.vehiculos.TipoVehiculo
 import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.utilities.ValidacionesCampos.validarCampos
 import com.example.login.utilities.validarCampoMutable
+import com.example.login.utilities.validarFechaNacimiento
 import com.example.login.utilities.validarMail
 
 class DatosPropietarioVehiculoTerceroViewModel (
@@ -69,13 +72,15 @@ class DatosPropietarioVehiculoTerceroViewModel (
 
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun crearSolicitudPoliza(): Solicitud? {
 //        validarCampos(campos)
 //        validarMail(campos[8])
-//        validarCampoMutable(fechaDeVencimiento, errorFechaVencimiento, "Debes completar la fecha de vencimiento")
-//        validarCampoMutable(fechaNacimiento, errorFechaNacimiento, "Debes completar la fecha de vencimiento")
+//        validarCampoMutable(fechaDeVencimiento, errorFechaVencimiento, "Debes completar la fecha de vencimiento"
+        validarFechaNacimiento(fechaNacimiento, errorFechaNacimiento)
 
-        if(campos.all { it.error.value == null }){
+
+        if(campos.all { it.error.value == null } && errorFechaNacimiento.value == null){
 //            solicitud.propietarioAfectado.datosPersona.nombre = campos[0].value.value
 //            solicitud.propietarioAfectado.datosPersona.apellido = campos[1].value.value
 //            solicitud.propietarioAfectado.datosPersona.domicilio.calle = campos[2].value.value
@@ -87,7 +92,7 @@ class DatosPropietarioVehiculoTerceroViewModel (
 //            solicitud.propietarioAfectado.datosPersona.email = campos[8].value.value
 //            solicitud.propietarioAfectado.datosPersona.telefono = campos[9].value.value
 //            solicitud.propietarioAfectado.datosPersona.sexo = sexoSeleccionado.value
-//            solicitud.propietarioAfectado.datosPersona.fechaDeNacimiento = fechaNacimiento.value!!
+            solicitud.propietarioAfectado.datosPersona.fechaDeNacimiento = fechaNacimiento.value!!
 //            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.tipoVehiculo = tipoVehiculo.value
 //            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.marca = campos[10].value.value
 //            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.modelo = campos[11].value.value
@@ -112,7 +117,7 @@ class DatosPropietarioVehiculoTerceroViewModel (
             solicitud.propietarioAfectado.datosPersona.email = "email@example.com";
             solicitud.propietarioAfectado.datosPersona.telefono = "123456789";
             solicitud.propietarioAfectado.datosPersona.sexo = Sexo.MUJER
-            solicitud.propietarioAfectado.datosPersona.fechaDeNacimiento = "1990-10-10"
+//            solicitud.propietarioAfectado.datosPersona.fechaDeNacimiento = "1990-10-10"
 
             solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.tipoVehiculo = TipoVehiculo.CAMION
             solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.marca = "Marca";

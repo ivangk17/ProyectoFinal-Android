@@ -1,5 +1,8 @@
 package com.example.login.ui.viewmodels.forms
 
+import android.os.Build
+import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -10,6 +13,7 @@ import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.utilities.ValidacionesCampos.validarCampos
 import com.example.login.utilities.validarCampoMutable
+import com.example.login.utilities.validarFechaActual
 
 
 class DatosSiniestroViewModel(
@@ -48,13 +52,15 @@ class DatosSiniestroViewModel(
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun crearSolicitudPoliza(): Solicitud? {
 //        validarCampos(campos)
 //        validarCampoMutable(fechaOcurrencia, errorFechaOcurrencua, "Se debe completar la fecha de ocurrencia")
 //        validarCampoMutable(horaOcurriencia, errorHoraOcurrencua, "Se debe completar la hora de ocurrencia")
+        validarFechaActual(fechaOcurrencia, errorFechaOcurrencua)
 
-        if (campos.all { it.error.value == null }) {
-//            solicitud.datosSiniestro.fechaOcurrencia = fechaOcurrencia.value
+        if (campos.all { it.error.value == null } && errorFechaOcurrencua.value == null && horaOcurriencia.value == null) {
+            solicitud.datosSiniestro.fechaOcurrencia = fechaOcurrencia.value
 //            solicitud.datosSiniestro.horaOcurrencia = horaOcurriencia.value.toString()
 //            solicitud.datosSiniestro.lugarOcurrencia = campos[0].value.value
 //            solicitud.datosSiniestro.codigoPostal = campos[1].value.value.toInt()
@@ -67,7 +73,7 @@ class DatosSiniestroViewModel(
 
 
 
-            solicitud.datosSiniestro.fechaOcurrencia = "2020-10-10";
+//            solicitud.datosSiniestro.fechaOcurrencia = "2020-10-10";
             solicitud.datosSiniestro.horaOcurrencia = "14:30:00"; // Ejemplo de hora exacta
             solicitud.datosSiniestro.lugarOcurrencia = "Lugar Ocurrencia";
             solicitud.datosSiniestro.codigoPostal = 7300;

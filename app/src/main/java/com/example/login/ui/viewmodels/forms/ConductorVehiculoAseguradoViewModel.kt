@@ -1,5 +1,8 @@
 package com.example.login.ui.viewmodels.forms
 
+import android.os.Build
+import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -10,6 +13,7 @@ import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.utilities.ValidacionesCampos.validarCampos
 import com.example.login.utilities.validarCampoMutable
+import com.example.login.utilities.validarFechaNacimiento
 import com.example.login.utilities.validarMail
 
 class ConductorVehiculoAseguradoViewModel (
@@ -70,14 +74,15 @@ class ConductorVehiculoAseguradoViewModel (
 
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun crearSolicitudPoliza(): Solicitud? {
 //        validarCampos(campos)
 //        validarMail(campos[9])
-//        validarCampoMutable(fechaNacimiento, errorFechaNacimiento, "Debes completar la fecha de nacimiento")
+        validarFechaNacimiento(fechaNacimiento, errorFechaNacimiento)
 //        validarCampoMutable(fechaExpedicion, errorFechaExpedicion, "Debes completar la fecha de expedicion")
 //        validarCampoMutable(fechaDeVencimiento, errorFechaVencimiento, "Debes completar la fecha de vencimiento")
 
-        if (campos.all { it.error.value == null }) {
+        if (campos.all { it.error.value == null } && errorFechaNacimiento.value == null) {
 //            solicitud.conductorAsegurado.datosPersona.nombre = campos[0].value.value
 //            solicitud.conductorAsegurado.datosPersona.apellido = campos[1].value.value
 //            solicitud.conductorAsegurado.datosPersona.domicilio.calle = campos[2].value.value
@@ -93,7 +98,7 @@ class ConductorVehiculoAseguradoViewModel (
 //            solicitud.conductorAsegurado.claseRegistro = campos[11].value.value
 //            solicitud.conductorAsegurado.relacionAsegurado = campos[12].value.value
 //
-//            solicitud.conductorAsegurado.datosPersona.fechaDeNacimiento = fechaNacimiento.value!!
+            solicitud.conductorAsegurado.datosPersona.fechaDeNacimiento = fechaNacimiento.value!!
 //            solicitud.conductorAsegurado.fechaRegistroVencimiento = fechaDeVencimiento.value!!
 //            solicitud.conductorAsegurado.fechaRegistroExpedicion = fechaExpedicion.value!!
 
@@ -107,7 +112,7 @@ class ConductorVehiculoAseguradoViewModel (
             solicitud.conductorAsegurado.datosPersona.domicilio.departamento = null
             solicitud.conductorAsegurado.datosPersona.domicilio.codigoPostal = 7300;
             solicitud.conductorAsegurado.datosPersona.cuit = 20987642842;
-            solicitud.conductorAsegurado.datosPersona.fechaDeNacimiento = "1990-10-10"; // Ejemplo de fecha exacta
+//            solicitud.conductorAsegurado.datosPersona.fechaDeNacimiento = "1990-10-10"; // Ejemplo de fecha exacta
 
             solicitud.conductorAsegurado.datosPersona.telefono = "123456789";
             solicitud.conductorAsegurado.datosPersona.sexo = Sexo.MUJER;
