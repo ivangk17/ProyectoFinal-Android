@@ -7,9 +7,11 @@ import com.example.login.data.models.fields.FormField
 import com.example.login.data.models.fields.TipoCampo
 import com.example.login.data.models.personas.Sexo
 import com.example.login.data.models.solicitud.Solicitud
+import com.example.login.data.models.vehiculos.ColorVehiculo
 import com.example.login.data.models.vehiculos.TipoVehiculo
 import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.utilities.ValidacionesCampos.validarCampos
+import com.example.login.utilities.setColor
 import com.example.login.utilities.validarCampoMutable
 import com.example.login.utilities.validarMail
 
@@ -20,6 +22,7 @@ class DatosPropietarioVehiculoTerceroViewModel (
     var solicitud = Solicitud()
 
     var sexoSeleccionado =  mutableStateOf(Sexo.INDEFINIDO)
+    var colorDelVehiculo = mutableStateOf(ColorVehiculo.BLANCO)
 
     var fechaNacimiento = mutableStateOf<String?>(null)
     var errorFechaNacimiento = mutableStateOf<String?>(null)
@@ -28,6 +31,7 @@ class DatosPropietarioVehiculoTerceroViewModel (
 
     var fechaDeVencimiento = mutableStateOf<String?>(null)
     var errorFechaVencimiento = mutableStateOf<String?>(null)
+
 
     val campos = listOf(
         FormField("Nombre: ", tipo = TipoCampo.TEXTO),
@@ -91,11 +95,11 @@ class DatosPropietarioVehiculoTerceroViewModel (
 //            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.tipoVehiculo = tipoVehiculo.value
 //            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.marca = campos[10].value.value
 //            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.modelo = campos[11].value.value
-//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.color = campos[12].value.value
-//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.anio = campos[13].value.value.toInt()
-//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.dominio = campos[14].value.value
-//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.aseguradora = campos[15].value.value
-//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.poliza = campos[16].value.value
+            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.color = colorDelVehiculo.value
+//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.anio = campos[12].value.value.toInt()
+//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.dominio = campos[13].value.value
+//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.aseguradora = campos[14].value.value
+//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.poliza = campos[15].value.value
 //            solicitud.propietarioAfectado.fechaVencimientoPoliza = fechaDeVencimiento.value!!
 
 
@@ -117,7 +121,7 @@ class DatosPropietarioVehiculoTerceroViewModel (
             solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.tipoVehiculo = TipoVehiculo.CAMION
             solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.marca = "Marca";
             solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.modelo = "Modelo";
-            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.color = "Color";
+            //solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.color = ColorVehiculo.VERDE
             solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.anio = 2020; // Ejemplo de año
             solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.dominio = "Dominio";
             solicitud.propietarioAfectado.vehiculoPropietadoAfectado.aseguradora = "Aseguradora";

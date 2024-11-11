@@ -18,6 +18,7 @@ import com.example.login.components.DropdownMenuSample
 import com.example.login.components.FieldStringForms
 import com.example.login.data.models.personas.Sexo
 import com.example.login.data.models.poliza.Poliza
+import com.example.login.data.models.vehiculos.ColorVehiculo
 import com.example.login.data.models.vehiculos.UsoDelVehiculo
 import com.example.login.navigation.Rutas
 import com.example.login.ui.screens.gson
@@ -34,6 +35,7 @@ fun DatosPropietarioVehiculoAsegurado(
 ){
     val context = LocalContext.current
     val optionsUsoVehiculo = UsoDelVehiculo.entries //esto devuelve una lista de opciones
+    val optionsColor = ColorVehiculo.entries
     val optionsSexo = Sexo.entries
     val user = viewModel.loadInfoUser(polizaParametro) //TODO NO BORRAR ESTA VARIABLE (porque sino no carga la info del usuario logueado)
 
@@ -72,6 +74,13 @@ fun DatosPropietarioVehiculoAsegurado(
 
             item {
                 DropdownMenuSample(
+                    title = "Color",
+                    options = optionsColor,
+                    selectedOption = viewModel.colorDelVehiculo.value,
+                    onOptionSelected = { viewModel.colorDelVehiculo.value = it },
+                    label = { it.displayName }
+                )
+                DropdownMenuSample(
                     title = "Uso del vehiculo",
                     options = optionsUsoVehiculo,
                     selectedOption = viewModel.usoDelVehiculo.value,
@@ -85,6 +94,7 @@ fun DatosPropietarioVehiculoAsegurado(
                         val polizaJson = gson.toJson(polizaParametro)
                         if (solicitud != null) {
                             crearSolicitudViewModel.datosPropietarioVehiculoAsegurado(solicitud)
+                            Log.d("Solicitud", solicitud.propietarioAsegurado.toString())
                             navController.navigate(route = "${Rutas.DatosPropietarioVehiculoTercero.ruta}/${polizaJson}")
                         } else {
                             showToastError(context, "error: No se puede crear la solicitud")

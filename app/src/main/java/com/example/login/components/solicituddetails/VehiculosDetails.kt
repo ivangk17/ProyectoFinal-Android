@@ -10,7 +10,7 @@ fun VehiculosDetails(vehiculo: Vehiculo){
     TextSolicitudDetails("Marca:", vehiculo.marca)
     TextSolicitudDetails("Modelo:", vehiculo.modelo)
     TextSolicitudDetails("Tipo del Vehiculo:", vehiculo.tipoVehiculo.displayName)
-    TextSolicitudDetails("Color:", vehiculo.color)
+    TextSolicitudDetails("Color:", vehiculo.color.displayName)
     TextSolicitudDetails("Año:", vehiculo.anio.toString())
     TextSolicitudDetails("Dominio:", vehiculo.dominio)
 }

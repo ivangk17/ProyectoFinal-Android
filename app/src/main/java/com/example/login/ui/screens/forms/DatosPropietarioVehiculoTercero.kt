@@ -22,6 +22,7 @@ import com.example.login.components.DropdownMenuSample
 import com.example.login.components.FieldStringForms
 import com.example.login.data.models.personas.Sexo
 import com.example.login.data.models.poliza.Poliza
+import com.example.login.data.models.vehiculos.ColorVehiculo
 import com.example.login.data.models.vehiculos.TipoVehiculo
 import com.example.login.navigation.Rutas
 import com.example.login.ui.screens.gson
@@ -38,6 +39,7 @@ fun DatosPropietarioVehiculoTercero(
 ) {
     val context = LocalContext.current
     val optionsSexo = Sexo.entries
+    val optionsColor = ColorVehiculo.entries
     val optionsTipoVehiculo = TipoVehiculo.entries
     LazyColumn(
         modifier = Modifier
@@ -87,6 +89,13 @@ fun DatosPropietarioVehiculoTercero(
                     onOptionSelected = { viewModel.tipoVehiculo.value = it },
                     label = { it.displayName }
                 )
+                DropdownMenuSample(
+                    title = "Color",
+                    options = optionsColor,
+                    selectedOption = viewModel.colorDelVehiculo.value,
+                    onOptionSelected = { viewModel.colorDelVehiculo.value = it },
+                    label = { it.displayName }
+                )
             }
         }
 
@@ -109,6 +118,7 @@ fun DatosPropietarioVehiculoTercero(
                         val polizaJson = gson.toJson(poliza)
                         if (solicitud != null) {
                             crearSolicitudViewModel.datosPropietarioVehiculoTercero(solicitud)
+                            Log.d("Solicitud", solicitud.propietarioAfectado.toString())
                             navController.navigate(route = "${Rutas.ConductorVehiculoAsegurado.ruta}/${polizaJson}")
                         } else {
                             showToastError(context, "error: No se puede crear la solicitud")
