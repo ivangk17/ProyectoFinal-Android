@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.login.R
 import com.example.login.navigation.Rutas
+import kotlinx.coroutines.Job
 
 @Composable
 fun NavigationTopBar(
@@ -52,7 +53,7 @@ fun NavigationTopBar(
                 painter = painterResource(id = R.drawable.back),
                 contentDescription = "Back",
                 modifier = Modifier
-                    .size(20.dp)
+                    .size(30.dp)
                     .clickable { onClick() }
             )
 
@@ -85,10 +86,6 @@ fun NavigationTopBar(
                 }
             }
         }
+
     }
 }
-
-
-
-
-

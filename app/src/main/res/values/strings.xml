@@ -2,8 +2,8 @@
     <string name="app_name">Login</string>
 
     `Drawer menu`
-    <string name="drawer_home_icon">Home</string>
-    <string name="drawer_solicitudes_icon">Solicitudes realizadas</string>
+    <string name="drawer_home_text">Home</string>
+    <string name="drawer_solicitudes_text">Solicitudes realizadas</string>
 
     `Solicitudes screen`
     <string name="id_solicitud">ID de la solicitud: %s </string>
@@ -12,6 +12,10 @@
     <string name="dato_no_disponible">Dato no disponible</string>
     <string name="Solicitudes_titulo">Mis Solicitudes</string>
     <string name="Sin_solicitudes">No se encontraron solicitudes</string>
+    <string name="home_text">Home</string>
+    <string name="solicitudes_text">Solicitudes\n</string>
+    <string name="legal_text">Legales\n</string>
+    <string name="log_out_text">Cerrar sesión</string>
 
 
 </resources>

@@ -1,6 +1,5 @@
 package com.example.login.ui.screens
 
-import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,16 +15,14 @@ import com.example.login.components.PolizaCard
 import com.example.login.navigation.Rutas
 import com.example.login.tokens.Token
 import com.example.login.tokens.Utility
-import com.example.login.ui.navigationdrawer.NavDrawer
 import com.example.login.ui.viewmodels.HomeViewModel
-import com.example.login.ui.viewmodels.navdrawerviewmodel.DrawerViewModel
 import com.google.gson.Gson
 
 
 val gson = Gson()
 
 @Composable
-fun HomeScreen(navController: NavHostController, homeViewModel: HomeViewModel, drawerViewModel: DrawerViewModel) {
+fun HomeScreen(navController: NavHostController, homeViewModel: HomeViewModel) {
     val user = Utility().decodeJWT(Token.token)
     val scope = rememberCoroutineScope()
     val polizas by homeViewModel.Polizas
@@ -35,7 +32,7 @@ fun HomeScreen(navController: NavHostController, homeViewModel: HomeViewModel, d
         homeViewModel.loadPolizas()
 
     }
-    NavDrawer(navController, drawerViewModel) {
+
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Top,
@@ -56,7 +53,7 @@ fun HomeScreen(navController: NavHostController, homeViewModel: HomeViewModel, d
                 )
             }
         }
-    }
+
 }
 
 

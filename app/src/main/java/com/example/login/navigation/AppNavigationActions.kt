@@ -14,16 +14,31 @@ import com.example.login.ui.theme.TituloFormulario
 import com.example.login.ui.theme.TitleBold
 
 class AppNavigationActions(
-    navController: NavController
-){
+    private val navController: NavController
+) {
 
-    val hideTopBar= listOf(
+    companion object {
+        val routesWithDrawer = listOf(
+            Rutas.HomeScreen.ruta,
+            Rutas.SolicitudesScreen.ruta
+        )
+    }
+    fun navigateToRoute(route: String): Unit {
+        navController.navigate(route)
+    }
+
+
+    fun navigateToLogin() {
+        navController.navigate(Rutas.LoginScreen.ruta)
+    }
+
+    val hideTopBar = listOf(
         Rutas.LoginScreen.ruta,
     )
 
     @Composable
     fun getColorTopBar(location: String?): Color {
-        return when(location){
+        return when (location) {
             //Rutas.HomeScreen.ruta -> Color.White
             //AppDestinations.HOME_ROUTE -> Gray100
 
@@ -31,8 +46,9 @@ class AppNavigationActions(
         }
     }
 
+
     @Composable
-    fun getTextTopBar(location: String?): String{
+    fun getTextTopBar(location: String?): String {
         Log.d("LOCATION", location.toString())
         Log.d("LOCATION", "${Rutas.SolicitudDetalle.ruta}/{solicitudId}/{solicitudId}")
         return when(location){
@@ -72,8 +88,8 @@ class AppNavigationActions(
     }
 
     @Composable
-    fun getTitleColorTopBar(location: String?): Color{
-        return when(location){
+    fun getTitleColorTopBar(location: String?): Color {
+        return when (location) {
             Rutas.HomeScreen.ruta -> colorResource(id = R.color.texto_principal)
             Rutas.SolicitudesScreen.ruta -> colorResource(id = R.color.texto_principal)
 
@@ -81,7 +97,7 @@ class AppNavigationActions(
         }
     }
 
-    fun hideTopBar(location: String?): Boolean{
+    fun hideTopBar(location: String?): Boolean {
         return hideTopBar.contains(location)
     }
 
@@ -127,5 +143,6 @@ class AppNavigationActions(
             else -> false
         }
     }
+
 
 }

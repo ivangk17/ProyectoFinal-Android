@@ -1,15 +1,13 @@
 package com.example.login.ui.screens.solicitudes
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarHost
+import androidx.compose.foundation.layout.offset
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.remember
@@ -17,14 +15,12 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.login.R
-import com.example.login.ui.navigationdrawer.NavDrawer
-import com.example.login.ui.viewmodels.navdrawerviewmodel.DrawerViewModel
+import com.example.login.ui.viewmodels.solicitudesviewmod.SolicitudesUiState
 import com.example.login.ui.viewmodels.solicitudesviewmod.SolicitudesViewModel
 import kotlinx.coroutines.launch
 
@@ -32,38 +28,53 @@ import kotlinx.coroutines.launch
 @Composable
 fun SolicitudesScreen(
     viewModel: SolicitudesViewModel,
-    navController: NavHostController,
-    drawerViewModel: DrawerViewModel
+    navController: NavHostController
 ) {
-    val solicitudes by viewModel.solicitudes.observeAsState(emptyList())
-    val error by viewModel.error.observeAsState()
+    val uiState by viewModel.uiState.observeAsState(SolicitudesUiState.Loading)
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
 
-    // Muestra el Snackbar cuando hay un error
-    error?.let {
-        coroutineScope.launch {
-            snackbarHostState.showSnackbar(
-                message = "Error: $it",
-                actionLabel = "Cerrar"
-            )
-        }
-    }
 
-    NavDrawer(navController, drawerViewModel) {
-        Scaffold(
-            snackbarHost = { SnackbarHost(hostState = snackbarHostState) }, // Snackbar host
-            modifier = Modifier.background(colorResource(id = R.color.fondo_principal))
 
-        ) { innerPadding ->
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding),
-                verticalArrangement = Arrangement.Top,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                SolicitudesLista(solicitudes, navController)
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        when (uiState) {
+            is SolicitudesUiState.Loading -> {
+                // Mostrar el indicador de carga mientras los datos se están cargando
+                CircularProgressIndicator(
+                    modifier = Modifier.align(Alignment.Center)
+                )
+            }
+            is SolicitudesUiState.Success -> {
+                // Mostrar la lista de solicitudes cuando hay datos disponibles
+                val solicitudes = (uiState as SolicitudesUiState.Success).solicitudes
+                SolicitudesLista(solicitudes = solicitudes, navController = navController)
+            }
+            is SolicitudesUiState.Empty -> {
+                // Mostrar el mensaje cuando no hay solicitudes
+                val message = (uiState as SolicitudesUiState.Empty).message
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .offset(y = -100.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = message,
+                        fontSize = 25.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = colorResource(id = R.color.texto_Secundario)
+                    )
+                }
+            }
+            is SolicitudesUiState.Error -> {
+                val message = (uiState as SolicitudesUiState.Error).message
+                LaunchedEffect(snackbarHostState) {
+                    snackbarHostState.showSnackbar(
+                        message = "Error: $message",
+                        actionLabel = "Cerrar"
+                    )
+                }
             }
         }
     }
