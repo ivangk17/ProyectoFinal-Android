@@ -28,6 +28,7 @@ import com.example.login.data.models.UserLogin
 import com.example.login.components.Field
 import com.example.login.navigation.Rutas
 import com.example.login.tokens.Token
+import com.example.login.ui.viewmodels.MainActivityViewmodel.MainViewModel
 import com.example.login.utilities.showToastError
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
@@ -40,11 +41,14 @@ fun isEmailValid(email: String): Boolean {
     return Patterns.EMAIL_ADDRESS.matcher(email).matches()
 }
 
-suspend fun handleLogin(user: UserLogin, context: Context, navController: NavController) {
+suspend fun handleLogin(user: UserLogin, context: Context, navController: NavController, mainViewModel: MainViewModel) {
     try {
         val response = RetrofitClient.apiService.login(user)
         Token.token = response.token
-        navController.navigate(route = Rutas.HomeScreen.ruta)
+        mainViewModel.updateEmail()
+        navController.navigate(route = Rutas.HomeScreen.ruta){
+            popUpTo(0) { inclusive = true }
+        }
     } catch (e: Exception) {
         val errorMessage = when (e) {
             is HttpException -> {
@@ -64,12 +68,12 @@ suspend fun handleLogin(user: UserLogin, context: Context, navController: NavCon
 
 
 @Composable
-fun LoginScreen(navController: NavController) {
-    RegisterText(navController = navController)
+fun LoginScreen(navController: NavController, mainViewModel: MainViewModel) {
+    RegisterText(navController = navController, mainViewModel= mainViewModel)
 }
 
 @Composable
-fun RegisterText(modifier: Modifier = Modifier, navController: NavController) {
+fun RegisterText(modifier: Modifier = Modifier, navController: NavController, mainViewModel: MainViewModel) {
     var email by remember { mutableStateOf(TextFieldValue("")) }
     var password by remember { mutableStateOf(TextFieldValue("")) }
     val context = LocalContext.current
@@ -114,7 +118,7 @@ fun RegisterText(modifier: Modifier = Modifier, navController: NavController) {
             onClick = {
                 val user = UserLogin(email.text, password.text)
                 CoroutineScope(Dispatchers.Main).launch {
-                    handleLogin(user, context, navController)
+                    handleLogin(user, context, navController, mainViewModel)
                 }
             },
             modifier = Modifier.fillMaxWidth()

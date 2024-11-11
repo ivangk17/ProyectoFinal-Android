@@ -25,7 +25,6 @@ import com.example.login.utilities.showToastError
 fun ConsecuenciaSiniestro(
     navController: NavController,
     viewModel: ConsecuenciaSiniestroViewModel,
-    poliza: Poliza,
     crearSolicitudViewModel: CrearSolicitudViewModel
 ){
     val context = LocalContext.current
@@ -50,10 +49,9 @@ fun ConsecuenciaSiniestro(
                 Button(
                     onClick = {
                         val solicitud = viewModel.crearSolicitudPoliza()
-                        val polizaJson = gson.toJson(poliza)
                         if (solicitud != null) {
                             crearSolicitudViewModel.consecuenciaSiniestro(solicitud)
-                            navController.navigate("${Rutas.RelatoAccidente.ruta}/${polizaJson}")
+                            navController.navigate(Rutas.RelatoAccidente.ruta)
                         } else {
                             showToastError(context, "error: No se puede crear la solicitud")
                             Log.d("solicitud", "no se creo")

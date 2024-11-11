@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import com.example.login.navigation.Rutas
+import com.example.login.ui.screens.gson
 import kotlinx.coroutines.delay
 
 
@@ -22,7 +23,7 @@ fun SolicitudEnviadaScreen(navController: NavHostController) {
     var ok by remember { mutableStateOf(false) }
 
     LaunchedEffect(ok) {
-        delay(5000)
+        delay(8000)
     }
 
     Column(
@@ -34,7 +35,13 @@ fun SolicitudEnviadaScreen(navController: NavHostController) {
             Text("La solicitud fue enviada correctamente")
             ok = true
         } else {
-            navController.navigate(Rutas.HomeScreen.ruta)
+            navController.navigate(Rutas.HomeScreen.ruta){
+                popUpTo(0) { inclusive = true }
+            }
+
+/*            navController.navigate("${nextRoute}/${gson.toJson(poliza)}"){
+                popUpTo("${Rutas.LoadingScreen.ruta}/{polizaJson}/{nextRoute}") { inclusive = true }
+            }*/
         }
     }
 }

@@ -48,7 +48,7 @@ fun LoadingScreen(
                     }
                 }else{
                     navController.navigate("${nextRoute}/${gson.toJson(poliza)}"){
-                        popUpTo(Rutas.LoadingScreen.ruta) { inclusive = true }
+                        popUpTo("${Rutas.LoadingScreen.ruta}/{polizaJson}/{nextRoute}") { inclusive = true }
                     }
                 }
 

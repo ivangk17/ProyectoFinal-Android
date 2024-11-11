@@ -172,7 +172,7 @@ class CrearSolicitudViewModel: ViewModel()  {
 
     }
 
-    fun lugarAsistencia(solicitud: Solicitud, navController: NavController, polizaJson: String) {
+    fun lugarAsistencia(solicitud: Solicitud, navController: NavController) {
         val lugarAsistencia = _solicitud.datosSiniestro.lugarAsistencia
         val solicitudLugarAsistencia = solicitud.datosSiniestro.lugarAsistencia
 
@@ -182,16 +182,16 @@ class CrearSolicitudViewModel: ViewModel()  {
             lugarAsistencia.estadoLesiones = solicitudLugarAsistencia.estadoLesiones
             lugarAsistencia.descripcionLesiones = solicitudLugarAsistencia.descripcionLesiones
 
-            enviarSolicitud(navController, polizaJson)
+            enviarSolicitud(navController)
         }
     }
 
-    fun sinLugarAsistencia(navController: NavController, polizaJson: String){
+    fun sinLugarAsistencia(navController: NavController){
         _solicitud.datosSiniestro.lugarAsistencia = null
-        enviarSolicitud(navController, polizaJson)
+        enviarSolicitud(navController)
     }
 
-     private fun enviarSolicitud(navController: NavController, polizaJson: String){
+     private fun enviarSolicitud(navController: NavController){
          Log.d("SOLICITUD_A_ENVIAR", _solicitud.toString())
         CoroutineScope(Dispatchers.IO).launch {
             try {
@@ -200,7 +200,7 @@ class CrearSolicitudViewModel: ViewModel()  {
                 if (respuesta.isSuccessful) {
                     println("Solicitud enviada exitosamente")
                     withContext(Dispatchers.Main) {
-                        navController.navigate("${Rutas.LoadingScreen.ruta}/$polizaJson/${Rutas.SolicitudEnviada.ruta}")
+                        navController.navigate("${Rutas.LoadingScreen.ruta}/{}/${Rutas.SolicitudEnviada.ruta}")
                     }
                 } else {
                     println("Error al enviar la solicitud: ${respuesta.errorBody()?.string()}")

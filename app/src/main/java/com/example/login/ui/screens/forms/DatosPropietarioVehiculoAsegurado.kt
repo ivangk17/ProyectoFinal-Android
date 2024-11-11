@@ -94,8 +94,7 @@ fun DatosPropietarioVehiculoAsegurado(
                         val polizaJson = gson.toJson(polizaParametro)
                         if (solicitud != null) {
                             crearSolicitudViewModel.datosPropietarioVehiculoAsegurado(solicitud)
-                            Log.d("Solicitud", solicitud.propietarioAsegurado.toString())
-                            navController.navigate(route = "${Rutas.DatosPropietarioVehiculoTercero.ruta}/${polizaJson}")
+                            navController.navigate(route = Rutas.DatosPropietarioVehiculoTercero.ruta)
                         } else {
                             showToastError(context, "error: No se puede crear la solicitud")
                             Log.d("solicitud", "no se creo")

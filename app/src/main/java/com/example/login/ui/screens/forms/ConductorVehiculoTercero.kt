@@ -33,7 +33,6 @@ import com.example.login.utilities.showToastError
 fun ConductorVehiculoTercero(
     navController: NavController,
     viewModel: ConductorVehiculoTerceroViewModel,
-    poliza: Poliza,
     crearSolicitudViewModel: CrearSolicitudViewModel
 ) {
     val optionsSexo = Sexo.entries
@@ -43,18 +42,6 @@ fun ConductorVehiculoTercero(
             .fillMaxSize()
             .padding(25.dp)
     ) {
-        item {
-            Text(
-                text = "INFORMACION DEL CONDUCTOR VEHÍCULO DEL AFECTADO",
-                textDecoration = TextDecoration.Underline,
-                fontWeight = FontWeight.Bold,
-                style = TextStyle(
-                    fontSize = 20.sp
-                ),
-                modifier = Modifier.padding(20.dp)
-            )
-        }
-
         items(viewModel.campos.size) { index ->
             val campo = viewModel.campos[index]
 
@@ -105,11 +92,9 @@ fun ConductorVehiculoTercero(
                 Button(
                     onClick = {
                         val solicitud = viewModel.crearSolicitudPoliza()
-                        val polizaJson = gson.toJson(poliza)
                         if (solicitud != null) {
                             crearSolicitudViewModel.conductorVehiculoTercero(solicitud)
-                            Log.d("SOLICITUD", solicitud.conductorAfectado.toString())
-                            navController.navigate(route = "${Rutas.DaniosVehiculoAsegurado.ruta}/${polizaJson}")
+                            navController.navigate(route = Rutas.DaniosVehiculoAsegurado.ruta)
                         } else {
                             showToastError(context, "error: No se puede crear la solicitud")
                             Log.d("solicitud", "no se creo")

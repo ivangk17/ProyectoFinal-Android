@@ -19,13 +19,13 @@ fun MyAppTheme(content: @Composable () -> Unit) {
         colorScheme = lightColorScheme(
         primary = Color(0xFF009B77),
         secondary = Color(red = 230, green = 230, blue = 250),
-    ),
+        //background = Color(red = 230, green = 230, blue = 250),
+        ),
         typography = Typography(
             titleLarge = TextStyle(fontSize = 30.sp, fontWeight = FontWeight.Bold),
             bodyLarge = TextStyle(fontSize = 16.sp)
         ),
         shapes = Shapes(),
-
     ){
         Box(modifier = Modifier.safeDrawingPadding()) {
             content()
