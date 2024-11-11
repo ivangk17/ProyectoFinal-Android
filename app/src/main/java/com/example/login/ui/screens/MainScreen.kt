@@ -87,7 +87,7 @@ fun AppScaffoldContent(
     mainViewModel: MainViewModel
 ) {
     val navigationActions = AppNavigationActions(navController)
-    var lastScreen: String? = ""
+
     val showMenuIcon = currentLocation in routesWithDrawer
 
     Scaffold(
@@ -98,19 +98,16 @@ fun AppScaffoldContent(
                     Log.d("AppScaffoldContent", "Mostrando NavigationTopBar para: $currentLocation")
                     NavigationTopBar(
                         onClick = { navController.popBackStack() },
-                        quitScreen = { navController.navigate(lastScreen.toString()) },
+                        quitScreen = navigationActions.quitScreen(currentLocation, navController),
                         topBarColor = navigationActions.getColorTopBar(currentLocation),
                         title = navigationActions.getTextTopBar(currentLocation),
                         titleStyle = navigationActions.getTitleStyleTopBar(currentLocation),
                         titleColor = navigationActions.getTitleColorTopBar(currentLocation),
-                        onMenuClick = {
-                            scope.launch {
-                                drawerState.open()
-                            }
-                        }
+                        navController= navController,
+                        moveText = navigationActions.moveText(currentLocation)
                     )
                 } else {
-                    lastScreen = currentLocation
+
                     TopBar(
                         topBarColor = navigationActions.getColorTopBar(currentLocation),
                         title = navigationActions.getTextTopBar(currentLocation),
@@ -119,7 +116,7 @@ fun AppScaffoldContent(
                         showMenuIcon = showMenuIcon,
                         onMenuClick = {
                             scope.launch {
-                                drawerState.open() // Abre el drawer al hacer clic en el ícono de menú
+                                drawerState.open()
                             }
                         }
                     )
