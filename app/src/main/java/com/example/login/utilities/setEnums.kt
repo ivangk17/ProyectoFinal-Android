@@ -1,9 +1,9 @@
 package com.example.login.utilities
 
-import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import com.example.login.data.models.vehiculos.ColorVehiculo
+import com.example.login.data.models.vehiculos.TipoVehiculo
 
 fun setColor(colorString: String): MutableState<ColorVehiculo> {
     val color = mutableStateOf(ColorVehiculo.BLANCO)
@@ -22,4 +22,16 @@ fun setColor(colorString: String): MutableState<ColorVehiculo> {
     }
 
     return color
+}
+
+fun serTipoVehiculo(tipoVehiculoString: String): MutableState<TipoVehiculo>{
+    val tipoVehiculo = mutableStateOf(TipoVehiculo.AUTO)
+
+    when(tipoVehiculoString){
+        "AUTO" -> TipoVehiculo.AUTO
+        "MOTO" -> TipoVehiculo.MOTO
+        "CAMION" -> TipoVehiculo.CAMION
+    }
+
+    return tipoVehiculo
 }

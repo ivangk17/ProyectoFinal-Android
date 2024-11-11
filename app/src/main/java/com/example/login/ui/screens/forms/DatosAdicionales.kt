@@ -94,6 +94,7 @@ fun DatosAdicionales(
                     val polizaJson = gson.toJson(poliza)
                     if (solicitud != null) {
                         crearSolicitudViewModel.datosAdicionales(solicitud)
+                        Log.d("SOLICITUD", solicitud.datosSiniestro.toString())
                         navController.navigate("${Rutas.ConsecuenciaSiniestro.ruta}/${polizaJson}")
                     } else {
                         showToastError(context, "error: No se puede crear la solicitud")

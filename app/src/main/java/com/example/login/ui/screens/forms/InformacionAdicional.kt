@@ -57,24 +57,6 @@ fun InformacionAdicional(
                     onOptionSelected = { viewModel.huboDenunciaSeleccion.value = it },
                     label = { it.displayName }
                 )
-
-                DatePicker(
-                    label = "Vigencia hasta",
-                    valor = viewModel.vigenciaHasta,
-                    error = viewModel.errorVigenciaHasta,
-                    onDateSelected = { newValue -> viewModel.setVigencia(newValue) }
-                )
-            }
-
-            items(viewModel.campos.size) { index ->
-                val campo = viewModel.campos[index]
-
-                FieldStringForms(
-                    label = campo.label,
-                    value = campo.value,
-                    error = campo.error,
-                    onValueChange = { newValue -> viewModel.onCampoChange(index, newValue) }
-                )
             }
 
             item {
@@ -83,14 +65,9 @@ fun InformacionAdicional(
                         val solicitud = viewModel.crearSolicitudPoliza()
                         val polizaJson = gson.toJson(poliza)
 
-                        if (solicitud != null) {
-                            crearSolicitudViewModel.envioInformacionAdicional(solicitud)
-                            navController.navigate("${Rutas.LoadingScreen.ruta}/$polizaJson/${Rutas.DatosPropietarioVehiculoAsegurado.ruta}")
-                        } else {
-
-                            showToastError(context, "error: No se puede crear la solicitud")
-                            Log.d("solicitud", "no se creo")
-                        }
+                        Log.d("Solicitud", solicitud.datosSiniestro.toString())
+                        crearSolicitudViewModel.envioInformacionAdicional(solicitud)
+                        navController.navigate("${Rutas.LoadingScreen.ruta}/$polizaJson/${Rutas.DatosPropietarioVehiculoAsegurado.ruta}")
                     },
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 ) {

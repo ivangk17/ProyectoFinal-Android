@@ -21,7 +21,7 @@ class DaniosPersonalesViewModel(
     var fechaNacimiento = mutableStateOf<String?>(null)
     var errorFechaNacimiento = mutableStateOf<String?>(null)
 
-    var sexoLesionado =  mutableStateOf(Sexo.INDEFINIDO)
+    var sexoLesionado =  mutableStateOf(Sexo.HOMBRE)
 
     val campos = listOf(
         FormField("Nombre", tipo = TipoCampo.TEXTO),
@@ -69,46 +69,46 @@ class DaniosPersonalesViewModel(
 //        validarCampoMutable(fechaNacimiento, errorFechaNacimiento, "Debes completar la fecha de nacimiento")
 
         if (campos.all { it.error.value == null }) {
-//            solicitud.lesiones.lesionado.datosPersona.nombre = campos[0].value.value
-//            solicitud.lesiones.lesionado.datosPersona.apellido = campos[1].value.value
-//            solicitud.lesiones.lesionado.datosPersona.domicilio.calle = campos[2].value.value
-//            solicitud.lesiones.lesionado.datosPersona.domicilio.numero = campos[3].value.value.toInt()
-//            solicitud.lesiones.lesionado.datosPersona.domicilio.piso = if (campos[4].value.value.isEmpty()) null else campos[4].value.value.toInt()
-//            solicitud.lesiones.lesionado.datosPersona.domicilio.departamento = campos[5].value.value
-//            solicitud.lesiones.lesionado.datosPersona.domicilio.codigoPostal = campos[6].value.value.toInt()
+            solicitud.lesiones.lesionado.datosPersona.nombre = campos[0].value.value
+            solicitud.lesiones.lesionado.datosPersona.apellido = campos[1].value.value
+            solicitud.lesiones.lesionado.datosPersona.domicilio.calle = campos[2].value.value
+            solicitud.lesiones.lesionado.datosPersona.domicilio.numero = campos[3].value.value.toInt()
+            solicitud.lesiones.lesionado.datosPersona.domicilio.piso = if (campos[4].value.value.isEmpty()) null else campos[4].value.value.toInt()
+            solicitud.lesiones.lesionado.datosPersona.domicilio.departamento = campos[5].value.value
+            solicitud.lesiones.lesionado.datosPersona.domicilio.codigoPostal = campos[6].value.value.toInt()
             solicitud.lesiones.lesionado.datosPersona.dni = campos[7].value.value.toInt()
-//            solicitud.lesiones.lesionado.datosPersona.email = campos[8].value.value
-//            solicitud.lesiones.lesionado.datosPersona.telefono = campos[9].value.value
-//            solicitud.lesiones.lesionado.datosPersona.sexo = sexoLesionado.value
-//            solicitud.lesiones.lesionado.estadoCivil = campos[10].value.value
-//            solicitud.lesiones.lesionado.telefonoAlternativo = campos[11].value.value
-//
-//            solicitud.lesiones.lesionado.datosPersona.fechaDeNacimiento = fechaNacimiento.value!!
+            solicitud.lesiones.lesionado.datosPersona.email = campos[8].value.value
+            solicitud.lesiones.lesionado.datosPersona.telefono = campos[9].value.value
+            solicitud.lesiones.lesionado.datosPersona.sexo = sexoLesionado.value
+            solicitud.lesiones.lesionado.estadoCivil = campos[10].value.value
+            solicitud.lesiones.lesionado.telefonoAlternativo = campos[11].value.value
 
-            solicitud.lesiones.lesionado.datosPersona.nombre = "Nombre";
-            solicitud.lesiones.lesionado.datosPersona.apellido = "Apellido";
-            solicitud.lesiones.lesionado.datosPersona.domicilio.calle = "Calle";
-            solicitud.lesiones.lesionado.datosPersona.domicilio.numero = 1020
-            solicitud.lesiones.lesionado.datosPersona.domicilio.piso = null
-            solicitud.lesiones.lesionado.datosPersona.domicilio.departamento = null
-            solicitud.lesiones.lesionado.datosPersona.domicilio.codigoPostal = 7300;
+            solicitud.lesiones.lesionado.datosPersona.fechaDeNacimiento = fechaNacimiento.value!!
+
+//            solicitud.lesiones.lesionado.datosPersona.nombre = "Nombre";
+//            solicitud.lesiones.lesionado.datosPersona.apellido = "Apellido";
+//            solicitud.lesiones.lesionado.datosPersona.domicilio.calle = "Calle";
+//            solicitud.lesiones.lesionado.datosPersona.domicilio.numero = 1020
+//            solicitud.lesiones.lesionado.datosPersona.domicilio.piso = null
+//            solicitud.lesiones.lesionado.datosPersona.domicilio.departamento = null
+//            solicitud.lesiones.lesionado.datosPersona.domicilio.codigoPostal = 7300;
 //            solicitud.lesiones.lesionado.datosPersona.dni = 98764284;
-            solicitud.lesiones.lesionado.datosPersona.email = "email@example.com";
-            solicitud.lesiones.lesionado.datosPersona.telefono = "123456789";
-            solicitud.lesiones.lesionado.datosPersona.sexo = Sexo.MUJER;
-            solicitud.lesiones.lesionado.estadoCivil = "Estado Civil";
-            solicitud.lesiones.lesionado.telefonoAlternativo = "987654321";
-
-            solicitud.lesiones.lesionado.datosPersona.fechaDeNacimiento = "1990-10-10"; // Ejemplo de fecha exacta
-
-            solicitud.lesiones.peatonOCiclista =true
-            solicitud.lesiones.conductorTercero =true
-            solicitud.lesiones.ocupanteTercero =true
-            solicitud.lesiones.conductorAsegurado =true
-            solicitud.lesiones.asegurado =true
-            solicitud.lesiones.conductor =true
-            solicitud.lesiones.propietarioVehiculoAsegurado =true
-            solicitud.lesiones.relacionConPropietario =true
+//            solicitud.lesiones.lesionado.datosPersona.email = "email@example.com";
+//            solicitud.lesiones.lesionado.datosPersona.telefono = "123456789";
+//            solicitud.lesiones.lesionado.datosPersona.sexo = Sexo.MUJER;
+//            solicitud.lesiones.lesionado.estadoCivil = "Estado Civil";
+//            solicitud.lesiones.lesionado.telefonoAlternativo = "987654321";
+//
+//            solicitud.lesiones.lesionado.datosPersona.fechaDeNacimiento = "1990-10-10"; // Ejemplo de fecha exacta
+//
+//            solicitud.lesiones.peatonOCiclista =true
+//            solicitud.lesiones.conductorTercero =true
+//            solicitud.lesiones.ocupanteTercero =true
+//            solicitud.lesiones.conductorAsegurado =true
+//            solicitud.lesiones.asegurado =true
+//            solicitud.lesiones.conductor =true
+//            solicitud.lesiones.propietarioVehiculoAsegurado =true
+//            solicitud.lesiones.relacionConPropietario =true
 
             cargarCheckeables()
         }else{

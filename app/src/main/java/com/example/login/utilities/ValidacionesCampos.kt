@@ -4,6 +4,7 @@ import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import com.example.login.data.models.fields.FormField
 import com.example.login.data.models.fields.TipoCampo
 import java.time.LocalDate
@@ -12,7 +13,7 @@ import java.time.temporal.ChronoUnit
 
 object ValidacionesCampos {
 
-    fun validarCampos(campos : List<FormField>) {
+    fun validarCampos(campos: List<FormField>) {
         campos.forEach { campo ->
             campo.error.value = when (campo.tipo) {
                 TipoCampo.TEXTO -> validarCampoNoVacio(campo)
@@ -24,10 +25,19 @@ object ValidacionesCampos {
     }
 }
 
-fun validarCampoMutable(campo: MutableState<String?>, error: MutableState<String?>, mensajeError: String) {
+fun validarCampoMutable(
+    campo: MutableState<String?>,
+    error: MutableState<String?>,
+    mensajeError: String
+) {
+    val soloLetrasNumeros = Regex("^[a-zA-Z0-9 ,.ñÑ]*$")
+
     if (campo.value.isNullOrEmpty()) {
         error.value = mensajeError
+    }else if(!soloLetrasNumeros.matches(campo.value!!) || campo.value!!.length < 3) {
+        error.value = "No es valido."
     }
+
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -38,17 +48,16 @@ fun validarFechaActual(
     if (fecha.value.isNullOrEmpty()) {
         errorFecha.value = "La fecha no puede ser nula o vacía."
         Log.d("FECHA", "entro")
-    }else{
+    } else {
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         val fechaIngresada = LocalDate.parse(fecha.value, formatter)
         val fechaActual = LocalDate.now()
 
-        if (fechaIngresada.isAfter(fechaActual)){
+        if (fechaIngresada.isAfter(fechaActual)) {
             errorFecha.value = "Fecha inválida."
         }
     }
 }
-
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -63,7 +72,7 @@ fun validarFechaNacimiento(
         val fechaIngresada = LocalDate.parse(fecha.value, formatter)
         val fechaActual = LocalDate.now()
         val edad = ChronoUnit.YEARS.between(fechaIngresada, fechaActual)
-        if (edad < 18){
+        if (edad < 18) {
             Log.d("FECHA", "entro " + edad)
             errorFecha.value = "Debe ser mayor de 18 años."
         }
@@ -71,11 +80,17 @@ fun validarFechaNacimiento(
 }
 
 
+
 @RequiresApi(Build.VERSION_CODES.O)
 private fun validarCampoNoVacio(campo: FormField): String? {
     val soloLetras = Regex("^[a-zA-Z]*$")
     val soloLetrasNumeros = Regex("^[a-zA-Z0-9]*$")
+    val largo = campo.value.value.length < 3
     var resultado: String? = null
+
+    if (campo.label == "Departamento") {
+        resultado = validarDepartamento(campo.value.value)
+    }
 
     if (campo.label != "Departamento") {
         // Validar que el campo no esté vacío
@@ -96,8 +111,8 @@ private fun validarCampoNoVacio(campo: FormField): String? {
         }
         // Validar solo letras para Nombre y Apellido
         else if (campo.label == "Nombre" || campo.label == "Apellido") {
-            if (!soloLetras.matches(campo.value.value)) {
-                return "El campo ${campo.label} solo puede contener letras."
+            if (!soloLetras.matches(campo.value.value) || campo.value.value.length < 3) {
+                return "Revisa el campo ${campo.label}."
             }
         }
         // Validar Nro Registro de Conducir
@@ -110,20 +125,65 @@ private fun validarCampoNoVacio(campo: FormField): String? {
             val dominioError = validarDominio(campo)
             if (dominioError != null) return dominioError
         }
-        // Validar Año
-        else if (campo.label == "Año" || campo.label == "Año del auto") {
-            val anioError = validarAnio(campo)
-            if (anioError != null) return anioError
+
+        //Validar Poliza
+        else if (campo.label == "Poliza") {
+            val polizaError = validarNumeroPoliza(campo.value.value)
+            if (polizaError != null) return polizaError
         }
+
+        else if (campo.label == "Clase del Registro de Conducir") {
+            val claseRegistroError = validarClaseRegistro(campo)
+            if (claseRegistroError != null) return claseRegistroError
+        }
+
         // Validar solo letras y números para otros campos
         else {
-            if (!soloLetrasNumeros.matches(campo.value.value)) {
-                return "El campo ${campo.label} solo puede contener números y letras."
+            if (!soloLetrasNumeros.matches(campo.value.value) || largo) {
+                return "Revisa ${campo.label}."
             }
         }
     }
 
     return resultado
+}
+
+
+private fun validarClaseRegistro(campo: FormField): String? {
+    val clasesValidas = setOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
+    return if (!clasesValidas.contains(campo.value.value.toUpperCase())) {
+        "La clase de registro no es válida."
+    } else {
+        null
+    }
+}
+
+fun validarNumeroPoliza(numeroPoliza: String?): String? {
+    // Verificar si el número de póliza es nulo o vacío
+    if (numeroPoliza.isNullOrEmpty()) {
+        return "El número de póliza no puede estar vacío"
+    }
+
+    // Verificar si el número de póliza contiene solo letras y dígitos
+    if (!numeroPoliza.all { it.isLetterOrDigit() }) {
+        return "El número de póliza solo puede contener letras y números"
+    }
+
+    // Verificar la longitud del número de póliza (ejemplo: entre 8 y 12 caracteres)
+    if (numeroPoliza.length !in 8..12) {
+        return "El número de póliza debe tener entre 8 y 12 caracteres"
+    }
+
+    // Si todas las validaciones pasan, devolver null (sin errores)
+    return null
+}
+
+fun validarDepartamento(value: String?): String? {
+    return when {
+        value.isNullOrEmpty() -> null // El campo puede estar vacío
+        !value.all { it.isLetterOrDigit() } -> "El departamento solo puede contener números y letras"
+        else -> null
+    }
 }
 
 
@@ -138,18 +198,24 @@ private fun validarMail(email: FormField): String? {
 
 private fun validarCampoNumerico(valor: FormField): String? {
     var resultado: String? = null
+    val regex = Regex("^\\d+$")
 
-    if (valor.label != "Piso") {
-        if (valor.label == "Telefono" || valor.label == "Telefono Alternativo") {
-            resultado = validarTelefono(valor.value.value)
-        } else {
-            if (valor.value.value.toDoubleOrNull() == null) {
-                resultado = "El campo ${valor.label} no puede estar vacío"
-            } else if (valor.value.value.toDoubleOrNull()!! <= 0) {
-                resultado = "El campo ${valor.label} no es válido"
-            }
-        }
+    // Validar Año
+    if (valor.label == "Año" || valor.label == "Año del auto") {
+        val anioError = validarAnio(valor)
+        if (anioError != null) return anioError
     }
+
+    if (valor.label == "Telefono" || valor.label == "Telefono Alternativo") {
+        resultado = validarTelefono(valor.value.value)
+    } else if (valor.label == "Piso") {
+        resultado = validarPiso(valor.value.value)
+    } else if (valor.value.value.toDoubleOrNull() == null) {
+        resultado = "El campo ${valor.label} no puede estar vacío"
+    } else if (!regex.matches(valor.value.value)) {
+        resultado = "El campo ${valor.label} debe contener solo números"
+    }
+
     return resultado
 }
 
@@ -184,7 +250,10 @@ private fun validarRegistroConducir(campo: FormField): String? {
 }
 
 private fun validarDominio(campo: FormField): String? {
-    val dominioRegex = "^[A-Z]{3}\\d{3}$|^[A-Z]{2}\\d{3}[A-Z]{2}$|^[A-Z]{3} \\d{3}$|^[A-Z]{2} \\d{3} [A-Z]{2}$".toRegex(RegexOption.IGNORE_CASE)
+    val dominioRegex =
+        "^[A-Z]{3}\\d{3}$|^[A-Z]{2}\\d{3}[A-Z]{2}$|^[A-Z]{3} \\d{3}$|^[A-Z]{2} \\d{3} [A-Z]{2}$".toRegex(
+            RegexOption.IGNORE_CASE
+        )
     return if (!dominioRegex.matches(campo.value.value)) {
         "El Dominio no es válido."
     } else {
@@ -200,6 +269,17 @@ private fun validarTelefono(valor: String): String? {
         else -> null
     }
 }
+
+private fun validarPiso(valor: String?): String? {
+    return when {
+        valor.isNullOrEmpty() -> null
+        !valor.all { it.isDigit() } -> "El piso solo puede contener números"
+        valor.toLongOrNull() ?: 0 > 200 -> "El piso no puede ser mayor que 200"
+        valor.toLongOrNull() ?: 0 <= 0 -> "El piso debe ser mayor que 0"
+        else -> null
+    }
+}
+
 
 @RequiresApi(Build.VERSION_CODES.O)
 private fun validarAnio(campo: FormField): String? {

@@ -21,11 +21,10 @@ class DaniosVehiculoTerceroViewModel(
     }
 
     override fun crearSolicitud(): Solicitud? {
-//        validarCampoMutable(descripcionDanios, errorDescription, "Se debe completar el campo")
-
+        validarCampoMutable(descripcionDanios, errorDescription, "Se debe completar el campo")
         if (errorDescription.value == null) {
-//            solicitud.daniosVehiculoAfectado = descripcionDanios.value.toString()
-            solicitud.daniosVehiculoAfectado = "Daños vehiculos afectado"
+            solicitud.daniosVehiculoAfectado = descripcionDanios.value.toString()
+//            solicitud.daniosVehiculoAfectado = "Daños vehiculos afectado"
         } else {
             return null
         }

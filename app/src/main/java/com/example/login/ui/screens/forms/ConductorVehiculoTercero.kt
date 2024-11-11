@@ -108,6 +108,7 @@ fun ConductorVehiculoTercero(
                         val polizaJson = gson.toJson(poliza)
                         if (solicitud != null) {
                             crearSolicitudViewModel.conductorVehiculoTercero(solicitud)
+                            Log.d("SOLICITUD", solicitud.conductorAfectado.toString())
                             navController.navigate(route = "${Rutas.DaniosVehiculoAsegurado.ruta}/${polizaJson}")
                         } else {
                             showToastError(context, "error: No se puede crear la solicitud")

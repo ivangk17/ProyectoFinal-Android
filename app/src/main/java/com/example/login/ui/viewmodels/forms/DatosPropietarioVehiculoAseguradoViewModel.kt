@@ -16,7 +16,9 @@ import com.example.login.data.models.vehiculos.UsoDelVehiculo
 import com.example.login.data.network.models.UserInfoResponse
 import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.data.network.services.GetServiceUser
+import com.example.login.ui.screens.Sol
 import com.example.login.utilities.ValidacionesCampos.validarCampos
+import com.example.login.utilities.serTipoVehiculo
 import com.example.login.utilities.setColor
 import kotlinx.coroutines.launch
 
@@ -29,8 +31,9 @@ class DatosPropietarioVehiculoAseguradoViewModel (
     var usoDelVehiculo = mutableStateOf(UsoDelVehiculo.PARTICULAR)
     var poliza = Poliza()
     var user = mutableStateOf(UserInfoResponse())
-    var sexoSeleccionado =  mutableStateOf(Sexo.INDEFINIDO)
+    var sexoSeleccionado =  mutableStateOf(Sexo.HOMBRE)
     var colorDelVehiculo = mutableStateOf(ColorVehiculo.BLANCO)
+    var tipoVehiculo = mutableStateOf(TipoVehiculo.AUTO)
 
 
 
@@ -55,7 +58,6 @@ class DatosPropietarioVehiculoAseguradoViewModel (
         FormField("TEL", tipo = TipoCampo.TEXTO),
         FormField("Marca", tipo = TipoCampo.TEXTO),
         FormField("Modelo", tipo = TipoCampo.TEXTO),
-        //FormField("Color", tipo = TipoCampo.TEXTO),
         FormField("Año", tipo = TipoCampo.NUMERICO),
         FormField("Dominio", tipo = TipoCampo.TEXTO),
     )
@@ -80,9 +82,7 @@ class DatosPropietarioVehiculoAseguradoViewModel (
             Solicitud.propietarioAsegurado.datosPersona.email = campos[8].value.value
             Solicitud.propietarioAsegurado.datosPersona.telefono = campos[9].value.value
             Solicitud.propietarioAsegurado.datosPersona.sexo = sexoSeleccionado.value
-            Log.d("fecha de nacimiento", user.value.fechaDeNacimiento)
             Solicitud.propietarioAsegurado.datosPersona.fechaDeNacimiento = user.value.fechaDeNacimiento
-            Solicitud.propietarioAsegurado.vehiculo.datosVehiculo.tipoVehiculo = poliza.vehiculo.tipoVehiculo
             Solicitud.propietarioAsegurado.vehiculo.datosVehiculo.marca = campos[10].value.value
             Solicitud.propietarioAsegurado.vehiculo.datosVehiculo.modelo = campos[11].value.value
 
@@ -91,14 +91,8 @@ class DatosPropietarioVehiculoAseguradoViewModel (
             Solicitud.propietarioAsegurado.vehiculo.usoDelVehiculo = usoDelVehiculo.value
 
             Solicitud.propietarioAsegurado.vehiculo.datosVehiculo.color = colorDelVehiculo.value
+            Solicitud.propietarioAsegurado.vehiculo.datosVehiculo.tipoVehiculo = tipoVehiculo.value
 
-            val tipo = poliza.vehiculo.tipoVehiculo.name
-            if(tipo== "AUTO"){
-                Solicitud.propietarioAsegurado.vehiculo.datosVehiculo.tipoVehiculo = TipoVehiculo.AUTO
-            }else if ( tipo == "MOTO"){
-                Solicitud.propietarioAsegurado.vehiculo.datosVehiculo.tipoVehiculo = TipoVehiculo.MOTO
-            }
-            Solicitud.propietarioAsegurado.vehiculo.datosVehiculo.tipoVehiculo = TipoVehiculo.CAMION
 
 
         }else{
@@ -133,8 +127,8 @@ class DatosPropietarioVehiculoAseguradoViewModel (
         campos[9].value.value = user.value.telefono.toString()
         campos[10].value.value = poliza.vehiculo.marca
         campos[11].value.value = poliza.vehiculo.modelo
-        //campos[12].value.value = poliza.vehiculo.color
         colorDelVehiculo = setColor(poliza.vehiculo.color)
+        tipoVehiculo = serTipoVehiculo(poliza.vehiculo.tipoVehiculo)
         campos[12].value.value = poliza.vehiculo.anio.toString()
         campos[13].value.value = poliza.vehiculo.dominio
         Solicitud.idAsegurado = poliza.asegurado

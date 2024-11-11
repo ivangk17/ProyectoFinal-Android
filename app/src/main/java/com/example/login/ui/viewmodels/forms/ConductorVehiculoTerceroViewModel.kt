@@ -12,6 +12,7 @@ import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.utilities.ValidacionesCampos.validarCampos
 import com.example.login.utilities.validarCampoMutable
+import com.example.login.utilities.validarFechaActual
 import com.example.login.utilities.validarFechaNacimiento
 
 class ConductorVehiculoTerceroViewModel (
@@ -19,7 +20,7 @@ class ConductorVehiculoTerceroViewModel (
 ) : ViewModel() {
 
     var solicitud = Solicitud()
-    var sexoSeleccionado =  mutableStateOf(Sexo.INDEFINIDO)
+    var sexoSeleccionado =  mutableStateOf(Sexo.HOMBRE)
 
     var fechaNacimiento = mutableStateOf<String?>(null)
     var errorFechaNacimiento = mutableStateOf<String?>(null)
@@ -73,49 +74,48 @@ class ConductorVehiculoTerceroViewModel (
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun crearSolicitudPoliza(): Solicitud? {
-//        validarCampos(campos)
+        validarCampos(campos)
         validarFechaNacimiento(fechaNacimiento, errorFechaNacimiento)
-//        validarCampoMutable(fechaExpedicion, errorFechaExpedicion, "Debes completar la fecha de expedicion")
-//        validarCampoMutable(fechaDeVencimiento, errorFechaVencimiento, "Debes completar la fecha de vencimiento")
+        validarFechaActual(fechaExpedicion, errorFechaExpedicion)
+        validarCampoMutable(fechaDeVencimiento, errorFechaVencimiento, "Debes completar la fecha de vencimiento")
 
-        if (campos.all { it.error.value == null } && errorFechaNacimiento.value == null) {
-//            solicitud.conductorAfectado.datosPersona.nombre = campos[0].value.value
-//            solicitud.conductorAfectado.datosPersona.apellido = campos[1].value.value
-//            solicitud.conductorAfectado.datosPersona.domicilio.calle = campos[2].value.value
-//            solicitud.conductorAfectado.datosPersona.domicilio.numero = campos[3].value.value.toInt()
-//            solicitud.conductorAfectado.datosPersona.domicilio.piso = if (campos[4].value.value.isEmpty()) null else campos[4].value.value.toInt()
-//            solicitud.conductorAfectado.datosPersona.domicilio.departamento = campos[5].value.value
-//            solicitud.conductorAfectado.datosPersona.domicilio.codigoPostal = campos[6].value.value.toInt()
+        if (campos.all { it.error.value == null } && errorFechaNacimiento.value == null && errorFechaVencimiento.value == null && errorFechaExpedicion.value == null) {//            solicitud.conductorAfectado.datosPersona.nombre = campos[0].value.value
+            solicitud.conductorAfectado.datosPersona.apellido = campos[1].value.value
+            solicitud.conductorAfectado.datosPersona.domicilio.calle = campos[2].value.value
+            solicitud.conductorAfectado.datosPersona.domicilio.numero = campos[3].value.value.toInt()
+            solicitud.conductorAfectado.datosPersona.domicilio.piso = if (campos[4].value.value.isEmpty()) null else campos[4].value.value.toInt()
+            solicitud.conductorAfectado.datosPersona.domicilio.departamento = campos[5].value.value
+            solicitud.conductorAfectado.datosPersona.domicilio.codigoPostal = campos[6].value.value.toInt()
             solicitud.conductorAfectado.datosPersona.dni= campos[7].value.value.toInt()
-//            solicitud.conductorAfectado.datosPersona.telefono = campos[8].value.value
-//            solicitud.conductorAfectado.datosPersona.sexo = sexoSeleccionado.value
-//            solicitud.conductorAfectado.datosPersona.email = campos[9].value.value
-//            solicitud.conductorAfectado.nroRegistro = campos[10].value.value
-//            solicitud.conductorAfectado.claseRegistro = campos[11].value.value
-//            solicitud.conductorAfectado.relacionAsegurado = campos[12].value.value
-//
+            solicitud.conductorAfectado.datosPersona.telefono = campos[8].value.value
+            solicitud.conductorAfectado.datosPersona.sexo = sexoSeleccionado.value
+            solicitud.conductorAfectado.datosPersona.email = campos[9].value.value
+            solicitud.conductorAfectado.nroRegistro = campos[10].value.value
+            solicitud.conductorAfectado.claseRegistro = campos[11].value.value
+            solicitud.conductorAfectado.relacionAsegurado = campos[12].value.value
+
             solicitud.conductorAfectado.datosPersona.fechaDeNacimiento = fechaNacimiento.value!!
-//            solicitud.conductorAfectado.fechaRegistroExpedicion = fechaExpedicion.value!!
-//            solicitud.conductorAfectado.fechaRegistroVencimiento = fechaDeVencimiento.value!!
+            solicitud.conductorAfectado.fechaRegistroExpedicion = fechaExpedicion.value!!
+            solicitud.conductorAfectado.fechaRegistroVencimiento = fechaDeVencimiento.value!!
 
 
-            solicitud.conductorAfectado.datosPersona.nombre = "Nombre";
-            solicitud.conductorAfectado.datosPersona.apellido = "Apellido";
-            solicitud.conductorAfectado.datosPersona.domicilio.calle = "Calle";
-            solicitud.conductorAfectado.datosPersona.domicilio.numero = 1020
-            solicitud.conductorAfectado.datosPersona.domicilio.piso = null
-            solicitud.conductorAfectado.datosPersona.domicilio.departamento = null
-            solicitud.conductorAfectado.datosPersona.domicilio.codigoPostal = 7300;
+//            solicitud.conductorAfectado.datosPersona.nombre = "Nombre";
+//            solicitud.conductorAfectado.datosPersona.apellido = "Apellido";
+//            solicitud.conductorAfectado.datosPersona.domicilio.calle = "Calle";
+//            solicitud.conductorAfectado.datosPersona.domicilio.numero = 1020
+//            solicitud.conductorAfectado.datosPersona.domicilio.piso = null
+//            solicitud.conductorAfectado.datosPersona.domicilio.departamento = ""
+//            solicitud.conductorAfectado.datosPersona.domicilio.codigoPostal = 7300;
 //            solicitud.conductorAfectado.datosPersona.dni = 98764284;
 //            solicitud.conductorAfectado.datosPersona.fechaDeNacimiento = "1990-10-10"; // Ejemplo de fecha exacta
-            solicitud.conductorAfectado.datosPersona.telefono = "123456789";
-            solicitud.conductorAfectado.datosPersona.sexo = Sexo.MUJER;
-            solicitud.conductorAfectado.datosPersona.email = "email@example.com";
-            solicitud.conductorAfectado.nroRegistro = "NroRegistro";
-            solicitud.conductorAfectado.claseRegistro = "ClaseRegistro";
-            solicitud.conductorAfectado.fechaRegistroExpedicion = "1990-10-10"; // Ejemplo de fecha exacta
-            solicitud.conductorAfectado.fechaRegistroVencimiento = "1990-10-10" // Ejemplo de fecha exacta
-            solicitud.conductorAfectado.relacionAsegurado = "RelacionAsegurado";
+//            solicitud.conductorAfectado.datosPersona.telefono = "123456789";
+//            solicitud.conductorAfectado.datosPersona.sexo = Sexo.MUJER;
+//            solicitud.conductorAfectado.datosPersona.email = "email@example.com";
+//            solicitud.conductorAfectado.nroRegistro = "NroRegistro";
+//            solicitud.conductorAfectado.claseRegistro = "ClaseRegistro";
+//            solicitud.conductorAfectado.fechaRegistroExpedicion = "1990-10-10"; // Ejemplo de fecha exacta
+//            solicitud.conductorAfectado.fechaRegistroVencimiento = "1990-10-10" // Ejemplo de fecha exacta
+//            solicitud.conductorAfectado.relacionAsegurado = "RelacionAsegurado";
         }
         else{
             return null
