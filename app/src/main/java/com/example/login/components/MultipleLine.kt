@@ -33,11 +33,6 @@ fun MultipleLine(
     val isError = error.value != null
 
     Column {
-        Text(
-            text = titulo,
-            style = TextStyle(fontSize = 24.sp, fontWeight = FontWeight.Bold),
-            modifier = Modifier.padding(25.dp)
-        )
         TextField(
             label = { Text(titulo) },
             value = valor.value ?: "",
