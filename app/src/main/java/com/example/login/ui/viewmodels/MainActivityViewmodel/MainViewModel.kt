@@ -48,7 +48,7 @@ class MainViewModel() : ViewModel() {
     }
 */
 
-    fun updateEmail(token: String) {
+    fun updateEmail() {
         if(Token.token.isNotEmpty()){
             val user = Utility().decodeJWT(Token.token)
             _email.value = user.email

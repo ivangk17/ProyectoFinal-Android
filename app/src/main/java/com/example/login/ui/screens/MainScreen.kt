@@ -71,10 +71,10 @@ fun MainScreen(mainViewModel: MainViewModel) {
             drawerState = drawerState,
             gesturesEnabled = currentLocation in routesWithDrawer
         ) {
-            AppScaffoldContent(navController, currentLocation, drawerState, scope)
+            AppScaffoldContent(navController, currentLocation, drawerState, scope, mainViewModel)
         }
     } else {
-        AppScaffoldContent(navController, currentLocation, drawerState, scope)
+        AppScaffoldContent(navController, currentLocation, drawerState, scope, mainViewModel)
     }
 }
 
@@ -83,7 +83,8 @@ fun AppScaffoldContent(
     navController: NavHostController,
     currentLocation: String?,
     drawerState: DrawerState,
-    scope: CoroutineScope
+    scope: CoroutineScope,
+    mainViewModel: MainViewModel
 ) {
     val navigationActions = AppNavigationActions(navController)
     var lastScreen: String? = ""
@@ -131,7 +132,7 @@ fun AppScaffoldContent(
                     .fillMaxSize()
                     .padding(innerPadding)
             ) {
-                AppNavigation(navController)
+                AppNavigation(navController, mainViewModel)
             }
         }
     )

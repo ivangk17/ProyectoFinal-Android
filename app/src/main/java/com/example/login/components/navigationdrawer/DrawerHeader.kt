@@ -51,7 +51,7 @@ fun DrawerHeader(email: String, modifier: Modifier = Modifier) {
                     .clip(CircleShape)
             )
 
-            Spacer(modifier = Modifier.height(5.dp))
+            Spacer(modifier = Modifier.height(30.dp))
             Text(
                 text = email,
                 modifier = Modifier
