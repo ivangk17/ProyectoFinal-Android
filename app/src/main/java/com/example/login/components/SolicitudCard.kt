@@ -26,7 +26,7 @@ fun SolicitudCard(solicitud: SolicitudSimplificada, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .padding(8.dp)
-            .padding(horizontal = 16.dp)
+            .padding(horizontal =4.dp)
             .fillMaxWidth()
             .clickable { onClick() }
     ) {
@@ -44,7 +44,7 @@ fun SolicitudCard(solicitud: SolicitudSimplificada, onClick: () -> Unit) {
                 )
                 .padding(16.dp)
         ) {
-            Column(modifier = Modifier.padding(8.dp).fillMaxWidth()) {
+            Column(modifier = Modifier.padding(4.dp).fillMaxWidth()) {
                 Text(
                     text = stringResource(
                         id = R.string.fecha_siniestro,

@@ -68,7 +68,7 @@ class MainViewModel() : ViewModel() {
 
 
 
-    val loginRoute = Rutas.LoginScreen.ruta
+  //  val loginRoute = Rutas.LoginScreen.ruta
 
 }
 //  route = Rutas.HomeScreen.ruta
