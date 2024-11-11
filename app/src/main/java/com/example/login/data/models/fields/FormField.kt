@@ -12,5 +12,7 @@ data class FormField(
 
 enum class TipoCampo {
     TEXTO,
-    NUMERICO
+    NUMERICO,
+    DNI,
+    CODIGO_POSTAL
 }

@@ -56,10 +56,10 @@ class InformacionAdicionalViewModel(
 
 
     fun crearSolicitudPoliza(): Solicitud? {
-//        validarCampoMutable(vigenciaHasta, errorVigenciaHasta,"Se debe seleccionar la vigencia")
+        validarCampoMutable(vigenciaHasta, errorVigenciaHasta,"Se debe seleccionar la vigencia")
 //       validarCampos(campos)
-        if (campos.all { it.error.value == null }) {
-//            solicitud.datosSiniestro.vigencia = vigenciaHasta.value!!
+        if (campos.all { it.error.value == null } && errorVigenciaHasta.value == null) {
+            solicitud.datosSiniestro.vigencia = vigenciaHasta.value!!
 //            solicitud.datosSiniestro.cobertura = campos[0].value.value
 //            solicitud.datosSiniestro.franquicia = campos[1].value.value
 //            solicitud.datosSiniestro.cobranza = campos[2].value.value
@@ -71,7 +71,7 @@ class InformacionAdicionalViewModel(
             solicitud.datosSiniestro.hubieronDaniosMateriales = true; // Ejemplo booleano
             solicitud.datosSiniestro.hubieronTestigos = true; // Ejemplo booleano
             solicitud.datosSiniestro.huboDenuncia = HuboDenuncia.SI;
-            solicitud.datosSiniestro.vigencia = "2025-10-10"
+//            solicitud.datosSiniestro.vigencia = "2025-10-10"
             solicitud.datosSiniestro.cobertura = "Cobertura";
             solicitud.datosSiniestro.franquicia = "Franquicia";
             solicitud.datosSiniestro.cobranza = "Cobranza";

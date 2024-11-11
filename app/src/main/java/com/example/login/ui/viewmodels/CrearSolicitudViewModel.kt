@@ -46,7 +46,7 @@ class CrearSolicitudViewModel: ViewModel()  {
         _solicitud.propietarioAsegurado.datosPersona.domicilio.piso = solicitud.propietarioAsegurado.datosPersona.domicilio.piso
         _solicitud.propietarioAsegurado.datosPersona.domicilio.departamento = solicitud.propietarioAsegurado.datosPersona.domicilio.departamento
         _solicitud.propietarioAsegurado.datosPersona.domicilio.codigoPostal = solicitud.propietarioAsegurado.datosPersona.domicilio.codigoPostal
-        _solicitud.propietarioAsegurado.datosPersona.cuit = solicitud.propietarioAsegurado.datosPersona.cuit
+        _solicitud.propietarioAsegurado.datosPersona.dni = solicitud.propietarioAsegurado.datosPersona.dni
         _solicitud.propietarioAsegurado.datosPersona.email = solicitud.propietarioAsegurado.datosPersona.email
         _solicitud.propietarioAsegurado.datosPersona.telefono =solicitud.propietarioAsegurado.datosPersona.telefono
         _solicitud.propietarioAsegurado.datosPersona.sexo = solicitud.propietarioAsegurado.datosPersona.sexo
@@ -72,7 +72,7 @@ class CrearSolicitudViewModel: ViewModel()  {
         _solicitud.propietarioAfectado.datosPersona.domicilio.piso = solicitud.propietarioAfectado.datosPersona.domicilio.piso
         _solicitud.propietarioAfectado.datosPersona.domicilio.departamento = solicitud.propietarioAfectado.datosPersona.domicilio.departamento
         _solicitud.propietarioAfectado.datosPersona.domicilio.codigoPostal = solicitud.propietarioAfectado.datosPersona.domicilio.codigoPostal
-        _solicitud.propietarioAfectado.datosPersona.cuit = solicitud.propietarioAfectado.datosPersona.cuit
+        _solicitud.propietarioAfectado.datosPersona.dni = solicitud.propietarioAfectado.datosPersona.dni
         _solicitud.propietarioAfectado.datosPersona.email = solicitud.propietarioAfectado.datosPersona.email
         _solicitud.propietarioAfectado.datosPersona.telefono = solicitud.propietarioAfectado.datosPersona.telefono
         _solicitud.propietarioAfectado.datosPersona.sexo = solicitud.propietarioAfectado.datosPersona.sexo
@@ -101,7 +101,7 @@ class CrearSolicitudViewModel: ViewModel()  {
         _solicitud.conductorAsegurado.datosPersona.domicilio.piso = solicitud.conductorAsegurado.datosPersona.domicilio.piso
         _solicitud.conductorAsegurado.datosPersona.domicilio.departamento = solicitud.conductorAsegurado.datosPersona.domicilio.departamento
         _solicitud.conductorAsegurado.datosPersona.domicilio.codigoPostal = solicitud.conductorAsegurado.datosPersona.domicilio.codigoPostal
-        _solicitud.conductorAsegurado.datosPersona.cuit = solicitud.conductorAsegurado.datosPersona.cuit
+        _solicitud.conductorAsegurado.datosPersona.dni = solicitud.conductorAsegurado.datosPersona.dni
         _solicitud.conductorAsegurado.datosPersona.fechaDeNacimiento = solicitud.conductorAsegurado.datosPersona.fechaDeNacimiento
         _solicitud.conductorAsegurado.datosPersona.telefono = solicitud.conductorAsegurado.datosPersona.telefono
         _solicitud.conductorAsegurado.datosPersona.sexo = solicitud.conductorAsegurado.datosPersona.sexo
@@ -121,7 +121,7 @@ class CrearSolicitudViewModel: ViewModel()  {
         _solicitud.conductorAfectado.datosPersona.domicilio.piso = solicitud.conductorAfectado.datosPersona.domicilio.piso
         _solicitud.conductorAfectado.datosPersona.domicilio.departamento = solicitud.conductorAfectado.datosPersona.domicilio.departamento
         _solicitud.conductorAfectado.datosPersona.domicilio.codigoPostal = solicitud.conductorAfectado.datosPersona.domicilio.codigoPostal
-        _solicitud.conductorAfectado.datosPersona.cuit = solicitud.conductorAfectado.datosPersona.cuit
+        _solicitud.conductorAfectado.datosPersona.dni = solicitud.conductorAfectado.datosPersona.dni
 
         _solicitud.conductorAfectado.datosPersona.fechaDeNacimiento = solicitud.conductorAfectado.datosPersona.fechaDeNacimiento
         _solicitud.conductorAfectado.datosPersona.telefono = solicitud.conductorAfectado.datosPersona.telefono
@@ -185,7 +185,7 @@ class CrearSolicitudViewModel: ViewModel()  {
         _solicitud.lesiones.lesionado.datosPersona.domicilio.piso = solicitud.lesiones.lesionado.datosPersona.domicilio.piso
         _solicitud.lesiones.lesionado.datosPersona.domicilio.departamento = solicitud.lesiones.lesionado.datosPersona.domicilio.departamento
         _solicitud.lesiones.lesionado.datosPersona.domicilio.codigoPostal = solicitud.lesiones.lesionado.datosPersona.domicilio.codigoPostal
-        _solicitud.lesiones.lesionado.datosPersona.cuit = solicitud.lesiones.lesionado.datosPersona.cuit
+        _solicitud.lesiones.lesionado.datosPersona.dni = solicitud.lesiones.lesionado.datosPersona.dni
         _solicitud.lesiones.lesionado.datosPersona.email = solicitud.lesiones.lesionado.datosPersona.email
         _solicitud.lesiones.lesionado.datosPersona.telefono = solicitud.lesiones.lesionado.datosPersona.telefono
         _solicitud.lesiones.lesionado.datosPersona.sexo = solicitud.lesiones.lesionado.datosPersona.sexo

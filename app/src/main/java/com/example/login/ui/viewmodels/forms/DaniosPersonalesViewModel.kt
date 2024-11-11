@@ -12,7 +12,6 @@ import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.utilities.ValidacionesCampos.validarCampos
 import com.example.login.utilities.validarCampoMutable
-import com.example.login.utilities.validarMail
 
 class DaniosPersonalesViewModel(
     getServicePolizas: GetServicePolizas
@@ -25,14 +24,14 @@ class DaniosPersonalesViewModel(
     var sexoLesionado =  mutableStateOf(Sexo.INDEFINIDO)
 
     val campos = listOf(
-        FormField("Nombre: ", tipo = TipoCampo.TEXTO),
+        FormField("Nombre", tipo = TipoCampo.TEXTO),
         FormField("Apellido", tipo = TipoCampo.TEXTO),
         FormField("Calle", tipo = TipoCampo.TEXTO),
         FormField("Numero", tipo = TipoCampo.NUMERICO),
         FormField("Piso", tipo = TipoCampo.NUMERICO),
         FormField("Departamento", tipo = TipoCampo.TEXTO),
-        FormField("Codigo Postal", tipo = TipoCampo.TEXTO),
-        FormField("CUIT", tipo = TipoCampo.NUMERICO),
+        FormField("Codigo Postal", tipo = TipoCampo.CODIGO_POSTAL),
+        FormField("DNI", tipo = TipoCampo.DNI),
         FormField("Email", tipo = TipoCampo.TEXTO),
         FormField("Telefono", tipo = TipoCampo.NUMERICO),
         FormField("Estado Civil", tipo = TipoCampo.TEXTO),
@@ -67,7 +66,6 @@ class DaniosPersonalesViewModel(
 
     fun crearSolicitud(): Solicitud?{
 //        validarCampos(campos)
-//        validarMail(campos[8])
 //        validarCampoMutable(fechaNacimiento, errorFechaNacimiento, "Debes completar la fecha de nacimiento")
 
         if (campos.all { it.error.value == null }) {
@@ -78,7 +76,7 @@ class DaniosPersonalesViewModel(
 //            solicitud.lesiones.lesionado.datosPersona.domicilio.piso = if (campos[4].value.value.isEmpty()) null else campos[4].value.value.toInt()
 //            solicitud.lesiones.lesionado.datosPersona.domicilio.departamento = campos[5].value.value
 //            solicitud.lesiones.lesionado.datosPersona.domicilio.codigoPostal = campos[6].value.value.toInt()
-//            solicitud.lesiones.lesionado.datosPersona.cuit = campos[7].value.value.toInt()
+            solicitud.lesiones.lesionado.datosPersona.dni = campos[7].value.value.toInt()
 //            solicitud.lesiones.lesionado.datosPersona.email = campos[8].value.value
 //            solicitud.lesiones.lesionado.datosPersona.telefono = campos[9].value.value
 //            solicitud.lesiones.lesionado.datosPersona.sexo = sexoLesionado.value
@@ -94,7 +92,7 @@ class DaniosPersonalesViewModel(
             solicitud.lesiones.lesionado.datosPersona.domicilio.piso = null
             solicitud.lesiones.lesionado.datosPersona.domicilio.departamento = null
             solicitud.lesiones.lesionado.datosPersona.domicilio.codigoPostal = 7300;
-            solicitud.lesiones.lesionado.datosPersona.cuit = 20987642848;
+//            solicitud.lesiones.lesionado.datosPersona.dni = 98764284;
             solicitud.lesiones.lesionado.datosPersona.email = "email@example.com";
             solicitud.lesiones.lesionado.datosPersona.telefono = "123456789";
             solicitud.lesiones.lesionado.datosPersona.sexo = Sexo.MUJER;
