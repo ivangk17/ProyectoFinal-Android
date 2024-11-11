@@ -46,9 +46,9 @@ class MainViewModel() : ViewModel() {
         Token.token = token
         updateEmail()
     }
+*/
 
-
-    fun updateEmail() {
+    fun updateEmail(token: String) {
         if(Token.token.isNotEmpty()){
             val user = Utility().decodeJWT(Token.token)
             _email.value = user.email
@@ -56,7 +56,7 @@ class MainViewModel() : ViewModel() {
 
     }
 
- */
+
 
     fun openDrawer() {
         _drawerShouldBeOpened.value = true

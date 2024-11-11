@@ -1,4 +1,4 @@
-package com.example.login.data.repositories
+package com.example.login.data.network.services
 
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.network.RetrofitClient

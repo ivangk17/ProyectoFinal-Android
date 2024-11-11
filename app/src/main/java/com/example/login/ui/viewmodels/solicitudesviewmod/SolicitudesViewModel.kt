@@ -5,9 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.login.data.models.solicitud.Solicitud
-import com.example.login.data.models.solicitud.SolicitudSimplificada
 import com.example.login.data.models.solicitud.aSolicitudSimplificada
-import com.example.login.data.repositories.SolicitudesRepositoryImpl
+import com.example.login.data.network.services.SolicitudesRepositoryImpl
 import com.example.login.tokens.Token
 import kotlinx.coroutines.launch
 
