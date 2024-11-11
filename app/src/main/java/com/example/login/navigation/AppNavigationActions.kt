@@ -102,20 +102,43 @@ class AppNavigationActions(
         return hideTopBar.contains(location)
     }
 
-    /*
-        fun getNavigationTopBar(location: String?): Boolean {
-            return when (location) {
-                Rutas.LoginScreen.ruta -> false
-                Rutas.HomeScreen.ruta -> false
-                Rutas.PolizaDetalleScreen.ruta -> true
-                else -> false
+    fun getNavigationTopBar(location: String?): Boolean {
+        Log.d("getNavigationTopBar", "Evaluando para la ubicación: $location")
+
+        return when {
+            location == null -> false
+            location.startsWith(Rutas.PolizaDetalleScreen.ruta) -> {
+                Log.d("getNavigationTopBar", "Coincidencia encontrada para PolizaDetalleScreen")
+                true
+            }
+            location.startsWith(Rutas.SolicitudDetalle.ruta) -> {
+                Log.d("getNavigationTopBar", "Coincidencia encontrada para SolicitudDetalle")
+                true
+            }
+            else -> {
+                Log.d("getNavigationTopBar", "No se encontró coincidencia para la ubicación: $location")
+                false
             }
         }
+    }
 
-     */
+
+    /*
+            fun getNavigationTopBar(location: String?): Boolean {
+                Log.d("getNavigationTopBar", "Evaluando para la ubicación: $location")
+                return when (location) {
+                    Rutas.LoginScreen.ruta -> false
+                    Rutas.HomeScreen.ruta -> false
+                    Rutas.PolizaDetalleScreen.ruta -> true
+                    else -> false
+                }
+            }
+    */
+
+     /*
     fun getNavigationTopBar(location: String?): Boolean {
         return location in listOf(Rutas.PolizaDetalleScreen.ruta, Rutas.SolicitudDetalle.ruta)
     }
-
+*/
 
 }

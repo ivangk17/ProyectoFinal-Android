@@ -1,5 +1,6 @@
 package com.example.login.components.topbars
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -31,6 +32,8 @@ fun NavigationTopBar(
     titleColor: Color,
     onMenuClick: () -> Unit
 ){
+    Log.d("NavigationTopBar", "Rendering NavigationTopBar for $title")
+
     Box(modifier = Modifier
         .background(topBarColor)
         .padding(top = 30.dp, start = 25.dp, end = 25.dp)
@@ -43,7 +46,7 @@ fun NavigationTopBar(
                 painter = painterResource(id = R.drawable.back),
                 contentDescription = "Back",
                 modifier = Modifier
-                    .size(20.dp)
+                    .size(30.dp)
                     .clickable { onClick() }
             )
 
@@ -57,7 +60,7 @@ fun NavigationTopBar(
                 painter = painterResource(id = R.drawable.close),
                 contentDescription = "Close",
                 modifier = Modifier
-                    .size(20.dp)
+                    .size(30.dp)
                     .clickable { quitScreen() }
             )
         }

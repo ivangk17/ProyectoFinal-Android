@@ -61,11 +61,13 @@ fun DrawerContent2(
 
         CardDivider()
         Spacer(modifier = Modifier.weight(1f))
+
+        //Botón para cerrar sesión
         AppButton(
             stringResource(
                 R.string.log_out_text
             ),
-            modifier = Modifier.padding( start = 5.dp, top = 50.dp)
+            modifier = Modifier.padding( start = 7.dp, top = 50.dp)
         ) {
             scope.launch {
                 navigationActions.navigateToLogin()

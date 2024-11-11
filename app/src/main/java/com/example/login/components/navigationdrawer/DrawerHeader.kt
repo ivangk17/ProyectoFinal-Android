@@ -34,7 +34,7 @@ fun DrawerHeader(email: String, modifier: Modifier = Modifier) {
         modifier = modifier
             .border(BorderStroke(5.dp, colorResource(R.color.light_blue_1)))
             .fillMaxWidth()
-            .height(200.dp)
+            .height(250.dp)
             .background(colorResource(R.color.light_gray)),
         contentAlignment = Alignment.Center
     ) {
@@ -51,7 +51,7 @@ fun DrawerHeader(email: String, modifier: Modifier = Modifier) {
                     .clip(CircleShape)
             )
 
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(5.dp))
             Text(
                 text = email,
                 modifier = Modifier

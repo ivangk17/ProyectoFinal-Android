@@ -24,6 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.login.data.models.DrawerItems
 
 @Composable
@@ -54,8 +55,10 @@ fun DrawerItem(item: DrawerItems, onItemClick: () -> Unit) {
             Text(
                 text = item.text,
                 style = MaterialTheme.typography.bodyMedium
-                    .copy(fontWeight = FontWeight.Bold),
-                color = MaterialTheme.colorScheme.onSurface,
+                    .copy(
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 17.sp),
+                color = MaterialTheme.colorScheme.onSurface
 
             )
         }
