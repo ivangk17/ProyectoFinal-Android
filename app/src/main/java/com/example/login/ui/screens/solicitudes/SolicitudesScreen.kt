@@ -7,6 +7,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.remember
@@ -68,7 +69,7 @@ fun SolicitudesScreen(
             }
             is SolicitudesUiState.Error -> {
                 val message = (uiState as SolicitudesUiState.Error).message
-                coroutineScope.launch {
+                LaunchedEffect(snackbarHostState) {
                     snackbarHostState.showSnackbar(
                         message = "Error: $message",
                         actionLabel = "Cerrar"
