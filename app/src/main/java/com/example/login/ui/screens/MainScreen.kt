@@ -23,6 +23,7 @@ import com.example.login.components.topbars.NavigationTopBar
 import com.example.login.components.topbars.TopBar
 import com.example.login.navigation.AppNavigation
 import com.example.login.navigation.AppNavigationActions
+import com.example.login.navigation.AppNavigationActions.Companion.routesWithDrawer
 import com.example.login.ui.viewmodels.MainActivityViewmodel.MainViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -85,6 +86,7 @@ fun AppScaffoldContent(
 ) {
     val navigationActions = AppNavigationActions(navController)
     var lastScreen: String? = ""
+    val showMenuIcon = currentLocation in routesWithDrawer
 
     Scaffold(
         topBar = {
@@ -111,6 +113,7 @@ fun AppScaffoldContent(
                         title = navigationActions.getTextTopBar(currentLocation),
                         titleStyle = navigationActions.getTitleStyleTopBar(currentLocation),
                         titleColor = navigationActions.getTitleColorTopBar(currentLocation),
+                        showMenuIcon = showMenuIcon,
                         onMenuClick = {
                             scope.launch {
                                 drawerState.open() // Abre el drawer al hacer clic en el ícono de menú

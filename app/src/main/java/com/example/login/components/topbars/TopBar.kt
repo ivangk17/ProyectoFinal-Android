@@ -1,10 +1,8 @@
 package com.example.login.components.topbars
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -29,7 +27,8 @@ fun TopBar(
     titleStyle: TextStyle,
     titleColor: Color,
     description: String = "",
-    onMenuClick: (() -> Unit)? = null
+    onMenuClick: (() -> Unit)? = null,
+    showMenuIcon: Boolean
 ) {
     val align = if (description.isNotEmpty()) Alignment.TopStart else Alignment.Center
 
@@ -41,16 +40,17 @@ fun TopBar(
             .fillMaxWidth(),
         contentAlignment = align
     ) {
-
-        onMenuClick?.let {
-            IconButton(
-                onClick = it,
-                modifier = Modifier.align(Alignment.CenterStart)
-            ) {
-                Icon(Icons.Default.Menu, contentDescription = "Open Drawer")
+        if (showMenuIcon) {
+            onMenuClick?.let {
+                IconButton(
+                    onClick = it,
+                    modifier = Modifier.align(Alignment.CenterStart)
+                ) {
+                    Icon(Icons.Default.Menu, contentDescription = "Open Drawer")
+                }
             }
-        }
 
+        }
 
 
         Column {
