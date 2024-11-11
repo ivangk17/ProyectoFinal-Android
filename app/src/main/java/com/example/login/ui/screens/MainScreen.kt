@@ -89,6 +89,7 @@ fun AppScaffoldContent(
     Scaffold(
         topBar = {
             if (!navigationActions.hideTopBar(currentLocation)) {
+
                 if (navigationActions.getNavigationTopBar(currentLocation)) {
                     NavigationTopBar(
                         onClick = { navController.popBackStack() },
@@ -99,7 +100,7 @@ fun AppScaffoldContent(
                         titleColor = navigationActions.getTitleColorTopBar(currentLocation),
                         onMenuClick = {
                             scope.launch {
-                                drawerState.open() // Abre el drawer al hacer clic en el ícono de menú
+                                drawerState.open()
                             }
                         }
                     )

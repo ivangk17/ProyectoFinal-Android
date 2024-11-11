@@ -10,7 +10,7 @@ import com.example.login.navigation.Rutas
 
 @Composable
 fun GetDrawerMenuItems(): List<DrawerItems> {
-    val homeIcon = ImageVector.vectorResource(id = R.drawable.home_icon)
+    val homeIcon = ImageVector.vectorResource(id = R.drawable.black_contour_home_icon)
     val solicitudesIcon = ImageVector.vectorResource(id = R.drawable.black_application_icon)
    // val legalIcon = ImageVector.vectorResource(id = R.drawable.info_icon)
 
