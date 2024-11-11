@@ -96,6 +96,8 @@ fun ConductorVehiculoAsegurado(
                         if (solicitud != null) {
                             crearSolicitudViewModel.conductorVehiculoAsegurado(solicitud)
                             navController.navigate(route = Rutas.ConductorVehiculoTercero.ruta)
+                            Log.d("SOLICITUD", solicitud.conductorAsegurado.toString())
+                            navController.navigate(route = Rutas.ConductorVehiculoTercero.ruta)
                         } else {
                             showToastError(context, "error: No se puede crear la solicitud")
                             Log.d("solicitud", "no se creo")

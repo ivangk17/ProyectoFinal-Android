@@ -26,8 +26,4 @@ fun InformacionAdicionalDetails(solicitud: Solicitud) {
     TextSolicitudDetails("¿Hubieron Daños Personales?:", daniosPersonales)
     TextSolicitudDetails("¿Hubieron Testigos?:", hubieronTestigos)
     TextSolicitudDetails("¿Hubo Denuncia Policial?:", solicitud.datosSiniestro.huboDenuncia.toString())
-    TextSolicitudDetails("Vigencia:", solicitud.datosSiniestro.vigencia.toString())
-    TextSolicitudDetails("Cobertura:", solicitud.datosSiniestro.cobertura)
-    TextSolicitudDetails("Franquicia:", solicitud.datosSiniestro.franquicia)
-    TextSolicitudDetails("Cobranza:", solicitud.datosSiniestro.cobranza)
 }

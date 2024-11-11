@@ -8,7 +8,7 @@ open class Propietario(
     var nombre: String = "",
     var apellido: String = "",
     var nombreCompleto: String = "${nombre} ${apellido}",
-    var cuit: String = "",
+    var dni: String = "",
     var email: String = "",
     var telefono: String = "",
     var fechaDeNacimiento: String = "",

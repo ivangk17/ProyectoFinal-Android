@@ -20,7 +20,6 @@ import com.example.login.ui.screens.forms.ConductorVehiculoAsegurado
 import com.example.login.ui.screens.forms.ConductorVehiculoTercero
 import com.example.login.ui.screens.forms.ConsecuenciaSiniestro
 import com.example.login.ui.screens.forms.DaniosDeVehiculos
-import com.example.login.ui.screens.forms.DaniosPersonales
 import com.example.login.ui.screens.forms.DatosAdicionales
 import com.example.login.ui.screens.forms.DatosPropietarioVehiculoAsegurado
 import com.example.login.ui.screens.forms.DatosPropietarioVehiculoTercero
@@ -39,7 +38,6 @@ import com.example.login.ui.viewmodels.PolizaDetailsViewModel
 import com.example.login.ui.viewmodels.forms.ConductorVehiculoAseguradoViewModel
 import com.example.login.ui.viewmodels.forms.ConductorVehiculoTerceroViewModel
 import com.example.login.ui.viewmodels.forms.ConsecuenciaSiniestroViewModel
-import com.example.login.ui.viewmodels.forms.DaniosPersonalesViewModel
 import com.example.login.ui.viewmodels.forms.DaniosVehiculoAseguradoViewModel
 import com.example.login.ui.viewmodels.forms.DaniosVehiculoTerceroViewModel
 import com.example.login.ui.viewmodels.forms.DatosAdicionalesViewModel
@@ -246,23 +244,13 @@ fun AppNavigation(
             RelatoAccidente(navController, viewModel, crearSolicitudViewModel)
         }
 
-        rutaComposable(
-            route = Rutas.DaniosPersonales.ruta,
-            viewModelFactory = {
-                DaniosPersonalesViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
-                    .create(DaniosPersonalesViewModel::class.java)
-            }
-        ) { viewModel ->
-            DaniosPersonales(navController, viewModel, crearSolicitudViewModel)
-        }
-
-        rutaComposable(
+        rutaComposablePoliza(
             route = Rutas.LugarAsistencia.ruta,
             viewModelFactory = {
                 LugarAsistenciaViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
                     .create(LugarAsistenciaViewModel::class.java)
             }
-        ) { viewModel ->
+        ) { poliza, viewModel ->
             LugarAsistencia(navController, viewModel, crearSolicitudViewModel)
         }
 

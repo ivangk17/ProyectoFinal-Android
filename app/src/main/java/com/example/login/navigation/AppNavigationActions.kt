@@ -65,7 +65,6 @@ class AppNavigationActions(
             Rutas.DatosAdicionales.ruta -> "Datos Adicionales"
             Rutas.ConsecuenciaSiniestro.ruta -> "Consecuencia Del Siniestro"
             Rutas.RelatoAccidente.ruta -> "Relato Del Accidente"
-            Rutas.DaniosPersonales.ruta -> "Daños Personales"
             Rutas.LugarAsistencia.ruta -> "Lugar de Asistencia"
 
             "${Rutas.LoadingScreen.ruta}/{polizaJson}/{nextRoute}" -> ""
@@ -125,7 +124,6 @@ class AppNavigationActions(
             Rutas.DatosAdicionales.ruta -> true
             Rutas.ConsecuenciaSiniestro.ruta -> true
             Rutas.RelatoAccidente.ruta -> true
-            Rutas.DaniosPersonales.ruta -> true
             Rutas.LugarAsistencia.ruta -> true
 
             else -> false
