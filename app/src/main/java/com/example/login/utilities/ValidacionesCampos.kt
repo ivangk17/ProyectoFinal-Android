@@ -4,7 +4,6 @@ import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
 import com.example.login.data.models.fields.FormField
 import com.example.login.data.models.fields.TipoCampo
 import java.time.LocalDate
@@ -28,9 +27,9 @@ object ValidacionesCampos {
 fun validarCampoMutable(
     campo: MutableState<String?>,
     error: MutableState<String?>,
-    mensajeError: String
+    mensajeError: String,
 ) {
-    val soloLetrasNumeros = Regex("^[a-zA-Z0-9 ,.ñÑ]*$")
+    val soloLetrasNumeros = Regex("^[a-zA-Z0-9 ,.ñÑ:-]*$")
 
     if (campo.value.isNullOrEmpty()) {
         error.value = mensajeError
@@ -83,8 +82,9 @@ fun validarFechaNacimiento(
 
 @RequiresApi(Build.VERSION_CODES.O)
 private fun validarCampoNoVacio(campo: FormField): String? {
-    val soloLetras = Regex("^[a-zA-Z]*$")
+    val soloLetras = Regex("^[a-zA-Z ]*$")
     val soloLetrasNumeros = Regex("^[a-zA-Z0-9]*$")
+    val textoLargo = Regex("^[a-zA-Z0-9 ,.ñÑ:]*$")
     val largo = campo.value.value.length < 3
     var resultado: String? = null
 
@@ -109,6 +109,12 @@ private fun validarCampoNoVacio(campo: FormField): String? {
             val emailError = validarMail(campo)
             if (emailError != null) return emailError
         }
+        //Validar texto largo
+        else if (campo.label == "Lugar de Ocurrencia" || campo.label == "Calle" || campo.label == "Aseguradora") {
+            if (!textoLargo.matches(campo.value.value) || campo.value.value.length < 3) {
+                return "Revisa ${campo.label}."
+            }
+        }
         // Validar solo letras para Nombre y Apellido
         else if (campo.label == "Nombre" || campo.label == "Apellido") {
             if (!soloLetras.matches(campo.value.value) || campo.value.value.length < 3) {
@@ -131,6 +137,7 @@ private fun validarCampoNoVacio(campo: FormField): String? {
             val polizaError = validarNumeroPoliza(campo.value.value)
             if (polizaError != null) return polizaError
         }
+
 
         else if (campo.label == "Clase del Registro de Conducir") {
             val claseRegistroError = validarClaseRegistro(campo)

@@ -46,7 +46,7 @@ fun RelatoAccidente(
                 val polizaJson = gson.toJson(poliza)
                 if (solicitud != null) {
                     crearSolicitudViewModel.relatoAccidente(solicitud)
-                    navController.navigate("${Rutas.DaniosPersonales.ruta}/${polizaJson}")
+                    navController.navigate("${Rutas.LugarAsistencia.ruta}/${polizaJson}")
                 } else {
                     showToastError(context, "error: No se puede crear la solicitud")
                     Log.d("solicitud", "no se creo")

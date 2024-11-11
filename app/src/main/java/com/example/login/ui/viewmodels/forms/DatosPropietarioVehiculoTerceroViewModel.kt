@@ -13,7 +13,6 @@ import com.example.login.data.models.vehiculos.ColorVehiculo
 import com.example.login.data.models.vehiculos.TipoVehiculo
 import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.utilities.ValidacionesCampos.validarCampos
-import com.example.login.utilities.setColor
 import com.example.login.utilities.validarCampoMutable
 import com.example.login.utilities.validarFechaNacimiento
 
@@ -77,7 +76,7 @@ class DatosPropietarioVehiculoTerceroViewModel (
     @RequiresApi(Build.VERSION_CODES.O)
     fun crearSolicitudPoliza(): Solicitud? {
         validarCampos(campos)
-        validarCampoMutable(fechaDeVencimiento, errorFechaVencimiento, "Debes completar la fecha de vencimiento")
+        validarCampoMutable(fechaDeVencimiento,errorFechaVencimiento,"Debes completar la fecha de vencimiento")
         validarFechaNacimiento(fechaNacimiento, errorFechaNacimiento)
 
 

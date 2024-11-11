@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.login.data.models.fields.CheckField
+import com.example.login.data.models.fields.TipoCampo
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.models.solicitud.datosSiniestros.EstadoCamino
 import com.example.login.data.models.solicitud.datosSiniestros.EstadoTiempo
@@ -42,7 +43,7 @@ class DatosAdicionalesViewModel(
     }
 
     fun crearSolicitud(): Solicitud?{
-        validarCampoMutable(observaciones,errorObservaciones,"Se debe completar el campo")
+        validarCampoMutable( observaciones,errorObservaciones,"Se debe completar el campo")
 
         if(errorObservaciones.value == null){
             solicitud.datosSiniestro.tipoCamino = tipoCamino.value

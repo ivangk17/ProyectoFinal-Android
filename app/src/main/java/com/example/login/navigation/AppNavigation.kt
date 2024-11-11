@@ -20,7 +20,6 @@ import com.example.login.ui.screens.forms.ConductorVehiculoAsegurado
 import com.example.login.ui.screens.forms.ConductorVehiculoTercero
 import com.example.login.ui.screens.forms.ConsecuenciaSiniestro
 import com.example.login.ui.screens.forms.DaniosDeVehiculos
-import com.example.login.ui.screens.forms.DaniosPersonales
 import com.example.login.ui.screens.forms.DatosAdicionales
 import com.example.login.ui.screens.forms.DatosPropietarioVehiculoAsegurado
 import com.example.login.ui.screens.forms.DatosPropietarioVehiculoTercero
@@ -38,7 +37,6 @@ import com.example.login.ui.viewmodels.PolizaDetailsViewModel
 import com.example.login.ui.viewmodels.forms.ConductorVehiculoAseguradoViewModel
 import com.example.login.ui.viewmodels.forms.ConductorVehiculoTerceroViewModel
 import com.example.login.ui.viewmodels.forms.ConsecuenciaSiniestroViewModel
-import com.example.login.ui.viewmodels.forms.DaniosPersonalesViewModel
 import com.example.login.ui.viewmodels.forms.DaniosVehiculoAseguradoViewModel
 import com.example.login.ui.viewmodels.forms.DaniosVehiculoTerceroViewModel
 import com.example.login.ui.viewmodels.forms.DatosAdicionalesViewModel
@@ -63,7 +61,7 @@ fun AppNavigation(drawerViewModel: DrawerViewModel) {
     val crearSolicitudViewModel: CrearSolicitudViewModel = viewModel(
         factory = CrearSolicitudViewModel.provideFactory()
     )
-        NavHost(navController = navController, startDestination = Rutas.LoginScreen.ruta, builder = {
+        NavHost(navController = navController, startDestination = Rutas.HomeScreen.ruta, builder = {
         composable(Rutas.HomeScreen.ruta) {
             val homeViewModel: HomeViewModel = viewModel(
                 factory = HomeViewModel.provideFactory(
@@ -245,16 +243,6 @@ fun AppNavigation(drawerViewModel: DrawerViewModel) {
             }
         ) { poliza, viewModel ->
             RelatoAccidente(navController, viewModel, poliza, crearSolicitudViewModel)
-        }
-
-        rutaComposablePoliza(
-            route = Rutas.DaniosPersonales.ruta,
-            viewModelFactory = {
-                DaniosPersonalesViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
-                    .create(DaniosPersonalesViewModel::class.java)
-            }
-        ) { poliza, viewModel ->
-            DaniosPersonales(navController, viewModel, poliza, crearSolicitudViewModel)
         }
 
         rutaComposablePoliza(

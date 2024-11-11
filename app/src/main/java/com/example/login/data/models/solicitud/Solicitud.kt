@@ -17,7 +17,6 @@ data class Solicitud(
     val propietarioAfectado: PropietarioAfectado = PropietarioAfectado(),
     val conductorAfectado: ConductorAsegurado = ConductorAsegurado(),
     val propietarioAsegurado: PropietarioAsegurado = PropietarioAsegurado(),
-    val lesiones: Lesiones = Lesiones(),
     val datosSiniestro: DatosSiniestro = DatosSiniestro(),
     val _id: String? ="")
 

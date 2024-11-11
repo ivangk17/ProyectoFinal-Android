@@ -49,7 +49,6 @@ fun TimePicker(label: String, valor: MutableState<String?>, error: MutableState<
         selectedTime.value?.let {
             val formattedTime = timeFormatter.format(it)
             onTimeSelected(formattedTime)
-            showTimePicker = false
         }
     }
 

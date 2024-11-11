@@ -14,7 +14,6 @@ import com.example.login.components.solicituddetails.DatosAdicionalesDetails
 import com.example.login.components.solicituddetails.DatosSiniestroDetails
 import com.example.login.components.solicituddetails.HeaderDetails
 import com.example.login.components.solicituddetails.InformacionAdicionalDetails
-import com.example.login.components.solicituddetails.DaniosPersonalesDetails
 import com.example.login.components.solicituddetails.LugarAsistenciaDetails
 import com.example.login.components.solicituddetails.PropietarioAfectadoDetails
 import com.example.login.components.solicituddetails.PropietarioAseguradoDetails
@@ -62,11 +61,12 @@ fun SolicitudDetailsScreen(
 
             MultipleLineText("Relato del Accidente", solicitud.datosSiniestro.relato)
 
-            HeaderDetails("Daños Personales"){
-                DaniosPersonalesDetails(solicitud)
-            }
             HeaderDetails("Lugar de Asistencia"){
-                LugarAsistenciaDetails(solicitud.datosSiniestro.lugarAsistencia)
+                if(solicitud.datosSiniestro.lugarAsistencia == null){
+                    Text("No se ha registrado lugar de asistencia")
+                }else{
+                    LugarAsistenciaDetails(solicitud.datosSiniestro.lugarAsistencia!!)
+                }
             }
         }
     }

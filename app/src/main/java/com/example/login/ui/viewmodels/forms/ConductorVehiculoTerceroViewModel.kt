@@ -77,10 +77,12 @@ class ConductorVehiculoTerceroViewModel (
         validarCampos(campos)
         validarFechaNacimiento(fechaNacimiento, errorFechaNacimiento)
         validarFechaActual(fechaExpedicion, errorFechaExpedicion)
-        validarCampoMutable(fechaDeVencimiento, errorFechaVencimiento, "Debes completar la fecha de vencimiento")
+        validarCampoMutable(fechaDeVencimiento,errorFechaVencimiento,"Debes completar la fecha de vencimiento")
 
-        if (campos.all { it.error.value == null } && errorFechaNacimiento.value == null && errorFechaVencimiento.value == null && errorFechaExpedicion.value == null) {//            solicitud.conductorAfectado.datosPersona.nombre = campos[0].value.value
+        if (campos.all { it.error.value == null } && errorFechaNacimiento.value == null && errorFechaVencimiento.value == null && errorFechaExpedicion.value == null) {
+            solicitud.conductorAfectado.datosPersona.nombre = campos[0].value.value
             solicitud.conductorAfectado.datosPersona.apellido = campos[1].value.value
+            solicitud.conductorAfectado.datosPersona.nombreCompleto ="${campos[0].value.value} ${campos[1].value.value}"
             solicitud.conductorAfectado.datosPersona.domicilio.calle = campos[2].value.value
             solicitud.conductorAfectado.datosPersona.domicilio.numero = campos[3].value.value.toInt()
             solicitud.conductorAfectado.datosPersona.domicilio.piso = if (campos[4].value.value.isEmpty()) null else campos[4].value.value.toInt()
@@ -101,6 +103,7 @@ class ConductorVehiculoTerceroViewModel (
 
 //            solicitud.conductorAfectado.datosPersona.nombre = "Nombre";
 //            solicitud.conductorAfectado.datosPersona.apellido = "Apellido";
+//            solicitud.conductorAfectado.datosPersona.nombreCompleto = "Nombre Apellido";
 //            solicitud.conductorAfectado.datosPersona.domicilio.calle = "Calle";
 //            solicitud.conductorAfectado.datosPersona.domicilio.numero = 1020
 //            solicitud.conductorAfectado.datosPersona.domicilio.piso = null

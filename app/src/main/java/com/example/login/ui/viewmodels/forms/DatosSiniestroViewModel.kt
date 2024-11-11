@@ -1,7 +1,6 @@
 package com.example.login.ui.viewmodels.forms
 
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel

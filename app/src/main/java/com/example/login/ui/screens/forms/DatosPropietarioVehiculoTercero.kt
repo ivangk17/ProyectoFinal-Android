@@ -81,7 +81,7 @@ fun DatosPropietarioVehiculoTercero(
                     label = { it.displayName }
                 )
             }
-            if (index == 10){
+            if (index == 9){
                 DropdownMenuSample(
                     title = "Tipo de vehiculo",
                     options = optionsTipoVehiculo,

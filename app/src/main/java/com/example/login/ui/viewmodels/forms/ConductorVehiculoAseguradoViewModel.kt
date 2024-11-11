@@ -1,7 +1,6 @@
 package com.example.login.ui.viewmodels.forms
 
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -106,6 +105,7 @@ class ConductorVehiculoAseguradoViewModel (
 
 //            solicitud.conductorAsegurado.datosPersona.nombre = "Nombre";
 //            solicitud.conductorAsegurado.datosPersona.apellido = "Apellido";
+//            solicitud.conductorAsegurado.datosPersona.nombreCompleto = "Nombre Apellido";
 //            solicitud.conductorAsegurado.datosPersona.domicilio.calle = "Calle";
 //            solicitud.conductorAsegurado.datosPersona.domicilio.numero = 1020
 //            solicitud.conductorAsegurado.datosPersona.domicilio.piso = null
@@ -113,7 +113,7 @@ class ConductorVehiculoAseguradoViewModel (
 //            solicitud.conductorAsegurado.datosPersona.domicilio.codigoPostal = 7300;
 //            solicitud.conductorAsegurado.datosPersona.dni = 98764284;
 //            solicitud.conductorAsegurado.datosPersona.fechaDeNacimiento = "1990-10-10"; // Ejemplo de fecha exacta
-
+//
 //            solicitud.conductorAsegurado.datosPersona.telefono = "123456789";
 //            solicitud.conductorAsegurado.datosPersona.sexo = Sexo.MUJER;
 //            solicitud.conductorAsegurado.datosPersona.email = "email@example.com";
