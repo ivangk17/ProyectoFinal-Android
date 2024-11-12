@@ -16,11 +16,15 @@ import com.example.login.ui.screens.HomeScreen
 import com.example.login.ui.screens.LoadingScreen
 import com.example.login.ui.screens.LoginScreen
 import com.example.login.ui.screens.PolizaDetailsScreen
+import com.example.login.ui.screens.ProfileScreen
+import com.example.login.ui.screens.changepassword.ChangePasswordScreen
+import com.example.login.ui.screens.changepassword.ChangePasswordViewModel
+import com.example.login.ui.screens.datosperfil.CambiarDatosPerfilScreen
+import com.example.login.ui.screens.datosperfil.DetalleDatosPerfilScreen
 import com.example.login.ui.screens.forms.ConductorVehiculoAsegurado
 import com.example.login.ui.screens.forms.ConductorVehiculoTercero
 import com.example.login.ui.screens.forms.ConsecuenciaSiniestro
 import com.example.login.ui.screens.forms.DaniosDeVehiculos
-import com.example.login.ui.screens.forms.DaniosPersonales
 import com.example.login.ui.screens.forms.DatosAdicionales
 import com.example.login.ui.screens.forms.DatosPropietarioVehiculoAsegurado
 import com.example.login.ui.screens.forms.DatosPropietarioVehiculoTercero
@@ -31,14 +35,15 @@ import com.example.login.ui.screens.forms.RelatoAccidente
 import com.example.login.ui.screens.forms.SolicitudDetailsScreen
 import com.example.login.ui.screens.forms.SolicitudEnviadaScreen
 import com.example.login.ui.screens.solicitudes.SolicitudesScreen
+import com.example.login.ui.viewmodels.CambiarDatosPerfilViewModel
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
-import com.example.login.ui.viewmodels.homeviewmodel.HomeViewModel
+import com.example.login.ui.viewmodels.DetalleDatosPerfilViewModel
 import com.example.login.ui.viewmodels.LoadingViewModel
 import com.example.login.ui.viewmodels.PolizaDetailsViewModel
+import com.example.login.ui.viewmodels.ProfileViewModel
 import com.example.login.ui.viewmodels.forms.ConductorVehiculoAseguradoViewModel
 import com.example.login.ui.viewmodels.forms.ConductorVehiculoTerceroViewModel
 import com.example.login.ui.viewmodels.forms.ConsecuenciaSiniestroViewModel
-import com.example.login.ui.viewmodels.forms.DaniosPersonalesViewModel
 import com.example.login.ui.viewmodels.forms.DaniosVehiculoAseguradoViewModel
 import com.example.login.ui.viewmodels.forms.DaniosVehiculoTerceroViewModel
 import com.example.login.ui.viewmodels.forms.DatosAdicionalesViewModel
@@ -48,6 +53,7 @@ import com.example.login.ui.viewmodels.forms.DatosSiniestroViewModel
 import com.example.login.ui.viewmodels.forms.InformacionAdicionalViewModel
 import com.example.login.ui.viewmodels.forms.LugarAsistenciaViewModel
 import com.example.login.ui.viewmodels.forms.RelatoAccidenteViewModel
+import com.example.login.ui.viewmodels.homeviewmodel.HomeViewModel
 import com.example.login.ui.viewmodels.mainactivityviewmodel.MainViewModel
 import com.example.login.ui.viewmodels.solicitudesviewmodel.SolicitudDetailsViewModel
 import com.example.login.ui.viewmodels.solicitudesviewmodel.SolicitudesViewModel
@@ -65,7 +71,7 @@ fun AppNavigation(
     val crearSolicitudViewModel: CrearSolicitudViewModel = viewModel(
         factory = CrearSolicitudViewModel.provideFactory()
     )
-    NavHost(navController = navController, startDestination = Rutas.LoginScreen.ruta, builder = {
+        NavHost(navController = navController, startDestination = Rutas.LoginScreen.ruta, builder = {
         composable(Rutas.HomeScreen.ruta) {
             val homeViewModel: HomeViewModel = viewModel(
                 factory = HomeViewModel.provideFactory(
@@ -247,16 +253,6 @@ fun AppNavigation(
         }
 
         rutaComposable(
-            route = Rutas.DaniosPersonales.ruta,
-            viewModelFactory = {
-                DaniosPersonalesViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
-                    .create(DaniosPersonalesViewModel::class.java)
-            }
-        ) { viewModel ->
-            DaniosPersonales(navController, viewModel, crearSolicitudViewModel)
-        }
-
-        rutaComposable(
             route = Rutas.LugarAsistencia.ruta,
             viewModelFactory = {
                 LugarAsistenciaViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
@@ -290,6 +286,52 @@ fun AppNavigation(
         ) { solicitudId, viewModel ->
             SolicitudDetailsScreen(solicitudId, viewModel, navController)
         }
+            rutaComposableSolicitud(
+                route = Rutas.SolicitudDetalle.ruta,
+                viewModelFactory = {
+                    SolicitudDetailsViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService),GetServiceSolicitudes(RetrofitClient.apiService))
+                        .create(SolicitudDetailsViewModel::class.java)
+                }
+            ) { solicitudId, viewModel ->
+                SolicitudDetailsScreen(solicitudId, viewModel, navController)
+            }
+
+            composable(Rutas.PerfilScreen.ruta) {
+                val service = RetrofitClient.apiService
+                val profileViewModel: ProfileViewModel = viewModel(
+                    factory = ProfileViewModel.provideFactory(GetServiceUser(service))
+                )
+                ProfileScreen(profileViewModel, navController)
+            }
+
+            composable(Rutas.ChangePassword.ruta) { navBackStackEntry ->
+                val changePasswordViewModel: ChangePasswordViewModel = viewModel(
+                    factory = ChangePasswordViewModel.provideFactory(
+                        GetServiceUser(RetrofitClient.apiService)
+                    ) {
+                        navController.navigate(Rutas.HomeScreen.ruta){
+                            popUpTo(0) {inclusive = true}
+                        }
+                    }
+                )
+                ChangePasswordScreen(changePasswordViewModel)
+            }
+
+            composable(Rutas.DetallesDatosPerfil.ruta) {
+                val service = RetrofitClient.apiService
+                val detalleDatosPerfilViewModel: DetalleDatosPerfilViewModel = viewModel(
+                    factory = DetalleDatosPerfilViewModel.provideFactory(GetServiceUser(service))
+                )
+                DetalleDatosPerfilScreen(detalleDatosPerfilViewModel, navController)
+            }
+
+            composable(Rutas.CambiarDatosPerfil.ruta) {
+                val service = RetrofitClient.apiService
+                val viewModel: CambiarDatosPerfilViewModel = viewModel(
+                    factory = CambiarDatosPerfilViewModel.provideFactory(GetServiceUser(service))
+                )
+                CambiarDatosPerfilScreen(viewModel, navController)
+            }
     }
     )
 }

@@ -64,7 +64,7 @@ fun NavigationTopBar(
                         text = title,
                         color = titleColor,
                         style = titleStyle,
-                        fontSize = 19.sp
+                        fontSize = 25.sp
                     )
                 }
             } else {
@@ -73,6 +73,7 @@ fun NavigationTopBar(
                         text = title,
                         color = titleColor,
                         style = titleStyle,
+                        fontSize = 25.sp
                     )
                 }
                 if (quitScreen) {

@@ -9,7 +9,21 @@ import com.example.login.R
 
 fun showToastError(context: Context, message: String) {
     val inflater = LayoutInflater.from(context)
-    val layout: View = inflater.inflate(R.layout.custom_toast, null)
+    val layout: View = inflater.inflate(R.layout.custom_error_toast, null)
+
+    val text: TextView = layout.findViewById(R.id.toast_text)
+    text.text = message
+
+    with(Toast(context)) {
+        duration = Toast.LENGTH_SHORT
+        view = layout
+        show()
+    }
+}
+
+fun showToastSucces(context: Context, message: String) {
+    val inflater = LayoutInflater.from(context)
+    val layout: View = inflater.inflate(R.layout.custom_succes_toast, null)
 
     val text: TextView = layout.findViewById(R.id.toast_text)
     text.text = message

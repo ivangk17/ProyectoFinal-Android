@@ -1,5 +1,7 @@
 package com.example.login.components
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
@@ -38,9 +40,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
 import com.example.login.R
 import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.Date
 import java.util.Locale
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DatePicker(
@@ -125,8 +131,10 @@ fun DatePicker(
     }
 }
 
-
+@RequiresApi(Build.VERSION_CODES.O)
 fun convertMillisToDate(millis: Long): String {
-    val formatter = SimpleDateFormat("MM-dd-yyyy", Locale.getDefault())
-    return formatter.format(Date(millis))
+    val instant = Instant.ofEpochMilli(millis).plusSeconds(86400) // Sumar 1 día (86400 segundos)
+    val localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate()
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+    return localDate.format(formatter)
 }

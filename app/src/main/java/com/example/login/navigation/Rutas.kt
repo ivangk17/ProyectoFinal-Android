@@ -17,10 +17,13 @@ sealed class Rutas(val ruta: String) {
     object DatosAdicionales : Rutas("datosAdicionalesScreen")
     object ConsecuenciaSiniestro : Rutas("consecuenciaSiniestroScreen")
     object RelatoAccidente : Rutas("relatoAccidenteScreen")
-    object DaniosPersonales : Rutas("daniosPersonalesScreen")
     object LugarAsistencia : Rutas("lugarAsistenciaScreen")
     object SolicitudEnviada: Rutas("solicitudEnviada")
     object SolicitudesScreen : Rutas("solicitudesScreen")
+    object PerfilScreen: Rutas("perfilScreen")
+    object ChangePassword: Rutas("changePassword")
+    object DetallesDatosPerfil : Rutas("detalleDatosPerfil")
+    object CambiarDatosPerfil : Rutas("cambiarDatosPerfil")
 
 
     object SolicitudDetalle : Rutas("solicitudDetalle/{solicitudId}") {

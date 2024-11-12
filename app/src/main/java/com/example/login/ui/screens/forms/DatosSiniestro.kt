@@ -78,6 +78,7 @@ fun DatosSiniestro(
 
                 if (solicitud != null) {
                     crearSolicitudViewModel.envioDatosSiniestros(solicitud)
+                    Log.d("SOLICITUD", solicitud.datosSiniestro.toString())
                     navController.navigate(route = "${Rutas.InformacionAdicional.ruta}/${polizaJson}")
                 } else {
                     showToastError(context, "error: No se puede crear la solicitud")

@@ -27,14 +27,10 @@ class CrearSolicitudViewModel: ViewModel()  {
     }
 
     fun envioInformacionAdicional(solicitud: Solicitud) {
-        _solicitud.datosSiniestro.huboDaniosPersonales = solicitud.datosSiniestro.huboDaniosPersonales
-        _solicitud.datosSiniestro.huboDaniosMateriales = solicitud.datosSiniestro.huboDaniosMateriales
-        _solicitud.datosSiniestro.huboTestigos = solicitud.datosSiniestro.huboTestigos
+        _solicitud.datosSiniestro.hubieronDaniosPersonales = solicitud.datosSiniestro.hubieronDaniosPersonales
+        _solicitud.datosSiniestro.hubieronDaniosMateriales = solicitud.datosSiniestro.hubieronDaniosMateriales
+        _solicitud.datosSiniestro.hubieronTestigos = solicitud.datosSiniestro.hubieronTestigos
         _solicitud.datosSiniestro.huboDenuncia = solicitud.datosSiniestro.huboDenuncia
-        _solicitud.datosSiniestro.vigencia = solicitud.datosSiniestro.vigencia
-        _solicitud.datosSiniestro.cobertura = solicitud.datosSiniestro.cobertura
-        _solicitud.datosSiniestro.franquicia = solicitud.datosSiniestro.franquicia
-        _solicitud.datosSiniestro.cobranza = solicitud.datosSiniestro.cobranza
     }
 
     fun datosPropietarioVehiculoAsegurado(solicitud: Solicitud) {
@@ -46,12 +42,12 @@ class CrearSolicitudViewModel: ViewModel()  {
         _solicitud.propietarioAsegurado.datosPersona.domicilio.piso = solicitud.propietarioAsegurado.datosPersona.domicilio.piso
         _solicitud.propietarioAsegurado.datosPersona.domicilio.departamento = solicitud.propietarioAsegurado.datosPersona.domicilio.departamento
         _solicitud.propietarioAsegurado.datosPersona.domicilio.codigoPostal = solicitud.propietarioAsegurado.datosPersona.domicilio.codigoPostal
-        _solicitud.propietarioAsegurado.datosPersona.cuit = solicitud.propietarioAsegurado.datosPersona.cuit
+        _solicitud.propietarioAsegurado.datosPersona.dni = solicitud.propietarioAsegurado.datosPersona.dni
         _solicitud.propietarioAsegurado.datosPersona.email = solicitud.propietarioAsegurado.datosPersona.email
         _solicitud.propietarioAsegurado.datosPersona.telefono =solicitud.propietarioAsegurado.datosPersona.telefono
         _solicitud.propietarioAsegurado.datosPersona.sexo = solicitud.propietarioAsegurado.datosPersona.sexo
         _solicitud.propietarioAsegurado.datosPersona.fechaDeNacimiento = solicitud.propietarioAsegurado.datosPersona.fechaDeNacimiento
-        //falta cargar datos del vehículo a la entidad conductor asegurado
+
         _solicitud.propietarioAsegurado.vehiculo.datosVehiculo.tipoVehiculo = solicitud.propietarioAsegurado.vehiculo.datosVehiculo.tipoVehiculo
         _solicitud.propietarioAsegurado.vehiculo.datosVehiculo.marca = solicitud.propietarioAsegurado.vehiculo.datosVehiculo.marca
         _solicitud.propietarioAsegurado.vehiculo.datosVehiculo.modelo = solicitud.propietarioAsegurado.vehiculo.datosVehiculo.modelo
@@ -72,7 +68,7 @@ class CrearSolicitudViewModel: ViewModel()  {
         _solicitud.propietarioAfectado.datosPersona.domicilio.piso = solicitud.propietarioAfectado.datosPersona.domicilio.piso
         _solicitud.propietarioAfectado.datosPersona.domicilio.departamento = solicitud.propietarioAfectado.datosPersona.domicilio.departamento
         _solicitud.propietarioAfectado.datosPersona.domicilio.codigoPostal = solicitud.propietarioAfectado.datosPersona.domicilio.codigoPostal
-        _solicitud.propietarioAfectado.datosPersona.cuit = solicitud.propietarioAfectado.datosPersona.cuit
+        _solicitud.propietarioAfectado.datosPersona.dni = solicitud.propietarioAfectado.datosPersona.dni
         _solicitud.propietarioAfectado.datosPersona.email = solicitud.propietarioAfectado.datosPersona.email
         _solicitud.propietarioAfectado.datosPersona.telefono = solicitud.propietarioAfectado.datosPersona.telefono
         _solicitud.propietarioAfectado.datosPersona.sexo = solicitud.propietarioAfectado.datosPersona.sexo
@@ -95,13 +91,13 @@ class CrearSolicitudViewModel: ViewModel()  {
     fun conductorVehiculoAsegurado(solicitud: Solicitud) {
         _solicitud.conductorAsegurado.datosPersona.nombre = solicitud.conductorAsegurado.datosPersona.nombre
         _solicitud.conductorAsegurado.datosPersona.apellido = solicitud.conductorAsegurado.datosPersona.apellido
-
+        _solicitud.conductorAsegurado.datosPersona.nombreCompleto = solicitud.conductorAsegurado.datosPersona.nombreCompleto
         _solicitud.conductorAsegurado.datosPersona.domicilio.calle = solicitud.conductorAsegurado.datosPersona.domicilio.calle
         _solicitud.conductorAsegurado.datosPersona.domicilio.numero = solicitud.conductorAsegurado.datosPersona.domicilio.numero
         _solicitud.conductorAsegurado.datosPersona.domicilio.piso = solicitud.conductorAsegurado.datosPersona.domicilio.piso
         _solicitud.conductorAsegurado.datosPersona.domicilio.departamento = solicitud.conductorAsegurado.datosPersona.domicilio.departamento
         _solicitud.conductorAsegurado.datosPersona.domicilio.codigoPostal = solicitud.conductorAsegurado.datosPersona.domicilio.codigoPostal
-        _solicitud.conductorAsegurado.datosPersona.cuit = solicitud.conductorAsegurado.datosPersona.cuit
+        _solicitud.conductorAsegurado.datosPersona.dni = solicitud.conductorAsegurado.datosPersona.dni
         _solicitud.conductorAsegurado.datosPersona.fechaDeNacimiento = solicitud.conductorAsegurado.datosPersona.fechaDeNacimiento
         _solicitud.conductorAsegurado.datosPersona.telefono = solicitud.conductorAsegurado.datosPersona.telefono
         _solicitud.conductorAsegurado.datosPersona.sexo = solicitud.conductorAsegurado.datosPersona.sexo
@@ -116,12 +112,13 @@ class CrearSolicitudViewModel: ViewModel()  {
     fun conductorVehiculoTercero(solicitud: Solicitud) {
         _solicitud.conductorAfectado.datosPersona.nombre = solicitud.conductorAfectado.datosPersona.nombre
         _solicitud.conductorAfectado.datosPersona.apellido = solicitud.conductorAfectado.datosPersona.apellido
+        _solicitud.conductorAfectado.datosPersona.nombreCompleto = solicitud.conductorAfectado.datosPersona.nombreCompleto
         _solicitud.conductorAfectado.datosPersona.domicilio.calle = solicitud.conductorAfectado.datosPersona.domicilio.calle
         _solicitud.conductorAfectado.datosPersona.domicilio.numero = solicitud.conductorAfectado.datosPersona.domicilio.numero
         _solicitud.conductorAfectado.datosPersona.domicilio.piso = solicitud.conductorAfectado.datosPersona.domicilio.piso
         _solicitud.conductorAfectado.datosPersona.domicilio.departamento = solicitud.conductorAfectado.datosPersona.domicilio.departamento
         _solicitud.conductorAfectado.datosPersona.domicilio.codigoPostal = solicitud.conductorAfectado.datosPersona.domicilio.codigoPostal
-        _solicitud.conductorAfectado.datosPersona.cuit = solicitud.conductorAfectado.datosPersona.cuit
+        _solicitud.conductorAfectado.datosPersona.dni = solicitud.conductorAfectado.datosPersona.dni
 
         _solicitud.conductorAfectado.datosPersona.fechaDeNacimiento = solicitud.conductorAfectado.datosPersona.fechaDeNacimiento
         _solicitud.conductorAfectado.datosPersona.telefono = solicitud.conductorAfectado.datosPersona.telefono
@@ -175,47 +172,27 @@ class CrearSolicitudViewModel: ViewModel()  {
 
     }
 
-    fun daniosPersonales(solicitud: Solicitud) {
+    fun lugarAsistencia(solicitud: Solicitud, navController: NavController) {
+        val lugarAsistencia = _solicitud.datosSiniestro.lugarAsistencia
+        val solicitudLugarAsistencia = solicitud.datosSiniestro.lugarAsistencia
 
-        _solicitud.lesiones.lesionado.datosPersona.nombre = solicitud.lesiones.lesionado.datosPersona.nombre
-        _solicitud.lesiones.lesionado.datosPersona.apellido = solicitud.lesiones.lesionado.datosPersona.apellido
-        _solicitud.lesiones.lesionado.datosPersona.nombreCompleto = "${solicitud.lesiones.lesionado.datosPersona.nombre} ${solicitud.lesiones.lesionado.datosPersona.apellido}"
-        _solicitud.lesiones.lesionado.datosPersona.domicilio.calle = solicitud.lesiones.lesionado.datosPersona.domicilio.calle
-        _solicitud.lesiones.lesionado.datosPersona.domicilio.numero = solicitud.lesiones.lesionado.datosPersona.domicilio.numero
-        _solicitud.lesiones.lesionado.datosPersona.domicilio.piso = solicitud.lesiones.lesionado.datosPersona.domicilio.piso
-        _solicitud.lesiones.lesionado.datosPersona.domicilio.departamento = solicitud.lesiones.lesionado.datosPersona.domicilio.departamento
-        _solicitud.lesiones.lesionado.datosPersona.domicilio.codigoPostal = solicitud.lesiones.lesionado.datosPersona.domicilio.codigoPostal
-        _solicitud.lesiones.lesionado.datosPersona.cuit = solicitud.lesiones.lesionado.datosPersona.cuit
-        _solicitud.lesiones.lesionado.datosPersona.email = solicitud.lesiones.lesionado.datosPersona.email
-        _solicitud.lesiones.lesionado.datosPersona.telefono = solicitud.lesiones.lesionado.datosPersona.telefono
-        _solicitud.lesiones.lesionado.datosPersona.sexo = solicitud.lesiones.lesionado.datosPersona.sexo
-        _solicitud.lesiones.lesionado.estadoCivil = solicitud.lesiones.lesionado.estadoCivil
-        _solicitud.lesiones.lesionado.telefonoAlternativo = solicitud.lesiones.lesionado.telefonoAlternativo
+        if (lugarAsistencia != null && solicitudLugarAsistencia != null) {
+            lugarAsistencia.nombreCentro = solicitudLugarAsistencia.nombreCentro
+            lugarAsistencia.quedaInternado = solicitudLugarAsistencia.quedaInternado
+            lugarAsistencia.estadoLesiones = solicitudLugarAsistencia.estadoLesiones
+            lugarAsistencia.descripcionLesiones = solicitudLugarAsistencia.descripcionLesiones
 
-        _solicitud.lesiones.lesionado.datosPersona.fechaDeNacimiento = solicitud.lesiones.lesionado.datosPersona.fechaDeNacimiento
-
-        _solicitud.lesiones.peatonOCiclista = solicitud.lesiones.peatonOCiclista
-        _solicitud.lesiones.conductorTercero = solicitud.lesiones.conductorTercero
-        _solicitud.lesiones.ocupanteTercero = solicitud.lesiones.ocupanteTercero
-        _solicitud.lesiones.conductorAsegurado =solicitud.lesiones.conductorAsegurado
-        _solicitud.lesiones.asegurado =solicitud.lesiones.asegurado
-        _solicitud.lesiones.conductor =solicitud.lesiones.conductor
-        _solicitud.lesiones.propietarioVehiculoAsegurado =solicitud.lesiones.propietarioVehiculoAsegurado
-        _solicitud.lesiones.relacionConPropietario =solicitud.lesiones.relacionConPropietario
-
+            enviarSolicitud(navController)
+        }
     }
 
-    fun lugarAsistencia(solicitud: Solicitud, navController: NavController) {
-        _solicitud.datosSiniestro.lugarAsistencia.nombreCentro = solicitud.datosSiniestro.lugarAsistencia.nombreCentro
-        _solicitud.datosSiniestro.lugarAsistencia.quedaInternado = solicitud.datosSiniestro.lugarAsistencia.quedaInternado
-        _solicitud.datosSiniestro.lugarAsistencia.estadoLesiones = solicitud.datosSiniestro.lugarAsistencia.estadoLesiones
-        _solicitud.datosSiniestro.lugarAsistencia.descripcionLesiones = solicitud.datosSiniestro.lugarAsistencia.descripcionLesiones
-
+    fun sinLugarAsistencia(navController: NavController){
+        _solicitud.datosSiniestro.lugarAsistencia = null
         enviarSolicitud(navController)
     }
 
      private fun enviarSolicitud(navController: NavController){
-         Log.d("SOLICITU A ENVIAR", _solicitud.toString())
+         Log.d("SOLICITUD_A_ENVIAR", _solicitud.toString())
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val respuesta = RetrofitClient.apiService.enviarSolicitud(_solicitud)

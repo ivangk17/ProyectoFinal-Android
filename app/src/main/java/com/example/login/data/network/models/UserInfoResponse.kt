@@ -8,16 +8,20 @@ data class UserInfoResponse(
 
     val role: Role = Role.ASEGURADO,
 
+    @SerializedName("_id")
+    val id: String = "",
+
     @SerializedName("name")
     val nombre :String = "",
 
     @SerializedName("lastname")
     var apellido: String = "",
 
+    @SerializedName("full_name")
     var nombreCompleto: String = "${nombre} ${apellido} ",
 
     @SerializedName("dni")
-    var cuit: Number = -1,
+    var dni: Number = -1,
 
     var email: String = "",
 
@@ -29,6 +33,9 @@ data class UserInfoResponse(
 
     @SerializedName("gender")
     var sexo: String = "",
+
+    @SerializedName("password")
+    var password: String = "",
 
     @SerializedName("domicile")
     var domicilio: Domicilio = Domicilio()

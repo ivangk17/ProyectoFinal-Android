@@ -7,10 +7,13 @@ data class FormField(
     val label: String,
     val value: MutableState<String> = mutableStateOf(""),
     val error: MutableState<String?> = mutableStateOf(null),
-    val tipo: TipoCampo
+    val tipo: TipoCampo,
+    val isPassword: Boolean = false
 )
 
 enum class TipoCampo {
     TEXTO,
-    NUMERICO
+    NUMERICO,
+    DNI,
+    CODIGO_POSTAL
 }

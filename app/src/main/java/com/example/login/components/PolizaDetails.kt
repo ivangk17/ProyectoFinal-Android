@@ -73,7 +73,7 @@ fun PolizaDetails(poliza: Poliza){
                 TextPolicyDetails("Modelo:", poliza.vehiculo.modelo)
                 TextPolicyDetails("Año:", poliza.vehiculo.anio.toString())
             }
-            TextPolicyDetails("Tipo del Vehiculo:", poliza.vehiculo.tipoVehiculo.displayName)
+            TextPolicyDetails("Tipo del Vehiculo:", poliza.vehiculo.tipoVehiculo)
             TextPolicyDetails("Dominio:", poliza.vehiculo.dominio)
 
         }

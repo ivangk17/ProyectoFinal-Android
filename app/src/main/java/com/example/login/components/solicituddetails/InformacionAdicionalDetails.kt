@@ -10,15 +10,15 @@ fun InformacionAdicionalDetails(solicitud: Solicitud) {
     var daniosPersonales = "NO"
     var huboTestigos = "NO"
 
-    if(solicitud.datosSiniestro.huboDaniosMateriales == true){
+    if(solicitud.datosSiniestro.hubieronDaniosMateriales == true){
         daniosMateriales = "SÍ"
     }
 
-    if(solicitud.datosSiniestro.huboDaniosPersonales == true){
+    if(solicitud.datosSiniestro.hubieronDaniosPersonales == true){
         daniosPersonales = "SÍ"
     }
 
-    if(solicitud.datosSiniestro.huboTestigos == true){
+    if(solicitud.datosSiniestro.hubieronTestigos == true){
         huboTestigos = "SÍ"
     }
 
@@ -26,8 +26,4 @@ fun InformacionAdicionalDetails(solicitud: Solicitud) {
     TextSolicitudDetails("¿Hubo Daños Personales?:", daniosPersonales)
     TextSolicitudDetails("¿Hubo Testigos?:", huboTestigos)
     TextSolicitudDetails("¿Hubo Denuncia Policial?:", solicitud.datosSiniestro.huboDenuncia.toString())
-    TextSolicitudDetails("Vigencia:", solicitud.datosSiniestro.vigencia.toString())
-    TextSolicitudDetails("Cobertura:", solicitud.datosSiniestro.cobertura)
-    TextSolicitudDetails("Franquicia:", solicitud.datosSiniestro.franquicia)
-    TextSolicitudDetails("Cobranza:", solicitud.datosSiniestro.cobranza)
 }

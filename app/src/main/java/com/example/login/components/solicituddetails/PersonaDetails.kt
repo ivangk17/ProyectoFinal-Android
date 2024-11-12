@@ -17,7 +17,7 @@ fun PersonaDetails(datosPersona: Persona){
         }
         TextSolicitudDetails("Apellido:", datosPersona.apellido)
     }
-    TextSolicitudDetails("Cuit:", datosPersona.cuit.toString())
+    TextSolicitudDetails("Dni:", datosPersona.dni.toString())
     TextSolicitudDetails("Email:", datosPersona.email)
     TextSolicitudDetails("Telefono:", datosPersona.telefono)
     TextSolicitudDetails("Fecha de nacimiento:", datosPersona.fechaDeNacimiento)
