@@ -1,6 +1,7 @@
 package com.example.login.ui.screens
 
 import android.util.Log
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -19,7 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.login.components.navigationdrawer.NavDrawer2
+import com.example.login.components.navigationdrawer.NavDrawer
 import com.example.login.components.topbars.NavigationTopBar
 import com.example.login.components.topbars.TopBar
 import com.example.login.navigation.AppNavigation
@@ -60,8 +61,7 @@ fun MainScreen(mainViewModel: MainViewModel) {
     if (currentLocation in routesWithDrawer) {
         ModalNavigationDrawer(
             drawerContent = {
-                NavDrawer2(
-                    mainViewModel = mainViewModel,
+                NavDrawer(
                     email = email,
                     navigationActions = AppNavigationActions(navController),
                     drawerState = drawerState,
@@ -76,6 +76,8 @@ fun MainScreen(mainViewModel: MainViewModel) {
     } else {
         AppScaffoldContent(navController, currentLocation, drawerState, scope, mainViewModel)
     }
+
+    if (drawerState.isOpen) { BackHandler { scope.launch { drawerState.close() } } }
 }
 
 @Composable
