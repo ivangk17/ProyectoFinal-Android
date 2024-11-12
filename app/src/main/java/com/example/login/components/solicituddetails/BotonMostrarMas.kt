@@ -15,6 +15,6 @@ fun BotonMostrarMas(expanded: MutableState<Boolean>, modifier: Modifier = Modifi
     ElevatedButton(onClick = { expanded.value = !expanded.value }, modifier = modifier) {
         Text(if (expanded.value) "Mostrar menos" else "Mostrar más",
             fontWeight = FontWeight.Bold,
-            fontSize = 15.sp)
+            fontSize = 14.sp)
     }
 }

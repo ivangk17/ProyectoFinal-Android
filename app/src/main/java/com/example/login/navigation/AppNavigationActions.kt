@@ -53,7 +53,7 @@ class AppNavigationActions(
         Log.d("LOCATION", "${Rutas.SolicitudDetalle.ruta}/{solicitudId}/{solicitudId}")
         return when(location){
             Rutas.HomeScreen.ruta -> "Mis Pólizas"
-            "${Rutas.PolizaDetalleScreen.ruta}/{polizaJson}" -> "Mi Poliza"
+            "${Rutas.PolizaDetalleScreen.ruta}/{polizaJson}" -> "Mi Póliza"
             "${Rutas.DatosSiniestro.ruta}/{polizaJson}" -> "Datos Del Siniestro"
             "${Rutas.InformacionAdicional.ruta}/{polizaJson}" -> "Información Adicional"
             "${Rutas.DatosPropietarioVehiculoAsegurado.ruta}/{polizaJson}" -> "Propietario Asegurado"
