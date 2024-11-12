@@ -1,6 +1,5 @@
 package com.example.login.ui.viewmodels.forms
 
-import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -16,9 +15,8 @@ import com.example.login.data.models.vehiculos.UsoDelVehiculo
 import com.example.login.data.network.models.UserInfoResponse
 import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.data.network.services.GetServiceUser
-import com.example.login.ui.screens.Sol
 import com.example.login.utilities.ValidacionesCampos.validarCampos
-import com.example.login.utilities.serTipoVehiculo
+import com.example.login.utilities.setTipoVehiculo
 import com.example.login.utilities.setColor
 import kotlinx.coroutines.launch
 
@@ -32,7 +30,7 @@ class DatosPropietarioVehiculoAseguradoViewModel (
     var poliza = Poliza()
     var user = mutableStateOf(UserInfoResponse())
     var sexoSeleccionado =  mutableStateOf(Sexo.HOMBRE)
-    var colorDelVehiculo = mutableStateOf(ColorVehiculo.BLANCO)
+    var colorDelVehiculo = mutableStateOf(ColorVehiculo.Blanco)
     var tipoVehiculo = mutableStateOf(TipoVehiculo.AUTO)
 
 
@@ -128,7 +126,7 @@ class DatosPropietarioVehiculoAseguradoViewModel (
         campos[10].value.value = poliza.vehiculo.marca
         campos[11].value.value = poliza.vehiculo.modelo
         colorDelVehiculo = setColor(poliza.vehiculo.color)
-        tipoVehiculo = serTipoVehiculo(poliza.vehiculo.tipoVehiculo)
+        tipoVehiculo = setTipoVehiculo(poliza.vehiculo.tipoVehiculo)
         campos[12].value.value = poliza.vehiculo.anio.toString()
         campos[13].value.value = poliza.vehiculo.dominio
         Solicitud.idAsegurado = poliza.asegurado

@@ -1,18 +1,17 @@
 package com.example.login.data.models.vehiculos
-import androidx.compose.runtime.mutableStateOf
 
 enum class ColorVehiculo(
     val displayName : String
 ) {
-    ROJO("Rojo"),
-    AZUL("Azul"),
-    VERDE("Verde"),
-    NEGRO("Negro"),
-    AMARILLO("Amarillo"),
-    GRIS("Gris"),
-    NARANJA("Naranja"),
-    ROSA("Rosa"),
-    MARRON("Marrón"),
-    BLANCO("Blanco");
+    Rojo("Rojo"),
+    Azul("Azul"),
+    Verde("Verde"),
+    Negro("Negro"),
+    Amarillo("Amarillo"),
+    Gris("Gris"),
+    Naranja("Naranja"),
+    Rosa("Rosa"),
+    Marron("Marrón"),
+    Blanco("Blanco");
 
 }

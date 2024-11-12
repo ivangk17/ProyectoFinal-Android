@@ -23,7 +23,7 @@ class DatosPropietarioVehiculoTerceroViewModel (
     var solicitud = Solicitud()
 
     var sexoSeleccionado =  mutableStateOf(Sexo.HOMBRE)
-    var colorDelVehiculo = mutableStateOf(ColorVehiculo.BLANCO)
+    var colorDelVehiculo = mutableStateOf(ColorVehiculo.Blanco)
 
     var fechaNacimiento = mutableStateOf<String?>(null)
     var errorFechaNacimiento = mutableStateOf<String?>(null)
