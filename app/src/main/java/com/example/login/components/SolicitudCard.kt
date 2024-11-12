@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -15,7 +17,9 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.login.R
 import com.example.login.data.models.solicitud.Estado
 import com.example.login.data.models.solicitud.SolicitudSimplificada
@@ -24,32 +28,31 @@ import com.example.login.data.models.solicitud.SolicitudSimplificada
 fun SolicitudCard(solicitud: SolicitudSimplificada, onClick: () -> Unit) {
 
     Card(
+        shape = RoundedCornerShape(12.dp),
         modifier = Modifier
-            .padding(8.dp)
-            .padding(horizontal =4.dp)
+            .padding(3.dp)
+            .padding(horizontal = 5.dp)
             .fillMaxWidth()
-            .clickable { onClick() }
+            .clickable { onClick() },
+        colors = CardDefaults.cardColors(
+            containerColor = Color(0xFF009B77),
+            contentColor = Color.White
+        )
     ) {
         Box(
             modifier = Modifier
-                .background(
-                    Brush.linearGradient(
-                        colors = listOf(
-                            Color(0xFFD0CFCF),
-                            Color(0xFBCECECE)
-                        ),
-                        start = Offset(0f, 0f),
-                        end = Offset(400f, 400f)
-                    )
-                )
-                .padding(16.dp)
+                .padding(start = 17.dp, end = 6.dp, top = 8.dp, bottom = 8.dp)
         ) {
-            Column(modifier = Modifier.padding(4.dp).fillMaxWidth()) {
+            Column(modifier = Modifier
+                .padding(4.dp)
+                .fillMaxWidth()) {
                 Text(
                     text = stringResource(
                         id = R.string.fecha_siniestro,
-                        solicitud.fechaOcurrencia ?: stringResource(id = R.string.dato_no_disponible)
-                    )
+                        solicitud.fechaOcurrencia
+                            ?: stringResource(id = R.string.dato_no_disponible)
+                    ),
+                    fontSize = 22.sp
                 )
                 Row {
                     Text(
@@ -57,15 +60,17 @@ fun SolicitudCard(solicitud: SolicitudSimplificada, onClick: () -> Unit) {
                     )
                     var colorEstadoSolicitud = Color.Red.copy(alpha = 0.5f)
                     val solicitudEstado = solicitud.estado
-                    if(solicitudEstado == Estado.ACEPTADO){
+                    if (solicitudEstado == Estado.ACEPTADO) {
                         colorEstadoSolicitud = Color.Green.copy(alpha = 0.5f)
-                    }
-                    else if(solicitudEstado == Estado.PENDIENTE){
+                    } else if (solicitudEstado == Estado.PENDIENTE) {
                         colorEstadoSolicitud = Color.Blue.copy(alpha = 0.5f)
                     }
                     Text(
                         text = solicitud.estado.name,
-                        color = colorEstadoSolicitud
+                        color = colorEstadoSolicitud,
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(start = 13.dp)
                     )
 
                 }

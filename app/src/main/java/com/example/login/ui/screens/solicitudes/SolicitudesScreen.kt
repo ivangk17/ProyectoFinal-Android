@@ -39,7 +39,7 @@ fun SolicitudesScreen(
 
 
     Box(modifier = Modifier.fillMaxSize()
-        .padding(top = 25.dp)) {
+        .padding(top = 17.dp)) {
         when (uiState) {
             is SolicitudesUiState.Loading -> {
 

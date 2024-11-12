@@ -64,7 +64,7 @@ fun NavigationTopBar(
                         text = title,
                         color = titleColor,
                         style = titleStyle,
-                        fontSize = 17.sp
+                        fontSize = 19.sp
                     )
                 }
             } else {
