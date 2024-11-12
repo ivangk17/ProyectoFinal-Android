@@ -53,12 +53,6 @@ fun HomeScreen(navController: NavHostController, homeViewModel: HomeViewModel) {
                     fontWeight = FontWeight.Bold
                 )
             }
-
-            Button(
-                onClick = { navController.navigate(Rutas.PerfilScreen.ruta) }
-            ) {
-                Text("ir a perifil")
-            }
         }
 
 }

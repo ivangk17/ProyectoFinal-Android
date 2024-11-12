@@ -20,13 +20,11 @@ import com.example.login.components.profilescreen.LinkItem
 import com.example.login.navigation.Rutas
 import com.example.login.ui.theme.TituloFormulario
 import com.example.login.ui.viewmodels.ProfileViewModel
-import com.example.login.ui.viewmodels.navdrawerviewmodel.DrawerViewModel
 
 @Composable
 fun ProfileScreen(
     profileViewModel: ProfileViewModel,
     navController: NavHostController,
-    drawerViewModel: DrawerViewModel
 ) {
 
     val user = profileViewModel.loadInfoUser()
@@ -36,7 +34,7 @@ fun ProfileScreen(
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
             .padding(horizontal = 12.dp),
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         item {

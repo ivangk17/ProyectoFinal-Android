@@ -1,12 +1,9 @@
 package com.example.login.ui.viewmodels.forms
 
-import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.login.data.models.fields.CheckField
-import com.example.login.data.models.fields.FormField
-import com.example.login.data.models.fields.TipoCampo
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.models.solicitud.datosSiniestros.HuboDenuncia
 import com.example.login.data.network.services.GetServicePolizas
@@ -40,9 +37,9 @@ class InformacionAdicionalViewModel(
     }
 
     private fun cargarCheckeables() {
-        solicitud.datosSiniestro.huboDaniosPersonales = camposCheckeables[0].value.value
-        solicitud.datosSiniestro.huboDaniosMateriales = camposCheckeables[1].value.value
-        solicitud.datosSiniestro.huboTestigos = camposCheckeables[2].value.value
+        solicitud.datosSiniestro.hubieronDaniosPersonales = camposCheckeables[0].value.value
+        solicitud.datosSiniestro.hubieronDaniosMateriales = camposCheckeables[1].value.value
+        solicitud.datosSiniestro.hubieronTestigos = camposCheckeables[2].value.value
 
     }
 

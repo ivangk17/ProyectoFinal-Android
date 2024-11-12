@@ -10,15 +10,15 @@ fun InformacionAdicionalDetails(solicitud: Solicitud) {
     var daniosPersonales = "NO"
     var huboTestigos = "NO"
 
-    if(solicitud.datosSiniestro.huboDaniosMateriales == true){
+    if(solicitud.datosSiniestro.hubieronDaniosMateriales == true){
         daniosMateriales = "SÍ"
     }
 
-    if(solicitud.datosSiniestro.huboDaniosPersonales == true){
+    if(solicitud.datosSiniestro.hubieronDaniosPersonales == true){
         daniosPersonales = "SÍ"
     }
 
-    if(solicitud.datosSiniestro.huboTestigos == true){
+    if(solicitud.datosSiniestro.hubieronTestigos == true){
         huboTestigos = "SÍ"
     }
 

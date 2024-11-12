@@ -70,6 +70,7 @@ class AppNavigationActions(
             "${Rutas.LoadingScreen.ruta}/{polizaJson}/{nextRoute}" -> ""
             Rutas.SolicitudesScreen.ruta -> stringResource(R.string.Solicitudes_titulo)
             "${Rutas.SolicitudDetalle.ruta}/{solicitudId}" -> "Mi Solicitud"
+            Rutas.PerfilScreen.ruta -> "Mi Perfil"
 
             else -> ""
         }

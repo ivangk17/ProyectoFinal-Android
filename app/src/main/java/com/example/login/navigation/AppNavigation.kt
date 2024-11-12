@@ -301,7 +301,7 @@ fun AppNavigation(
                 val profileViewModel: ProfileViewModel = viewModel(
                     factory = ProfileViewModel.provideFactory(GetServiceUser(service))
                 )
-                ProfileScreen(profileViewModel, navController,drawerViewModel)
+                ProfileScreen(profileViewModel, navController)
             }
 
             composable(Rutas.ChangePassword.ruta) { navBackStackEntry ->
