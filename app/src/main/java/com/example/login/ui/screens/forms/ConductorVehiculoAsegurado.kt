@@ -17,6 +17,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.login.components.AppButton
 import com.example.login.components.DatePicker
 import com.example.login.components.DropdownMenuSample
 import com.example.login.components.FieldStringForms
@@ -90,8 +91,8 @@ fun ConductorVehiculoAsegurado(
 
         item {
             Column {
-                Button(
-                    onClick = {
+                AppButton(
+                    action = {
                         val solicitud = viewModel.crearSolicitudPoliza()
                         if (solicitud != null) {
                             crearSolicitudViewModel.conductorVehiculoAsegurado(solicitud)
@@ -101,10 +102,9 @@ fun ConductorVehiculoAsegurado(
                             Log.d("solicitud", "no se creo")
                         }
                     },
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
-                ) {
-                    Text("Siguiente")
-                }
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
+                    text = "Siguiente")
+
             }
         }
     }

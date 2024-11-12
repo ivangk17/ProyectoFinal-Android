@@ -13,6 +13,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -21,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.login.R
+import com.example.login.components.AppButton
 import com.example.login.data.models.ErrorResponse
 import com.example.login.utilities.LastCharVisibleTransformation
 import com.example.login.data.network.RetrofitClient
@@ -62,7 +64,7 @@ suspend fun handleLogin(user: UserLogin, context: Context, navController: NavCon
             }
             else -> e.message ?: "Error desconocido contactar con el asegurador"
         }
-        showToastError(context, "Error al iniciar sesión, $errorMessage")
+        showToastError(context, "Error al iniciar sesión $errorMessage")
     }
 }
 
@@ -87,7 +89,7 @@ fun RegisterText(modifier: Modifier = Modifier, navController: NavController, ma
     ) {
         Spacer(modifier = Modifier.height(100.dp))
         Text(
-            text = "Iniciar Sesion",
+            text = stringResource(R.string.iniciar_sesion),
             fontSize = 36.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
@@ -114,16 +116,16 @@ fun RegisterText(modifier: Modifier = Modifier, navController: NavController, ma
             visualTransformation = LastCharVisibleTransformation(),
         )
         Spacer(modifier = Modifier.height(16.dp))
-        Button(
-            onClick = {
+        AppButton(
+            action = {
                 val user = UserLogin(email.text, password.text)
                 CoroutineScope(Dispatchers.Main).launch {
                     handleLogin(user, context, navController, mainViewModel)
                 }
             },
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text("Iniciar Sesión")
-        }
+            modifier = Modifier.fillMaxWidth(),
+            text = stringResource(R.string.iniciar_sesion)
+        )
+
     }
 }

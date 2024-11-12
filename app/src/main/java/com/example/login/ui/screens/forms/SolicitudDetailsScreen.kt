@@ -34,24 +34,24 @@ fun SolicitudDetailsScreen(
     ) {
         item {
             DatosSiniestroDetails(solicitud, poliza)
-            HeaderDetails("Informacion Adicional"){
+            HeaderDetails("Información Adicional"){
                 InformacionAdicionalDetails(solicitud)
             }
-            HeaderDetails("Datos del Propietario del Vehiculo Asegurado"){
+            HeaderDetails("Datos del Propietario del Vehículo Asegurado"){
                 PropietarioAseguradoDetails(solicitud)
             }
-            HeaderDetails("Datos del Propietario del Vehiculo Afectado"){
+            HeaderDetails("Datos del Propietario del Vehículo Afectado"){
                 PropietarioAfectadoDetails(solicitud)
             }
-            HeaderDetails("Conductor del Vehiculo Asegurado"){
+            HeaderDetails("Conductor del Vehículo Asegurado"){
                 ConductorDetails(solicitud.conductorAsegurado)
             }
-            HeaderDetails("Conductor del Vehiculo Afectado"){
+            HeaderDetails("Conductor del Vehículo Afectado"){
                 ConductorDetails(solicitud.conductorAfectado)
             }
-            MultipleLineText("Daños del  Vechiculo Asegurado", solicitud.daniosVehiculoAsegurado)
+            MultipleLineText("Daños del  Vechículo Asegurado", solicitud.daniosVehiculoAsegurado)
 
-            MultipleLineText("Daños del  Vechiculo Afectado", solicitud.daniosVehiculoAfectado)
+            MultipleLineText("Daños del  Vechículo Afectado", solicitud.daniosVehiculoAfectado)
 
             HeaderDetails("Datos Adicionales"){
                 DatosAdicionalesDetails(solicitud.datosSiniestro)

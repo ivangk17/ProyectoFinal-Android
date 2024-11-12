@@ -78,7 +78,7 @@ fun NavigationTopBar(
                         painter = painterResource(id = R.drawable.close),
                         contentDescription = "Close",
                         modifier = Modifier
-                            .size(20.dp)
+                            .size(30.dp)
                             .clickable { navController.navigate(Rutas.HomeScreen.ruta) }
                     )
                 } else {

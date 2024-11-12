@@ -4,30 +4,27 @@ import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.login.components.DatePicker
 import com.example.login.data.models.fields.CheckField
 import com.example.login.data.models.fields.FormField
 import com.example.login.data.models.fields.TipoCampo
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.models.solicitud.datosSiniestros.HuboDenuncia
 import com.example.login.data.network.services.GetServicePolizas
-import com.example.login.utilities.ValidacionesCampos.validarCampos
-import com.example.login.utilities.validarCampoMutable
 
 class InformacionAdicionalViewModel(
     getServicePolizas: GetServicePolizas
 ) : ViewModel() {
     var solicitud = Solicitud()
-    var huboDenunciaSeleccion =  mutableStateOf(HuboDenuncia.NO)
+    var huboDenunciaSeleccion = mutableStateOf(HuboDenuncia.NO)
 
     var vigenciaHasta = mutableStateOf<String?>(null)
     var errorVigenciaHasta = mutableStateOf<String?>(null)
 
 
     val camposCheckeables = listOf(
-        CheckField("¿Hubieron Daños Personales?"),
-        CheckField("¿Hubieron Daños Materiales?"),
-        CheckField("¿Hubieron Testigos?"),
+        CheckField("¿Hubo Daños Personales?"),
+        CheckField("¿Hubo Daños Materiales?"),
+        CheckField("¿Hubo Testigos?"),
         //SwitchCustom(checked = switchState.value, onCheckedChange = {newState -> onSwitchChange(newState) }, "aa")
     )
 
@@ -48,7 +45,6 @@ class InformacionAdicionalViewModel(
     )
 
 
-
     fun onCampoChange(index: Int, newValue: String) {
         campos[index].value.value = newValue
         campos[index].error.value = null
@@ -67,9 +63,9 @@ class InformacionAdicionalViewModel(
 //            cargarCheckeables()
 //            solicitud.datosSiniestro.huboDenuncia = huboDenunciaSeleccion.value
 
-            solicitud.datosSiniestro.hubieronDaniosPersonales = true; // Ejemplo booleano
-            solicitud.datosSiniestro.hubieronDaniosMateriales = true; // Ejemplo booleano
-            solicitud.datosSiniestro.hubieronTestigos = true; // Ejemplo booleano
+            solicitud.datosSiniestro.huboDaniosPersonales = true; // Ejemplo booleano
+            solicitud.datosSiniestro.huboDaniosMateriales = true; // Ejemplo booleano
+            solicitud.datosSiniestro.huboTestigos = true; // Ejemplo booleano
             solicitud.datosSiniestro.huboDenuncia = HuboDenuncia.SI;
             solicitud.datosSiniestro.vigencia = "2025-10-10"
             solicitud.datosSiniestro.cobertura = "Cobertura";
@@ -77,8 +73,7 @@ class InformacionAdicionalViewModel(
             solicitud.datosSiniestro.cobranza = "Cobranza";
 
 
-
-        }else{
+        } else {
             return null
         }
 
@@ -87,20 +82,21 @@ class InformacionAdicionalViewModel(
     }
 
     private fun cargarCheckeables() {
-        solicitud.datosSiniestro.hubieronDaniosPersonales = camposCheckeables[0].value.value
-        solicitud.datosSiniestro.hubieronDaniosMateriales = camposCheckeables[1].value.value
-        solicitud.datosSiniestro.hubieronTestigos = camposCheckeables[2].value.value
+        solicitud.datosSiniestro.huboDaniosPersonales = camposCheckeables[0].value.value
+        solicitud.datosSiniestro.huboDaniosMateriales = camposCheckeables[1].value.value
+        solicitud.datosSiniestro.huboTestigos = camposCheckeables[2].value.value
 
     }
 
 
-    companion object{
-        fun provideFactory(getServicePolizas: GetServicePolizas): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return InformacionAdicionalViewModel(getServicePolizas) as T
+    companion object {
+        fun provideFactory(getServicePolizas: GetServicePolizas): ViewModelProvider.Factory =
+            object : ViewModelProvider.Factory {
+                @Suppress("UNCHECKED_CAST")
+                override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                    return InformacionAdicionalViewModel(getServicePolizas) as T
+                }
             }
-        }
     }
 
 }
