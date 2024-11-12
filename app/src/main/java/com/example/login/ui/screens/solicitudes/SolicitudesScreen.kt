@@ -21,9 +21,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.login.R
-import com.example.login.ui.viewmodels.solicitudesviewmod.SolicitudesUiState
-import com.example.login.ui.viewmodels.solicitudesviewmod.SolicitudesViewModel
-import kotlinx.coroutines.launch
+import com.example.login.ui.viewmodels.solicitudesviewmodel.SolicitudesUiState
+import com.example.login.ui.viewmodels.solicitudesviewmodel.SolicitudesViewModel
 
 
 @Composable
@@ -31,7 +30,7 @@ fun SolicitudesScreen(
     viewModel: SolicitudesViewModel,
     navController: NavHostController
 ) {
-    val uiState by viewModel.uiState.observeAsState(SolicitudesUiState.Loading)
+    val uiState by viewModel.uiState
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
 
@@ -48,12 +47,10 @@ fun SolicitudesScreen(
                 )
             }
             is SolicitudesUiState.Success -> {
-                // Mostrar la lista de solicitudes cuando hay datos disponibles
                 val solicitudes = (uiState as SolicitudesUiState.Success).solicitudes
                 SolicitudesLista(solicitudes = solicitudes, navController = navController)
             }
             is SolicitudesUiState.Empty -> {
-                // Mostrar el mensaje cuando no hay solicitudes
                 val message = (uiState as SolicitudesUiState.Empty).message
                 Box(
                     modifier = Modifier

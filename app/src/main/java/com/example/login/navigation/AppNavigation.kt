@@ -38,9 +38,7 @@ import com.example.login.ui.screens.solicitudes.SolicitudesScreen
 import com.example.login.ui.viewmodels.CambiarDatosPerfilViewModel
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.DetalleDatosPerfilViewModel
-import com.example.login.ui.viewmodels.HomeViewModel
 import com.example.login.ui.viewmodels.LoadingViewModel
-import com.example.login.ui.viewmodels.MainActivityViewmodel.MainViewModel
 import com.example.login.ui.viewmodels.PolizaDetailsViewModel
 import com.example.login.ui.viewmodels.ProfileViewModel
 import com.example.login.ui.viewmodels.forms.ConductorVehiculoAseguradoViewModel
@@ -55,9 +53,11 @@ import com.example.login.ui.viewmodels.forms.DatosSiniestroViewModel
 import com.example.login.ui.viewmodels.forms.InformacionAdicionalViewModel
 import com.example.login.ui.viewmodels.forms.LugarAsistenciaViewModel
 import com.example.login.ui.viewmodels.forms.RelatoAccidenteViewModel
-import com.example.login.ui.viewmodels.solicitudesviewmod.SolicitudDetailsViewModel
-import com.example.login.ui.viewmodels.solicitudesviewmod.SolicitudesViewModel
-import com.example.login.ui.viewmodels.solicitudesviewmod.SolicitudesViewModelFactory
+import com.example.login.ui.viewmodels.homeviewmodel.HomeViewModel
+import com.example.login.ui.viewmodels.mainactivityviewmodel.MainViewModel
+import com.example.login.ui.viewmodels.solicitudesviewmodel.SolicitudDetailsViewModel
+import com.example.login.ui.viewmodels.solicitudesviewmodel.SolicitudesViewModel
+import com.example.login.ui.viewmodels.solicitudesviewmodel.SolicitudesViewModelFactory
 import com.example.login.utilities.daniosVehiculoAsegurado
 import com.example.login.utilities.daniosVehiculosTercero
 

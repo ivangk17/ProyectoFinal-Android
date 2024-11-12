@@ -5,21 +5,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.ViewModelProvider
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.ui.Modifier
-import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
 import com.example.login.components.MyAppTheme
 import com.example.login.ui.screens.MainScreen
-import com.example.login.ui.viewmodels.MainActivityViewmodel.MainViewModel
-import com.example.login.ui.viewmodels.MainActivityViewmodel.MainViewModelFactory
-import com.example.login.components.topbars.NavigationTopBar
-import com.example.login.components.topbars.TopBar
-import com.example.login.navigation.AppNavigation
-import com.example.login.navigation.AppNavigationActions
+import com.example.login.ui.viewmodels.mainactivityviewmodel.MainViewModel
+import com.example.login.ui.viewmodels.mainactivityviewmodel.MainViewModelFactory
 
 
 class MainActivity : ComponentActivity() {
