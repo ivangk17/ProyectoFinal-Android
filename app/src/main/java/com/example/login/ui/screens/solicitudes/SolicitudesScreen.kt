@@ -3,6 +3,7 @@ package com.example.login.ui.screens.solicitudes
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
@@ -37,10 +38,11 @@ fun SolicitudesScreen(
 
 
 
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = Modifier.fillMaxSize()
+        .padding(top = 25.dp)) {
         when (uiState) {
             is SolicitudesUiState.Loading -> {
-                // Mostrar el indicador de carga mientras los datos se están cargando
+
                 CircularProgressIndicator(
                     modifier = Modifier.align(Alignment.Center)
                 )

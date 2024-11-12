@@ -106,6 +106,7 @@ class AppNavigationActions(
             Rutas.LoginScreen.ruta -> false
             Rutas.HomeScreen.ruta -> false
             Rutas.SolicitudEnviada.ruta -> false
+            Rutas.SolicitudesScreen.ruta -> false
             else -> true
         }
     }
