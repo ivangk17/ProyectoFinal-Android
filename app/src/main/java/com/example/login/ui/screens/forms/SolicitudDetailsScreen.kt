@@ -1,11 +1,7 @@
 package com.example.login.ui.screens.forms
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.login.components.MultipleLineText
 import com.example.login.components.solicituddetails.ConductorDetails
@@ -18,7 +14,7 @@ import com.example.login.components.solicituddetails.DaniosPersonalesDetails
 import com.example.login.components.solicituddetails.LugarAsistenciaDetails
 import com.example.login.components.solicituddetails.PropietarioAfectadoDetails
 import com.example.login.components.solicituddetails.PropietarioAseguradoDetails
-import com.example.login.ui.viewmodels.solicitudesviewmod.SolicitudDetailsViewModel
+import com.example.login.ui.viewmodels.solicitudesviewmodel.SolicitudDetailsViewModel
 
 @Composable
 fun SolicitudDetailsScreen(

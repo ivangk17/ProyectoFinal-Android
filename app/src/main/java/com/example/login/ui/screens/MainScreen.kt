@@ -26,7 +26,7 @@ import com.example.login.components.topbars.TopBar
 import com.example.login.navigation.AppNavigation
 import com.example.login.navigation.AppNavigationActions
 import com.example.login.navigation.AppNavigationActions.Companion.routesWithDrawer
-import com.example.login.ui.viewmodels.MainActivityViewmodel.MainViewModel
+import com.example.login.ui.viewmodels.mainactivityviewmodel.MainViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

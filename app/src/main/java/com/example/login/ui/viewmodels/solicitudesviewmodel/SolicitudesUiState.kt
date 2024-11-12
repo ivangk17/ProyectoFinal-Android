@@ -1,4 +1,4 @@
-package com.example.login.ui.viewmodels.solicitudesviewmod
+package com.example.login.ui.viewmodels.solicitudesviewmodel
 
 import com.example.login.data.models.solicitud.SolicitudSimplificada
 

@@ -1,4 +1,4 @@
-package com.example.login.ui.viewmodels.MainActivityViewmodel
+package com.example.login.ui.viewmodels.mainactivityviewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

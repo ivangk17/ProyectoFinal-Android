@@ -1,4 +1,4 @@
-package com.example.login.ui.viewmodels.solicitudesviewmod
+package com.example.login.ui.viewmodels.solicitudesviewmodel
 
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf

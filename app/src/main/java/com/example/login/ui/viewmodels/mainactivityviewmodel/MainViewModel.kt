@@ -1,18 +1,12 @@
-package com.example.login.ui.viewmodels.MainActivityViewmodel
+package com.example.login.ui.viewmodels.mainactivityviewmodel
 
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavController
-import com.example.login.data.models.UserLogin
-import com.example.login.navigation.Rutas
 import com.example.login.tokens.Token
 import com.example.login.tokens.Utility
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 
 
 class MainViewModel() : ViewModel() {
