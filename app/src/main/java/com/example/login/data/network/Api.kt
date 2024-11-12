@@ -34,7 +34,10 @@ interface Api {
      suspend fun getInfoUser(@Body token: TokenForJson) : UserInfoResponse
 
     @POST("api/solicitudes/send")
-    suspend fun enviarSolicitud(@Body solicitud: Solicitud?): Response<Unit>
+    suspend fun enviarSolicitud(
+        @Header("Authorization") token: String,
+        @Body solicitud: Solicitud?
+    ): Response<Unit>
 
     //Para obtener las solicitudes simplificadas
     @GET("/api/solicitudes/list")

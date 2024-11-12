@@ -82,9 +82,9 @@ fun validarFechaNacimiento(
 
 @RequiresApi(Build.VERSION_CODES.O)
 private fun validarCampoNoVacio(campo: FormField): String? {
-    val soloLetras = Regex("^[a-zA-Z ]*$")
-    val soloLetrasNumeros = Regex("^[a-zA-Z0-9]*$")
-    val textoLargo = Regex("^[a-zA-Z0-9 ,.ñÑ:]*$")
+    val soloLetras = Regex("^[a-zA-Z ñÑáéíóúÁÉÍÓÚäëïöüÄËÏÖÜ]*$")
+    val soloLetrasNumeros = Regex("^[a-zA-Z0-9 ñÑáéíóúÁÉÍÓÚäëïöüÄËÏÖÜ]*$")
+    val textoLargo = Regex("^[a-zA-Z0-9 ,.ñÑáéíóúÁÉÍÓÚäëïöüÄËÏÖÜ:]*$")
     val largo = campo.value.value.length < 3
     var resultado: String? = null
 
@@ -110,7 +110,7 @@ private fun validarCampoNoVacio(campo: FormField): String? {
             if (emailError != null) return emailError
         }
         //Validar texto largo
-        else if (campo.label == "Lugar de Ocurrencia" || campo.label == "Calle" || campo.label == "Aseguradora") {
+        else if (campo.label == "Lugar de Ocurrencia" || campo.label == "Calle" || campo.label == "Aseguradora" || campo.label == "Nombre centro de Asistencia") {
             if (!textoLargo.matches(campo.value.value) || campo.value.value.length < 3) {
                 return "Revisa ${campo.label}."
             }
