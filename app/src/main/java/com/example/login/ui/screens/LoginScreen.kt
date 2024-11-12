@@ -13,6 +13,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -21,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.login.R
+import com.example.login.components.AppButton
 import com.example.login.data.models.ErrorResponse
 import com.example.login.utilities.LastCharVisibleTransformation
 import com.example.login.data.network.RetrofitClient
@@ -28,6 +30,7 @@ import com.example.login.data.models.UserLogin
 import com.example.login.components.Field
 import com.example.login.navigation.Rutas
 import com.example.login.tokens.Token
+import com.example.login.ui.viewmodels.MainActivityViewmodel.MainViewModel
 import com.example.login.utilities.showToastError
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
@@ -40,10 +43,11 @@ fun isEmailValid(email: String): Boolean {
     return Patterns.EMAIL_ADDRESS.matcher(email).matches()
 }
 
-suspend fun handleLogin(user: UserLogin, context: Context, navController: NavController) {
+suspend fun handleLogin(user: UserLogin, context: Context, navController: NavController, mainViewModel: MainViewModel) {
     try {
         val response = RetrofitClient.apiService.login(user)
         Token.token = response.token
+        mainViewModel.updateEmail()
         navController.navigate(route = Rutas.HomeScreen.ruta){
             popUpTo(0) { inclusive = true }
         }
@@ -60,18 +64,18 @@ suspend fun handleLogin(user: UserLogin, context: Context, navController: NavCon
             }
             else -> e.message ?: "Error desconocido contactar con el asegurador"
         }
-        showToastError(context, "Error al iniciar sesión, $errorMessage")
+        showToastError(context, "Error al iniciar sesión $errorMessage")
     }
 }
 
 
 @Composable
-fun LoginScreen(navController: NavController) {
-    RegisterText(navController = navController)
+fun LoginScreen(navController: NavController, mainViewModel: MainViewModel) {
+    RegisterText(navController = navController, mainViewModel= mainViewModel)
 }
 
 @Composable
-fun RegisterText(modifier: Modifier = Modifier, navController: NavController) {
+fun RegisterText(modifier: Modifier = Modifier, navController: NavController, mainViewModel: MainViewModel) {
     var email by remember { mutableStateOf(TextFieldValue("")) }
     var password by remember { mutableStateOf(TextFieldValue("")) }
     val context = LocalContext.current
@@ -85,7 +89,7 @@ fun RegisterText(modifier: Modifier = Modifier, navController: NavController) {
     ) {
         Spacer(modifier = Modifier.height(100.dp))
         Text(
-            text = "Iniciar Sesion",
+            text = stringResource(R.string.iniciar_sesion),
             fontSize = 36.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
@@ -112,16 +116,16 @@ fun RegisterText(modifier: Modifier = Modifier, navController: NavController) {
             visualTransformation = LastCharVisibleTransformation(),
         )
         Spacer(modifier = Modifier.height(16.dp))
-        Button(
-            onClick = {
+        AppButton(
+            action = {
                 val user = UserLogin(email.text, password.text)
                 CoroutineScope(Dispatchers.Main).launch {
-                    handleLogin(user, context, navController)
+                    handleLogin(user, context, navController, mainViewModel)
                 }
             },
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text("Iniciar Sesión")
-        }
+            modifier = Modifier.fillMaxWidth(),
+            text = stringResource(R.string.iniciar_sesion)
+        )
+
     }
 }

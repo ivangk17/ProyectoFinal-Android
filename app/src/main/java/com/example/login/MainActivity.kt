@@ -13,12 +13,14 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.login.components.MyAppTheme
+import com.example.login.ui.screens.MainScreen
+import com.example.login.ui.viewmodels.MainActivityViewmodel.MainViewModel
+import com.example.login.ui.viewmodels.MainActivityViewmodel.MainViewModelFactory
 import com.example.login.components.topbars.NavigationTopBar
 import com.example.login.components.topbars.TopBar
 import com.example.login.navigation.AppNavigation
 import com.example.login.navigation.AppNavigationActions
-import com.example.login.ui.viewmodels.navdrawerviewmodel.DrawerViewModel
-import com.example.login.ui.viewmodels.navdrawerviewmodel.DrawerViewModelFactory
+
 
 class MainActivity : ComponentActivity() {
 
@@ -26,8 +28,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val drawerViewModel = ViewModelProvider(this, DrawerViewModelFactory())
-                .get(DrawerViewModel::class.java)
+
+
+        val mainViewModel = ViewModelProvider(this, MainViewModelFactory())
+                .get(MainViewModel::class.java)
+
+            MyAppTheme {
+
+                /*
             MyAppTheme {
 
                 var lastScreen: String? = ""
@@ -63,16 +71,22 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                 ) { innerPadding ->
+
+
                     Box(
                         modifier = Modifier
                             .fillMaxSize()
                             .padding(innerPadding)
                     ){
-                        AppNavigation(navController,  drawerViewModel)
+                       // AppNavigation(navController,  drawerViewModel)
+
+                       // MainScreen(drawerViewModel)
                     }
                 }
             }
-
+            */
+                MainScreen(mainViewModel)
+            }
         }
     }
 }

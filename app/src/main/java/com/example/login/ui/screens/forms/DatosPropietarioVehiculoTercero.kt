@@ -5,26 +5,21 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.login.components.AppButton
 import com.example.login.components.DatePicker
 import com.example.login.components.DropdownMenuSample
 import com.example.login.components.FieldStringForms
 import com.example.login.data.models.personas.Sexo
 import com.example.login.data.models.poliza.Poliza
+import com.example.login.data.models.vehiculos.ColorVehiculo
 import com.example.login.data.models.vehiculos.TipoVehiculo
 import com.example.login.navigation.Rutas
-import com.example.login.ui.screens.gson
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.forms.DatosPropietarioVehiculoTerceroViewModel
 import com.example.login.utilities.showToastError
@@ -37,6 +32,7 @@ fun DatosPropietarioVehiculoTercero(
 ) {
     val context = LocalContext.current
     val optionsSexo = Sexo.entries
+    val optionsColor = ColorVehiculo.entries
     val optionsTipoVehiculo = TipoVehiculo.entries
     LazyColumn(
         modifier = Modifier
@@ -66,12 +62,19 @@ fun DatosPropietarioVehiculoTercero(
                     label = { it.displayName }
                 )
             }
-            if (index == 10){
+            if (index == 9){
                 DropdownMenuSample(
                     title = "Tipo de vehiculo",
                     options = optionsTipoVehiculo,
                     selectedOption = viewModel.tipoVehiculo.value,
                     onOptionSelected = { viewModel.tipoVehiculo.value = it },
+                    label = { it.displayName }
+                )
+                DropdownMenuSample(
+                    title = "Color",
+                    options = optionsColor,
+                    selectedOption = viewModel.colorDelVehiculo.value,
+                    onOptionSelected = { viewModel.colorDelVehiculo.value = it },
                     label = { it.displayName }
                 )
             }
@@ -90,8 +93,8 @@ fun DatosPropietarioVehiculoTercero(
 
         item {
             Column {
-                Button(
-                    onClick = {
+                AppButton(
+                    action = {
                         val solicitud = viewModel.crearSolicitudPoliza()
 
                         if (solicitud != null) {
@@ -102,10 +105,10 @@ fun DatosPropietarioVehiculoTercero(
                             Log.d("solicitud", "no se creo")
                         }
                     },
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
-                ) {
-                    Text("Siguiente")
-                }
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
+                    text = "Siguiente"
+                )
+
             }
         }
     }

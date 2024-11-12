@@ -17,6 +17,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.login.components.AppButton
 import com.example.login.components.DatePicker
 import com.example.login.components.DropdownMenuSample
 import com.example.login.components.FieldStringForms
@@ -90,21 +91,22 @@ fun ConductorVehiculoAsegurado(
 
         item {
             Column {
-                Button(
-                    onClick = {
+                AppButton(
+                    action = {
                         val solicitud = viewModel.crearSolicitudPoliza()
                         if (solicitud != null) {
                             crearSolicitudViewModel.conductorVehiculoAsegurado(solicitud)
+                            navController.navigate(route = Rutas.ConductorVehiculoTercero.ruta)
+                            Log.d("SOLICITUD", solicitud.conductorAsegurado.toString())
                             navController.navigate(route = Rutas.ConductorVehiculoTercero.ruta)
                         } else {
                             showToastError(context, "error: No se puede crear la solicitud")
                             Log.d("solicitud", "no se creo")
                         }
                     },
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
-                ) {
-                    Text("Siguiente")
-                }
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
+                    text = "Siguiente")
+
             }
         }
     }

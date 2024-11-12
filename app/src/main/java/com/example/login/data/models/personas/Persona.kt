@@ -7,7 +7,7 @@ data class Persona(
     var nombre: String = "",
     var apellido: String = "",
     var nombreCompleto: String = "${nombre} ${apellido}",
-    var cuit: Number = -1,
+    var dni: Number = -1,
     var email: String = "",
     var telefono: String = "",
     var fechaDeNacimiento: String= "",

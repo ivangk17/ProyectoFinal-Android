@@ -25,13 +25,10 @@ class LugarAsistenciaViewModel(
 
     val camposCheckeables = listOf(
         CheckField("¿Queda internado?"),
-        // a futuro se pueden agregar mas campos
-        //SwitchCustom(checked = switchState.value, onCheckedChange = {newState -> onSwitchChange(newState) }, "aa")
     )
 
     val campos = listOf(
         FormField("Nombre centro de Asistencia", tipo = TipoCampo.TEXTO),
-        // a futuro se pueden agregar mas campos
     )
 
     fun onCampoChange(index: Int, newValue: String) {
@@ -52,19 +49,19 @@ class LugarAsistenciaViewModel(
 
 
     fun crearSolicitudPoliza(): Solicitud? {
-//        validarCampos(campos)
-//        validarCampoMutable(descripcionLesiones,errorDescripcionLesiones,"Faltan la descripcion de las lesiones")
+        validarCampos(campos)
+        validarCampoMutable(descripcionLesiones,errorDescripcionLesiones,"Faltan la descripcion de las lesiones")
         if (campos.all { it.error.value == null }) {
-//            solicitud.datosSiniestro.lugarAsistencia.nombreCentro = campos[0].value.value
-//            cargarCheckeables()
-//            solicitud.datosSiniestro.lugarAsistencia.descripcionLesiones = descripcionLesiones.value.toString()
-//
-//            solicitud.datosSiniestro.lugarAsistencia.estadoLesiones = estadoLesiones.value
+            solicitud.datosSiniestro.lugarAsistencia!!.nombreCentro = campos[0].value.value
+            cargarCheckeables()
+            solicitud.datosSiniestro.lugarAsistencia!!.descripcionLesiones = descripcionLesiones.value.toString()
 
-            solicitud.datosSiniestro.lugarAsistencia.nombreCentro = "Nombre del Centro";
-            solicitud.datosSiniestro.lugarAsistencia.quedaInternado = true; // Ejemplo booleano
-            solicitud.datosSiniestro.lugarAsistencia.estadoLesiones = EstadoLesiones.MUERTE
-            solicitud.datosSiniestro.lugarAsistencia.descripcionLesiones = "Descripción de las Lesiones";
+            solicitud.datosSiniestro.lugarAsistencia!!.estadoLesiones = estadoLesiones.value
+
+//            solicitud.datosSiniestro.lugarAsistencia!!.nombreCentro = "Nombre del Centro";
+//            solicitud.datosSiniestro.lugarAsistencia!!.quedaInternado = true; // Ejemplo booleano
+//            solicitud.datosSiniestro.lugarAsistencia!!.estadoLesiones = EstadoLesiones.MUERTE
+//            solicitud.datosSiniestro.lugarAsistencia!!.descripcionLesiones = "Descripción de las Lesiones";
 
         }else{
             return null
@@ -75,7 +72,7 @@ class LugarAsistenciaViewModel(
     }
 
     private fun cargarCheckeables(){
-        solicitud.datosSiniestro.lugarAsistencia.quedaInternado = camposCheckeables[0].value.value
+        solicitud.datosSiniestro.lugarAsistencia!!.quedaInternado = camposCheckeables[0].value.value
 
     }
 
@@ -87,8 +84,6 @@ class LugarAsistenciaViewModel(
             }
         }
     }
-
-
 }
 
 

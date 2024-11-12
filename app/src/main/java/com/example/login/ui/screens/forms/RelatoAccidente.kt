@@ -44,7 +44,7 @@ fun RelatoAccidente(
                 val solicitud = viewModel.crearSolicitud()
                 if (solicitud != null) {
                     crearSolicitudViewModel.relatoAccidente(solicitud)
-                    navController.navigate(Rutas.DaniosPersonales.ruta)
+                    navController.navigate(Rutas.LugarAsistencia.ruta)
                 } else {
                     showToastError(context, "error: No se puede crear la solicitud")
                     Log.d("solicitud", "no se creo")

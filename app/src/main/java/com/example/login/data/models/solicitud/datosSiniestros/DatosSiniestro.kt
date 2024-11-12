@@ -3,7 +3,7 @@ package com.example.login.data.models.solicitud.datosSiniestros
 import com.example.login.data.models.solicitud.datosSiniestros.asistencia.LugarAsistencia
 
 data class DatosSiniestro(
-    var lugarAsistencia: LugarAsistencia = LugarAsistencia(),
+    var lugarAsistencia: LugarAsistencia? = LugarAsistencia(),
 
 
     var fechaOcurrencia: String? = null,
@@ -11,13 +11,9 @@ data class DatosSiniestro(
     var lugarOcurrencia: String = "",
     var codigoPostal: Int = -1,
     var cantidadAutosParticipantes: Number = -1,
-    var hubieronDaniosPersonales: Boolean? = null,
-    var hubieronDaniosMateriales: Boolean? = null,
-    var hubieronTestigos: Boolean? = null,
-    var vigencia: String?= null,
-    var cobertura: String= "",
-    var franquicia: String= "",
-    var cobranza: String= "",
+    var huboDaniosPersonales: Boolean? = null,
+    var huboDaniosMateriales: Boolean? = null,
+    var huboTestigos: Boolean? = null,
     var asistioGrua: Boolean? = null,
     var asistioAmbulancia: Boolean? = null,
     var asistioBomberos: Boolean? = null,

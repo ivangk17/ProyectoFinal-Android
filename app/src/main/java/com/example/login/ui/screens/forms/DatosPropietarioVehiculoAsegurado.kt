@@ -14,10 +14,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.login.components.AppButton
 import com.example.login.components.DropdownMenuSample
 import com.example.login.components.FieldStringForms
 import com.example.login.data.models.personas.Sexo
 import com.example.login.data.models.poliza.Poliza
+import com.example.login.data.models.vehiculos.ColorVehiculo
 import com.example.login.data.models.vehiculos.UsoDelVehiculo
 import com.example.login.navigation.Rutas
 import com.example.login.ui.screens.gson
@@ -34,6 +36,7 @@ fun DatosPropietarioVehiculoAsegurado(
 ){
     val context = LocalContext.current
     val optionsUsoVehiculo = UsoDelVehiculo.entries //esto devuelve una lista de opciones
+    val optionsColor = ColorVehiculo.entries
     val optionsSexo = Sexo.entries
     val user = viewModel.loadInfoUser(polizaParametro) //TODO NO BORRAR ESTA VARIABLE (porque sino no carga la info del usuario logueado)
 
@@ -72,6 +75,13 @@ fun DatosPropietarioVehiculoAsegurado(
 
             item {
                 DropdownMenuSample(
+                    title = "Color",
+                    options = optionsColor,
+                    selectedOption = viewModel.colorDelVehiculo.value,
+                    onOptionSelected = { viewModel.colorDelVehiculo.value = it },
+                    label = { it.displayName }
+                )
+                DropdownMenuSample(
                     title = "Uso del vehiculo",
                     options = optionsUsoVehiculo,
                     selectedOption = viewModel.usoDelVehiculo.value,
@@ -79,8 +89,8 @@ fun DatosPropietarioVehiculoAsegurado(
                     label = { it.displayName }
                 )
 
-                Button(
-                    onClick = {
+                AppButton  (
+                    action = {
                         val solicitud = viewModel.crearSolicitudPoliza()
                         val polizaJson = gson.toJson(polizaParametro)
                         if (solicitud != null) {
@@ -91,10 +101,8 @@ fun DatosPropietarioVehiculoAsegurado(
                             Log.d("solicitud", "no se creo")
                         }
                     },
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
-                ) {
-                    Text("Siguiente")
-                }
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
+                    text ="Siguiente")
             }
         }
     }
