@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.login.R
 import com.example.login.navigation.Rutas
@@ -63,6 +64,7 @@ fun NavigationTopBar(
                         text = title,
                         color = titleColor,
                         style = titleStyle,
+                        fontSize = 19.sp
                     )
                 }
             } else {
@@ -78,7 +80,7 @@ fun NavigationTopBar(
                         painter = painterResource(id = R.drawable.close),
                         contentDescription = "Close",
                         modifier = Modifier
-                            .size(20.dp)
+                            .size(30.dp)
                             .clickable { navController.navigate(Rutas.HomeScreen.ruta) }
                     )
                 } else {

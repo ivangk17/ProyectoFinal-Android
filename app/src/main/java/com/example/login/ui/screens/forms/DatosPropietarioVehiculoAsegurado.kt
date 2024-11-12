@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.login.components.AppButton
 import com.example.login.components.DropdownMenuSample
 import com.example.login.components.FieldStringForms
 import com.example.login.data.models.personas.Sexo
@@ -88,8 +89,8 @@ fun DatosPropietarioVehiculoAsegurado(
                     label = { it.displayName }
                 )
 
-                Button(
-                    onClick = {
+                AppButton  (
+                    action = {
                         val solicitud = viewModel.crearSolicitudPoliza()
                         val polizaJson = gson.toJson(polizaParametro)
                         if (solicitud != null) {
@@ -100,10 +101,8 @@ fun DatosPropietarioVehiculoAsegurado(
                             Log.d("solicitud", "no se creo")
                         }
                     },
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
-                ) {
-                    Text("Siguiente")
-                }
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
+                    text ="Siguiente")
             }
         }
     }

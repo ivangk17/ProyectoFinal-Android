@@ -27,9 +27,9 @@ class CrearSolicitudViewModel: ViewModel()  {
     }
 
     fun envioInformacionAdicional(solicitud: Solicitud) {
-        _solicitud.datosSiniestro.hubieronDaniosPersonales = solicitud.datosSiniestro.hubieronDaniosPersonales
-        _solicitud.datosSiniestro.hubieronDaniosMateriales = solicitud.datosSiniestro.hubieronDaniosMateriales
-        _solicitud.datosSiniestro.hubieronTestigos = solicitud.datosSiniestro.hubieronTestigos
+        _solicitud.datosSiniestro.huboDaniosPersonales = solicitud.datosSiniestro.huboDaniosPersonales
+        _solicitud.datosSiniestro.huboDaniosMateriales = solicitud.datosSiniestro.huboDaniosMateriales
+        _solicitud.datosSiniestro.huboTestigos = solicitud.datosSiniestro.huboTestigos
         _solicitud.datosSiniestro.huboDenuncia = solicitud.datosSiniestro.huboDenuncia
     }
 

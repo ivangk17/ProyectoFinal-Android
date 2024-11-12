@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Login</string>
+    <string name="app_name">G5 Seguros</string>
 
     `Drawer menu`
     <string name="drawer_home_text">Home</string>
@@ -16,6 +16,8 @@
     <string name="solicitudes_text">Solicitudes\n</string>
     <string name="legal_text">Legales\n</string>
     <string name="log_out_text">Cerrar sesión</string>
+    <string name="iniciar_sesion">Iniciar sesión</string>
+    <string name="login_error">Error al iniciar %s sesión</string>
 
 
 </resources>

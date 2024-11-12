@@ -1,46 +1,38 @@
 package com.example.login.components.navigationdrawer
 
-import android.annotation.SuppressLint
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.DrawerState
-import androidx.compose.material3.DrawerValue
-import androidx.compose.material3.rememberDrawerState
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import com.example.login.navigation.AppNavigationActions
+import kotlinx.coroutines.CoroutineScope
 
-@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun NavDrawer(
-
-    // drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
-    content: @Composable () -> Unit
+    email: String,
+    navigationActions: AppNavigationActions,
+    drawerState: DrawerState,
+    scope: CoroutineScope
 ) {
-    /*
-    val scope = rememberCoroutineScope()
-    val viewModel: DrawerViewModel = viewModel(factory = DrawerViewModelFactory())
-    var selectedItem by remember { mutableStateOf(viewModel.drawerItems[0]) }
-    val email by viewModel.email.collectAsState()
-    //viewModel.updateEmail()
-    //  DrawerHeader(email = viewModel.email.value)
+    Column(
+        modifier = Modifier
+            .fillMaxHeight()
+            .width(350.dp)
+            .background(MaterialTheme.colorScheme.surface)
+    ) {
+        DrawerHeader(email)
+        Spacer(modifier = Modifier.height(24.dp))
 
-    ModalNavigationDrawer(
-        drawerState = drawerState,
-        drawerContent = {
-            drawerHeader,
-            DrawerContent2(),
-
-        }
-    ) */
+        DrawerContent2(navigationActions,drawerState, scope)
+    }
 }
-
-          /*
-
-                        navigationIcon = {
-                            IconButton(onClick = {
-                                scope.launch { drawerState.open() }
-                            }) {
-                                Icon(Icons.Filled.Menu, contentDescription = "Menu icon")
-                            }
-                        }
-
-           */
 
 

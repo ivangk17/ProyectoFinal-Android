@@ -12,6 +12,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
+import com.example.login.components.AppButton
 import com.example.login.components.MultipleLine
 import com.example.login.data.models.poliza.Poliza
 import com.example.login.data.models.solicitud.Solicitud
@@ -43,8 +44,8 @@ fun <T> DaniosDeVehiculos(
             onValueChange = { newValue -> viewModel.onDescripcionChange(newValue) },
             error = viewModel.errorDescription
         )
-        Button(
-            onClick = {
+        AppButton(
+            action = {
                 val solicitud = viewModel.crearSolicitud()
                 if (solicitud != null) {
                     onEnviar(crearSolicitudViewModel, solicitud)
@@ -53,9 +54,9 @@ fun <T> DaniosDeVehiculos(
                     showToastError(context, "error: No se puede crear la solicitud")
                     Log.d("solicitud", "no se creo")
                 }
-            }
-        ) {
-            Text("Siguiente")
-        }
+            },
+            text = "Siguiente"
+        )
+
     }
 }

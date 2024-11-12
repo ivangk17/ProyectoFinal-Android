@@ -8,22 +8,22 @@ import com.example.login.data.models.solicitud.Solicitud
 fun InformacionAdicionalDetails(solicitud: Solicitud) {
     var daniosMateriales = "NO"
     var daniosPersonales = "NO"
-    var hubieronTestigos = "NO"
+    var huboTestigos = "NO"
 
-    if(solicitud.datosSiniestro.hubieronDaniosMateriales == true){
-        daniosMateriales = "SI"
+    if(solicitud.datosSiniestro.huboDaniosMateriales == true){
+        daniosMateriales = "SÍ"
     }
 
-    if(solicitud.datosSiniestro.hubieronDaniosPersonales == true){
-        daniosPersonales = "SI"
+    if(solicitud.datosSiniestro.huboDaniosPersonales == true){
+        daniosPersonales = "SÍ"
     }
 
-    if(solicitud.datosSiniestro.hubieronTestigos == true){
-        hubieronTestigos = "SI"
+    if(solicitud.datosSiniestro.huboTestigos == true){
+        huboTestigos = "SÍ"
     }
 
-    TextSolicitudDetails("¿Hubieron Daños Materiales?:",daniosMateriales)
-    TextSolicitudDetails("¿Hubieron Daños Personales?:", daniosPersonales)
-    TextSolicitudDetails("¿Hubieron Testigos?:", hubieronTestigos)
+    TextSolicitudDetails("¿Hubo Daños Materiales?:",daniosMateriales)
+    TextSolicitudDetails("¿Hubo Daños Personales?:", daniosPersonales)
+    TextSolicitudDetails("¿Hubo Testigos?:", huboTestigos)
     TextSolicitudDetails("¿Hubo Denuncia Policial?:", solicitud.datosSiniestro.huboDenuncia.toString())
 }

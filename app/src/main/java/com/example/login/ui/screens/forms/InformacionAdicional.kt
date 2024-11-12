@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.login.components.AppButton
 import com.example.login.components.DatePicker
 import com.example.login.components.DropdownMenuSample
 import com.example.login.components.FieldStringForms
@@ -60,8 +61,8 @@ fun InformacionAdicional(
             }
 
             item {
-                Button(
-                    onClick = {
+                AppButton(
+                    action = {
                         val solicitud = viewModel.crearSolicitudPoliza()
                         val polizaJson = gson.toJson(poliza)
 
@@ -69,10 +70,9 @@ fun InformacionAdicional(
                         crearSolicitudViewModel.envioInformacionAdicional(solicitud)
                         navController.navigate("${Rutas.LoadingScreen.ruta}/$polizaJson/${Rutas.DatosPropietarioVehiculoAsegurado.ruta}")
                     },
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
-                ) {
-                    Text("Siguiente")
-                }
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
+                    text = "Siguiente")
+
             }
         }
     }

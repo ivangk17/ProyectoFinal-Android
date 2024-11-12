@@ -47,8 +47,8 @@ fun HomeScreen(navController: NavHostController, homeViewModel: HomeViewModel) {
                 }
             } else {
                 Text(
-                    text = "Loading polizas...",
-                    fontSize = 24.sp,
+                    text = "Loading pólizas...",
+                    fontSize = 28.sp,
                     fontWeight = FontWeight.Bold
                 )
             }
