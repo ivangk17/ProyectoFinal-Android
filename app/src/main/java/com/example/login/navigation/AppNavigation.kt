@@ -244,13 +244,13 @@ fun AppNavigation(
             RelatoAccidente(navController, viewModel, crearSolicitudViewModel)
         }
 
-        rutaComposablePoliza(
+        rutaComposable(
             route = Rutas.LugarAsistencia.ruta,
             viewModelFactory = {
                 LugarAsistenciaViewModel.provideFactory(GetServicePolizas(RetrofitClient.apiService))
                     .create(LugarAsistenciaViewModel::class.java)
             }
-        ) { poliza, viewModel ->
+        ) { viewModel ->
             LugarAsistencia(navController, viewModel, crearSolicitudViewModel)
         }
 
