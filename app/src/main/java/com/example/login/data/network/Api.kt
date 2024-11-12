@@ -4,6 +4,7 @@ import com.example.login.data.models.ChangePasswordRequest
 import com.example.login.data.network.models.UserInfoResponse
 import com.example.login.data.models.LoginResponse
 import com.example.login.data.models.TokenForJson
+import com.example.login.data.models.UserInfoChange
 import com.example.login.data.models.poliza.Poliza
 import com.example.login.data.models.UserLogin
 import com.example.login.data.models.solicitud.Solicitud
@@ -13,6 +14,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -49,6 +51,12 @@ interface Api {
         @Path("id") id: String,
         @Header("Authorization") token: String,
         @Body changePasswordRequest: ChangePasswordRequest
+    ): Response<Unit>
+
+    @PUT("api/users/editarPerfil")
+    suspend fun editarPerfil(
+        @Header("Authorization") token: String,
+        @Body userInfoChange: UserInfoChange
     ): Response<Unit>
 
 }

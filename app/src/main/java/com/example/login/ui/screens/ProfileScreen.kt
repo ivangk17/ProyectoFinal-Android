@@ -49,7 +49,13 @@ fun ProfileScreen(
 
             Spacer(modifier = Modifier.size(40.dp))
 
-            LinkItem(buttonName = "Cambiar mis datos", isFirst = true)
+            LinkItem(
+                buttonName = "Ver mis datos",
+                isFirst = true,
+                onClick = {
+                    navController.navigate(Rutas.DetallesDatosPerfil.ruta)
+                }
+            )
             LinkItem(
                 modifier = Modifier.offset(y = (-5).dp),
                 buttonName = "Cambiar contraseña",

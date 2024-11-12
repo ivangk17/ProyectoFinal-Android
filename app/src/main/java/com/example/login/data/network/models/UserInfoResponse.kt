@@ -21,7 +21,7 @@ data class UserInfoResponse(
     var nombreCompleto: String = "${nombre} ${apellido} ",
 
     @SerializedName("dni")
-    var cuit: Number = -1,
+    var dni: Number = -1,
 
     var email: String = "",
 

@@ -47,7 +47,7 @@ class DatosPropietarioVehiculoAseguradoViewModel (
         FormField("Codigo Postal", tipo = TipoCampo.TEXTO),
         FormField("CUIT", tipo = TipoCampo.TEXTO),
         FormField("E-mail", tipo = TipoCampo.TEXTO),
-        FormField("TEL", tipo = TipoCampo.TEXTO),
+        FormField("Telefono", tipo = TipoCampo.NUMERICO),
         FormField("Marca", tipo = TipoCampo.TEXTO),
         FormField("Modelo", tipo = TipoCampo.TEXTO),
         FormField("Color", tipo = TipoCampo.TEXTO),
@@ -104,11 +104,7 @@ class DatosPropietarioVehiculoAseguradoViewModel (
         campos[1].value.value = user.value.apellido
         campos[2].value.value = user.value.domicilio.calle
         campos[3].value.value = user.value.domicilio.numero.toString()
-        if(user.value.domicilio.numero == -1){
-            campos[3].value.value = ""
-        }else{
-            campos[3].value.value = user.value.domicilio.numero.toString()
-        }
+
         if(user.value.domicilio.piso == null){
             campos[4].value.value = ""
         }else{
@@ -120,7 +116,7 @@ class DatosPropietarioVehiculoAseguradoViewModel (
             campos[5].value.value = user.value.domicilio.departamento.toString()
         }
         campos[6].value.value = user.value.domicilio.codigoPostal.toString()
-        campos[7].value.value = user.value.cuit.toString()
+        campos[7].value.value = user.value.dni.toString()
         campos[8].value.value = user.value.email
         campos[9].value.value = user.value.telefono.toString()
         campos[10].value.value = poliza.vehiculo.marca
