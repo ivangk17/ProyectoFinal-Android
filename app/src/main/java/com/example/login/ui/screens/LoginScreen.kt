@@ -5,18 +5,24 @@ import android.util.Patterns
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -45,12 +51,17 @@ fun isEmailValid(email: String): Boolean {
     return Patterns.EMAIL_ADDRESS.matcher(email).matches()
 }
 
-suspend fun handleLogin(user: UserLogin, context: Context, navController: NavController, mainViewModel: MainViewModel) {
+suspend fun handleLogin(
+    user: UserLogin,
+    context: Context,
+    navController: NavController,
+    mainViewModel: MainViewModel
+) {
     try {
         val response = RetrofitClient.apiService.login(user)
         Token.token = response.token
         mainViewModel.updateEmail()
-        navController.navigate(route = Rutas.HomeScreen.ruta){
+        navController.navigate(route = Rutas.HomeScreen.ruta) {
             popUpTo(0) { inclusive = true }
         }
     } catch (e: Exception) {
@@ -64,6 +75,7 @@ suspend fun handleLogin(user: UserLogin, context: Context, navController: NavCon
                 }
                 errorResponse?.error ?: "Error desconocido contactar con el asegurador"
             }
+
             else -> e.message ?: "Error desconocido contactar con el asegurador"
         }
         showToastError(context, "Error al iniciar sesión $errorMessage")
@@ -73,15 +85,19 @@ suspend fun handleLogin(user: UserLogin, context: Context, navController: NavCon
 
 @Composable
 fun LoginScreen(navController: NavController, mainViewModel: MainViewModel) {
-    RegisterText(navController = navController, mainViewModel= mainViewModel)
+    RegisterText(navController = navController, mainViewModel = mainViewModel)
 }
 
 @Composable
-fun RegisterText(modifier: Modifier = Modifier, navController: NavController, mainViewModel: MainViewModel) {
+fun RegisterText(
+    modifier: Modifier = Modifier,
+    navController: NavController,
+    mainViewModel: MainViewModel
+) {
     var email by remember { mutableStateOf(TextFieldValue("")) }
     var password by remember { mutableStateOf(TextFieldValue("")) }
     val context = LocalContext.current
-
+    var passwordVisible by remember { mutableStateOf(false) }
 
     Column(
         modifier = modifier
@@ -129,7 +145,23 @@ fun RegisterText(modifier: Modifier = Modifier, navController: NavController, ma
             isValid = { it.length >= 4 },
             keyboardType = KeyboardType.Password,
             imeAction = ImeAction.Done,
-            visualTransformation = LastCharVisibleTransformation(),
+            visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            trailingIcon = {
+                IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                    val icon = if (passwordVisible) {
+                        ImageVector.vectorResource(id = R.drawable.visibility_icon)
+                    } else {
+                        ImageVector.vectorResource(id = R.drawable.visibility_icon_off)
+                    }
+                    Icon(
+                        imageVector = icon,
+                        contentDescription = if (passwordVisible)  stringResource(R.string.hide_password) else stringResource(R.string.show_password),
+                        modifier = Modifier.padding(start = 0.dp, bottom = 1.dp, end= 15.dp)
+                            .size(25.dp)
+
+                    )
+                }
+            }
         )
         Spacer(modifier = Modifier.height(16.dp))
         AppButton(
@@ -139,19 +171,22 @@ fun RegisterText(modifier: Modifier = Modifier, navController: NavController, ma
                     handleLogin(user, context, navController, mainViewModel)
                 }
             },
-            modifier = Modifier.fillMaxWidth()
-                .padding(bottom = 20.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 10.dp)
+                .height(60.dp),
+
             text = stringResource(R.string.iniciar_sesion)
         )
 
 
         EmergencyPhoneIcon(emergencyContacts = ContactPhonesList)
-/*
-        Image(painterResource(R.drawable.phone_icon), contentDescription = "phone_numbers_icon",
-            modifier = Modifier.size(60.dp).align(Alignment.Start). padding(top = 20.dp)
-                .clickable {)
+        /*
+                Image(painterResource(R.drawable.phone_icon), contentDescription = "phone_numbers_icon",
+                    modifier = Modifier.size(60.dp).align(Alignment.Start). padding(top = 20.dp)
+                        .clickable {)
 
 
-*/
+        */
     }
 }

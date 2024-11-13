@@ -1,6 +1,8 @@
 package com.example.login.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.AlertDialog
@@ -18,7 +20,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.login.R
 import com.example.login.data.models.ContactPhones
 import com.example.login.ui.screens.ContactPhonesListView
@@ -28,20 +32,30 @@ import com.example.login.ui.screens.ContactPhonesListView
 fun EmergencyPhoneIcon(emergencyContacts: List<ContactPhones>) {
     var expanded by remember { mutableStateOf(false) }
 
-    Column {
-        IconButton(onClick = { expanded = !expanded }) {
+    Column(modifier = Modifier.padding(end = 5.dp)) {
+        Row(
+            modifier = Modifier
+                .clickable { expanded = !expanded } // Hace clickeable todo el Row
+                .padding(start = 6.dp, top = 25.dp, end = 15.dp)
+        ) {
             Icon(
-                painter = painterResource(id = R.drawable.phone_icon), // Usa el ícono correcto
+                painter = painterResource(id = R.drawable.phone_icon),
                 contentDescription = "Contactos de emergencia",
-                Modifier.size(200.dp)
+                modifier = Modifier.size(40.dp)
+            )
 
+            if (expanded) {
+                ContactPhonesListView(contacts = emergencyContacts)
+            }
+
+            Text(
+                stringResource(R.string.useful_phones),
+                modifier = Modifier.padding(start = 10.dp, top = 9.dp),
+                fontSize = 25.sp,
+                fontWeight = FontWeight.Bold
             )
         }
 
-        // Muestra la lista de contactos solo si está expandida
-        if (expanded) {
-            ContactPhonesListView(contacts = emergencyContacts)
-        }
     }
 }
 

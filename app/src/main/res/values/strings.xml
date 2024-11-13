@@ -20,6 +20,9 @@
     <string name="login_error">Error al iniciar %s sesión</string>
     <string name="solicitud_image_detail">Detalle de la solicitud</string>
     <string name="welcome">¡Te damos la bienvenida!</string>
+    <string name="hide_password">Ocultar contraseña</string>
+    <string name="show_password">Mostrar contraseña</string>
+    <string name="useful_phones">Nros. útiles</string>
 
 
 </resources>

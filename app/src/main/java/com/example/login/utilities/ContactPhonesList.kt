@@ -3,7 +3,6 @@ package com.example.login.utilities
 import com.example.login.R
 import com.example.login.data.models.ContactPhones
 
-// utilities/ContactPhonesList.kt
 
 
 
