@@ -26,9 +26,9 @@ import com.example.login.data.models.poliza.Poliza
 @Composable
 fun PolizaCard(poliza: Poliza, onClick: () -> Unit) {
     Card(
-        shape = RoundedCornerShape(12.dp),
+        shape = RoundedCornerShape(11.dp),
         modifier = Modifier
-            .padding(8.dp)
+            .padding(start = 12.dp, end =12.dp, top = 7.dp, bottom = 6.dp)
             .fillMaxWidth()
             .clickable { onClick() },
         elevation = CardDefaults.cardElevation(4.dp),
@@ -39,11 +39,11 @@ fun PolizaCard(poliza: Poliza, onClick: () -> Unit) {
     ) {
         Row(
             modifier = Modifier
-                .padding(16.dp)
+                .padding(start = 8.dp, end = 8.dp, top = 8.dp, bottom = 8.dp)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Aquí debes colocar el ícono del vehículo, según corresponda
+
             Image(
                 painter = painterResource(id = getVehicleIcon(poliza.vehiculo.dominio)), // Esto es un ejemplo, ajusta según tu recurso
                 contentDescription = "Vehicle Icon",

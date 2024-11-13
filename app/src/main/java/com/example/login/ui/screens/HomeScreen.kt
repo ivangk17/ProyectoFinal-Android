@@ -44,7 +44,7 @@ fun HomeScreen(navController: NavHostController, homeViewModel: HomeViewModel) {
         when (uiState) {
             is HomeUiState.Loading -> {
                 CircularProgressIndicator(
-                    modifier = Modifier.align(Alignment.Center) // Centra el indicador de carga en la pantalla
+                    modifier = Modifier.align(Alignment.Center)
                 )
             }
             is HomeUiState.Success -> {
@@ -52,7 +52,7 @@ fun HomeScreen(navController: NavHostController, homeViewModel: HomeViewModel) {
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(16.dp)
+                        .padding(start = 4.dp, end = 4.dp, top = 16.dp, bottom = 16.dp)
                 ) {
 
                     LazyColumn(

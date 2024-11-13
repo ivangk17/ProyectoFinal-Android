@@ -31,7 +31,8 @@ fun Field(
     isValid: (String) -> Boolean,
     keyboardType: KeyboardType = KeyboardType.Text,
     imeAction: ImeAction = ImeAction.Next,
-    visualTransformation: VisualTransformation = VisualTransformation.None
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    trailingIcon: @Composable (() -> Unit)? = null
 
 ) {
     var isError by remember { mutableStateOf(false) }
@@ -50,6 +51,7 @@ fun Field(
         ),
         modifier = Modifier.fillMaxWidth(),
         visualTransformation = visualTransformation,
+        trailingIcon = trailingIcon,
         colors = TextFieldDefaults.colors(
             focusedContainerColor = Color.Transparent,
             unfocusedContainerColor = Color.Transparent,
