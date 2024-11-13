@@ -18,10 +18,10 @@ class GetServiceUser(
         api.getInfoUser(token)
     }
 
-    suspend fun changePassword(userId: String, oldPass: String, newPass: String, confirmPassword: String): Response<Unit> = withContext(Dispatchers.IO) {
+    suspend fun changePassword(oldPass: String, newPass: String, confirmPassword: String): Response<Unit> = withContext(Dispatchers.IO) {
         val token = "Bearer " + Token.token
         val changePasswordRequest = ChangePasswordRequest(oldPass, newPass, confirmPassword)
-        api.changePassword(userId, token, changePasswordRequest)
+        api.changePassword(token, changePasswordRequest)
     }
 
     suspend fun editarPerfil(phone: String, address: String, zip_code: String, number: String, apartment: String, floor: String?) : Response<Unit> = withContext(Dispatchers.IO){
@@ -29,5 +29,10 @@ class GetServiceUser(
         val userInfo = UserInfoChange(phone, address, zip_code, number, apartment, floor.toString())
         api.editarPerfil(token, userInfo)
     }
+
+    suspend fun recoverPassword(email: String): Response<Unit> = withContext(Dispatchers.IO){
+        api.recoverPassword(email)
+    }
+
 
 }

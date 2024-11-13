@@ -34,7 +34,10 @@ interface Api {
      suspend fun getInfoUser(@Body token: TokenForJson) : UserInfoResponse
 
     @POST("api/solicitudes/send")
-    suspend fun enviarSolicitud(@Body solicitud: Solicitud?): Response<Unit>
+    suspend fun enviarSolicitud(
+        @Header("Authorization") token: String,
+        @Body solicitud: Solicitud?
+    ): Response<Unit>
 
     //Para obtener las solicitudes simplificadas
     @GET("/api/solicitudes/list")
@@ -46,9 +49,8 @@ interface Api {
     @GET("api/polizas/buscarPolizaPorDominio")
     suspend fun getPoliza(@Header("Authorization") token: String, @Query("dominio") dominio: String): Poliza
 
-    @POST("/api/users/changePassword/{id}")
+    @POST("/api/users/changePassword")
     suspend fun changePassword(
-        @Path("id") id: String,
         @Header("Authorization") token: String,
         @Body changePasswordRequest: ChangePasswordRequest
     ): Response<Unit>
@@ -58,5 +60,11 @@ interface Api {
         @Header("Authorization") token: String,
         @Body userInfoChange: UserInfoChange
     ): Response<Unit>
+
+    @POST("api/users/resetPassword/{email}")
+    suspend fun recoverPassword(
+        @Path("email") email: String
+    ): Response<Unit>
+
 
 }

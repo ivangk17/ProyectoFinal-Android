@@ -5,8 +5,10 @@ import android.util.Patterns
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.BasicText
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -17,6 +19,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -97,6 +100,7 @@ fun RegisterText(
     var password by remember { mutableStateOf(TextFieldValue("")) }
     val context = LocalContext.current
     var passwordVisible by remember { mutableStateOf(false) }
+    var isClicked by remember { mutableStateOf(false) }
 
     Column(
         modifier = modifier
@@ -177,8 +181,24 @@ fun RegisterText(
 
             text = stringResource(R.string.iniciar_sesion)
         )
+        Column {
 
+            Box(modifier = Modifier.padding(top = 10.dp)) {
+                BasicText(
+                    text = "Recuperar contraseña",
+                    style = TextStyle(
+                        color = MaterialTheme.colorScheme.primary,
+                        fontSize = 16.sp
+                    ),
+                    modifier = Modifier.clickable {
+                        isClicked = !isClicked
+                        // Acción a realizar cuando se hace clic en el texto
+                        navController.navigate(Rutas.RecoverPass.ruta)
+                    }
+                )
+            }
 
+        }
 
     }
 }

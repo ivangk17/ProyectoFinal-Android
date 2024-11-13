@@ -34,6 +34,8 @@ import com.example.login.ui.screens.forms.LugarAsistencia
 import com.example.login.ui.screens.forms.RelatoAccidente
 import com.example.login.ui.screens.forms.SolicitudDetailsScreen
 import com.example.login.ui.screens.forms.SolicitudEnviadaScreen
+import com.example.login.ui.screens.recoverpass.RecoverPassScreen
+import com.example.login.ui.screens.recoverpass.RecoverPassViewModel
 import com.example.login.ui.screens.solicitudes.SolicitudesScreen
 import com.example.login.ui.viewmodels.CambiarDatosPerfilViewModel
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
@@ -332,6 +334,14 @@ fun AppNavigation(
                 )
                 CambiarDatosPerfilScreen(viewModel, navController)
             }
-    }
+
+            composable(Rutas.RecoverPass.ruta){
+                val recoverPassViewModel: RecoverPassViewModel = viewModel(
+                    factory =  RecoverPassViewModel.provideFactory(GetServiceUser(RetrofitClient.apiService))
+                )
+                RecoverPassScreen(recoverPassViewModel)
+            }
+
+        }
     )
 }

@@ -19,6 +19,9 @@ import com.example.login.navigation.Rutas
 import com.example.login.ui.screens.gson
 import com.example.login.ui.viewmodels.CambiarDatosPerfilViewModel
 import com.example.login.utilities.showToastError
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @Composable
 fun CambiarDatosPerfilScreen(
@@ -26,6 +29,7 @@ fun CambiarDatosPerfilScreen(
     navController: NavHostController
 ) {
     val context = LocalContext.current
+    val scope = CoroutineScope(Dispatchers.Main)
     val user = viewModel.loadInfoUser()
 
     Column (
@@ -49,8 +53,12 @@ fun CambiarDatosPerfilScreen(
             item {
                 Button(
                     onClick = {
-                        if (viewModel.editarPerfil(context)){
-                            navController.navigate(route = Rutas.DatosPropietarioVehiculoTercero.ruta)
+                        scope.launch {
+                            if (viewModel.editarPerfil(context)) {
+                                navController.navigate(route = Rutas.DetallesDatosPerfil.ruta){
+                                    popUpTo(Rutas.DetallesDatosPerfil.ruta){inclusive = true}
+                                }
+                            }
                         }
                     },
                     modifier = Modifier.align(Alignment.CenterHorizontally)

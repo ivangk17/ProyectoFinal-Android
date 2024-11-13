@@ -7,6 +7,7 @@ import androidx.navigation.NavController
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.network.RetrofitClient
 import com.example.login.navigation.Rutas
+import com.example.login.tokens.Token
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -62,7 +63,7 @@ class CrearSolicitudViewModel: ViewModel()  {
     fun datosPropietarioVehiculoTercero(solicitud: Solicitud) {
         _solicitud.propietarioAfectado.datosPersona.nombre = solicitud.propietarioAfectado.datosPersona.nombre
         _solicitud.propietarioAfectado.datosPersona.apellido = solicitud.propietarioAfectado.datosPersona.apellido
-
+        _solicitud.propietarioAfectado.datosPersona.nombreCompleto = solicitud.propietarioAfectado.datosPersona.nombreCompleto
         _solicitud.propietarioAfectado.datosPersona.domicilio.calle = solicitud.propietarioAfectado.datosPersona.domicilio.calle
         _solicitud.propietarioAfectado.datosPersona.domicilio.numero = solicitud.propietarioAfectado.datosPersona.domicilio.numero
         _solicitud.propietarioAfectado.datosPersona.domicilio.piso = solicitud.propietarioAfectado.datosPersona.domicilio.piso
@@ -195,7 +196,7 @@ class CrearSolicitudViewModel: ViewModel()  {
          Log.d("SOLICITUD_A_ENVIAR", _solicitud.toString())
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val respuesta = RetrofitClient.apiService.enviarSolicitud(_solicitud)
+                val respuesta = RetrofitClient.apiService.enviarSolicitud("Bearer ${Token.token}", _solicitud)
                 Log.d("respuesta", respuesta.toString())
                 if (respuesta.isSuccessful) {
                     println("Solicitud enviada exitosamente")
