@@ -57,7 +57,6 @@ class ChangePasswordViewModel(
             viewModelScope.launch {
                 try {
                     val response = getServiceUser.changePassword(
-                        user.value.id,
                         currentPassword.value.value,
                         campos[0].value.value,
                         campos[1].value.value

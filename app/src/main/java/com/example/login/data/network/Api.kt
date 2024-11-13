@@ -49,9 +49,8 @@ interface Api {
     @GET("api/polizas/buscarPolizaPorDominio")
     suspend fun getPoliza(@Header("Authorization") token: String, @Query("dominio") dominio: String): Poliza
 
-    @POST("/api/users/changePassword/{id}")
+    @POST("/api/users/changePassword")
     suspend fun changePassword(
-        @Path("id") id: String,
         @Header("Authorization") token: String,
         @Body changePasswordRequest: ChangePasswordRequest
     ): Response<Unit>
