@@ -194,7 +194,7 @@ fun validarDepartamento(value: String?): String? {
 }
 
 
-private fun validarMail(email: FormField): String? {
+fun validarMail(email: FormField): String? {
     val emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$".toRegex()
     return if (!emailRegex.matches(email.value.value)) {
         "Debe ser un mail válido"

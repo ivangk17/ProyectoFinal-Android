@@ -61,4 +61,10 @@ interface Api {
         @Body userInfoChange: UserInfoChange
     ): Response<Unit>
 
+    @POST("api/users/resetPassword/{email}")
+    suspend fun recoverPassword(
+        @Path("email") email: String
+    ): Response<Unit>
+
+
 }

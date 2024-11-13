@@ -30,4 +30,9 @@ class GetServiceUser(
         api.editarPerfil(token, userInfo)
     }
 
+    suspend fun recoverPassword(email: String): Response<Unit> = withContext(Dispatchers.IO){
+        api.recoverPassword(email)
+    }
+
+
 }
