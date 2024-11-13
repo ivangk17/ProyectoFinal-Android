@@ -66,43 +66,43 @@ class CambiarDatosPerfilViewModel(
         campos[5].value.value = user.value.domicilio.codigoPostal.toString()
     }
 
-    fun editarPerfil(context: Context): Boolean {
-        var seEnvio = false
+    suspend fun editarPerfil(context: Context): Boolean {
         validarCampos(campos)
         if (campos.all { it.error.value == null }) {
-            viewModelScope.launch {
-                try {
-                    val response = getServiceUser.editarPerfil(
-                        phone = campos[0].value.value,
-                        address = campos[1].value.value,
-                        zip_code = campos[5].value.value.toString(),
-                        number = campos[2].value.value.toString(),
-                        apartment = if (campos[4].value.value.isEmpty()) "" else campos[4].value.value,
-                        floor = if (campos[3].value.value.isEmpty()) "" else campos[3].value.value
-                    )
-                    if (response.isSuccessful) {
-                        seEnvio = true
-                        Log.d("Perfil", "ok")
-                    } else {
-                        val errorBody = response.errorBody()?.string()
-                        val apiError = errorBody?.let {
-                            try {
-                                Gson().fromJson(it, ErrorResponse::class.java)
-                            } catch (e: Exception) {
-                                ErrorResponse("Error desconocido")
-                            }
-                        } ?: ErrorResponse("Error desconocido")
-                        showToastError(context, "Error al cambiar los datos: ${apiError.error}")
-                        Log.d("Perfil", apiError.error)
-                    }
-                } catch (e: Exception) {
-                    Log.d("Perfil", e.message.toString())
-                    showToastError(context, "Error al cambiar los datos: ${e.message}")
+            return try {
+                val response = getServiceUser.editarPerfil(
+                    phone = campos[0].value.value,
+                    address = campos[1].value.value,
+                    zip_code = campos[5].value.value.toString(),
+                    number = campos[2].value.value.toString(),
+                    apartment = if (campos[4].value.value.isEmpty()) "" else campos[4].value.value,
+                    floor = if (campos[3].value.value.isEmpty()) "" else campos[3].value.value
+                )
+                if (response.isSuccessful) {
+                    Log.d("Perfil", "ok")
+                    true
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    val apiError = errorBody?.let {
+                        try {
+                            Gson().fromJson(it, ErrorResponse::class.java)
+                        } catch (e: Exception) {
+                            ErrorResponse("Error desconocido")
+                        }
+                    } ?: ErrorResponse("Error desconocido")
+                    showToastError(context, "Error al cambiar los datos: ${apiError.error}")
+                    Log.d("Perfil", apiError.error)
+                    false
                 }
+            } catch (e: Exception) {
+                Log.d("Perfil", e.message.toString())
+                showToastError(context, "Error al cambiar los datos: ${e.message}")
+                false
             }
         }
-        return seEnvio
+        return false
     }
+
 
 
 
