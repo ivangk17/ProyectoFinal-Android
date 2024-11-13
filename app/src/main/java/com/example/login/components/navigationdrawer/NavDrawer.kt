@@ -25,7 +25,7 @@ fun NavDrawer(
     Column(
         modifier = Modifier
             .fillMaxHeight()
-            .width(350.dp)
+            .width(360.dp)
             .background(MaterialTheme.colorScheme.surface)
     ) {
         DrawerHeader(email)

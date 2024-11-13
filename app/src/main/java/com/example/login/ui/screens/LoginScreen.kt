@@ -190,9 +190,11 @@ fun RegisterText(
                         color = MaterialTheme.colorScheme.primary,
                         fontSize = 16.sp
                     ),
-                    modifier = Modifier.clickable {
+                    modifier = Modifier
+                        .padding(start = 13.dp)
+                        .clickable {
                         isClicked = !isClicked
-                        // Acción a realizar cuando se hace clic en el texto
+
                         navController.navigate(Rutas.RecoverPass.ruta)
                     }
                 )
