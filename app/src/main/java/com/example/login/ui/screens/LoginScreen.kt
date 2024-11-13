@@ -29,7 +29,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.login.R
 import com.example.login.components.AppButton
-import com.example.login.components.EmergencyPhoneIcon
 import com.example.login.data.models.ErrorResponse
 import com.example.login.utilities.LastCharVisibleTransformation
 import com.example.login.data.network.RetrofitClient
@@ -180,13 +179,6 @@ fun RegisterText(
         )
 
 
-        EmergencyPhoneIcon(emergencyContacts = ContactPhonesList)
-        /*
-                Image(painterResource(R.drawable.phone_icon), contentDescription = "phone_numbers_icon",
-                    modifier = Modifier.size(60.dp).align(Alignment.Start). padding(top = 20.dp)
-                        .clickable {)
 
-
-        */
     }
 }
