@@ -15,13 +15,13 @@ fun TextPolicyDetails(label: String, value: String){
         Text(text = label,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(end = 2.dp),
-            fontSize = 14.sp
+            fontSize = 15.sp
         )
         Text(value,
             fontWeight = FontWeight.Light,
             modifier = Modifier
                 .padding(end = 8.dp),
-            fontSize = 14.sp
+            fontSize = 15.sp
         )
     }
 }

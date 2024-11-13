@@ -41,13 +41,13 @@ fun PolizaDetails(poliza: Poliza){
                         Text(text = "Poliza:",
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(end = 2.dp),
-                            fontSize = 10.sp
+                            fontSize = 15.sp
                         )
                         Text(poliza._id,
                             fontWeight = FontWeight.Light,
                             modifier = Modifier
-                                .padding(end = 8.dp),
-                            fontSize = 10.sp
+                                .padding(start = 4.dp, end = 8.dp),
+                            fontSize = 15.sp
                         )
                     }
                 }
