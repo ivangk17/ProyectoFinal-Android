@@ -24,6 +24,8 @@ sealed class Rutas(val ruta: String) {
     object ChangePassword: Rutas("changePassword")
     object DetallesDatosPerfil : Rutas("detalleDatosPerfil")
     object CambiarDatosPerfil : Rutas("cambiarDatosPerfil")
+    object RecoverPass: Rutas("recoverPass")
+
 
 
     object SolicitudDetalle : Rutas("solicitudDetalle/{solicitudId}") {
