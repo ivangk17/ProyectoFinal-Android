@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import com.example.login.components.AppButton
 import com.example.login.components.FieldStringForms
 
 @Composable
@@ -26,14 +27,12 @@ fun RecoverPassScreen(
             isPassword= emailToRecoverField.isPassword
         )
 
-        Button(
-            onClick = {
+        AppButton(
+            action = {
                 recoverPassViewModel.handleRecoverPassword(context)
             },
-            modifier = Modifier.padding(start = 10.dp)
-        ) {
-            Text("Recuperar contraseña")
-        }
+            modifier = Modifier.padding(start = 4.dp),
+            text = "Recuperar contraseña"
+        )
     }
-
 }
