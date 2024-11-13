@@ -9,7 +9,7 @@ import com.example.login.data.models.ContactPhones
 
 val ContactPhonesList = listOf(
     ContactPhones(
-        name = "Accidentes personales:",
+        name = "Accidentes personales",
         phoneNumber = "0800 444 2782",
         icon = R.drawable.emergency_icon // Reemplaza con el ícono deseado
     ),

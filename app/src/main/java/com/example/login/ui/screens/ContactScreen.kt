@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.dp
 import com.example.login.data.models.ContactPhones
@@ -55,11 +56,13 @@ fun ContactPhonesListView(contacts: List<ContactPhones>) {
                     Column {
                         Text(
                             text = contact.name,
-                            style = MaterialTheme.typography.titleSmall // Estilo para el nombre del contacto
+                            style = MaterialTheme.typography.bodyLarge,
+                            fontWeight = FontWeight.Bold
                         )
                         Text(
                             text = contact.phoneNumber,
-                            style = MaterialTheme.typography.bodyMedium // Estilo para el número del contacto
+                            style = MaterialTheme.typography.headlineMedium,
+
                         )
                     }
                 }
