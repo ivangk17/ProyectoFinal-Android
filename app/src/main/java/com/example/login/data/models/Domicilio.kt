@@ -10,7 +10,7 @@ data class Domicilio(
     var numero: Int = -1,
 
     @SerializedName("floor")
-    var piso: Int? = null,
+    var piso: String? = null,
 
     @SerializedName("apartment")
     var departamento: String?= null,

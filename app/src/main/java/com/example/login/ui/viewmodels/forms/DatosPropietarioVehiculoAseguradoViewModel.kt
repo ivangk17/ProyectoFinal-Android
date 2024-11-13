@@ -73,7 +73,7 @@ class DatosPropietarioVehiculoAseguradoViewModel (
             Solicitud.propietarioAsegurado.datosPersona.nombreCompleto = "${campos[0].value.value} ${campos[1].value.value}"
             Solicitud.propietarioAsegurado.datosPersona.domicilio.calle = campos[2].value.value
             Solicitud.propietarioAsegurado.datosPersona.domicilio.numero = campos[3].value.value.toInt()
-            Solicitud.propietarioAsegurado.datosPersona.domicilio.piso = if (campos[4].value.value.isEmpty()) null else campos[4].value.value.toInt()
+            Solicitud.propietarioAsegurado.datosPersona.domicilio.piso = if (campos[4].value.value.isEmpty()) null else campos[4].value.value
             Solicitud.propietarioAsegurado.datosPersona.domicilio.departamento = campos[5].value.value
             Solicitud.propietarioAsegurado.datosPersona.domicilio.codigoPostal = campos[6].value.value.toInt()
             Solicitud.propietarioAsegurado.datosPersona.dni = campos[7].value.value.toInt()

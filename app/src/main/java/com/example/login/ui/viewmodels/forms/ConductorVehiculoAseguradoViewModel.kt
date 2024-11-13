@@ -86,7 +86,7 @@ class ConductorVehiculoAseguradoViewModel (
             solicitud.conductorAsegurado.datosPersona.nombreCompleto = "${campos[0].value.value} ${campos[1].value.value}"
             solicitud.conductorAsegurado.datosPersona.domicilio.calle = campos[2].value.value
             solicitud.conductorAsegurado.datosPersona.domicilio.numero = campos[3].value.value.toInt()
-            solicitud.conductorAsegurado.datosPersona.domicilio.piso = if (campos[4].value.value.isEmpty()) null else campos[4].value.value.toInt()
+            solicitud.conductorAsegurado.datosPersona.domicilio.piso = if (campos[4].value.value.isEmpty()) null else campos[4].value.value
             solicitud.conductorAsegurado.datosPersona.domicilio.departamento = campos[5].value.value
             solicitud.conductorAsegurado.datosPersona.domicilio.codigoPostal = campos[6].value.value.toInt()
             solicitud.conductorAsegurado.datosPersona.dni = campos[7].value.value.toInt()
