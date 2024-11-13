@@ -41,7 +41,7 @@ fun EmergencyPhoneIcon(emergencyContacts: List<ContactPhones>) {
             Icon(
                 painter = painterResource(id = R.drawable.phone_icon),
                 contentDescription = "Contactos de emergencia",
-                modifier = Modifier.size(40.dp)
+                modifier = Modifier.size(38.dp)
             )
 
             if (expanded) {
