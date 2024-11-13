@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
+import com.example.login.components.AppButton
 import com.example.login.components.FieldStringForms
 import com.example.login.navigation.Rutas
 
@@ -49,13 +50,12 @@ fun ChangePasswordScreen(
         }
 
         item {
-            Button(onClick = {
+            AppButton(
+                action = {
                     changePasswordViewModel.handleChangePassword(context)
-            }) {
-                Text("Cambiar contraseña")
-            }
-
+            },
+                text = "Cambiar contraseña"
+            )
         }
     }
-
 }

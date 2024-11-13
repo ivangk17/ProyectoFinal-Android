@@ -22,6 +22,6 @@ fun TextSolicitudDetails(label: String, value: String){
         )
         Text(value,
             modifier = Modifier
-                .padding(end = 8.dp))
+                .padding(start = 4.dp, end = 8.dp))
     }
 }

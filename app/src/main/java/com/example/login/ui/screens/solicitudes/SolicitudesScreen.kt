@@ -32,13 +32,14 @@ fun SolicitudesScreen(
 ) {
     val uiState by viewModel.uiState
     val snackbarHostState = remember { SnackbarHostState() }
-    val coroutineScope = rememberCoroutineScope()
 
 
 
-
-    Box(modifier = Modifier.fillMaxSize()
-        .padding(top = 17.dp)) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(top = 17.dp)
+    ) {
         when (uiState) {
             is SolicitudesUiState.Loading -> {
 
@@ -46,10 +47,12 @@ fun SolicitudesScreen(
                     modifier = Modifier.align(Alignment.Center)
                 )
             }
+
             is SolicitudesUiState.Success -> {
                 val solicitudes = (uiState as SolicitudesUiState.Success).solicitudes
                 SolicitudesLista(solicitudes = solicitudes, navController = navController)
             }
+
             is SolicitudesUiState.Empty -> {
                 val message = (uiState as SolicitudesUiState.Empty).message
                 Box(
@@ -66,6 +69,7 @@ fun SolicitudesScreen(
                     )
                 }
             }
+
             is SolicitudesUiState.Error -> {
                 val message = (uiState as SolicitudesUiState.Error).message
                 LaunchedEffect(snackbarHostState) {
