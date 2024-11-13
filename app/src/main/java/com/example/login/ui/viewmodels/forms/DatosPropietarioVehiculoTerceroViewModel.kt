@@ -83,6 +83,7 @@ class DatosPropietarioVehiculoTerceroViewModel (
         if(campos.all { it.error.value == null } && errorFechaNacimiento.value == null && errorFechaVencimiento.value == null){
             solicitud.propietarioAfectado.datosPersona.nombre = campos[0].value.value
             solicitud.propietarioAfectado.datosPersona.apellido = campos[1].value.value
+            solicitud.propietarioAfectado.datosPersona.nombreCompleto = "${campos[0].value.value} ${campos[1].value.value}"
             solicitud.propietarioAfectado.datosPersona.domicilio.calle = campos[2].value.value
             solicitud.propietarioAfectado.datosPersona.domicilio.numero = campos[3].value.value.toInt()
             solicitud.propietarioAfectado.datosPersona.domicilio.piso = if (campos[4].value.value.isEmpty()) null else campos[4].value.value.toInt()

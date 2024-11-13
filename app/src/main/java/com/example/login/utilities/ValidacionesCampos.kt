@@ -29,7 +29,7 @@ fun validarCampoMutable(
     error: MutableState<String?>,
     mensajeError: String,
 ) {
-    val soloLetrasNumeros = Regex("^[a-zA-Z0-9 ,.ñÑ:-]*$")
+    val soloLetrasNumeros = Regex("^[a-zA-Z0-9 ,.ñ/áéíóúÁÉÍÓÚäëïöüÄËÏÖÜ@`Ñ:-]*$")
 
     if (campo.value.isNullOrEmpty()) {
         error.value = mensajeError
