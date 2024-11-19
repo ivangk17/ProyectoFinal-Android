@@ -2,6 +2,7 @@ package com.example.login.navigation
 
 import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -56,7 +57,7 @@ import com.example.login.ui.viewmodels.forms.InformacionAdicionalViewModel
 import com.example.login.ui.viewmodels.forms.LugarAsistenciaViewModel
 import com.example.login.ui.viewmodels.forms.RelatoAccidenteViewModel
 import com.example.login.ui.viewmodels.homeviewmodel.HomeViewModel
-import com.example.login.ui.viewmodels.mainactivityviewmodel.MainViewModel
+import com.example.login.ui.viewmodels.mainactivityviewmodel.MainActivityViewModel
 import com.example.login.ui.viewmodels.solicitudesviewmodel.SolicitudDetailsViewModel
 import com.example.login.ui.viewmodels.solicitudesviewmodel.SolicitudesViewModel
 import com.example.login.ui.viewmodels.solicitudesviewmodel.SolicitudesViewModelFactory
@@ -68,7 +69,7 @@ import com.example.login.utilities.daniosVehiculosTercero
 @Composable
 fun AppNavigation(
     navController: NavHostController,
-    mainViewModel: MainViewModel
+    mainActivityViewModel: MainActivityViewModel
 ) {
     val crearSolicitudViewModel: CrearSolicitudViewModel = viewModel(
         factory = CrearSolicitudViewModel.provideFactory()
@@ -85,7 +86,7 @@ fun AppNavigation(
 
         }
         composable(Rutas.LoginScreen.ruta) {
-            LoginScreen(navController, mainViewModel)
+            LoginScreen(modifier = Modifier, navController, mainActivityViewModel)
         }
 
         rutaComposableLoading(

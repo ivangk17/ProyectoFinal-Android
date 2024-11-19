@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 
 
 @Composable
-fun DrawerContent2(
+fun DrawerContent(
     navigationActions: AppNavigationActions,
     drawerState: DrawerState,
     scope: CoroutineScope
