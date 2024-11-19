@@ -6,9 +6,10 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.ViewModelProvider
 import com.example.login.components.MyAppTheme
+import com.example.login.data.network.services.LoginService
 import com.example.login.ui.screens.MainScreen
-import com.example.login.ui.viewmodels.mainactivityviewmodel.MainViewModel
-import com.example.login.ui.viewmodels.mainactivityviewmodel.MainViewModelFactory
+import com.example.login.ui.viewmodels.mainactivityviewmodel.MainActivityViewModel
+import com.example.login.ui.viewmodels.mainactivityviewmodel.MainActivityViewModelFactory
 
 
 class MainActivity : ComponentActivity() {
@@ -18,9 +19,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
 
-
-        val mainViewModel = ViewModelProvider(this, MainViewModelFactory())
-                .get(MainViewModel::class.java)
+            val loginService = LoginService()
+            val mainActivityViewModel = ViewModelProvider(this, MainActivityViewModelFactory(loginService))
+                .get(MainActivityViewModel::class.java)
 
             MyAppTheme {
 
@@ -74,7 +75,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
             */
-                MainScreen(mainViewModel)
+                MainScreen(mainActivityViewModel)
             }
         }
     }

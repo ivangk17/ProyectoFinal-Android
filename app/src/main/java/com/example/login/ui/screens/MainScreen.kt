@@ -26,13 +26,13 @@ import com.example.login.components.topbars.TopBar
 import com.example.login.navigation.AppNavigation
 import com.example.login.navigation.AppNavigationActions
 import com.example.login.navigation.AppNavigationActions.Companion.routesWithDrawer
-import com.example.login.ui.viewmodels.mainactivityviewmodel.MainViewModel
+import com.example.login.ui.viewmodels.mainactivityviewmodel.MainActivityViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(mainViewModel: MainViewModel) {
+fun MainScreen(mainViewModel: MainActivityViewModel) {
     val navController = rememberNavController()
     val drawerState = rememberDrawerState(initialValue = Closed)
     val scope = rememberCoroutineScope()
@@ -86,7 +86,7 @@ fun AppScaffoldContent(
     currentLocation: String?,
     drawerState: DrawerState,
     scope: CoroutineScope,
-    mainViewModel: MainViewModel
+    mainActivityViewModel: MainActivityViewModel
 ) {
     val navigationActions = AppNavigationActions(navController)
 
@@ -131,7 +131,7 @@ fun AppScaffoldContent(
                     .fillMaxSize()
                     .padding(innerPadding)
             ) {
-                AppNavigation(navController, mainViewModel)
+                AppNavigation(navController, mainActivityViewModel)
             }
         }
     )

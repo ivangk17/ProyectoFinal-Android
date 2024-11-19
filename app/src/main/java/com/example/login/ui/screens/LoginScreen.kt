@@ -1,11 +1,9 @@
 package com.example.login.ui.screens
 
-import android.content.Context
-import android.util.Patterns
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.BasicText
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -16,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
@@ -32,69 +29,22 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.login.R
 import com.example.login.components.AppButton
-import com.example.login.data.models.ErrorResponse
-import com.example.login.utilities.LastCharVisibleTransformation
-import com.example.login.data.network.RetrofitClient
 import com.example.login.data.models.UserLogin
 import com.example.login.components.Field
 import com.example.login.navigation.Rutas
-import com.example.login.tokens.Token
-import com.example.login.ui.viewmodels.mainactivityviewmodel.MainViewModel
-import com.example.login.utilities.ContactPhonesList
-import com.example.login.utilities.showToastError
-import com.google.gson.Gson
-import com.google.gson.JsonSyntaxException
+import com.example.login.ui.viewmodels.mainactivityviewmodel.MainActivityViewModel
+import com.example.login.utilities.isEmailValid
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.HttpException
 
-fun isEmailValid(email: String): Boolean {
-    return Patterns.EMAIL_ADDRESS.matcher(email).matches()
-}
-
-suspend fun handleLogin(
-    user: UserLogin,
-    context: Context,
-    navController: NavController,
-    mainViewModel: MainViewModel
-) {
-    try {
-        val response = RetrofitClient.apiService.login(user)
-        Token.token = response.token
-        mainViewModel.updateEmail()
-        navController.navigate(route = Rutas.HomeScreen.ruta) {
-            popUpTo(0) { inclusive = true }
-        }
-    } catch (e: Exception) {
-        val errorMessage = when (e) {
-            is HttpException -> {
-                val errorBody = e.response()?.errorBody()?.string()
-                val errorResponse = try {
-                    Gson().fromJson(errorBody, ErrorResponse::class.java)
-                } catch (jsonException: JsonSyntaxException) {
-                    ErrorResponse(errorBody ?: "Error desconocido contactar con el asegurador")
-                }
-                errorResponse?.error ?: "Error desconocido contactar con el asegurador"
-            }
-
-            else -> e.message ?: "Error desconocido contactar con el asegurador"
-        }
-        showToastError(context, "Error al iniciar sesión $errorMessage")
-    }
-}
 
 
 @Composable
-fun LoginScreen(navController: NavController, mainViewModel: MainViewModel) {
-    RegisterText(navController = navController, mainViewModel = mainViewModel)
-}
-
-@Composable
-fun RegisterText(
+fun LoginScreen(
     modifier: Modifier = Modifier,
     navController: NavController,
-    mainViewModel: MainViewModel
+    mainActivityViewModel: MainActivityViewModel
 ) {
     var email by remember { mutableStateOf(TextFieldValue("")) }
     var password by remember { mutableStateOf(TextFieldValue("")) }
@@ -171,7 +121,7 @@ fun RegisterText(
             action = {
                 val user = UserLogin(email.text, password.text)
                 CoroutineScope(Dispatchers.Main).launch {
-                    handleLogin(user, context, navController, mainViewModel)
+                    mainActivityViewModel.handleLogin(user, context, navController)
                 }
             },
             modifier = Modifier

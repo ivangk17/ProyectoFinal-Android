@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.DrawerState
@@ -31,7 +30,7 @@ fun NavDrawer(
         DrawerHeader(email)
         Spacer(modifier = Modifier.height(24.dp))
 
-        DrawerContent2(navigationActions,drawerState, scope)
+        DrawerContent(navigationActions,drawerState, scope)
     }
 }
 
