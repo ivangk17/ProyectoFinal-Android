@@ -18,10 +18,12 @@ import com.example.login.data.network.services.GetServiceUser
 import com.example.login.utilities.ValidacionesCampos.validarCampos
 import com.example.login.utilities.setTipoVehiculo
 import com.example.login.utilities.setColor
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-
-class DatosPropietarioVehiculoAseguradoViewModel (
+@HiltViewModel
+class DatosPropietarioVehiculoAseguradoViewModel @Inject constructor(
     getServicePolizas: GetServicePolizas,
     private val getServiceUser: GetServiceUser
 ): ViewModel() {
@@ -143,12 +145,5 @@ class DatosPropietarioVehiculoAseguradoViewModel (
 
     }
 
-    companion object{
-        fun provideFactory(getServicePolizas: GetServicePolizas, getServiceUser: GetServiceUser): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return DatosPropietarioVehiculoAseguradoViewModel(getServicePolizas, getServiceUser) as T
-            }
-        }
-    }
+
 }

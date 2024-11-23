@@ -2,18 +2,22 @@ package com.example.login.data.network.services
 
 import com.example.login.data.models.ErrorResponse
 import com.example.login.data.models.UserLogin
+import com.example.login.data.network.Api
 import com.example.login.data.network.RetrofitClient
 import com.example.login.tokens.Token
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import retrofit2.HttpException
+import javax.inject.Inject
 
-class LoginService {
+class LoginService @Inject constructor(
+    private val apiService: Api
+) {
 
     suspend fun login(user: UserLogin): String {
         return try {
-            val response = RetrofitClient.apiService.login(user)
-            Token.token = response.token // Guarda el token para usarlo globalmente si es necesario
+            val response = apiService.login(user)
+            Token.token = response.token
             response.token
         } catch (e: Exception) {
             val errorMessage = when (e) {

@@ -14,8 +14,11 @@ import com.example.login.utilities.ValidacionesCampos.validarCampos
 import com.example.login.utilities.validarCampoMutable
 import com.example.login.utilities.validarFechaActual
 import com.example.login.utilities.validarFechaNacimiento
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class ConductorVehiculoAseguradoViewModel (
+@HiltViewModel
+class ConductorVehiculoAseguradoViewModel @Inject constructor (
     getServicePolizas: GetServicePolizas
 ) : ViewModel() {
 
@@ -130,12 +133,4 @@ class ConductorVehiculoAseguradoViewModel (
         return solicitud
     }
 
-    companion object{
-        fun provideFactory(getServicePolizas: GetServicePolizas): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return ConductorVehiculoAseguradoViewModel(getServicePolizas) as T
-            }
-        }
-    }
 }

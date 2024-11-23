@@ -6,9 +6,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.data.network.services.GetStatus
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoadingViewModel(
+@HiltViewModel
+class LoadingViewModel @Inject constructor(
     private val getStatus: GetStatus,
     getServicePolizas: GetServicePolizas
 ) : ViewModel() {
@@ -48,13 +51,5 @@ class LoadingViewModel(
     }
 
 
-    companion object {
-        fun provideFactory(getStatus: GetStatus, getServicePolizas: GetServicePolizas): ViewModelProvider.Factory =
-            object : ViewModelProvider.Factory {
-                @Suppress("UNCHECKED_CAST")
-                override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                    return LoadingViewModel(getStatus, getServicePolizas) as T
-                }
-            }
-    }
+
 }

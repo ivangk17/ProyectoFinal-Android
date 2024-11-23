@@ -9,8 +9,9 @@ import com.example.login.tokens.Token
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
+import javax.inject.Inject
 
-class GetServiceUser(
+class GetServiceUser @Inject constructor(
     private val api: Api
 ) {
     suspend fun execute(): UserInfoResponse = withContext(Dispatchers.IO) {

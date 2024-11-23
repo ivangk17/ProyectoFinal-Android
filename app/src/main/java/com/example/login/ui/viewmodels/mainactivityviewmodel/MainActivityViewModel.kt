@@ -10,12 +10,14 @@ import com.example.login.navigation.Rutas
 import com.example.login.tokens.Token
 import com.example.login.tokens.Utility
 import com.example.login.utilities.showToastError
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import javax.inject.Inject
 
-
-class MainActivityViewModel(private val loginService: LoginService) : ViewModel() {
+@HiltViewModel
+class MainActivityViewModel @Inject constructor(private val loginService: LoginService) : ViewModel() {
 
 
     private val _drawerShouldBeOpened = MutableStateFlow(false)
@@ -33,9 +35,9 @@ class MainActivityViewModel(private val loginService: LoginService) : ViewModel(
         navController: NavController
     ) {
         try {
-            val token = loginService.login(user) // Llamar al servicio de login
+            val token = loginService.login(user)
             Token.token = token
-            updateEmail() // Aquí podrías actualizar cualquier dato necesario
+            updateEmail() //
             navController.navigate(route = Rutas.HomeScreen.ruta) {
                 popUpTo(0) { inclusive = true }
             }

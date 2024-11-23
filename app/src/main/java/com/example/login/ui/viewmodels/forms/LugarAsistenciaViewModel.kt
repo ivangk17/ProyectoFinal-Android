@@ -10,11 +10,16 @@ import com.example.login.data.models.fields.TipoCampo
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.models.solicitud.datosSiniestros.asistencia.EstadoLesiones
 import com.example.login.data.models.vehiculos.TipoVehiculo
+import com.example.login.data.network.Api
 import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.utilities.ValidacionesCampos.validarCampos
 import com.example.login.utilities.validarCampoMutable
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class LugarAsistenciaViewModel(
+@HiltViewModel
+class LugarAsistenciaViewModel @Inject constructor(
+    private val apiService: Api,
     getServicePolizas: GetServicePolizas
 ) : ViewModel() {
     var solicitud = Solicitud()
@@ -76,14 +81,7 @@ class LugarAsistenciaViewModel(
 
     }
 
-    companion object{
-        fun provideFactory(getServicePolizas: GetServicePolizas): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return LugarAsistenciaViewModel(getServicePolizas) as T
-            }
-        }
-    }
+
 }
 
 

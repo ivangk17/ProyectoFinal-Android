@@ -10,9 +10,12 @@ import com.example.login.data.models.poliza.Poliza
 import com.example.login.data.network.models.UserInfoResponse
 import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.data.network.services.GetServiceUser
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ProfileViewModel(
+@HiltViewModel
+class ProfileViewModel @Inject constructor(
     private val getServiceUser: GetServiceUser
 ): ViewModel() {
 
@@ -25,12 +28,4 @@ class ProfileViewModel(
         return  user
     }
 
-    companion object{
-        fun provideFactory(getServiceUser: GetServiceUser): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return ProfileViewModel(getServiceUser) as T
-            }
-        }
-    }
 }

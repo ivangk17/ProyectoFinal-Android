@@ -8,9 +8,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.login.data.models.poliza.Poliza
 import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.ui.viewmodels.solicitudesviewmodel.SolicitudesUiState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel(
+@HiltViewModel
+class HomeViewModel @Inject constructor(
     private val getPolizasUseCase : GetServicePolizas
 ) : ViewModel() {
 
@@ -47,15 +50,6 @@ class HomeViewModel(
 
 // var Polizas = mutableStateOf<List<Poliza>>(listOf())
 
-    companion object {
-
-        fun provideFactory(getPolizasUseCase: GetServicePolizas): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return HomeViewModel(getPolizasUseCase) as T
-            }
-        }
-    }
 
 }
 

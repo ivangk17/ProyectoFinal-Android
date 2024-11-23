@@ -2,13 +2,15 @@ package com.example.login.ui.viewmodels.forms
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.example.login.data.models.fields.TipoCampo
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.network.services.GetServicePolizas
+import com.example.login.ui.viewmodels.forms.daniosviewmodel.DaniosViewModel
 import com.example.login.utilities.validarCampoMutable
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class DaniosVehiculoAseguradoViewModel(
+@HiltViewModel
+class DaniosVehiculoAseguradoViewModel @Inject constructor(
     getServicePolizas: GetServicePolizas
 ) : ViewModel(), DaniosViewModel {
 
@@ -33,12 +35,5 @@ class DaniosVehiculoAseguradoViewModel(
         return solicitud
     }
 
-    companion object {
-        fun provideFactory(getServicePolizas: GetServicePolizas): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return DaniosVehiculoAseguradoViewModel(getServicePolizas) as T
-            }
-        }
-    }
+
 }

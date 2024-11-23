@@ -9,9 +9,12 @@ import com.example.login.data.models.poliza.Poliza
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.data.network.services.GetServiceSolicitudes
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SolicitudDetailsViewModel (
+@HiltViewModel
+class SolicitudDetailsViewModel @Inject constructor(
     private val getServicePolizas: GetServicePolizas,
     private val getServiceSolicitudes: GetServiceSolicitudes
 ): ViewModel() {
@@ -34,12 +37,4 @@ class SolicitudDetailsViewModel (
     }
 
 
-    companion object{
-        fun provideFactory(getServicePolizas: GetServicePolizas ,getServiceSolicitudes: GetServiceSolicitudes): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return SolicitudDetailsViewModel(getServicePolizas, getServiceSolicitudes) as T
-            }
-        }
-    }
 }

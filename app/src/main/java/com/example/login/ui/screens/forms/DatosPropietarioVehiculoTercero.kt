@@ -1,6 +1,8 @@
 package com.example.login.ui.screens.forms
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -10,13 +12,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.login.components.AppButton
 import com.example.login.components.DatePicker
 import com.example.login.components.DropdownMenuSample
 import com.example.login.components.FieldStringForms
 import com.example.login.data.models.personas.Sexo
-import com.example.login.data.models.poliza.Poliza
 import com.example.login.data.models.vehiculos.ColorVehiculo
 import com.example.login.data.models.vehiculos.TipoVehiculo
 import com.example.login.navigation.Rutas
@@ -24,6 +26,7 @@ import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.forms.DatosPropietarioVehiculoTerceroViewModel
 import com.example.login.utilities.showToastError
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun DatosPropietarioVehiculoTercero(
     navController: NavController,

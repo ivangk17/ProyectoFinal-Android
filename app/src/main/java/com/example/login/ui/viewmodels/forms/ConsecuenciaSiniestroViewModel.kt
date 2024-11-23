@@ -5,8 +5,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.login.data.models.fields.CheckField
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.network.services.GetServicePolizas
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class ConsecuenciaSiniestroViewModel(
+@HiltViewModel
+class ConsecuenciaSiniestroViewModel @Inject constructor(
     getServicePolizas: GetServicePolizas
 ): ViewModel() {
 
@@ -58,12 +61,5 @@ class ConsecuenciaSiniestroViewModel(
     }
 
 
-    companion object{
-        fun provideFactory(getServicePolizas: GetServicePolizas): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return ConsecuenciaSiniestroViewModel(getServicePolizas) as T
-            }
-        }
-    }
+
 }

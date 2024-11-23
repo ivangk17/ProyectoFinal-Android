@@ -15,9 +15,12 @@ import com.example.login.data.network.services.GetServiceUser
 import com.example.login.utilities.ValidacionesCampos.validarCampos
 import com.example.login.utilities.showToastError
 import com.google.gson.Gson
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CambiarDatosPerfilViewModel(
+@HiltViewModel
+class CambiarDatosPerfilViewModel @Inject constructor(
     private val getServiceUser: GetServiceUser
 ): ViewModel() {
 
@@ -104,16 +107,4 @@ class CambiarDatosPerfilViewModel(
     }
 
 
-
-
-
-
-    companion object{
-        fun provideFactory(getServiceUser: GetServiceUser): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return CambiarDatosPerfilViewModel(getServiceUser) as T
-            }
-        }
-    }
 }
