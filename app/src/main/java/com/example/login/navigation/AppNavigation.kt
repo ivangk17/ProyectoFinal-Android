@@ -229,7 +229,6 @@ fun AppNavigation(
 
 
         composable(Rutas.DetallesDatosPerfil.ruta) {
-
             val detalleDatosPerfilViewModel: DetalleDatosPerfilViewModel = hiltViewModel()
 
             DetalleDatosPerfilScreen(detalleDatosPerfilViewModel, navController)

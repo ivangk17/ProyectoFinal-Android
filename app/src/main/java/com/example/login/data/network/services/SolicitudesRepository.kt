@@ -24,6 +24,6 @@ class SolicitudesRepository @Inject constructor(
 
 }
 
-//Por la migración a Hilt, para gestionar las dependencias, ahora necesitamos inyectar la instancia de ApiService en SolifitudesRepository, en vez de acceder
+//Por la migración a Hilt, para gestionar las dependencias, ahora necesitamos inyectar la instancia de ApiService en SolicitudesRepository, en vez de acceder
 //desde RetrofitClient (que, además  ya no está disponible como antes acá).
 

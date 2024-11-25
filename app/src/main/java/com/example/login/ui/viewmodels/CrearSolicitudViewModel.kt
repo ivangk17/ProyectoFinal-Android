@@ -7,6 +7,7 @@ import androidx.navigation.NavController
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.network.Api
 import com.example.login.data.network.RetrofitClient
+import com.example.login.data.network.services.CrearSolicitudService
 import com.example.login.navigation.Rutas
 import com.example.login.tokens.Token
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,7 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CrearSolicitudViewModel @Inject constructor(
-    private val apiService: Api
+    private val crearSolicitudService: CrearSolicitudService
 ): ViewModel()  {
     private val _solicitud = Solicitud()
 
@@ -203,7 +204,7 @@ class CrearSolicitudViewModel @Inject constructor(
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 Log.d("SOLICITUD_A_ENVIAR", _solicitud.toString())
-                val respuesta = apiService.enviarSolicitud("Bearer ${Token.token}", _solicitud)
+                val respuesta = crearSolicitudService.enviarSolicitud(_solicitud)
                 Log.d("RESPUESTA_API_SOLICITUD", respuesta.toString())
                 if (respuesta.isSuccessful) {
                     Log.d("Solicitud Enviada", "Exito antes del NAV")
