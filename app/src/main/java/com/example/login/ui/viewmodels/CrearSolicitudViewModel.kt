@@ -3,6 +3,7 @@ package com.example.login.ui.viewmodels
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.network.Api
@@ -13,6 +14,8 @@ import com.example.login.tokens.Token
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -22,6 +25,8 @@ class CrearSolicitudViewModel @Inject constructor(
     private val crearSolicitudService: CrearSolicitudService
 ): ViewModel()  {
     private val _solicitud = Solicitud()
+    private val _estadoEnvio = MutableStateFlow<EstadoEnvio>(EstadoEnvio.Idle)
+    val estadoEnvio: StateFlow<EstadoEnvio> = _estadoEnvio
 
 
     fun envioDatosSiniestros(solicitud: Solicitud) {
@@ -201,7 +206,7 @@ class CrearSolicitudViewModel @Inject constructor(
     }
 
      private fun enviarSolicitud(navController: NavController){
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch {
             try {
                 Log.d("SOLICITUD_A_ENVIAR", _solicitud.toString())
                 val respuesta = crearSolicitudService.enviarSolicitud(_solicitud)
@@ -224,4 +229,11 @@ class CrearSolicitudViewModel @Inject constructor(
 
 
 
+}
+
+sealed class EstadoEnvio {
+    object Idle : EstadoEnvio() // Estado inicial
+    object Cargando : EstadoEnvio() // Mientras se envía la solicitud
+    object Exitoso : EstadoEnvio() // Cuando el envío fue exitoso
+    data class Error(val mensaje: String) : EstadoEnvio() // Cuando ocurre un error
 }
