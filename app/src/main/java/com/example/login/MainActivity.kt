@@ -4,77 +4,31 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.lifecycle.ViewModelProvider
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.login.components.MyAppTheme
 import com.example.login.data.network.services.LoginService
 import com.example.login.ui.screens.MainScreen
 import com.example.login.ui.viewmodels.mainactivityviewmodel.MainActivityViewModel
-import com.example.login.ui.viewmodels.mainactivityviewmodel.MainActivityViewModelFactory
 
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var loginService: LoginService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
 
-            val loginService = LoginService()
-            val mainActivityViewModel = ViewModelProvider(this, MainActivityViewModelFactory(loginService))
-                .get(MainActivityViewModel::class.java)
+
+            val mainActivityViewModel: MainActivityViewModel = hiltViewModel()
 
             MyAppTheme {
 
-                /*
-            MyAppTheme {
-
-                var lastScreen: String? = ""
-
-                val navController = rememberNavController()
-                val navigationActions = AppNavigationActions(navController)
-                Scaffold(
-                    topBar = {
-                        val currentLocation = navController.currentBackStackEntryAsState().value?.destination?.route
-
-                        if(!navigationActions.hideTopBar(currentLocation)) {
-                            if(navigationActions.getNavigationTopBar(currentLocation)) {
-                                NavigationTopBar(
-                                    onClick = { navController.popBackStack() },
-                                    quitScreen =  navigationActions.quitScreen(currentLocation, navController) ,
-                                    topBarColor = navigationActions.getColorTopBar(currentLocation),
-                                    title = navigationActions.getTextTopBar(currentLocation),
-                                    titleStyle = navigationActions.getTitleStyleTopBar(currentLocation),
-                                    titleColor = navigationActions.getTitleColorTopBar(currentLocation),
-                                    navController,
-                                    moveText = navigationActions.moveText(currentLocation)
-                                )
-                            } else {
-                                lastScreen = currentLocation
-                                TopBar(
-                                    topBarColor = navigationActions.getColorTopBar(currentLocation),
-                                    title = navigationActions.getTextTopBar(currentLocation),
-                                    titleStyle = navigationActions.getTitleStyleTopBar(currentLocation),
-                                    titleColor = navigationActions.getTitleColorTopBar(currentLocation),
-                                    //description = navigationActions.getDescriptionTopBar(currentLocation)
-                                )
-                            }
-                        }
-                    }
-                ) { innerPadding ->
-
-
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(innerPadding)
-                    ){
-                       // AppNavigation(navController,  drawerViewModel)
-
-                       // MainScreen(drawerViewModel)
-                    }
-                }
-            }
-            */
                 MainScreen(mainActivityViewModel)
             }
         }

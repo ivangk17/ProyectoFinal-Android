@@ -5,15 +5,21 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import com.example.login.data.models.solicitud.Solicitud
+import com.example.login.data.network.Api
 import com.example.login.data.network.RetrofitClient
 import com.example.login.navigation.Rutas
 import com.example.login.tokens.Token
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class CrearSolicitudViewModel: ViewModel()  {
+@HiltViewModel
+class CrearSolicitudViewModel @Inject constructor(
+    private val apiService: Api
+): ViewModel()  {
     private val _solicitud = Solicitud()
 
 
@@ -190,18 +196,21 @@ class CrearSolicitudViewModel: ViewModel()  {
     fun sinLugarAsistencia(navController: NavController){
         _solicitud.datosSiniestro.lugarAsistencia = null
         enviarSolicitud(navController)
+
     }
 
      private fun enviarSolicitud(navController: NavController){
-         Log.d("SOLICITUD_A_ENVIAR", _solicitud.toString())
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val respuesta = RetrofitClient.apiService.enviarSolicitud("Bearer ${Token.token}", _solicitud)
-                Log.d("respuesta", respuesta.toString())
+                Log.d("SOLICITUD_A_ENVIAR", _solicitud.toString())
+                val respuesta = apiService.enviarSolicitud("Bearer ${Token.token}", _solicitud)
+                Log.d("RESPUESTA_API_SOLICITUD", respuesta.toString())
                 if (respuesta.isSuccessful) {
+                    Log.d("Solicitud Enviada", "Exito antes del NAV")
                     println("Solicitud enviada exitosamente")
                     withContext(Dispatchers.Main) {
                         navController.navigate("${Rutas.LoadingScreen.ruta}/{}/${Rutas.SolicitudEnviada.ruta}")
+                        Log.d("Solicitud Enviada", "Solicitud enviada exitosamente")
                     }
                 } else {
                     println("Error al enviar la solicitud: ${respuesta.errorBody()?.string()}")
@@ -214,13 +223,4 @@ class CrearSolicitudViewModel: ViewModel()  {
 
 
 
-
-    companion object{
-        fun provideFactory(): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return CrearSolicitudViewModel() as T
-            }
-        }
-    }
 }

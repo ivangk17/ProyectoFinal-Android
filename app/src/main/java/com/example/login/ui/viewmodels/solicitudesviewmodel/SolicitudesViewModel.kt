@@ -2,18 +2,19 @@ package com.example.login.ui.viewmodels.solicitudesviewmodel
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.data.models.solicitud.aSolicitudSimplificada
-import com.example.login.data.network.services.SolicitudesRepositoryImpl
+import com.example.login.data.network.services.SolicitudesRepository
 import com.example.login.tokens.Token
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-
-class SolicitudesViewModel(private val repository: SolicitudesRepositoryImpl) : ViewModel() {
+@HiltViewModel
+class SolicitudesViewModel @Inject constructor(
+    private val solicitudesRepository: SolicitudesRepository) : ViewModel() {
     private val _uiState = mutableStateOf<SolicitudesUiState>(SolicitudesUiState.Loading)
     val uiState: State<SolicitudesUiState> = _uiState
 
@@ -31,7 +32,7 @@ class SolicitudesViewModel(private val repository: SolicitudesRepositoryImpl) : 
             _uiState.value = SolicitudesUiState.Loading
 
             try {
-                val response = repository.getSolicitudes()
+                val response = solicitudesRepository.getSolicitudes()
                 if (response.isSuccessful) {
 
                     val solicitudesList: List<Solicitud> = response.body() ?: emptyList()

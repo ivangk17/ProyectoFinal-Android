@@ -12,8 +12,11 @@ import com.example.login.data.models.solicitud.datosSiniestros.EstadoTiempo
 import com.example.login.data.models.solicitud.datosSiniestros.TipoCamino
 import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.utilities.validarCampoMutable
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class DatosAdicionalesViewModel(
+@HiltViewModel
+class DatosAdicionalesViewModel @Inject constructor(
     getServicePolizas: GetServicePolizas
 ): ViewModel() {
 
@@ -68,12 +71,4 @@ class DatosAdicionalesViewModel(
         return solicitud
     }
 
-    companion object{
-        fun provideFactory(getServicePolizas: GetServicePolizas): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return DatosAdicionalesViewModel(getServicePolizas) as T
-            }
-        }
-    }
 }

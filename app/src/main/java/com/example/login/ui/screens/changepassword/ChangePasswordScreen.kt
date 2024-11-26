@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.login.components.AppButton
 import com.example.login.components.FieldStringForms
 import com.example.login.navigation.Rutas
@@ -15,7 +16,9 @@ import com.example.login.navigation.Rutas
 @SuppressLint("SuspiciousIndentation")
 @Composable
 fun ChangePasswordScreen(
-    changePasswordViewModel: ChangePasswordViewModel
+    changePasswordViewModel: ChangePasswordViewModel,
+    navController: NavHostController
+
 ) {
     val currentPassword = changePasswordViewModel.currentPassword
     val context = LocalContext.current
@@ -52,8 +55,14 @@ fun ChangePasswordScreen(
         item {
             AppButton(
                 action = {
-                    changePasswordViewModel.handleChangePassword(context)
-            },
+                    // Llamar a handleChangePassword desde el ViewModel
+                    changePasswordViewModel.handleChangePassword(context) {
+                        // Navegar si la contraseña fue cambiada con éxito
+                        navController.navigate(Rutas.HomeScreen.ruta) {
+                            popUpTo(0) { inclusive = true }
+                        }
+                    }
+                },
                 text = "Cambiar contraseña"
             )
         }

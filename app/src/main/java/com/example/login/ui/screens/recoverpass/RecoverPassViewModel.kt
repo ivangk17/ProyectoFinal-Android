@@ -12,11 +12,14 @@ import com.example.login.utilities.showToastError
 import com.example.login.utilities.showToastSucces
 import com.example.login.utilities.validarMail
 import com.google.gson.Gson
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class RecoverPassViewModel(
+@HiltViewModel
+class RecoverPassViewModel @Inject constructor(
     private val getServiceUser: GetServiceUser,
-): ViewModel() {
+) : ViewModel() {
 
     val emailToRecoverField = FormField("Email de la cuenta", tipo = TipoCampo.TEXTO)
 
@@ -25,17 +28,17 @@ class RecoverPassViewModel(
         emailToRecoverField.error.value = null
     }
 
-    fun handleRecoverPassword(context: Context){
+    fun handleRecoverPassword(context: Context) {
         validarMail(emailToRecoverField)
 
-        if(emailToRecoverField.error.value == null ){
+        if (emailToRecoverField.error.value == null) {
             viewModelScope.launch {
                 try {
                     val response = getServiceUser.recoverPassword(emailToRecoverField.value.value)
 
-                    if(response.isSuccessful){
+                    if (response.isSuccessful) {
                         showToastSucces(context, "Revisa tu correo electronico")
-                    }else{
+                    } else {
                         val errorBody = response.errorBody()?.string()
                         val apiError = errorBody?.let {
                             try {
@@ -48,19 +51,12 @@ class RecoverPassViewModel(
                         showToastError(context, "Error: ${apiError.error}")
                     }
 
-                }catch (e: Exception){
+                } catch (e: Exception) {
                     showToastError(context, "Error")
                 }
             }
         }
     }
-
-    companion object {
-        fun provideFactory(getServiceUser: GetServiceUser): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return RecoverPassViewModel(getServiceUser) as T
-            }
-        }
-    }
 }
+
+

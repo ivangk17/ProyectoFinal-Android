@@ -4,8 +4,6 @@ import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -14,12 +12,10 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
 import com.example.login.components.AppButton
 import com.example.login.components.MultipleLine
-import com.example.login.data.models.poliza.Poliza
 import com.example.login.data.models.solicitud.Solicitud
 import com.example.login.navigation.Rutas
-import com.example.login.ui.screens.gson
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
-import com.example.login.ui.viewmodels.forms.DaniosViewModel
+import com.example.login.ui.viewmodels.forms.daniosviewmodel.DaniosViewModel
 import com.example.login.utilities.showToastError
 
 

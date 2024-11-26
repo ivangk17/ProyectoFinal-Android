@@ -18,14 +18,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.login.components.DropdownMenuSample
 import com.example.login.components.FieldStringForms
 import com.example.login.components.MultipleLine
 import com.example.login.components.SwitchCustom
-import com.example.login.data.models.poliza.Poliza
 import com.example.login.data.models.solicitud.datosSiniestros.asistencia.EstadoLesiones
-import com.example.login.ui.screens.gson
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.forms.LugarAsistenciaViewModel
 import com.example.login.utilities.showToastError

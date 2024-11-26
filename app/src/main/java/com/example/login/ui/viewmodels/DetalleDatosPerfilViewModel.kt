@@ -7,9 +7,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.login.data.network.models.UserInfoResponse
 import com.example.login.data.network.services.GetServiceUser
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DetalleDatosPerfilViewModel(
+@HiltViewModel
+class DetalleDatosPerfilViewModel @Inject constructor(
     private val getServiceUser: GetServiceUser
 ): ViewModel() {
 
@@ -22,12 +25,5 @@ class DetalleDatosPerfilViewModel(
         return  user
     }
 
-    companion object{
-        fun provideFactory(getServiceUser: GetServiceUser): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return DetalleDatosPerfilViewModel(getServiceUser) as T
-            }
-        }
-    }
+
 }

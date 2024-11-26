@@ -1,18 +1,18 @@
 package com.example.login.ui.screens.forms
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.util.Log
-import androidx.compose.foundation.layout.Column
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.login.components.AppButton
 import com.example.login.components.DatePicker
@@ -25,6 +25,7 @@ import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.forms.DatosSiniestroViewModel
 import com.example.login.utilities.showToastError
 
+@RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("SuspiciousIndentation")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -32,8 +33,9 @@ fun DatosSiniestro(
     navController: NavController,
     viewModel: DatosSiniestroViewModel,
     poliza: Poliza,
-    crearSolicitudViewModel: CrearSolicitudViewModel
+    crearSolicitudViewModel: CrearSolicitudViewModel,
 ) {
+
     val context = LocalContext.current
     LazyColumn(
         modifier = Modifier
@@ -87,7 +89,6 @@ fun DatosSiniestro(
 
             }
         }
-
     }
 }
 

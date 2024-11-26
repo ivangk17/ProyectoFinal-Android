@@ -13,12 +13,14 @@ import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.utilities.ValidacionesCampos.validarCampos
 import com.example.login.utilities.validarCampoMutable
 import com.example.login.utilities.validarFechaActual
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-
-class DatosSiniestroViewModel(
-    getServicePolizas: GetServicePolizas
+@HiltViewModel
+class DatosSiniestroViewModel @Inject constructor(
+    private val getServicePolizas: GetServicePolizas
 ) : ViewModel() {
-    val crearSolicitudViewModel : CrearSolicitudViewModel = CrearSolicitudViewModel()
+
     val solicitud = Solicitud()
 
     val campos = listOf(
@@ -75,12 +77,4 @@ class DatosSiniestroViewModel(
         return solicitud
     }
 
-    companion object{
-        fun provideFactory(getServicePolizas: GetServicePolizas): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return DatosSiniestroViewModel(getServicePolizas) as T
-            }
-        }
-    }
 }

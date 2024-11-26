@@ -17,12 +17,14 @@ import com.example.login.utilities.showToastError
 import com.example.login.utilities.showToastSucces
 import com.example.login.utilities.validatePassword
 import com.google.gson.Gson
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ChangePasswordViewModel(
-    private val getServiceUser: GetServiceUser,
-    var onPasswordChanged: () -> Unit
-): ViewModel(){
+@HiltViewModel
+class ChangePasswordViewModel @Inject constructor(
+    private val getServiceUser: GetServiceUser
+) : ViewModel() {
 
     var user = mutableStateOf(UserInfoResponse())
 
@@ -30,7 +32,7 @@ class ChangePasswordViewModel(
         viewModelScope.launch {
             user.value = getServiceUser.execute()
         }
-        return  user
+        return user
     }
 
     val campos = listOf(
@@ -45,12 +47,12 @@ class ChangePasswordViewModel(
         campos[index].error.value = null
     }
 
-    fun onCurrentPassChange(newValue: String){
+    fun onCurrentPassChange(newValue: String) {
         currentPassword.value.value = newValue
         currentPassword.error.value = null
     }
 
-    fun handleChangePassword(context: Context) {
+    fun handleChangePassword(context: Context,  onPasswordChanged: () -> Unit) {
         validatePassword(campos, currentPassword)
 
         if (campos.all { it.error.value == null }) {
@@ -63,7 +65,7 @@ class ChangePasswordViewModel(
                     )
                     if (response.isSuccessful) {
                         showToastSucces(context, "Contraseña cambiada con exito!")
-                        onPasswordChanged()
+                  onPasswordChanged()  //Agregado
                     } else {
                         val errorBody = response.errorBody()?.string()
                         val apiError = errorBody?.let {
@@ -83,12 +85,5 @@ class ChangePasswordViewModel(
         }
     }
 
-    companion object {
-        fun provideFactory(getServiceUser: GetServiceUser, onPasswordChanged: () -> Unit): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return ChangePasswordViewModel(getServiceUser, onPasswordChanged) as T
-            }
-        }
-    }
+
 }
