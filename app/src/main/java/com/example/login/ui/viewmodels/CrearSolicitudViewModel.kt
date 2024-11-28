@@ -1,18 +1,21 @@
 package com.example.login.ui.viewmodels
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
+import com.example.login.data.models.personas.Sexo
 import com.example.login.data.models.solicitud.Solicitud
-import com.example.login.data.network.Api
-import com.example.login.data.network.RetrofitClient
 import com.example.login.data.network.services.CrearSolicitudService
 import com.example.login.navigation.Rutas
-import com.example.login.tokens.Token
+import com.example.login.ui.formstate.DatosConductorVehiculoAsegurado
+import com.example.login.utilities.ValidacionesCampos.validarCampos
+import com.example.login.utilities.validarCampoMutable
+import com.example.login.utilities.validarFechaActual
+import com.example.login.utilities.validarFechaNacimiento
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -24,9 +27,76 @@ import javax.inject.Inject
 class CrearSolicitudViewModel @Inject constructor(
     private val crearSolicitudService: CrearSolicitudService
 ): ViewModel()  {
+    var solicitud = Solicitud()
     private val _solicitud = Solicitud()
     private val _estadoEnvio = MutableStateFlow<EstadoEnvio>(EstadoEnvio.Idle)
     val estadoEnvio: StateFlow<EstadoEnvio> = _estadoEnvio
+
+    var conductorVehiculoAseguradoFormState = DatosConductorVehiculoAsegurado()
+
+
+//ConductorVehiculoAsegurado
+    fun onCampoChange(index: Int, newValue: String) {
+        conductorVehiculoAseguradoFormState.campos[index].value.value = newValue
+        conductorVehiculoAseguradoFormState.campos[index].error.value = null
+    }
+
+    fun setFechaNacimiento(newValue: String) {
+        conductorVehiculoAseguradoFormState.fechaNacimiento.value = newValue
+        conductorVehiculoAseguradoFormState.errorFechaNacimiento.value = null
+    }
+
+    fun setFechaExpedicion(newValue: String) {
+        conductorVehiculoAseguradoFormState.fechaExpedicion.value = newValue
+        conductorVehiculoAseguradoFormState.errorFechaExpedicion.value = null
+    }
+
+    fun setFechaDeVencimiento(newValue: String) {
+        conductorVehiculoAseguradoFormState.fechaDeVencimiento.value = newValue
+        conductorVehiculoAseguradoFormState.errorFechaVencimiento.value = null
+    }
+
+    fun setSexoSeleccionado(nuevoSexo: Sexo) {
+        conductorVehiculoAseguradoFormState.sexoSeleccionado.value = nuevoSexo
+    }
+
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun crearSolicitudPoliza(): Solicitud? {
+        validarCampos(conductorVehiculoAseguradoFormState.campos)
+        validarFechaNacimiento(conductorVehiculoAseguradoFormState.fechaNacimiento, conductorVehiculoAseguradoFormState.errorFechaNacimiento)
+        validarFechaActual(conductorVehiculoAseguradoFormState.fechaExpedicion, conductorVehiculoAseguradoFormState.errorFechaExpedicion)
+        validarCampoMutable(conductorVehiculoAseguradoFormState.fechaDeVencimiento, conductorVehiculoAseguradoFormState.errorFechaVencimiento, "Falta completar la fecha de vencimiento")
+
+        if (conductorVehiculoAseguradoFormState.campos.all { it.error.value == null } && conductorVehiculoAseguradoFormState.errorFechaNacimiento.value == null && conductorVehiculoAseguradoFormState.errorFechaVencimiento.value == null && conductorVehiculoAseguradoFormState.errorFechaExpedicion.value == null) {
+            solicitud.conductorAsegurado.datosPersona.nombre = conductorVehiculoAseguradoFormState.campos[0].value.value
+            solicitud.conductorAsegurado.datosPersona.apellido = conductorVehiculoAseguradoFormState.campos[1].value.value
+            solicitud.conductorAsegurado.datosPersona.nombreCompleto = "${conductorVehiculoAseguradoFormState.campos[0].value.value} ${conductorVehiculoAseguradoFormState.campos[1].value.value}"
+            solicitud.conductorAsegurado.datosPersona.domicilio.calle = conductorVehiculoAseguradoFormState.campos[2].value.value
+            solicitud.conductorAsegurado.datosPersona.domicilio.numero = conductorVehiculoAseguradoFormState.campos[3].value.value.toInt()
+            solicitud.conductorAsegurado.datosPersona.domicilio.piso = if (conductorVehiculoAseguradoFormState.campos[4].value.value.isEmpty()) null else conductorVehiculoAseguradoFormState.campos[4].value.value
+            solicitud.conductorAsegurado.datosPersona.domicilio.departamento = conductorVehiculoAseguradoFormState.campos[5].value.value
+            solicitud.conductorAsegurado.datosPersona.domicilio.codigoPostal = conductorVehiculoAseguradoFormState.campos[6].value.value.toInt()
+            solicitud.conductorAsegurado.datosPersona.dni = conductorVehiculoAseguradoFormState.campos[7].value.value.toInt()
+            solicitud.conductorAsegurado.datosPersona.telefono = conductorVehiculoAseguradoFormState.campos[8].value.value
+            solicitud.conductorAsegurado.datosPersona.sexo = conductorVehiculoAseguradoFormState.sexoSeleccionado.value
+            solicitud.conductorAsegurado.datosPersona.email = conductorVehiculoAseguradoFormState.campos[9].value.value
+            solicitud.conductorAsegurado.nroRegistro = conductorVehiculoAseguradoFormState.campos[10].value.value
+            solicitud.conductorAsegurado.claseRegistro = conductorVehiculoAseguradoFormState.campos[11].value.value
+            solicitud.conductorAsegurado.relacionAsegurado = conductorVehiculoAseguradoFormState.campos[12].value.value
+
+            solicitud.conductorAsegurado.datosPersona.fechaDeNacimiento = conductorVehiculoAseguradoFormState.fechaNacimiento.value!!
+            solicitud.conductorAsegurado.fechaRegistroVencimiento = conductorVehiculoAseguradoFormState.fechaDeVencimiento.value!!
+            solicitud.conductorAsegurado.fechaRegistroExpedicion = conductorVehiculoAseguradoFormState.fechaExpedicion.value!!
+
+        }
+        else{
+            return null
+        }
+
+        return solicitud
+    }
 
 
     fun envioDatosSiniestros(solicitud: Solicitud) {
@@ -101,6 +171,10 @@ class CrearSolicitudViewModel @Inject constructor(
 
     }
 
+
+
+
+
     fun conductorVehiculoAsegurado(solicitud: Solicitud) {
         _solicitud.conductorAsegurado.datosPersona.nombre = solicitud.conductorAsegurado.datosPersona.nombre
         _solicitud.conductorAsegurado.datosPersona.apellido = solicitud.conductorAsegurado.datosPersona.apellido
@@ -121,6 +195,8 @@ class CrearSolicitudViewModel @Inject constructor(
         _solicitud.conductorAsegurado.fechaRegistroVencimiento = solicitud.conductorAsegurado.fechaRegistroVencimiento
         _solicitud.conductorAsegurado.relacionAsegurado = solicitud.conductorAsegurado.relacionAsegurado
     }
+
+
 
     fun conductorVehiculoTercero(solicitud: Solicitud) {
         _solicitud.conductorAfectado.datosPersona.nombre = solicitud.conductorAfectado.datosPersona.nombre

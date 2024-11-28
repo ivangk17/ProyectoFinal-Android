@@ -1,6 +1,8 @@
 package com.example.login.ui.screens.forms
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -10,7 +12,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.login.components.AppButton
 import com.example.login.components.DatePicker
@@ -22,6 +23,7 @@ import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.forms.ConductorVehiculoAseguradoViewModel
 import com.example.login.utilities.showToastError
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ConductorVehiculoAsegurado(
     navController: NavController,
@@ -30,29 +32,31 @@ fun ConductorVehiculoAsegurado(
 ) {
     val context = LocalContext.current
     val optionsSexo = Sexo.entries
+    val formState = crearSolicitudViewModel.conductorVehiculoAseguradoFormState
+
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .padding(25.dp)
     ) {
 
-        items(viewModel.campos.size) { index ->
-            val campo = viewModel.campos[index]
+        items(formState.campos.size) { index ->
+            val campo = formState.campos[index]
 
 
             FieldStringForms(
                 label = campo.label,
                 value = campo.value,
                 error = campo.error,
-                onValueChange = { newValue -> viewModel.onCampoChange(index, newValue) }
+                onValueChange = { newValue -> crearSolicitudViewModel.onCampoChange(index, newValue) }
             )
 
             if(index == 7){
                 DatePicker(
                     label = "Fecha de nacimiento",
-                    valor = viewModel.fechaNacimiento,
-                    error = viewModel.errorFechaNacimiento,
-                    onDateSelected = { newValue -> viewModel.setFechaNacimiento(newValue) }
+                    valor = formState.fechaNacimiento,
+                    error = formState.errorFechaNacimiento,
+                    onDateSelected = { newValue -> crearSolicitudViewModel.setFechaNacimiento(newValue) }
                 )
             }
 
@@ -60,8 +64,8 @@ fun ConductorVehiculoAsegurado(
                 DropdownMenuSample(
                     title = "Sexo",
                     options = optionsSexo,
-                    selectedOption = viewModel.sexoSeleccionado.value,
-                    onOptionSelected = { viewModel.sexoSeleccionado.value = it },
+                    selectedOption = formState.sexoSeleccionado.value,
+                    onOptionSelected =  { crearSolicitudViewModel.setSexoSeleccionado(it)},
                     label = { it.displayName }
                 )
             }
@@ -69,15 +73,15 @@ fun ConductorVehiculoAsegurado(
             if( index == 11){
                 DatePicker(
                     label = "Fecha de expedicion",
-                    valor = viewModel.fechaExpedicion,
-                    error = viewModel.errorFechaExpedicion,
-                    onDateSelected = { newValue -> viewModel.setFechaExpedicion(newValue) }
+                    valor = formState.fechaExpedicion,
+                    error = formState.errorFechaExpedicion,
+                    onDateSelected = { newValue -> crearSolicitudViewModel.setFechaExpedicion(newValue) }
                 )
                 DatePicker(
                     label = "Fecha de vencimiento",
-                    valor = viewModel.fechaDeVencimiento,
-                    error = viewModel.errorFechaVencimiento,
-                    onDateSelected = { newValue -> viewModel.setFechaDeVencimiento(newValue) }
+                    valor = formState.fechaDeVencimiento,
+                    error = formState.errorFechaVencimiento,
+                    onDateSelected = { newValue -> crearSolicitudViewModel.setFechaDeVencimiento(newValue) }
                 )
             }
         }
@@ -86,7 +90,7 @@ fun ConductorVehiculoAsegurado(
             Column {
                 AppButton(
                     action = {
-                        val solicitud = viewModel.crearSolicitudPoliza()
+                        val solicitud = crearSolicitudViewModel.crearSolicitudPoliza()
                         if (solicitud != null) {
                             crearSolicitudViewModel.conductorVehiculoAsegurado(solicitud)
                             navController.navigate(route = Rutas.ConductorVehiculoTercero.ruta)
