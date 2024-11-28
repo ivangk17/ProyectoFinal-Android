@@ -18,6 +18,7 @@ import com.example.login.components.DatePicker
 import com.example.login.components.DropdownMenuSample
 import com.example.login.components.FieldStringForms
 import com.example.login.data.models.personas.Sexo
+import com.example.login.data.models.personas.user.TipoConductor
 import com.example.login.navigation.Rutas
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 import com.example.login.ui.viewmodels.forms.ConductorVehiculoAseguradoViewModel
@@ -32,7 +33,7 @@ fun ConductorVehiculoAsegurado(
 ) {
     val context = LocalContext.current
     val optionsSexo = Sexo.entries
-    val formState = crearSolicitudViewModel.conductorVehiculoAseguradoFormState
+    val formState = crearSolicitudViewModel.conductorAseguradoFormState
 
     LazyColumn(
         modifier = Modifier
@@ -48,7 +49,7 @@ fun ConductorVehiculoAsegurado(
                 label = campo.label,
                 value = campo.value,
                 error = campo.error,
-                onValueChange = { newValue -> crearSolicitudViewModel.onCampoChange(index, newValue) }
+                onValueChange = { newValue -> crearSolicitudViewModel.onCampoChange(formState,index, newValue) }
             )
 
             if(index == 7){
@@ -56,7 +57,7 @@ fun ConductorVehiculoAsegurado(
                     label = "Fecha de nacimiento",
                     valor = formState.fechaNacimiento,
                     error = formState.errorFechaNacimiento,
-                    onDateSelected = { newValue -> crearSolicitudViewModel.setFechaNacimiento(newValue) }
+                    onDateSelected = { newValue -> crearSolicitudViewModel.setFechaNacimiento(formState,newValue) }
                 )
             }
 
@@ -65,7 +66,7 @@ fun ConductorVehiculoAsegurado(
                     title = "Sexo",
                     options = optionsSexo,
                     selectedOption = formState.sexoSeleccionado.value,
-                    onOptionSelected =  { crearSolicitudViewModel.setSexoSeleccionado(it)},
+                    onOptionSelected =  { crearSolicitudViewModel.setSexoSeleccionado(formState,it)},
                     label = { it.displayName }
                 )
             }
@@ -75,13 +76,13 @@ fun ConductorVehiculoAsegurado(
                     label = "Fecha de expedicion",
                     valor = formState.fechaExpedicion,
                     error = formState.errorFechaExpedicion,
-                    onDateSelected = { newValue -> crearSolicitudViewModel.setFechaExpedicion(newValue) }
+                    onDateSelected = { newValue -> crearSolicitudViewModel.setFechaExpedicion(formState,newValue) }
                 )
                 DatePicker(
                     label = "Fecha de vencimiento",
                     valor = formState.fechaDeVencimiento,
                     error = formState.errorFechaVencimiento,
-                    onDateSelected = { newValue -> crearSolicitudViewModel.setFechaDeVencimiento(newValue) }
+                    onDateSelected = { newValue -> crearSolicitudViewModel.setFechaDeVencimiento(formState,newValue) }
                 )
             }
         }
@@ -90,7 +91,7 @@ fun ConductorVehiculoAsegurado(
             Column {
                 AppButton(
                     action = {
-                        val solicitud = crearSolicitudViewModel.crearSolicitudPoliza()
+                        val solicitud = crearSolicitudViewModel.crearSolicitudPoliza(formState, TipoConductor.ASEGURADO)
                         if (solicitud != null) {
                             crearSolicitudViewModel.conductorVehiculoAsegurado(solicitud)
                             navController.navigate(route = Rutas.ConductorVehiculoTercero.ruta)

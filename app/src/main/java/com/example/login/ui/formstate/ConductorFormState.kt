@@ -6,7 +6,7 @@ import com.example.login.data.models.fields.FormField
 import com.example.login.data.models.fields.TipoCampo
 import com.example.login.data.models.personas.Sexo
 
-data class DatosConductorVehiculoAsegurado(
+data class ConductorFormState(
     var sexoSeleccionado: MutableState<Sexo> = mutableStateOf(Sexo.HOMBRE),
     var fechaNacimiento: MutableState<String?> = mutableStateOf(null),
     var errorFechaNacimiento: MutableState<String?> = mutableStateOf(null),
