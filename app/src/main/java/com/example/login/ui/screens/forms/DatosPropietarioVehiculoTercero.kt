@@ -1,0 +1,118 @@
+package com.example.login.ui.screens.forms
+
+import android.os.Build
+import android.util.Log
+import androidx.annotation.RequiresApi
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import com.example.login.components.AppButton
+import com.example.login.components.DatePicker
+import com.example.login.components.DropdownMenuSample
+import com.example.login.components.FieldStringForms
+import com.example.login.data.models.personas.Sexo
+import com.example.login.data.models.vehiculos.ColorVehiculo
+import com.example.login.data.models.vehiculos.TipoVehiculo
+import com.example.login.navigation.Rutas
+import com.example.login.ui.viewmodels.CrearSolicitudViewModel
+import com.example.login.ui.viewmodels.forms.DatosPropietarioVehiculoTerceroViewModel
+import com.example.login.utilities.showToastError
+
+@RequiresApi(Build.VERSION_CODES.O)
+@Composable
+fun DatosPropietarioVehiculoTercero(
+    navController: NavController,
+    viewModel: DatosPropietarioVehiculoTerceroViewModel,
+    crearSolicitudViewModel: CrearSolicitudViewModel
+) {
+    val context = LocalContext.current
+    val optionsSexo = Sexo.entries
+    val optionsColor = ColorVehiculo.entries
+    val optionsTipoVehiculo = TipoVehiculo.entries
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(25.dp)
+    ) {
+        items(viewModel.campos.size) { index ->
+            val campo = viewModel.campos[index]
+            FieldStringForms(
+                label = campo.label,
+                value = campo.value,
+                error = campo.error,
+                onValueChange = { newValue -> viewModel.onCampoChange(index, newValue) }
+            )
+            if(index == 7){
+                DatePicker(
+                    label = "Fecha de nacimiento",
+                    valor = viewModel.fechaNacimiento,
+                    error = viewModel.errorFechaNacimiento,
+                    onDateSelected = { newValue -> viewModel.setFechaNacimiento(newValue) }
+                )
+                DropdownMenuSample(
+                    title = "Sexo",
+                    options = optionsSexo,
+                    selectedOption = viewModel.sexoSeleccionado.value,
+                    onOptionSelected = { viewModel.sexoSeleccionado.value = it },
+                    label = { it.displayName }
+                )
+            }
+            if (index == 9){
+                DropdownMenuSample(
+                    title = "Tipo de vehiculo",
+                    options = optionsTipoVehiculo,
+                    selectedOption = viewModel.tipoVehiculo.value,
+                    onOptionSelected = { viewModel.tipoVehiculo.value = it },
+                    label = { it.displayName }
+                )
+                DropdownMenuSample(
+                    title = "Color",
+                    options = optionsColor,
+                    selectedOption = viewModel.colorDelVehiculo.value,
+                    onOptionSelected = { viewModel.colorDelVehiculo.value = it },
+                    label = { it.displayName }
+                )
+            }
+        }
+
+        item {
+            DatePicker(
+                label = "Fecha vencimiento de la poliza",
+                valor = viewModel.fechaDeVencimiento,
+                error = viewModel.errorFechaVencimiento,
+                onDateSelected = { newValue -> viewModel.setFechaDeVencimiento(newValue) }
+            )
+        }
+
+
+
+        item {
+            Column {
+                AppButton(
+                    action = {
+                        val solicitud = viewModel.crearSolicitudPoliza()
+
+                        if (solicitud != null) {
+                            crearSolicitudViewModel.datosPropietarioVehiculoTercero(solicitud)
+                            navController.navigate(route = Rutas.ConductorVehiculoAsegurado.ruta)
+                        } else {
+                            showToastError(context, "error: No se puede crear la solicitud")
+                            Log.d("solicitud", "no se creo")
+                        }
+                    },
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
+                    text = "Siguiente"
+                )
+
+            }
+        }
+    }
+}

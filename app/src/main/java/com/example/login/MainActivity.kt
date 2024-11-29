@@ -4,24 +4,33 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
-import com.example.login.data.network.GetServicePolizas
-import com.example.login.data.network.RetrofitClient
-import com.example.login.navigation.AppNavigation
-import com.example.login.ui.viewmodels.HomeViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.login.components.MyAppTheme
+import com.example.login.data.network.services.LoginService
+import com.example.login.ui.screens.MainScreen
+import com.example.login.ui.viewmodels.mainactivityviewmodel.MainActivityViewModel
 
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    private val viewModel: HomeViewModel by viewModels { HomeViewModel.provideFactory(
-        GetServicePolizas(RetrofitClient.apiService)
-    ) }
+    @Inject
+    lateinit var loginService: LoginService
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            AppNavigation()
+
+
+            val mainActivityViewModel: MainActivityViewModel = hiltViewModel()
+
+            MyAppTheme {
+
+                MainScreen(mainActivityViewModel)
+            }
         }
     }
 }

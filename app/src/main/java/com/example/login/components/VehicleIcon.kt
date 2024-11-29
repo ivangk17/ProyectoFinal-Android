@@ -7,8 +7,8 @@ import com.example.login.R
 @Composable
 fun getVehicleIcon(dominio: String): Int {
     return if (dominio.contains("Camion", ignoreCase = true)) {
-        R.drawable.ic_camion // El ícono del camión
+        R.drawable.ic_camion2 // El ícono del camión
     } else {
-        R.drawable.ic_auto // El ícono del auto
+        R.drawable.ic_auto2 // El ícono del auto
     }
 }
