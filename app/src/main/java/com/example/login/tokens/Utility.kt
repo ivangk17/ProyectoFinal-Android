@@ -4,8 +4,10 @@ import com.example.login.data.models.UserLogin
 
 class Utility {
 
+
     fun decodeJWT(token: String) : UserLogin {
         var user = UserLogin("","")
+
         try {
             val jwt = JWT(token)
             val email = jwt.getClaim("email").asString()
