@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -41,7 +42,7 @@ fun NavigationTopBar(
         modifier = Modifier
             .background(topBarColor)
             .padding(top = 30.dp, start = 25.dp, end = 25.dp)
-            .height(50.dp)
+            .wrapContentHeight()
             .fillMaxWidth(),
         contentAlignment = Alignment.Center
     ) {
@@ -64,7 +65,7 @@ fun NavigationTopBar(
                         text = title,
                         color = titleColor,
                         style = titleStyle,
-                        fontSize = 25.sp
+                        fontSize = 22.sp
                     )
                 }
             } else {
@@ -73,7 +74,7 @@ fun NavigationTopBar(
                         text = title,
                         color = titleColor,
                         style = titleStyle,
-                        fontSize = 25.sp
+                        fontSize = 22.sp
                     )
                 }
                 if (quitScreen) {

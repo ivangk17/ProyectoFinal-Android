@@ -41,6 +41,7 @@ import androidx.compose.ui.window.Popup
 import com.example.login.R
 import java.text.SimpleDateFormat
 import java.time.Instant
+import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.Date
@@ -53,22 +54,33 @@ fun DatePicker(
     label: String,
     valor: MutableState<String?>,
     error: MutableState<String?>,
-    onDateSelected: (String) -> Unit) {
-    var showDatePicker by remember { mutableStateOf(false) }
-    val datePickerState = rememberDatePickerState()
-    val selectedDate = datePickerState.selectedDateMillis?.let {
-        convertMillisToDate(it)
-    } ?: ""
+    onDateSelected: (String) -> Unit
+) {
 
-    LaunchedEffect(selectedDate) {
-        if (selectedDate.isNotEmpty()) {
-            onDateSelected(selectedDate)
-            showDatePicker = false
+    var showDatePicker by remember { mutableStateOf(false) }
+
+    val datePickerState = rememberDatePickerState(
+
+        initialSelectedDateMillis = valor.value?.let {
+            LocalDate.parse(it, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                .atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli()
+        }
+    )
+
+    val selectedDate = valor.value ?: ""
+
+    LaunchedEffect(datePickerState.selectedDateMillis) {
+        datePickerState.selectedDateMillis?.let {
+            val newDate = convertMillisToDate(it)
+            if (newDate != selectedDate) {
+                onDateSelected(newDate)
+                valor.value = newDate // Actualiza el valor seleccionado directamente
+                showDatePicker = false
+            }
         }
     }
 
-    Box(
-    ) {
+    Box {
         Column(
             modifier = Modifier.padding(8.dp)
         ) {

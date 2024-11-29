@@ -12,7 +12,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.login.components.AppButton
 import com.example.login.components.DatePicker
@@ -37,47 +36,49 @@ fun DatosPropietarioVehiculoTercero(
     val optionsSexo = Sexo.entries
     val optionsColor = ColorVehiculo.entries
     val optionsTipoVehiculo = TipoVehiculo.entries
+    val formState = crearSolicitudViewModel.propTerceroFormState
+
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .padding(25.dp)
     ) {
-        items(viewModel.campos.size) { index ->
-            val campo = viewModel.campos[index]
+        items(formState.campos.size) { index ->
+            val campo = formState.campos[index]
             FieldStringForms(
                 label = campo.label,
                 value = campo.value,
                 error = campo.error,
-                onValueChange = { newValue -> viewModel.onCampoChange(index, newValue) }
+                onValueChange = { newValue -> crearSolicitudViewModel.onCampoChangePropTercero(formState, index, newValue) }
             )
             if(index == 7){
                 DatePicker(
                     label = "Fecha de nacimiento",
-                    valor = viewModel.fechaNacimiento,
-                    error = viewModel.errorFechaNacimiento,
-                    onDateSelected = { newValue -> viewModel.setFechaNacimiento(newValue) }
+                    valor = formState.fechaNacimiento,
+                    error = formState.errorFechaNacimiento,
+                    onDateSelected = { newValue -> crearSolicitudViewModel.setFechaNacimientoPropTercero(formState,newValue) }
                 )
                 DropdownMenuSample(
                     title = "Sexo",
                     options = optionsSexo,
-                    selectedOption = viewModel.sexoSeleccionado.value,
-                    onOptionSelected = { viewModel.sexoSeleccionado.value = it },
+                    selectedOption = formState.sexoSeleccionado.value,
+                    onOptionSelected = { crearSolicitudViewModel.setSexoPropTercero(formState, it )},
                     label = { it.displayName }
                 )
             }
             if (index == 9){
                 DropdownMenuSample(
-                    title = "Tipo de vehiculo",
+                    title = "Tipo de vehículo",
                     options = optionsTipoVehiculo,
-                    selectedOption = viewModel.tipoVehiculo.value,
-                    onOptionSelected = { viewModel.tipoVehiculo.value = it },
+                    selectedOption = formState.tipoVehiculo.value,
+                    onOptionSelected = {  crearSolicitudViewModel.setTipoVehiculoTercero(formState, it ) },
                     label = { it.displayName }
                 )
                 DropdownMenuSample(
                     title = "Color",
                     options = optionsColor,
-                    selectedOption = viewModel.colorDelVehiculo.value,
-                    onOptionSelected = { viewModel.colorDelVehiculo.value = it },
+                    selectedOption = formState.colorDelVehiculo.value,
+                    onOptionSelected = {  crearSolicitudViewModel.setColorVehiculoTercero(formState, it ) },
                     label = { it.displayName }
                 )
             }
@@ -86,9 +87,9 @@ fun DatosPropietarioVehiculoTercero(
         item {
             DatePicker(
                 label = "Fecha vencimiento de la poliza",
-                valor = viewModel.fechaDeVencimiento,
-                error = viewModel.errorFechaVencimiento,
-                onDateSelected = { newValue -> viewModel.setFechaDeVencimiento(newValue) }
+                valor = formState.fechaDeVencimiento,
+                error = formState.errorFechaVencimiento,
+                onDateSelected = { newValue -> crearSolicitudViewModel.setFechaDeVencimientoPropTercero(formState,newValue) }
             )
         }
 
@@ -98,8 +99,8 @@ fun DatosPropietarioVehiculoTercero(
             Column {
                 AppButton(
                     action = {
-                        val solicitud = viewModel.crearSolicitudPoliza()
-
+                        val solicitud = crearSolicitudViewModel.crearSolicitudPolizaPropTercero(formState)
+                        Log.d("solicitud sera nula o no", solicitud.toString())
                         if (solicitud != null) {
                             crearSolicitudViewModel.datosPropietarioVehiculoTercero(solicitud)
                             navController.navigate(route = Rutas.ConductorVehiculoAsegurado.ruta)

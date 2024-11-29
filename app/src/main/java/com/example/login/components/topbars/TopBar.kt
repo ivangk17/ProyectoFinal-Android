@@ -69,7 +69,7 @@ fun TopBar(
                 text = title,
                 style = titleStyle,
                 color = titleColor,
-                fontSize = 25.sp
+                fontSize = 22.sp
             )
             if (description.isNotEmpty()) {
                 Text(

@@ -82,7 +82,8 @@ fun AppNavigation(
             PolizaDetailsScreen(
                 poliza = poliza,
                 polizaDetailsViewModel = viewModel,
-                navController = navController
+                navController = navController,
+                crearSolicitudViewModel
             )
         }
 
@@ -229,7 +230,6 @@ fun AppNavigation(
 
 
         composable(Rutas.DetallesDatosPerfil.ruta) {
-
             val detalleDatosPerfilViewModel: DetalleDatosPerfilViewModel = hiltViewModel()
 
             DetalleDatosPerfilScreen(detalleDatosPerfilViewModel, navController)

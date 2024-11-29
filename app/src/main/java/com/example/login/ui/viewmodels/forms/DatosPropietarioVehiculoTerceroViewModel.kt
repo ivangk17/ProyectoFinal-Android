@@ -22,7 +22,7 @@ import javax.inject.Inject
 class DatosPropietarioVehiculoTerceroViewModel @Inject constructor(
     getServicePolizas: GetServicePolizas
 ) : ViewModel() {
-
+/*
     var solicitud = Solicitud()
 
     var sexoSeleccionado =  mutableStateOf(Sexo.HOMBRE)
@@ -58,7 +58,8 @@ class DatosPropietarioVehiculoTerceroViewModel @Inject constructor(
         FormField("Poliza", tipo = TipoCampo.TEXTO),
     )
 
-
+*/
+    /*
     fun onCampoChange(index: Int, newValue: String) {
         campos[index].value.value = newValue
         campos[index].error.value = null
@@ -141,7 +142,7 @@ class DatosPropietarioVehiculoTerceroViewModel @Inject constructor(
     return solicitud
 
     }
-
+    */
 
 
 }

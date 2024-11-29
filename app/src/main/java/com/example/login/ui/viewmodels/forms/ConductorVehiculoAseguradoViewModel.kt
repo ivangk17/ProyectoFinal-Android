@@ -22,8 +22,8 @@ class ConductorVehiculoAseguradoViewModel @Inject constructor (
     getServicePolizas: GetServicePolizas
 ) : ViewModel() {
 
-    var solicitud = Solicitud()
-
+    //var solicitud = Solicitud()
+/*
     var sexoSeleccionado =  mutableStateOf(Sexo.HOMBRE)
 
     var fechaNacimiento = mutableStateOf<String?>(null)
@@ -35,8 +35,8 @@ class ConductorVehiculoAseguradoViewModel @Inject constructor (
     var fechaDeVencimiento = mutableStateOf<String?>(null)
     var errorFechaVencimiento = mutableStateOf<String?>(null)
 
-
-
+*/
+/*
     val campos = listOf(
         FormField("Nombre", tipo = TipoCampo.TEXTO),
         FormField("Apellido", tipo = TipoCampo.TEXTO),
@@ -57,7 +57,9 @@ class ConductorVehiculoAseguradoViewModel @Inject constructor (
         campos[index].value.value = newValue
         campos[index].error.value = null
     }
+    */
 
+/*
     fun setFechaNacimiento(newValue: String) {
         fechaNacimiento.value = newValue
         errorFechaNacimiento.value = null
@@ -74,8 +76,8 @@ class ConductorVehiculoAseguradoViewModel @Inject constructor (
     }
 
 
-
-
+*/
+/*
     @RequiresApi(Build.VERSION_CODES.O)
     fun crearSolicitudPoliza(): Solicitud? {
         validarCampos(campos)
@@ -132,5 +134,8 @@ class ConductorVehiculoAseguradoViewModel @Inject constructor (
 
         return solicitud
     }
+
+
+ */
 
 }

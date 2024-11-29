@@ -22,6 +22,8 @@ class ConductorVehiculoTerceroViewModel @Inject constructor(
     getServicePolizas: GetServicePolizas
 ) : ViewModel() {
 
+    /*
+
     var solicitud = Solicitud()
     var sexoSeleccionado =  mutableStateOf(Sexo.HOMBRE)
 
@@ -129,6 +131,6 @@ class ConductorVehiculoTerceroViewModel @Inject constructor(
 
         return solicitud
     }
-
+*/
 
 }

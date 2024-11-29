@@ -54,7 +54,7 @@ class AppNavigationActions(
         return when(location){
             Rutas.HomeScreen.ruta -> "Mis Pólizas"
             "${Rutas.PolizaDetalleScreen.ruta}/{polizaJson}" -> "Mi Póliza"
-            "${Rutas.DatosSiniestro.ruta}/{polizaJson}" -> "Datos Del Siniestro"
+            "${Rutas.DatosSiniestro.ruta}/{polizaJson}" -> "Datos del Siniestro"
             "${Rutas.InformacionAdicional.ruta}/{polizaJson}" -> "Información Adicional"
             "${Rutas.DatosPropietarioVehiculoAsegurado.ruta}/{polizaJson}" -> "Propietario Asegurado"
             Rutas.DatosPropietarioVehiculoTercero .ruta -> "Propietario Afectado"
@@ -63,8 +63,8 @@ class AppNavigationActions(
             Rutas.DaniosVehiculoAsegurado.ruta -> "Daños"
             Rutas.DaniosVehiculosTercero.ruta -> "Daños"
             Rutas.DatosAdicionales.ruta -> "Datos Adicionales"
-            Rutas.ConsecuenciaSiniestro.ruta -> "Consecuencia Del Siniestro"
-            Rutas.RelatoAccidente.ruta -> "Relato Del Accidente"
+            Rutas.ConsecuenciaSiniestro.ruta -> "Consecuencia del Siniestro"
+            Rutas.RelatoAccidente.ruta -> "Relato del Accidente"
             Rutas.LugarAsistencia.ruta -> "Lugar de Asistencia"
 
             "${Rutas.LoadingScreen.ruta}/{polizaJson}/{nextRoute}" -> ""

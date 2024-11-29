@@ -4,9 +4,7 @@ import androidx.compose.runtime.mutableStateOf
 import com.example.login.data.models.fields.FormField
 import com.example.login.data.models.fields.TipoCampo
 
-object DatosPropietarioAfectado {
-    val datos = listOf(
-        FormField("Aseguradora", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-        FormField("Poliza", mutableStateOf(""), tipo = TipoCampo.TEXTO),
-    )
-}
+data class DatosPropietarioAfectado(
+    val Aseguradora: String = "",
+    val FormField: String = ""
+)

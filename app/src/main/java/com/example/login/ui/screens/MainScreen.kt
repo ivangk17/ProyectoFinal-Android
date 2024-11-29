@@ -1,7 +1,9 @@
 package com.example.login.ui.screens
 
+import android.os.Build
 import android.util.Log
 import androidx.activity.compose.BackHandler
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -80,6 +82,7 @@ fun MainScreen(mainViewModel: MainActivityViewModel) {
     if (drawerState.isOpen) { BackHandler { scope.launch { drawerState.close() } } }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun AppScaffoldContent(
     navController: NavHostController,
