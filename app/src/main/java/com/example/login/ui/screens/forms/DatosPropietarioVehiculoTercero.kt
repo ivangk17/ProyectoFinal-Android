@@ -66,7 +66,7 @@ fun DatosPropietarioVehiculoTercero(
             }
             if (index == 9){
                 DropdownMenuSample(
-                    title = "Tipo de vehiculo",
+                    title = "Tipo de vehículo",
                     options = optionsTipoVehiculo,
                     selectedOption = viewModel.tipoVehiculo.value,
                     onOptionSelected = { viewModel.tipoVehiculo.value = it },

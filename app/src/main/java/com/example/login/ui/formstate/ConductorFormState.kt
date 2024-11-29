@@ -18,16 +18,16 @@ data class ConductorFormState(
         FormField("Nombre", tipo = TipoCampo.TEXTO),
         FormField("Apellido", tipo = TipoCampo.TEXTO),
         FormField("Calle", tipo = TipoCampo.TEXTO),
-        FormField("Numero", tipo = TipoCampo.NUMERICO),
+        FormField("Número", tipo = TipoCampo.NUMERICO),
         FormField("Piso", tipo = TipoCampo.NUMERICO),
         FormField("Departamento", tipo = TipoCampo.TEXTO),
-        FormField("Codigo Postal", tipo = TipoCampo.CODIGO_POSTAL),
+        FormField("Código Postal", tipo = TipoCampo.CODIGO_POSTAL),
         FormField("DNI", tipo = TipoCampo.DNI),
-        FormField("Telefono", tipo = TipoCampo.NUMERICO),
+        FormField("Teléfono", tipo = TipoCampo.NUMERICO),
         FormField("Email", tipo = TipoCampo.TEXTO),
         FormField("Nro Registro de Conducir", tipo = TipoCampo.TEXTO),
         FormField("Clase del Registro de Conducir", tipo = TipoCampo.TEXTO),
-        FormField("Relacion con el asegurado", tipo = TipoCampo.TEXTO),
+        FormField("Relación con el asegurado", tipo = TipoCampo.TEXTO),
     )
 )
 
