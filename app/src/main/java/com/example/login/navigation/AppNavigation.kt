@@ -82,7 +82,8 @@ fun AppNavigation(
             PolizaDetailsScreen(
                 poliza = poliza,
                 polizaDetailsViewModel = viewModel,
-                navController = navController
+                navController = navController,
+                crearSolicitudViewModel
             )
         }
 

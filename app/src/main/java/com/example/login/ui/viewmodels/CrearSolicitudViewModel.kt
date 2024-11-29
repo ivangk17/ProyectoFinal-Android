@@ -29,12 +29,12 @@ class CrearSolicitudViewModel @Inject constructor(
     private val crearSolicitudService: CrearSolicitudService
 ) : ViewModel() {
     var solicitud = Solicitud()
-    private val _solicitud = Solicitud()
-    private val _estadoEnvio = MutableStateFlow<EstadoEnvio>(EstadoEnvio.Idle)
-    val estadoEnvio: StateFlow<EstadoEnvio> = _estadoEnvio
+    private var _solicitud = Solicitud()
+   // private val _estadoEnvio = MutableStateFlow<EstadoEnvio>(EstadoEnvio.Idle)
+   // val estadoEnvio: StateFlow<EstadoEnvio> = _estadoEnvio
 
-    val conductorAseguradoFormState = ConductorFormState()
-    val conductorTerceroFormState = ConductorFormState()
+    var conductorAseguradoFormState = ConductorFormState()
+    var conductorTerceroFormState = ConductorFormState()
 
     //ConductorVehiculo (asegurado y tercero)
     fun onCampoChange(formState: ConductorFormState ,index: Int, newValue: String) {
@@ -422,12 +422,22 @@ class CrearSolicitudViewModel @Inject constructor(
         }
     }
 
+    fun reiniciarEstados() {
+        // Reiniciar todos los valores a sus estados iniciales
+        conductorAseguradoFormState = ConductorFormState()  // Por ejemplo
+        conductorTerceroFormState = ConductorFormState()  // Si tienes otro estado similar
+        solicitud = Solicitud()  // Reemplaza con una nueva instancia de solicitud
+        _solicitud = Solicitud()
+
+    }
+
+
 
 }
 
 sealed class EstadoEnvio {
-    object Idle : EstadoEnvio() // Estado inicial
-    object Cargando : EstadoEnvio() // Mientras se envía la solicitud
-    object Exitoso : EstadoEnvio() // Cuando el envío fue exitoso
-    data class Error(val mensaje: String) : EstadoEnvio() // Cuando ocurre un error
+    object Idle : EstadoEnvio()
+    object Cargando : EstadoEnvio()
+    object Exitoso : EstadoEnvio()
+    data class Error(val mensaje: String) : EstadoEnvio()
 }
