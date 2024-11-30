@@ -1,35 +1,37 @@
 package com.example.login.components.solicituddetails
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
+import com.example.login.R
 import com.example.login.components.TextSolicitudDetails
 import com.example.login.data.models.solicitud.datosSiniestros.DatosSiniestro
 
 @Composable
 fun DatosAdicionalesDetails(datosSiniestro: DatosSiniestro) {
-    var asistioGrua = "NO"
-    var asistioAmbulancia = "NO"
-    var asistioBomberos= "NO"
+    val negativo = stringResource(R.string.negativo)
+    val afirmativo = stringResource(R.string.afirmativo)
 
-    if(datosSiniestro.asistioGrua == true){
-        asistioGrua = "SI"
+    var asistioGrua = negativo
+    var asistioAmbulancia = negativo
+    var asistioBomberos = negativo
+
+    if (datosSiniestro.asistioGrua == true) {
+        asistioGrua = afirmativo
     }
-    if(datosSiniestro.asistioAmbulancia == true){
-        asistioAmbulancia = "SI"
+    if (datosSiniestro.asistioAmbulancia == true) {
+        asistioAmbulancia = afirmativo
     }
-    if(datosSiniestro.asistioBomberos == true){
-        asistioBomberos = "SI"
+    if (datosSiniestro.asistioBomberos == true) {
+        asistioBomberos = afirmativo
     }
 
     Column {
-            TextSolicitudDetails("Tipo de camino:", datosSiniestro.tipoCamino.toString())
-        Row(){
-            TextSolicitudDetails("Estado:", datosSiniestro.estadoCamino.toString())
-            TextSolicitudDetails("Estado del tiempo:", datosSiniestro.estadoTiempo.toString())
-        }
-            TextSolicitudDetails("¿Asistio grua?:", asistioGrua)
-            TextSolicitudDetails("¿Asistio ambulancia?:", asistioAmbulancia)
-            TextSolicitudDetails("¿Asistio bomberos?:", asistioBomberos)
+        TextSolicitudDetails(stringResource(R.string.tipo_camino), datosSiniestro.tipoCamino.toString())
+        TextSolicitudDetails(stringResource(R.string.estado), datosSiniestro.estadoCamino.toString())
+        TextSolicitudDetails(stringResource(R.string.estado_tiempo), datosSiniestro.estadoTiempo.toString())
+        TextSolicitudDetails(stringResource(R.string.asisto_grua), asistioGrua)
+        TextSolicitudDetails(stringResource(R.string.asisto_ambulancia), asistioAmbulancia)
+        TextSolicitudDetails(stringResource(R.string.asistio_bomberos), asistioBomberos)
     }
 }

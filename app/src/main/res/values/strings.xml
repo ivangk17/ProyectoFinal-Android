@@ -31,6 +31,13 @@
     <string name="telefono">Teléfono:</string>
     <string name="fecha_nac">Fecha de nacimiento:</string>
     <string name="sexo">Sexo:</string>
+    <string name="tipo_camino">Tipo de camino:</string>
+    <string name="estado_tiempo">Estado del tiempo:</string>
+    <string name="asisto_grua">¿Asistió grúa?:</string>
+    <string name="asisto_ambulancia">¿Asistió ambulancia?:</string>
+    <string name="asistio_bomberos">¿Asistieron los bomberos?:</string>
+    <string name="negativo">NO</string>
+    <string name="afirmativo">SÍ</string>
 
 
 </resources>
