@@ -3,18 +3,16 @@ package com.example.login.ui.viewmodels.homeviewmodel
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.login.data.models.poliza.Poliza
 import com.example.login.data.network.services.GetServicePolizas
-import com.example.login.ui.viewmodels.solicitudesviewmodel.SolicitudesUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getPolizasUseCase : GetServicePolizas
+    private val getPolizasUseCase: GetServicePolizas
 ) : ViewModel() {
 
     private val _uiState = mutableStateOf<HomeUiState>(HomeUiState.Loading)

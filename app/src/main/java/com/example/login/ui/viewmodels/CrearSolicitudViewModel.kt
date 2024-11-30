@@ -21,8 +21,6 @@ import com.example.login.utilities.validarFechaActual
 import com.example.login.utilities.validarFechaNacimiento
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -33,15 +31,13 @@ class CrearSolicitudViewModel @Inject constructor(
 ) : ViewModel() {
     var solicitud = Solicitud()
     private var _solicitud = Solicitud()
-   // private val _estadoEnvio = MutableStateFlow<EstadoEnvio>(EstadoEnvio.Idle)
-   // val estadoEnvio: StateFlow<EstadoEnvio> = _estadoEnvio
 
     var conductorAseguradoFormState = ConductorFormState()
     var conductorTerceroFormState = ConductorFormState()
     var propTerceroFormState = PropietarioTerceroFormState()
 
     //ConductorVehiculo (asegurado y tercero)
-    fun onCampoChange(formState: ConductorFormState ,index: Int, newValue: String) {
+    fun onCampoChange(formState: ConductorFormState, index: Int, newValue: String) {
         formState.campos[index].value.value = newValue
         formState.campos[index].error.value = null
     }
@@ -56,17 +52,21 @@ class CrearSolicitudViewModel @Inject constructor(
         formState.errorFechaExpedicion.value = null
     }
 
-    fun setFechaDeVencimiento(formState: ConductorFormState,newValue: String) {
+    fun setFechaDeVencimiento(formState: ConductorFormState, newValue: String) {
         formState.fechaDeVencimiento.value = newValue
         formState.errorFechaVencimiento.value = null
     }
 
-    fun setSexoSeleccionado(formState: ConductorFormState,nuevoSexo: Sexo) {
+    fun setSexoSeleccionado(formState: ConductorFormState, nuevoSexo: Sexo) {
         formState.sexoSeleccionado.value = nuevoSexo
     }
 
     //setters propietario tercero:
-    fun onCampoChangePropTercero(formState: PropietarioTerceroFormState,index: Int, newValue: String) {
+    fun onCampoChangePropTercero(
+        formState: PropietarioTerceroFormState,
+        index: Int,
+        newValue: String
+    ) {
         formState.campos[index].value.value = newValue
         formState.campos[index].error.value = null
     }
@@ -76,24 +76,29 @@ class CrearSolicitudViewModel @Inject constructor(
         formState.errorFechaNacimiento.value = null
     }
 
-    fun setFechaDeVencimientoPropTercero(formState: PropietarioTerceroFormState,newValue: String) {
+    fun setFechaDeVencimientoPropTercero(formState: PropietarioTerceroFormState, newValue: String) {
         formState.fechaDeVencimiento.value = newValue
         formState.errorFechaVencimiento.value = null
     }
 
-    fun setSexoPropTercero(formState: PropietarioTerceroFormState,nuevoSexo: Sexo) {
+    fun setSexoPropTercero(formState: PropietarioTerceroFormState, nuevoSexo: Sexo) {
         formState.sexoSeleccionado.value = nuevoSexo
     }
-    fun setTipoVehiculoTercero(formState: PropietarioTerceroFormState,nuevoTipo: TipoVehiculo) {
+
+    fun setTipoVehiculoTercero(formState: PropietarioTerceroFormState, nuevoTipo: TipoVehiculo) {
         formState.tipoVehiculo.value = nuevoTipo
     }
-    fun setColorVehiculoTercero(formState: PropietarioTerceroFormState,nuevoColor: ColorVehiculo) {
+
+    fun setColorVehiculoTercero(formState: PropietarioTerceroFormState, nuevoColor: ColorVehiculo) {
         formState.colorDelVehiculo.value = nuevoColor
     }
 
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun crearSolicitudPoliza(formState: ConductorFormState, tipoConductor: TipoConductor): Solicitud? {
+    fun crearSolicitudPoliza(
+        formState: ConductorFormState,
+        tipoConductor: TipoConductor
+    ): Solicitud? {
         validarCampos(formState.campos)
         validarFechaNacimiento(
             formState.fechaNacimiento,
@@ -167,66 +172,59 @@ class CrearSolicitudViewModel @Inject constructor(
     }
 
 
-
     @RequiresApi(Build.VERSION_CODES.O)
     fun crearSolicitudPolizaPropTercero(formState: PropietarioTerceroFormState): Solicitud? {
         validarCampos(formState.campos)
-        validarCampoMutable(formState.fechaDeVencimiento,formState.errorFechaVencimiento,"Debes completar la fecha de vencimiento")
+        validarCampoMutable(
+            formState.fechaDeVencimiento,
+            formState.errorFechaVencimiento,
+            "Debes completar la fecha de vencimiento"
+        )
         validarFechaNacimiento(formState.fechaNacimiento, formState.errorFechaNacimiento)
 
 
-        if(formState.campos.all { it.error.value == null } && formState.errorFechaNacimiento.value == null && formState.errorFechaVencimiento.value == null){
+        if (formState.campos.all { it.error.value == null } && formState.errorFechaNacimiento.value == null && formState.errorFechaVencimiento.value == null) {
             solicitud.propietarioAfectado.datosPersona.nombre = formState.campos[0].value.value
             solicitud.propietarioAfectado.datosPersona.apellido = formState.campos[1].value.value
-            solicitud.propietarioAfectado.datosPersona.nombreCompleto = "${formState.campos[0].value.value} ${formState.campos[1].value.value}"
-            solicitud.propietarioAfectado.datosPersona.domicilio.calle = formState.campos[2].value.value
-            solicitud.propietarioAfectado.datosPersona.domicilio.numero = formState.campos[3].value.value.toInt()
-            solicitud.propietarioAfectado.datosPersona.domicilio.piso = if (formState.campos[4].value.value.isEmpty()) null else formState.campos[4].value.value
-            solicitud.propietarioAfectado.datosPersona.domicilio.departamento = formState.campos[5].value.value
-            solicitud.propietarioAfectado.datosPersona.domicilio.codigoPostal = formState.campos[6].value.value.toInt()
+            solicitud.propietarioAfectado.datosPersona.nombreCompleto =
+                "${formState.campos[0].value.value} ${formState.campos[1].value.value}"
+            solicitud.propietarioAfectado.datosPersona.domicilio.calle =
+                formState.campos[2].value.value
+            solicitud.propietarioAfectado.datosPersona.domicilio.numero =
+                formState.campos[3].value.value.toInt()
+            solicitud.propietarioAfectado.datosPersona.domicilio.piso =
+                if (formState.campos[4].value.value.isEmpty()) null else formState.campos[4].value.value
+            solicitud.propietarioAfectado.datosPersona.domicilio.departamento =
+                formState.campos[5].value.value
+            solicitud.propietarioAfectado.datosPersona.domicilio.codigoPostal =
+                formState.campos[6].value.value.toInt()
             solicitud.propietarioAfectado.datosPersona.dni = formState.campos[7].value.value.toInt()
             solicitud.propietarioAfectado.datosPersona.email = formState.campos[8].value.value
             solicitud.propietarioAfectado.datosPersona.telefono = formState.campos[9].value.value
             solicitud.propietarioAfectado.datosPersona.sexo = formState.sexoSeleccionado.value
-            solicitud.propietarioAfectado.datosPersona.fechaDeNacimiento = formState.fechaNacimiento.value!!
-            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.tipoVehiculo = formState.tipoVehiculo.value
-            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.marca = formState.campos[10].value.value
-            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.modelo = formState.campos[11].value.value
-            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.color = formState.colorDelVehiculo.value
-            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.anio = formState.campos[12].value.value.toInt()
-            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.dominio = formState.campos[13].value.value
-            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.aseguradora = formState.campos[14].value.value
-            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.poliza = formState.campos[15].value.value
-            solicitud.propietarioAfectado.fechaVencimientoPoliza = formState.fechaDeVencimiento.value!!
+            solicitud.propietarioAfectado.datosPersona.fechaDeNacimiento =
+                formState.fechaNacimiento.value!!
+            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.tipoVehiculo =
+                formState.tipoVehiculo.value
+            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.marca =
+                formState.campos[10].value.value
+            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.modelo =
+                formState.campos[11].value.value
+            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.color =
+                formState.colorDelVehiculo.value
+            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.anio =
+                formState.campos[12].value.value.toInt()
+            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.dominio =
+                formState.campos[13].value.value
+            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.aseguradora =
+                formState.campos[14].value.value
+            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.poliza =
+                formState.campos[15].value.value
+            solicitud.propietarioAfectado.fechaVencimientoPoliza =
+                formState.fechaDeVencimiento.value!!
 
 
-
-
-//            solicitud.propietarioAfectado.datosPersona.nombre = "Nombre";
-//            solicitud.propietarioAfectado.datosPersona.apellido = "Apellido";
-//            solicitud.propietarioAfectado.datosPersona.domicilio.calle = "Calle";
-//            solicitud.propietarioAfectado.datosPersona.domicilio.numero = 1020
-//            solicitud.propietarioAfectado.datosPersona.domicilio.piso = null
-//            solicitud.propietarioAfectado.datosPersona.domicilio.departamento = null
-//            solicitud.propietarioAfectado.datosPersona.domicilio.codigoPostal = 7300;
-//            solicitud.propietarioAfectado.datosPersona.dni = 98764284;
-//            solicitud.propietarioAfectado.datosPersona.email = "email@example.com";
-//            solicitud.propietarioAfectado.datosPersona.telefono = "123456789";
-//            solicitud.propietarioAfectado.datosPersona.sexo = Sexo.MUJER
-//            solicitud.propietarioAfectado.datosPersona.fechaDeNacimiento = "1990-10-10"
-//
-//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.tipoVehiculo = TipoVehiculo.CAMION
-//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.marca = "Marca";
-//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.modelo = "Modelo";
-//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.color = ColorVehiculo.VERDE
-//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.anio = 2020; // Ejemplo de año
-//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.datosVehiculo.dominio = "Dominio";
-//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.aseguradora = "Aseguradora";
-//            solicitud.propietarioAfectado.vehiculoPropietadoAfectado.poliza = "Poliza";
-//
-//            solicitud.propietarioAfectado.fechaVencimientoPoliza = "1990-10-10"; // Ejemplo de fecha exacta
-
-        }else{
+        } else {
             return null
         }
 
@@ -522,7 +520,7 @@ class CrearSolicitudViewModel @Inject constructor(
 
     fun reiniciarEstados() {
         // Reiniciar todos los valores a sus estados iniciales
-        conductorAseguradoFormState = ConductorFormState()  // Por ejemplo
+        conductorAseguradoFormState = ConductorFormState()
         conductorTerceroFormState = ConductorFormState()
         propTerceroFormState = PropietarioTerceroFormState()
         solicitud = Solicitud()  // Reemplaza con una nueva instancia de solicitud
@@ -531,12 +529,8 @@ class CrearSolicitudViewModel @Inject constructor(
     }
 
 
-
 }
 
 sealed class EstadoEnvio {
-    object Idle : EstadoEnvio()
-    object Cargando : EstadoEnvio()
-    object Exitoso : EstadoEnvio()
     data class Error(val mensaje: String) : EstadoEnvio()
 }

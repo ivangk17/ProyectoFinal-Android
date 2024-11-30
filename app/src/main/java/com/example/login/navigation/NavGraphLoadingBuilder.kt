@@ -2,7 +2,6 @@ package com.example.login.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.ViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
@@ -11,7 +10,7 @@ import com.example.login.data.models.poliza.Poliza
 import com.example.login.ui.viewmodels.LoadingViewModel
 import com.example.login.utilities.obtenerObjetoDeNavegacion
 
-fun  NavGraphBuilder.rutaComposableLoading(
+fun NavGraphBuilder.rutaComposableLoading(
     route: String,
     content: @Composable (Poliza, LoadingViewModel, String) -> Unit
 ) {

@@ -24,7 +24,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DatosPropietarioVehiculoAseguradoViewModel @Inject constructor(
-    getServicePolizas: GetServicePolizas,
     private val getServiceUser: GetServiceUser
 ): ViewModel() {
     var Solicitud = Solicitud()

@@ -19,8 +19,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LugarAsistenciaViewModel @Inject constructor(
-    private val apiService: Api,
-    getServicePolizas: GetServicePolizas
 ) : ViewModel() {
     var solicitud = Solicitud()
     var estadoLesiones = mutableStateOf(EstadoLesiones.LEVE)

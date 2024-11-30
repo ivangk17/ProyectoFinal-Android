@@ -1,5 +1,5 @@
 package com.example.login.data.network
-import com.example.login.data.network.Api
+
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,6 +34,7 @@ object RetrofitClient {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
     // Get the ApiService instance from Retrofit
     @Provides
     @Singleton

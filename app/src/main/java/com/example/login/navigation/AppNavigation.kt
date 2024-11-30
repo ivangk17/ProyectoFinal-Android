@@ -65,8 +65,7 @@ fun AppNavigation(
 
         rutaComposableLoading(
             route = Rutas.LoadingScreen.ruta
-        ) {
-            poliza, viewModel, nextRoute ->
+        ) { poliza, viewModel, nextRoute ->
             LoadingScreen(
                 poliza = poliza,
                 viewModel = viewModel,
@@ -77,11 +76,9 @@ fun AppNavigation(
 
         rutaComposablePolizaDetails(
             route = Rutas.PolizaDetalleScreen.ruta
-        ) { poliza, viewModel ->
-
+        ) { poliza ->
             PolizaDetailsScreen(
                 poliza = poliza,
-                polizaDetailsViewModel = viewModel,
                 navController = navController,
                 crearSolicitudViewModel
             )
@@ -124,24 +121,23 @@ fun AppNavigation(
         rutaComposablePropietarioVehiculoTercero(
             route = Rutas.DatosPropietarioVehiculoTercero.ruta,
 
-        ) { viewModel ->
+            ) {
             DatosPropietarioVehiculoTercero(
                 navController,
-                viewModel,
                 crearSolicitudViewModel
             )
         }
 
         rutaComposableConductorVehiculoAsegurado(
             route = Rutas.ConductorVehiculoAsegurado.ruta
-        ) { viewModel ->
-            ConductorVehiculoAsegurado(navController, viewModel,crearSolicitudViewModel)
+        ) {
+            ConductorVehiculoAsegurado(navController, crearSolicitudViewModel)
         }
 
         rutaComposableConductorVehiculoTercero(
             route = Rutas.ConductorVehiculoTercero.ruta
-        ) { viewModel ->
-            ConductorVehiculoTercero(navController, viewModel, crearSolicitudViewModel)
+        ) {
+            ConductorVehiculoTercero(navController, crearSolicitudViewModel)
         }
 
         rutaComposableDaniosVehiculoAsegurado(
@@ -190,8 +186,7 @@ fun AppNavigation(
 
         rutaComposableLugarAsistencia(
             route = Rutas.LugarAsistencia.ruta,
-        ) {
-            viewModel ->
+        ) { viewModel ->
             LugarAsistencia(navController, viewModel, crearSolicitudViewModel)
         }
 
@@ -209,13 +204,13 @@ fun AppNavigation(
         rutaComposableSolicitudDetalle(
             route = Rutas.SolicitudDetalle.ruta
         ) { solicitudId, viewModel ->
-            SolicitudDetailsScreen(solicitudId, viewModel, navController)
+            SolicitudDetailsScreen(solicitudId, viewModel)
         }
 
 
 
         composable(Rutas.PerfilScreen.ruta) {
-            val profileViewModel: ProfileViewModel =  hiltViewModel()
+            val profileViewModel: ProfileViewModel = hiltViewModel()
 
             ProfileScreen(profileViewModel, navController)
         }
@@ -223,8 +218,9 @@ fun AppNavigation(
         composable(Rutas.ChangePassword.ruta) {
             val changePasswordViewModel: ChangePasswordViewModel = hiltViewModel()
             ChangePasswordScreen(
-                changePasswordViewModel= changePasswordViewModel,
-                navController = navController)
+                changePasswordViewModel = changePasswordViewModel,
+                navController = navController
+            )
         }
 
 

@@ -13,7 +13,7 @@ import com.example.login.ui.viewmodels.DetalleDatosPerfilViewModel
 fun DetalleDatosPerfilScreen(
     viewModel: DetalleDatosPerfilViewModel,
     navController: NavHostController,
-){
+) {
     val user = viewModel.loadInfoUser()
 
     Column {

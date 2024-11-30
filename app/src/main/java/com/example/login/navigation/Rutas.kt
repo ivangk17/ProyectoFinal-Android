@@ -5,8 +5,7 @@ sealed class Rutas(val ruta: String) {
     object HomeScreen : Rutas("homeScreen")
     object PolizaDetalleScreen : Rutas("polizaDetalleScreen")
     object LoadingScreen : Rutas("loadingScreen")
-    object SolicitudPolizaScreen : Rutas("solicitudPolizaScreen")
-    object DatosSiniestro: Rutas("DatosSiniestroScreen")
+    object DatosSiniestro : Rutas("DatosSiniestroScreen")
     object InformacionAdicional : Rutas("informacionAdicionalScreen")
     object DatosPropietarioVehiculoAsegurado : Rutas("datosPropietarioVehiculoAseguradoScreen")
     object DatosPropietarioVehiculoTercero : Rutas("datosPropietarioVehiculoTerceroScreen")
@@ -18,22 +17,16 @@ sealed class Rutas(val ruta: String) {
     object ConsecuenciaSiniestro : Rutas("consecuenciaSiniestroScreen")
     object RelatoAccidente : Rutas("relatoAccidenteScreen")
     object LugarAsistencia : Rutas("lugarAsistenciaScreen")
-    object SolicitudEnviada: Rutas("solicitudEnviada")
+    object SolicitudEnviada : Rutas("solicitudEnviada")
     object SolicitudesScreen : Rutas("solicitudesScreen")
-    object PerfilScreen: Rutas("perfilScreen")
-    object ChangePassword: Rutas("changePassword")
+    object PerfilScreen : Rutas("perfilScreen")
+    object ChangePassword : Rutas("changePassword")
     object DetallesDatosPerfil : Rutas("detalleDatosPerfil")
     object CambiarDatosPerfil : Rutas("cambiarDatosPerfil")
-    object RecoverPass: Rutas("recoverPass")
-
+    object RecoverPass : Rutas("recoverPass")
 
 
     object SolicitudDetalle : Rutas("solicitudDetalle/{solicitudId}") {
         fun rutaConId(solicitudId: String) = "solicitudDetalle/$solicitudId"
     }
-
-
-
-
-
 }

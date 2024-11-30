@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,7 +27,7 @@ fun PolizaCard(poliza: Poliza, onClick: () -> Unit) {
     Card(
         shape = RoundedCornerShape(11.dp),
         modifier = Modifier
-            .padding(start = 12.dp, end =12.dp, top = 7.dp, bottom = 6.dp)
+            .padding(start = 12.dp, end = 12.dp, top = 7.dp, bottom = 6.dp)
             .fillMaxWidth()
             .clickable { onClick() },
         elevation = CardDefaults.cardElevation(4.dp),

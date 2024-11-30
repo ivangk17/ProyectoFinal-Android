@@ -10,7 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.login.components.MultipleLine
 import com.example.login.navigation.Rutas
@@ -23,7 +22,7 @@ fun RelatoAccidente(
     navController: NavController,
     viewModel: RelatoAccidenteViewModel,
     crearSolicitudViewModel: CrearSolicitudViewModel
-){
+) {
     val context = LocalContext.current
 
     Column(

@@ -10,7 +10,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.login.components.AppButton
 import com.example.login.components.DropdownMenuSample
@@ -28,7 +27,7 @@ fun InformacionAdicional(
     viewModel: InformacionAdicionalViewModel,
     poliza: Poliza,
     crearSolicitudViewModel: CrearSolicitudViewModel
-){
+) {
     val options = HuboDenuncia.entries
     val context = LocalContext.current
     Column(
@@ -37,7 +36,7 @@ fun InformacionAdicional(
             .padding(25.dp)
     ) {
         LazyColumn(modifier = Modifier.weight(1f)) {
-            items(viewModel.camposCheckeables.size){ index ->
+            items(viewModel.camposCheckeables.size) { index ->
                 val campo = viewModel.camposCheckeables[index]
                 SwitchCustom(
                     checked = campo.value.value,
@@ -67,7 +66,8 @@ fun InformacionAdicional(
                         navController.navigate("${Rutas.LoadingScreen.ruta}/$polizaJson/${Rutas.DatosPropietarioVehiculoAsegurado.ruta}")
                     },
                     modifier = Modifier.align(Alignment.CenterHorizontally),
-                    text = "Siguiente")
+                    text = "Siguiente"
+                )
 
             }
         }

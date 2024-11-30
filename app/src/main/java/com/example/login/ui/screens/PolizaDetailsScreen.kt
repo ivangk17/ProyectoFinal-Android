@@ -16,7 +16,6 @@ import com.example.login.ui.viewmodels.CrearSolicitudViewModel
 @Composable
 fun PolizaDetailsScreen(
     poliza: Poliza,
-    polizaDetailsViewModel: ViewModel,
     navController: NavHostController,
     crearSolicitudViewModel: CrearSolicitudViewModel
 ) {

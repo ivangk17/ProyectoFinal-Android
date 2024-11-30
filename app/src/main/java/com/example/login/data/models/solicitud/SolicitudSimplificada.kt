@@ -9,9 +9,6 @@ data class SolicitudSimplificada(
 )
 
 
-
-
-
 fun Solicitud.aSolicitudSimplificada(token: String): SolicitudSimplificada {
     return SolicitudSimplificada(
         _id = _id,

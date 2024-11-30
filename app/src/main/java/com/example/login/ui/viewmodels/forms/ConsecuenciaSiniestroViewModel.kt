@@ -10,7 +10,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ConsecuenciaSiniestroViewModel @Inject constructor(
-    getServicePolizas: GetServicePolizas
 ): ViewModel() {
 
     var solicitud = Solicitud()

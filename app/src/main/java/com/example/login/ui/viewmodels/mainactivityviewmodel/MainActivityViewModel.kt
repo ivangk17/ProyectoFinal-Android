@@ -17,15 +17,16 @@ import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class MainActivityViewModel @Inject constructor(private val loginService: LoginService) : ViewModel() {
-
+class MainActivityViewModel @Inject constructor(private val loginService: LoginService) :
+    ViewModel() {
 
     private val _drawerShouldBeOpened = MutableStateFlow(false)
     val drawerShouldBeOpened = _drawerShouldBeOpened.asStateFlow()
 
     private val _email = MutableStateFlow("")
     val email: StateFlow<String> = _email
- //   val user = Utility().decodeJWT(Token.token)
+
+
     private val _isAuthenticated = MutableStateFlow(false)
     val isAuthenticated: StateFlow<Boolean> = _isAuthenticated
 
@@ -48,32 +49,12 @@ class MainActivityViewModel @Inject constructor(private val loginService: LoginS
     }
 
 
-    /*
-
-    private val _email = MutableStateFlow("")
-    val email: StateFlow<String> = _email
-
     fun updateEmail() {
-        val user = Utility().decodeJWT(Token.token)
-        _email.value = user.email
-    }
-
-     */
-    /*
-    fun onUserLoggedIn(token: String) {
-        Token.token = token
-        updateEmail()
-    }
-*/
-
-    fun updateEmail() {
-        if(Token.token.isNotEmpty()){
+        if (Token.token.isNotEmpty()) {
             val user = Utility().decodeJWT(Token.token)
             _email.value = user.email
         }
-
     }
-
 
 
     fun openDrawer() {
@@ -85,10 +66,4 @@ class MainActivityViewModel @Inject constructor(private val loginService: LoginS
     }
 
 
-
-
-  //  val loginRoute = Rutas.LoginScreen.ruta
-
 }
-//  route = Rutas.HomeScreen.ruta
-//     route = Rutas.SolicitudesScreen.ruta
