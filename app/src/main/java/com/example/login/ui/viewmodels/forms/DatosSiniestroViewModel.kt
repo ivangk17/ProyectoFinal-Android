@@ -18,7 +18,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DatosSiniestroViewModel @Inject constructor(
-    private val getServicePolizas: GetServicePolizas
 ) : ViewModel() {
 
     val solicitud = Solicitud()

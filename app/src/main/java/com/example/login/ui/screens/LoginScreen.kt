@@ -1,14 +1,25 @@
 package com.example.login.ui.screens
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.BasicText
-import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -29,15 +40,14 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.login.R
 import com.example.login.components.AppButton
-import com.example.login.data.models.UserLogin
 import com.example.login.components.Field
+import com.example.login.data.models.UserLogin
 import com.example.login.navigation.Rutas
 import com.example.login.ui.viewmodels.mainactivityviewmodel.MainActivityViewModel
 import com.example.login.utilities.isEmailValid
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-
 
 
 @Composable
@@ -108,8 +118,11 @@ fun LoginScreen(
                     }
                     Icon(
                         imageVector = icon,
-                        contentDescription = if (passwordVisible)  stringResource(R.string.hide_password) else stringResource(R.string.show_password),
-                        modifier = Modifier.padding(start = 0.dp, bottom = 1.dp, end= 15.dp)
+                        contentDescription = if (passwordVisible) stringResource(R.string.hide_password) else stringResource(
+                            R.string.show_password
+                        ),
+                        modifier = Modifier
+                            .padding(start = 0.dp, bottom = 1.dp, end = 15.dp)
                             .size(25.dp)
 
                     )
@@ -143,10 +156,10 @@ fun LoginScreen(
                     modifier = Modifier
                         .padding(start = 13.dp)
                         .clickable {
-                        isClicked = !isClicked
+                            isClicked = !isClicked
 
-                        navController.navigate(Rutas.RecoverPass.ruta)
-                    }
+                            navController.navigate(Rutas.RecoverPass.ruta)
+                        }
                 )
             }
 

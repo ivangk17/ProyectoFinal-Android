@@ -2,12 +2,9 @@ package com.example.login.ui.screens.changepassword
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.example.login.components.AppButton
 import com.example.login.components.FieldStringForms
@@ -23,9 +20,9 @@ fun ChangePasswordScreen(
     val currentPassword = changePasswordViewModel.currentPassword
     val context = LocalContext.current
 
-        LaunchedEffect(Unit) {
-            changePasswordViewModel.loadInfoUser()
-        }
+    LaunchedEffect(Unit) {
+        changePasswordViewModel.loadInfoUser()
+    }
 
     LazyColumn {
 
@@ -36,8 +33,13 @@ fun ChangePasswordScreen(
                 label = campo.label,
                 value = campo.value,
                 error = campo.error,
-                onValueChange = { newValue -> changePasswordViewModel.onCampoChange(index, newValue) },
-                isPassword= campo.isPassword
+                onValueChange = { newValue ->
+                    changePasswordViewModel.onCampoChange(
+                        index,
+                        newValue
+                    )
+                },
+                isPassword = campo.isPassword
             )
 
         }
@@ -48,7 +50,7 @@ fun ChangePasswordScreen(
                 value = currentPassword.value,
                 error = currentPassword.error,
                 onValueChange = { newValue -> changePasswordViewModel.onCurrentPassChange(newValue) },
-                isPassword= currentPassword.isPassword
+                isPassword = currentPassword.isPassword
             )
         }
 

@@ -7,16 +7,11 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.login.data.models.poliza.Poliza
-import com.example.login.ui.viewmodels.CrearSolicitudViewModel
-import com.example.login.ui.viewmodels.PolizaDetailsViewModel
-import com.example.login.ui.viewmodels.forms.ConductorVehiculoAseguradoViewModel
-import com.example.login.ui.viewmodels.forms.ConductorVehiculoTerceroViewModel
 import com.example.login.ui.viewmodels.forms.ConsecuenciaSiniestroViewModel
 import com.example.login.ui.viewmodels.forms.DaniosVehiculoAseguradoViewModel
 import com.example.login.ui.viewmodels.forms.DaniosVehiculoTerceroViewModel
 import com.example.login.ui.viewmodels.forms.DatosAdicionalesViewModel
 import com.example.login.ui.viewmodels.forms.DatosPropietarioVehiculoAseguradoViewModel
-import com.example.login.ui.viewmodels.forms.DatosPropietarioVehiculoTerceroViewModel
 import com.example.login.ui.viewmodels.forms.DatosSiniestroViewModel
 import com.example.login.ui.viewmodels.forms.InformacionAdicionalViewModel
 import com.example.login.ui.viewmodels.forms.LugarAsistenciaViewModel
@@ -27,36 +22,34 @@ import com.example.login.utilities.obtenerObjetoDeNavegacion
 
 fun NavGraphBuilder.rutaComposablePropietarioVehiculoTercero(
     route: String,
-    content: @Composable ( DatosPropietarioVehiculoTerceroViewModel) -> Unit
+    content: @Composable () -> Unit
 ) {
     composable(
         route = route,
     ) { backStackEntry ->
-        val viewModel:DatosPropietarioVehiculoTerceroViewModel = hiltViewModel()
-        content(viewModel)
+        content()
     }
 }
 
 fun NavGraphBuilder.rutaComposableConductorVehiculoAsegurado(
     route: String,
-    content: @Composable (ConductorVehiculoAseguradoViewModel) -> Unit
+    content: @Composable () -> Unit
 ) {
     composable(
         route = route,
     ) { backStackEntry ->
-        val viewModel:ConductorVehiculoAseguradoViewModel = hiltViewModel()
-        content(viewModel)
+        content()
     }
 }
+
 fun NavGraphBuilder.rutaComposableConductorVehiculoTercero(
     route: String,
-    content: @Composable (ConductorVehiculoTerceroViewModel) -> Unit
+    content: @Composable () -> Unit
 ) {
     composable(
         route = route,
     ) { backStackEntry ->
-        val viewModel:ConductorVehiculoTerceroViewModel = hiltViewModel()
-        content(viewModel)
+        content()
     }
 }
 
@@ -67,7 +60,7 @@ fun NavGraphBuilder.rutaComposableDaniosVehiculoAsegurado(
     composable(
         route = route,
     ) { backStackEntry ->
-        val viewModel:DaniosVehiculoAseguradoViewModel = hiltViewModel()
+        val viewModel: DaniosVehiculoAseguradoViewModel = hiltViewModel()
         content(viewModel)
     }
 }
@@ -79,7 +72,7 @@ fun NavGraphBuilder.rutaComposableDaniosVehiculoTercero(
     composable(
         route = route,
     ) { backStackEntry ->
-        val viewModel:DaniosVehiculoTerceroViewModel = hiltViewModel()
+        val viewModel: DaniosVehiculoTerceroViewModel = hiltViewModel()
         content(viewModel)
     }
 }
@@ -91,7 +84,7 @@ fun NavGraphBuilder.rutaComposableDatosAdicionales(
     composable(
         route = route,
     ) { backStackEntry ->
-        val viewModel:DatosAdicionalesViewModel = hiltViewModel()
+        val viewModel: DatosAdicionalesViewModel = hiltViewModel()
         content(viewModel)
     }
 }
@@ -103,7 +96,7 @@ fun NavGraphBuilder.rutaComposableConsecuenciaSiniestro(
     composable(
         route = route,
     ) { backStackEntry ->
-        val viewModel:ConsecuenciaSiniestroViewModel = hiltViewModel()
+        val viewModel: ConsecuenciaSiniestroViewModel = hiltViewModel()
         content(viewModel)
     }
 }
@@ -116,7 +109,7 @@ fun NavGraphBuilder.rutaComposableRelatoAccidente(
     composable(
         route = route,
     ) { backStackEntry ->
-        val viewModel:RelatoAccidenteViewModel = hiltViewModel()
+        val viewModel: RelatoAccidenteViewModel = hiltViewModel()
         content(viewModel)
     }
 }
@@ -128,7 +121,7 @@ fun NavGraphBuilder.rutaComposableLugarAsistencia(
     composable(
         route = route,
     ) { backStackEntry ->
-        val viewModel:LugarAsistenciaViewModel = hiltViewModel()
+        val viewModel: LugarAsistenciaViewModel = hiltViewModel()
         content(viewModel)
     }
 }
@@ -136,7 +129,7 @@ fun NavGraphBuilder.rutaComposableLugarAsistencia(
 
 fun NavGraphBuilder.rutaComposablePolizaDetails(
     route: String,
-    content: @Composable (Poliza, PolizaDetailsViewModel) -> Unit
+    content: @Composable (Poliza) -> Unit
 ) {
     composable(
         route = "$route/{polizaJson}",
@@ -144,8 +137,7 @@ fun NavGraphBuilder.rutaComposablePolizaDetails(
     ) { backStackEntry ->
         val poliza = obtenerObjetoDeNavegacion<Poliza>(backStackEntry, "polizaJson")
         if (poliza != null) {
-            val viewModel: PolizaDetailsViewModel = hiltViewModel()
-            content(poliza, viewModel)
+            content(poliza)
         }
     }
 }
@@ -199,8 +191,6 @@ fun NavGraphBuilder.rutaComposablePropietarioVehiculoAsegurado(
 }
 
 
-
-
 fun NavGraphBuilder.rutaComposableSolicitudDetalle(
     route: String,
     content: @Composable (String, SolicitudDetailsViewModel) -> Unit
@@ -211,7 +201,7 @@ fun NavGraphBuilder.rutaComposableSolicitudDetalle(
     ) { backStackEntry ->
         val solicitudId = backStackEntry.arguments?.getString("solicitudId")
         if (solicitudId != null) {
-            val viewModel:SolicitudDetailsViewModel = hiltViewModel()
+            val viewModel: SolicitudDetailsViewModel = hiltViewModel()
             content(solicitudId, viewModel)
         }
     }

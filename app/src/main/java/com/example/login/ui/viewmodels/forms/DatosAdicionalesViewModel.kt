@@ -17,7 +17,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DatosAdicionalesViewModel @Inject constructor(
-    getServicePolizas: GetServicePolizas
 ): ViewModel() {
 
     var solicitud = Solicitud()

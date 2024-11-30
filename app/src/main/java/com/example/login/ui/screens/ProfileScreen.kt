@@ -72,9 +72,9 @@ fun ProfileScreen(
                 modifier = Modifier.offset(y = (-5).dp),
                 buttonName = "Cerrar sesión",
                 onClick = {
-                    navController.navigate(Rutas.LoginScreen.ruta){
+                    navController.navigate(Rutas.LoginScreen.ruta) {
                         Log.d("click", "click")
-                        popUpTo(0) {inclusive = true}
+                        popUpTo(0) { inclusive = true }
                     }
                 }
             )

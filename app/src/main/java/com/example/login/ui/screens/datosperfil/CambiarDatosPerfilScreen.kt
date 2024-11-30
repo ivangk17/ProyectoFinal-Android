@@ -1,6 +1,5 @@
 package com.example.login.ui.screens.datosperfil
 
-import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -13,12 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.login.components.DropdownMenuSample
 import com.example.login.components.FieldStringForms
 import com.example.login.navigation.Rutas
-import com.example.login.ui.screens.gson
 import com.example.login.ui.viewmodels.CambiarDatosPerfilViewModel
-import com.example.login.utilities.showToastError
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -32,7 +28,7 @@ fun CambiarDatosPerfilScreen(
     val scope = CoroutineScope(Dispatchers.Main)
     val user = viewModel.loadInfoUser()
 
-    Column (
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(25.dp)
@@ -55,8 +51,8 @@ fun CambiarDatosPerfilScreen(
                     onClick = {
                         scope.launch {
                             if (viewModel.editarPerfil(context)) {
-                                navController.navigate(route = Rutas.DetallesDatosPerfil.ruta){
-                                    popUpTo(Rutas.DetallesDatosPerfil.ruta){inclusive = true}
+                                navController.navigate(route = Rutas.DetallesDatosPerfil.ruta) {
+                                    popUpTo(Rutas.DetallesDatosPerfil.ruta) { inclusive = true }
                                 }
                             }
                         }

@@ -1,6 +1,5 @@
 package com.example.login.ui.screens.forms
 
-//import androidx.compose.foundation.layout.FlowColumnScopeInstance.align
 import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,7 +10,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.login.components.AppButton
 import com.example.login.components.DropdownMenuSample
@@ -32,24 +30,20 @@ fun DatosPropietarioVehiculoAsegurado(
     viewModel: DatosPropietarioVehiculoAseguradoViewModel,
     polizaParametro: Poliza,
     crearSolicitudViewModel: CrearSolicitudViewModel
-){
+) {
     val context = LocalContext.current
     val optionsUsoVehiculo = UsoDelVehiculo.entries //esto devuelve una lista de opciones
     val optionsColor = ColorVehiculo.entries
     val optionsSexo = Sexo.entries
-    val user = viewModel.loadInfoUser(polizaParametro) //TODO NO BORRAR ESTA VARIABLE (porque sino no carga la info del usuario logueado)
+    val user =
+        viewModel.loadInfoUser(polizaParametro) //TODO NO BORRAR ESTA VARIABLE (porque sino no carga la info del usuario logueado)
 
-//    LaunchedEffect(Unit) {
-//        viewModel.loadInfoUser()
-//
-//    }
-
-    Column (
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(25.dp)
-    ){
-        LazyColumn (modifier = Modifier.weight(1f)) {
+    ) {
+        LazyColumn(modifier = Modifier.weight(1f)) {
 
             items(viewModel.campos.size) { index ->
                 val campo = viewModel.campos[index]
@@ -59,9 +53,9 @@ fun DatosPropietarioVehiculoAsegurado(
                     value = campo.value,
                     error = campo.error,
                     onValueChange = { newValue -> viewModel.onCampoChange(index, newValue) }
-                    )
+                )
 
-                if(index == 8){
+                if (index == 8) {
                     DropdownMenuSample(
                         title = "Sexo",
                         options = optionsSexo,
@@ -70,7 +64,7 @@ fun DatosPropietarioVehiculoAsegurado(
                         label = { it.displayName }
                     )
                 }
-                }
+            }
 
             item {
                 DropdownMenuSample(
@@ -88,10 +82,9 @@ fun DatosPropietarioVehiculoAsegurado(
                     label = { it.displayName }
                 )
 
-                AppButton  (
+                AppButton(
                     action = {
                         val solicitud = viewModel.crearSolicitudPoliza()
-                        val polizaJson = gson.toJson(polizaParametro)
                         if (solicitud != null) {
                             crearSolicitudViewModel.datosPropietarioVehiculoAsegurado(solicitud)
                             navController.navigate(route = Rutas.DatosPropietarioVehiculoTercero.ruta)
@@ -101,7 +94,8 @@ fun DatosPropietarioVehiculoAsegurado(
                         }
                     },
                     modifier = Modifier.align(Alignment.CenterHorizontally),
-                    text ="Siguiente")
+                    text = "Siguiente"
+                )
             }
         }
     }
