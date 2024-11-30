@@ -39,9 +39,6 @@ fun SolicitudEnviadaScreen(navController: NavHostController) {
                 popUpTo(0) { inclusive = true }
             }
 
-/*            navController.navigate("${nextRoute}/${gson.toJson(poliza)}"){
-                popUpTo("${Rutas.LoadingScreen.ruta}/{polizaJson}/{nextRoute}") { inclusive = true }
-            }*/
         }
     }
 }

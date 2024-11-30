@@ -18,14 +18,14 @@ fun ConsecuenciaSiniestroDetails(consecuenciaSiniestro: ConsecuenciaSiniestro) {
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
-        )  {
+        ) {
             CamposCheckeablesDetails("Robo parcial", consecuenciaSiniestro.roboParcial)
             CamposCheckeablesDetails("Daño a terceros", consecuenciaSiniestro.danioTerceros)
         }
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
-        )  {
+        ) {
             CamposCheckeablesDetails("Incendio total", consecuenciaSiniestro.incendioTotal)
             CamposCheckeablesDetails("Otros", consecuenciaSiniestro.otros)
         }

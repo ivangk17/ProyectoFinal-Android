@@ -22,12 +22,14 @@ fun MultipleLineText(label: String, texto: String) {
             .padding(horizontal = 1.dp, vertical = 4.dp)
             .fillMaxWidth(1.0F)
     ) {
-        Column(modifier = Modifier
-            .padding(bottom = 10.dp),
+        Column(
+            modifier = Modifier
+                .padding(bottom = 10.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(label, style = TextStyle(fontSize = 20.sp), modifier = Modifier.padding(10.dp))
-            Text(texto,
+            Text(
+                texto,
                 modifier = Modifier.padding(8.dp),
                 color = Color(red = 33, green = 33, blue = 33, alpha = 205)
             )

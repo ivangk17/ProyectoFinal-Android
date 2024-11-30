@@ -32,6 +32,7 @@ import com.example.login.ui.viewmodels.mainactivityviewmodel.MainActivityViewMod
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(mainViewModel: MainActivityViewModel) {
@@ -42,16 +43,8 @@ fun MainScreen(mainViewModel: MainActivityViewModel) {
     val routesWithDrawer = AppNavigationActions.routesWithDrawer
     val currentLocation = navController.currentBackStackEntryAsState().value?.destination?.route
     val email by mainViewModel.email.collectAsState()
-    // mainViewModel.updateEmail()
 
-    // var lastScreen: String? = ""
-    /*
-        LaunchedEffect(Unit) {
-            if (isAuthenticated) {
-                mainViewModel.updateEmail()
-            }
-        }
-    */
+
     // Abre el drawer cuando sea necesario
     LaunchedEffect(mainViewModel.drawerShouldBeOpened.collectAsState().value) {
         if (mainViewModel.drawerShouldBeOpened.value && currentLocation in routesWithDrawer) {

@@ -2,9 +2,7 @@ package com.example.login.ui.viewmodels
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.login.data.network.services.GetServicePolizas
 import com.example.login.data.network.services.GetStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -13,7 +11,6 @@ import javax.inject.Inject
 @HiltViewModel
 class LoadingViewModel @Inject constructor(
     private val getStatus: GetStatus,
-    getServicePolizas: GetServicePolizas
 ) : ViewModel() {
 
     var _status = mutableStateOf<Boolean>(false)
@@ -49,7 +46,6 @@ class LoadingViewModel @Inject constructor(
     fun setAttemps(attemps: Int) {
         _attemps.value = attemps
     }
-
 
 
 }

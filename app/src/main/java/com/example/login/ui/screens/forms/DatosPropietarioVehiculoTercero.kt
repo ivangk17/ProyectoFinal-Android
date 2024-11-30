@@ -22,14 +22,12 @@ import com.example.login.data.models.vehiculos.ColorVehiculo
 import com.example.login.data.models.vehiculos.TipoVehiculo
 import com.example.login.navigation.Rutas
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
-import com.example.login.ui.viewmodels.forms.DatosPropietarioVehiculoTerceroViewModel
 import com.example.login.utilities.showToastError
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun DatosPropietarioVehiculoTercero(
     navController: NavController,
-    viewModel: DatosPropietarioVehiculoTerceroViewModel,
     crearSolicitudViewModel: CrearSolicitudViewModel
 ) {
     val context = LocalContext.current

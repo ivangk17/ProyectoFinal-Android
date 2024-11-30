@@ -11,7 +11,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DaniosVehiculoTerceroViewModel @Inject constructor(
-    getServicePolizas: GetServicePolizas
 ) : ViewModel(), DaniosViewModel {
 
     override var solicitud = Solicitud()

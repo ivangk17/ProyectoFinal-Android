@@ -12,7 +12,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.login.components.AppButton
 import com.example.login.components.DatePicker
@@ -22,7 +21,6 @@ import com.example.login.data.models.personas.Sexo
 import com.example.login.data.models.personas.user.TipoConductor
 import com.example.login.navigation.Rutas
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
-import com.example.login.ui.viewmodels.forms.ConductorVehiculoTerceroViewModel
 import com.example.login.utilities.showToastError
 
 
@@ -30,7 +28,6 @@ import com.example.login.utilities.showToastError
 @Composable
 fun ConductorVehiculoTercero(
     navController: NavController,
-    viewModel: ConductorVehiculoTerceroViewModel,
     crearSolicitudViewModel: CrearSolicitudViewModel
 ) {
     val optionsSexo = Sexo.entries

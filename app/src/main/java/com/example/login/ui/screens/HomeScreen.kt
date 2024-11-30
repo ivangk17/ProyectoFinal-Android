@@ -1,14 +1,14 @@
 package com.example.login.ui.screens
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Button
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -47,6 +47,7 @@ fun HomeScreen(navController: NavHostController, homeViewModel: HomeViewModel) {
                     modifier = Modifier.align(Alignment.Center)
                 )
             }
+
             is HomeUiState.Success -> {
                 val polizasList = (uiState as HomeUiState.Success).solicitudes
                 Column(
@@ -67,6 +68,7 @@ fun HomeScreen(navController: NavHostController, homeViewModel: HomeViewModel) {
                     }
                 }
             }
+
             is HomeUiState.Empty -> {
                 Text(
                     text = (uiState as HomeUiState.Empty).message,
@@ -78,6 +80,7 @@ fun HomeScreen(navController: NavHostController, homeViewModel: HomeViewModel) {
                         .padding(16.dp)
                 )
             }
+
             is HomeUiState.Error -> {
                 Text(
                     text = "Error: ${(uiState as HomeUiState.Error).message}",

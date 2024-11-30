@@ -19,8 +19,7 @@ import com.example.login.ui.viewmodels.solicitudesviewmodel.SolicitudDetailsView
 @Composable
 fun SolicitudDetailsScreen(
     solicitudId: String,
-    viewModel: SolicitudDetailsViewModel,
-    navController: NavHostController
+    viewModel: SolicitudDetailsViewModel
 ) {
     val solicitudCarga = viewModel.loadInfoSolicitud(solicitudId)
     val solicitud =viewModel.solicitud.value

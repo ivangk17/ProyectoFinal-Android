@@ -18,7 +18,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.login.components.DropdownMenuSample
 import com.example.login.components.FieldStringForms
@@ -35,7 +34,7 @@ fun LugarAsistencia(
     navController: NavController,
     viewModel: LugarAsistenciaViewModel,
     crearSolicitudViewModel: CrearSolicitudViewModel
-){
+) {
     val options = EstadoLesiones.entries
     val context = LocalContext.current
     var huboCentroAsistencia by remember { mutableStateOf(false) }
@@ -63,7 +62,7 @@ fun LugarAsistencia(
                         onValueChange = { newValue -> viewModel.onCampoChange(index, newValue) }
                     )
                 }
-                items(viewModel.camposCheckeables.size){ index ->
+                items(viewModel.camposCheckeables.size) { index ->
                     val campo = viewModel.camposCheckeables[index]
 
                     SwitchCustom(
@@ -95,9 +94,9 @@ fun LugarAsistencia(
             onClick = {
                 val solicitud = viewModel.crearSolicitudPoliza()
                 Log.d("LUGAR", huboCentroAsistencia.toString())
-                if(!huboCentroAsistencia){
+                if (!huboCentroAsistencia) {
                     crearSolicitudViewModel.sinLugarAsistencia(navController)
-                }else if(huboCentroAsistencia && solicitud != null){
+                } else if (huboCentroAsistencia && solicitud != null) {
                     crearSolicitudViewModel.lugarAsistencia(solicitud, navController)
                 } else {
                     showToastError(context, "error: No se puede crear la solicitud")

@@ -1,9 +1,11 @@
 package com.example.login
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.login.components.MyAppTheme
 import com.example.login.data.network.services.LoginService
@@ -19,6 +21,7 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var loginService: LoginService
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

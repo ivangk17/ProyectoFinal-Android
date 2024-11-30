@@ -1,13 +1,10 @@
 package com.example.login.ui.screens.changepassword
 
 import android.content.Context
-import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavController
 import com.example.login.data.models.ErrorResponse
 import com.example.login.data.models.fields.FormField
 import com.example.login.data.models.fields.TipoCampo
@@ -52,7 +49,7 @@ class ChangePasswordViewModel @Inject constructor(
         currentPassword.error.value = null
     }
 
-    fun handleChangePassword(context: Context,  onPasswordChanged: () -> Unit) {
+    fun handleChangePassword(context: Context, onPasswordChanged: () -> Unit) {
         validatePassword(campos, currentPassword)
 
         if (campos.all { it.error.value == null }) {
@@ -65,7 +62,7 @@ class ChangePasswordViewModel @Inject constructor(
                     )
                     if (response.isSuccessful) {
                         showToastSucces(context, "Contraseña cambiada con exito!")
-                  onPasswordChanged()  //Agregado
+                        onPasswordChanged()  //Agregado
                     } else {
                         val errorBody = response.errorBody()?.string()
                         val apiError = errorBody?.let {

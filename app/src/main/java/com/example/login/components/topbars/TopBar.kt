@@ -8,8 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -53,11 +51,15 @@ fun TopBar(
                         .align(Alignment.CenterStart)
                         .absoluteOffset(x = (-10).dp)
                 ) {
-                    Icon(painter = painterResource(
-                        id = R.drawable.menu_icon),
+                    Icon(
+                        painter = painterResource(
+                            id = R.drawable.menu_icon
+                        ),
                         contentDescription = "Open Drawer",
-                        modifier = Modifier.size(38.dp)
-                            .padding(start =5.dp))
+                        modifier = Modifier
+                            .size(38.dp)
+                            .padding(start = 5.dp)
+                    )
                 }
             }
 

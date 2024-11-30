@@ -1,7 +1,6 @@
 package com.example.login.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -39,7 +38,12 @@ import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TimePicker(label: String, valor: MutableState<String?>, error: MutableState<String?>, onTimeSelected: (String) -> Unit) {
+fun TimePicker(
+    label: String,
+    valor: MutableState<String?>,
+    error: MutableState<String?>,
+    onTimeSelected: (String) -> Unit
+) {
     var showTimePicker by remember { mutableStateOf(false) }
     val calendar = Calendar.getInstance()
     val selectedTime = remember { mutableStateOf<Date?>(null) }
