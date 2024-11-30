@@ -17,9 +17,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.login.R
 import com.example.login.data.models.poliza.Poliza
 
 @Composable
@@ -44,8 +46,8 @@ fun PolizaCard(poliza: Poliza, onClick: () -> Unit) {
         ) {
 
             Image(
-                painter = painterResource(id = getVehicleIcon(poliza.vehiculo.dominio)), // Esto es un ejemplo, ajusta según tu recurso
-                contentDescription = "Vehicle Icon",
+                painter = painterResource(id = getVehicleIcon(poliza.vehiculo.dominio)),
+                contentDescription = stringResource(R.string.vehicle_icon),
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .size(48.dp)

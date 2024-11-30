@@ -13,7 +13,6 @@ data class Poliza(
     val primaSegura: String = "",
     val deducible: String = "",
     val vehiculo: VehiculoPoliza = VehiculoPoliza()
-    //val vehiculo: VehiculoPropietarioAsegurado = VehiculoPropietarioAsegurado()
 
 
 )

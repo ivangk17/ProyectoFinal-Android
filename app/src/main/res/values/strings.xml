@@ -99,6 +99,8 @@
     <string name="detalle_bien_asegurado">Detalle del Bien Asegurado</string>
     <string name="seleccione_hora">Selecciona la hora</string>
     <string name="cerrar">Cerrar</string>
+    <string name="vehicle_icon">Vehicle Icon</string>
+    <string name="danio_vehiculo_tercero">Daños del Vehículo Tercero</string>
 
 
 </resources>
