@@ -12,7 +12,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.login.R
 import com.example.login.navigation.Rutas
 import com.example.login.ui.screens.gson
 import kotlinx.coroutines.delay
@@ -32,7 +38,10 @@ fun SolicitudEnviadaScreen(navController: NavHostController) {
             .wrapContentSize(Alignment.Center)
     ) {
         if (!ok) {
-            Text("La solicitud fue enviada correctamente")
+            Text(
+                text = stringResource(R.string.solicitud_enviada),
+                style = TextStyle(fontSize = 18.sp, textAlign = TextAlign.Center, fontWeight = FontWeight.SemiBold)
+            )
             ok = true
         } else {
             navController.navigate(Rutas.HomeScreen.ruta){

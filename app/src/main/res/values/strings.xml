@@ -101,6 +101,7 @@
     <string name="cerrar">Cerrar</string>
     <string name="vehicle_icon">Vehicle Icon</string>
     <string name="danio_vehiculo_tercero">Daños del Vehículo Tercero</string>
+    <string name="solicitud_enviada">La solicitud fue enviada correctamente</string>
 
 
 </resources>
