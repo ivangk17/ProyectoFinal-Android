@@ -115,10 +115,3 @@ fun LinkItem(
     }
 }
 
-
-@Composable
-@Preview
-fun LinkItemPreview() {
-    //LinkItem("Quiero mi tarjeta física", "", isFirst = true, isLast = false)
-    //LinkItem("Ya tengo mi tarjeta física", "Activa tu tarjeta para comenzar a usarla", isFirst = false, isLast = true)
-}

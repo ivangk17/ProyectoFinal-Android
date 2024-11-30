@@ -30,7 +30,7 @@ fun NavDrawer(
         DrawerHeader(email)
         Spacer(modifier = Modifier.height(24.dp))
 
-        DrawerContent(navigationActions,drawerState, scope)
+        DrawerContent(navigationActions, drawerState, scope)
     }
 }
 

@@ -8,8 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -36,7 +34,6 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TimePicker(
     label: String,
@@ -57,7 +54,6 @@ fun TimePicker(
     }
 
     Column(modifier = Modifier.fillMaxWidth()) {
-        val shapeClockIcon = RoundedCornerShape(25.dp)
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.padding(8.dp)
@@ -81,8 +77,6 @@ fun TimePicker(
                 trailingIcon = {
                     IconButton(onClick = { showTimePicker = !showTimePicker }) {
                         Icon(
-//                            modifier = Modifier.padding(start = 8.dp)
-//                                .border(width = 1.dp, color = Color.Black, shape = shapeClockIcon),
                             painter = painterResource(id = R.drawable.ic_clock),
                             contentDescription = "Select time"
                         )

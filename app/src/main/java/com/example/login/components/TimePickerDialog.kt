@@ -10,9 +10,11 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.window.Dialog
+import com.example.login.R
 import java.util.Calendar
 
 
@@ -33,7 +35,7 @@ fun TimePickerDialog(
             Column(
                 modifier = Modifier.padding(16.dp)
             ) {
-                Text("Selecciona la hora", style = MaterialTheme.typography.headlineMedium)
+                Text(stringResource(R.string.seleccione_hora), style = MaterialTheme.typography.headlineMedium)
                 Spacer(modifier = Modifier.height(8.dp))
                 AndroidView(
                     factory = { context ->
@@ -51,7 +53,7 @@ fun TimePickerDialog(
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Button(onClick = onDismissRequest) {
-                    Text("Cerrar")
+                    Text(stringResource(R.string.cerrar))
                 }
             }
         }

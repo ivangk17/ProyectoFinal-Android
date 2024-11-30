@@ -61,7 +61,7 @@ fun DrawerContent(
             stringResource(
                 R.string.log_out_text
             ),
-            modifier = Modifier.padding( start = 7.dp, top = 50.dp)
+            modifier = Modifier.padding(start = 7.dp, top = 50.dp)
         ) {
             scope.launch {
                 navigationActions.navigateToLogin()

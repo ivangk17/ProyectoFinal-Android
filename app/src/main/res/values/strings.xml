@@ -29,7 +29,7 @@
     <string name="dni">DNI:</string>
     <string name="email">Email:</string>
     <string name="telefono">Teléfono:</string>
-    <string name="fecha_nac">Fecha de nacimiento:</string>
+    <string name="fecha_nacimiento">Fecha de nacimiento:</string>
     <string name="sexo">Sexo:</string>
     <string name="tipo_camino">Tipo de camino:</string>
     <string name="estado_tiempo">Estado del tiempo:</string>
@@ -87,6 +87,18 @@
     <string name="anio">Año:</string>
     <string name="dominio">Dominio</string>
     <string name="uso_vehiculo">Uso del Vehículo:</string>
+    <string name="select_date">Select date</string>
+    <string name="nombre_completo">Nombre Completo:</string>
+    <string name="direccion">Dirección:</string>
+    <string name="codigo_postal">Código postal:</string>
+    <string name="camion">Camion</string>
+    <string name="poliza">Poliza:</string>
+    <string name="tipo_cobertura">Tipo de cobertura:</string>
+    <string name="prima">Prima:</string>
+    <string name="deducible">Deducible:</string>
+    <string name="detalle_bien_asegurado">Detalle del Bien Asegurado</string>
+    <string name="seleccione_hora">Selecciona la hora</string>
+    <string name="cerrar">Cerrar</string>
 
 
 </resources>

@@ -30,8 +30,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
+import com.example.login.R
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
@@ -92,7 +94,7 @@ fun DatePicker(
                     IconButton(onClick = { showDatePicker = !showDatePicker }) {
                         Icon(
                             imageVector = Icons.Default.DateRange,
-                            contentDescription = "Select date"
+                            contentDescription = stringResource(R.string.select_date)
                         )
                     }
                 },

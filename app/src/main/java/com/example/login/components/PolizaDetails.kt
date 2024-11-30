@@ -10,9 +10,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.login.R
 import com.example.login.components.solicituddetails.TextPolicyDetails
 import com.example.login.data.models.poliza.Poliza
 
@@ -31,7 +33,7 @@ fun PolizaDetails(poliza: Poliza) {
                 Box() {
                     Row(modifier = Modifier.padding(bottom = 10.dp)) {
                         Text(
-                            text = "Poliza:",
+                            text = stringResource(R.string.poliza),
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(end = 2.dp),
                             fontSize = 15.sp
@@ -46,30 +48,26 @@ fun PolizaDetails(poliza: Poliza) {
                     }
                 }
             }
-            TextPolicyDetails("Aseguradora:", poliza.aseguradora)
-            Row {
-                //TODO obtener los datos del asegurado
-                //TextPolicyDetails("Asegurado:" ,"Nombre del asegurado")
-                //TextPolicyDetails("Dni:", poliza.dniAsegurado)
-            }
-            TextPolicyDetails("Tipo de cobertura:", poliza.tipoCobertura)
+            TextPolicyDetails(stringResource(R.string.aseguradora), poliza.aseguradora)
+
+            TextPolicyDetails(stringResource(R.string.tipo_cobertura), poliza.tipoCobertura)
 
             Row {
-                TextPolicyDetails("Prima:", "$ ${poliza.primaSegura}")
-                TextPolicyDetails("Deducible:", "$ ${poliza.deducible}")
+                TextPolicyDetails(stringResource(R.string.prima), "$ ${poliza.primaSegura}")
+                TextPolicyDetails(stringResource(R.string.deducible), "$ ${poliza.deducible}")
             }
             Text(
-                "Detalle del Bien Asegurado",
+                stringResource(R.string.detalle_bien_asegurado),
                 fontSize = 17.sp,
                 modifier = Modifier.padding(top = 15.dp, bottom = 12.dp)
             )
-            TextPolicyDetails("Marca:", poliza.vehiculo.marca)
+            TextPolicyDetails(stringResource(R.string.marca), poliza.vehiculo.marca)
             Row {
-                TextPolicyDetails("Modelo:", poliza.vehiculo.modelo)
-                TextPolicyDetails("Año:", poliza.vehiculo.anio.toString())
+                TextPolicyDetails(stringResource(R.string.modelo), poliza.vehiculo.modelo)
+                TextPolicyDetails(stringResource(R.string.anio), poliza.vehiculo.anio.toString())
             }
-            TextPolicyDetails("Tipo del Vehiculo:", poliza.vehiculo.tipoVehiculo)
-            TextPolicyDetails("Dominio:", poliza.vehiculo.dominio)
+            TextPolicyDetails(stringResource(R.string.tipo_vehiculo), poliza.vehiculo.tipoVehiculo)
+            TextPolicyDetails(stringResource(R.string.dominio), poliza.vehiculo.dominio)
 
         }
     }
