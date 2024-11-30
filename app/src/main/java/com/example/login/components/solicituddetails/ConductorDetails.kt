@@ -10,7 +10,8 @@ import com.example.login.data.models.personas.ConductorAsegurado
     TituloH2Details("Datos Vehiculares")
     TextSolicitudDetails("N° Registro de conducir:", conductor.nroRegistro)
     TextSolicitudDetails("Clase de registro:", conductor.claseRegistro)
-    TextSolicitudDetails("Fecha de expedicion del registro:", conductor.fechaRegistroExpedicion)
-    TextSolicitudDetails("Fecha de vencimiento del registro:", conductor.fechaRegistroVencimiento)
-    TextSolicitudDetails("Relacion con el asegurado:", conductor.relacionAsegurado)
+    TituloH2Details("Fechas")
+    TextSolicitudDetails("Expedición del registro:", conductor.fechaRegistroExpedicion)
+    TextSolicitudDetails("Vencimiento del registro:", conductor.fechaRegistroVencimiento)
+    TextSolicitudDetails("Relación con el asegurado:", conductor.relacionAsegurado)
 }

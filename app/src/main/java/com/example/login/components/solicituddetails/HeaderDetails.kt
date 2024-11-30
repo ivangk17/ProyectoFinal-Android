@@ -22,41 +22,51 @@ import androidx.compose.ui.unit.sp
 
 
 @Composable
-fun HeaderDetails(label: String, contenido: @Composable () -> Unit){
+fun HeaderDetails(label: String, contenido: @Composable () -> Unit) {
     var expanded = remember { mutableStateOf(false) }
-    var extraPadding = if(expanded.value) 64.dp else 0.dp
+
     Surface(
         color = MaterialTheme.colorScheme.primary,
         modifier = Modifier
             .padding(horizontal = 1.dp, vertical = 4.dp)
             .fillMaxWidth(1.0F)
 
-    ){
+    ) {
 
 
-            Column(modifier = Modifier
-                .padding(24.dp)) {
-                Row(modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
+        Column(
+            modifier = Modifier
+                .padding(24.dp)
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
 
-                    Column(modifier = Modifier.weight(1f)) {
-                        Text(label, style = TextStyle(fontSize = 20.sp), modifier = Modifier.padding(bottom = 10.dp))
-                    }
-                    if (!expanded.value) {
-                        BotonMostrarMas(expanded, Modifier.padding( end = 1.dp, bottom = 1.dp))
-                    }
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        label,
+                        style = TextStyle(fontSize = 20.sp),
+                        modifier = Modifier.padding(bottom = 10.dp)
+                    )
                 }
-
-                    if(expanded.value){
-                        contenido()
-                        Box(modifier = Modifier.fillMaxWidth()){
-                        BotonMostrarMas(expanded, Modifier.align(Alignment.BottomEnd).padding( top = 10.dp, end = 1.dp, bottom = 1.dp))
-                    }
+                if (!expanded.value) {
+                    BotonMostrarMas(expanded, Modifier.padding(end = 1.dp, bottom = 1.dp))
                 }
             }
 
-
+            if (expanded.value) {
+                contenido()
+                Box(modifier = Modifier.fillMaxWidth()) {
+                    BotonMostrarMas(
+                        expanded,
+                        Modifier
+                            .align(Alignment.BottomEnd)
+                            .padding(top = 10.dp, end = 1.dp, bottom = 1.dp)
+                    )
+                }
+            }
+        }
     }
 }

@@ -23,6 +23,14 @@
     <string name="hide_password">Ocultar contraseña</string>
     <string name="show_password">Mostrar contraseña</string>
     <string name="useful_phones">Nros. útiles</string>
+    <string name="datos_personales">Datos Personales</string>
+    <string name="nombre">Nombre:</string>
+    <string name="apellido">Apellido:\n\n</string>
+    <string name="dni">DNI:</string>
+    <string name="email">Email:</string>
+    <string name="telefono">Teléfono:</string>
+    <string name="fecha_nac">Fecha de nacimiento:</string>
+    <string name="sexo">Sexo:</string>
 
 
 </resources>
