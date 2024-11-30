@@ -38,6 +38,55 @@
     <string name="asistio_bomberos">¿Asistieron los bomberos?:</string>
     <string name="negativo">NO</string>
     <string name="afirmativo">SÍ</string>
+    <string name="mostrar_menos">Mostrar menos</string>
+    <string name="mostrar_mas">Mostrar más</string>
+
+    `Domicilio`
+    <string name="domicilio">Datos Domiciliares</string>
+    <string name="calle">Calle:</string>
+    <string name="numero">Número:</string>
+    <string name="piso">Piso:</string>
+    <string name="departamento">Departamento:</string>
+    <string name="cp">CP:</string>
+    <string name="datos_vehiculares">Datos del Vehículo</string>
+    <string name="nro_registro_conducir">N° Registro de conducir:</string>
+    <string name="clase_registro">Clase de registro:</string>
+    <string name="fechas">Fechas</string>
+    <string name="expedicion_registro">Expedición del registro:</string>
+    <string name="vencimiento_registro">Vencimiento del registro:</string>
+    <string name="relacion_asegurado">Relación con el asegurado:</string>
+    <string name="danio_parcial">Daño parcial</string>
+    <string name="robo_rueda">Robo de rueda</string>
+    <string name="robo_parcial">Robo parcial</string>
+    <string name="danio_terceros">Daño a terceros</string>
+    <string name="incendio_total">Incendio total</string>
+    <string name="otros">Otros</string>
+    <string name="destruccion_total">Destrucción total</string>
+    <string name="robo_total">Robo/Hurto total</string>
+    <string name="rotura_cristal">Rotura de cristales</string>
+    <string name="incendio_parcial">Incendio parcial</string>
+    <string name="datos_siniestro">DATOS DEL SINIESTRO</string>
+    <string name="aseguradora">Aseguradora:</string>
+    <string name="fecha_ocurrencia">Fecha Ocurrencia:</string>
+    <string name="hora_ocurrencia">Hora Ocurrencia:</string>
+    <string name="lugar_ocurrencia">Lugar de Ocurrencia:</string>
+    <string name="cantidad_autos_participantes">Cantidad de autos que participaron:</string>
+    <string name="hubo_danios_materiales">¿Hubo Daños Materiales?:</string>
+    <string name="hubo_danios_personales">¿Hubo Daños Personales?:</string>
+    <string name="hubo_testigos">¿Hubo Testigos?:</string>
+    <string name="hubo_denuncia">¿Hubo Denuncia Policial?:</string>
+    <string name="nombre_centro">Nombre del centro:</string>
+    <string name="queda_internado">¿Queda internado?</string>
+    <string name="estado_lesiones">Estado de lesiones:</string>
+    <string name="descripcion_lesiones">Descripción de lesiones</string>
+    <string name="muy_grave">Muy Grave</string>
+    <string name="marca">Marca:</string>
+    <string name="modelo">Modelo:</string>
+    <string name="tipo_vehiculo">Tipo del Vehículo:</string>
+    <string name="color">Color:</string>
+    <string name="anio">Año:</string>
+    <string name="dominio">Dominio</string>
+    <string name="uso_vehiculo">Uso del Vehículo:</string>
 
 
 </resources>

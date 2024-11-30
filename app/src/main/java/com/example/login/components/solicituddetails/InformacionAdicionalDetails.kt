@@ -1,29 +1,34 @@
 package com.example.login.components.solicituddetails
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
+import com.example.login.R
 import com.example.login.components.TextSolicitudDetails
 import com.example.login.data.models.solicitud.Solicitud
 
 @Composable
 fun InformacionAdicionalDetails(solicitud: Solicitud) {
-    var daniosMateriales = "NO"
-    var daniosPersonales = "NO"
-    var huboTestigos = "NO"
+    val negativo = stringResource(R.string.negativo)
+    val afirmativo = stringResource(R.string.afirmativo)
+
+    var daniosMateriales = negativo
+    var daniosPersonales = negativo
+    var huboTestigos = negativo
 
     if(solicitud.datosSiniestro.hubieronDaniosMateriales == true){
-        daniosMateriales = "SÍ"
+        daniosMateriales = afirmativo
     }
 
     if(solicitud.datosSiniestro.hubieronDaniosPersonales == true){
-        daniosPersonales = "SÍ"
+        daniosPersonales = afirmativo
     }
 
     if(solicitud.datosSiniestro.hubieronTestigos == true){
-        huboTestigos = "SÍ"
+        huboTestigos = afirmativo
     }
 
-    TextSolicitudDetails("¿Hubo Daños Materiales?:",daniosMateriales)
-    TextSolicitudDetails("¿Hubo Daños Personales?:", daniosPersonales)
-    TextSolicitudDetails("¿Hubo Testigos?:", huboTestigos)
-    TextSolicitudDetails("¿Hubo Denuncia Policial?:", solicitud.datosSiniestro.huboDenuncia.toString())
+    TextSolicitudDetails(stringResource(R.string.hubo_danios_materiales),daniosMateriales)
+    TextSolicitudDetails(stringResource(R.string.hubo_danios_personales), daniosPersonales)
+    TextSolicitudDetails(stringResource(R.string.hubo_testigos), huboTestigos)
+    TextSolicitudDetails(stringResource(R.string.hubo_denuncia), solicitud.datosSiniestro.huboDenuncia.toString())
 }

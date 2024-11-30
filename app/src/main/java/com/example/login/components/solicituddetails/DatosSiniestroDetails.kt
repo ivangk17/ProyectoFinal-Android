@@ -9,9 +9,11 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.login.R
 import com.example.login.components.TextSolicitudDetails
 import com.example.login.data.models.poliza.Poliza
 import com.example.login.data.models.solicitud.Solicitud
@@ -31,19 +33,19 @@ fun DatosSiniestroDetails(solicitud: Solicitud, poliza: Poliza) {
                         .weight(1f)
                         .padding(bottom = 10.dp)) {
                         Text(
-                            text = "DATOS DEL SINIESTRO",
+                            text = stringResource(R.string.datos_siniestro),
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(bottom = 15.dp)
                         )
-                        TextSolicitudDetails("Aseguradora:", poliza.aseguradora)
-                        TextSolicitudDetails("Fecha Ocurrencia:", solicitud.datosSiniestro.fechaOcurrencia.toString())
-                        TextSolicitudDetails("Hora Ocurrencia:", solicitud.datosSiniestro.horaOcurrencia)
+                        TextSolicitudDetails(stringResource(R.string.aseguradora), poliza.aseguradora)
+                        TextSolicitudDetails(stringResource(R.string.fecha_ocurrencia), solicitud.datosSiniestro.fechaOcurrencia.toString())
+                        TextSolicitudDetails(stringResource(R.string.hora_ocurrencia), solicitud.datosSiniestro.horaOcurrencia)
 
-                        TextSolicitudDetails("Lugar de Ocurrencia:", solicitud.datosSiniestro.lugarOcurrencia)
-                        TextSolicitudDetails("CP:", solicitud.datosSiniestro.codigoPostal.toString())
+                        TextSolicitudDetails(stringResource(R.string.lugar_ocurrencia), solicitud.datosSiniestro.lugarOcurrencia)
+                        TextSolicitudDetails(stringResource(R.string.cp), solicitud.datosSiniestro.codigoPostal.toString())
 
-                        TextSolicitudDetails("Cantidad de autos que participaron:", solicitud.datosSiniestro.cantidadAutosParticipantes.toString())
+                        TextSolicitudDetails(stringResource(R.string.cantidad_autos_participantes), solicitud.datosSiniestro.cantidadAutosParticipantes.toString())
                     }
                 }
             }
