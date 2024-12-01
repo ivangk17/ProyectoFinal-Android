@@ -5,10 +5,12 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.login.R
 import com.example.login.ui.screens.HomeScreen
 import com.example.login.ui.screens.LoadingScreen
 import com.example.login.ui.screens.LoginScreen
@@ -157,7 +159,7 @@ fun AppNavigation(
             route = Rutas.DaniosVehiculosTercero.ruta
         ) { viewModel ->
             DaniosDeVehiculos(
-                "Daños del Vehiculo Tercero",
+                stringResource(R.string.danio_vehiculo_tercero),
                 navController,
                 viewModel,
                 crearSolicitudViewModel = crearSolicitudViewModel,
@@ -214,7 +216,7 @@ fun AppNavigation(
 
             ProfileScreen(profileViewModel, navController)
         }
-///CORREGIR
+
         composable(Rutas.ChangePassword.ruta) {
             val changePasswordViewModel: ChangePasswordViewModel = hiltViewModel()
             ChangePasswordScreen(

@@ -50,7 +50,7 @@ fun SolicitudCard(solicitud: SolicitudSimplificada, onClick: () -> Unit) {
                 Image(
                     painter = painterResource(id = R.drawable.detail_item),
                     contentDescription = stringResource(R.string.solicitud_image_detail),
-                    modifier = Modifier.size(50.dp)// Agrega una descripción relevante
+                    modifier = Modifier.size(50.dp)
                 )
 
                 Text(

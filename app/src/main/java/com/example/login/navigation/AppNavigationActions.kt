@@ -40,9 +40,6 @@ class AppNavigationActions(
     @Composable
     fun getColorTopBar(location: String?): Color {
         return when (location) {
-            //Rutas.HomeScreen.ruta -> Color.White
-            //AppDestinations.HOME_ROUTE -> Gray100
-
             else -> MaterialTheme.colorScheme.background
         }
     }
@@ -132,7 +129,6 @@ class AppNavigationActions(
             else -> false
         }
 
-        //navController.navigate(lastScreen.toString())
     }
 
     fun moveText(location: String?): Boolean {
