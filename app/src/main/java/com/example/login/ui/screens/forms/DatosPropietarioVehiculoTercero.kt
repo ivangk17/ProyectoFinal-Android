@@ -11,8 +11,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.login.R
 import com.example.login.components.AppButton
 import com.example.login.components.DatePicker
 import com.example.login.components.DropdownMenuSample
@@ -51,7 +53,7 @@ fun DatosPropietarioVehiculoTercero(
             )
             if(index == 7){
                 DatePicker(
-                    label = "Fecha de nacimiento",
+                    label = stringResource(R.string.fecha_nacimiento_titulo),
                     valor = formState.fechaNacimiento,
                     error = formState.errorFechaNacimiento,
                     onDateSelected = { newValue -> crearSolicitudViewModel.setFechaNacimientoPropTercero(formState,newValue) }
@@ -66,14 +68,14 @@ fun DatosPropietarioVehiculoTercero(
             }
             if (index == 9){
                 DropdownMenuSample(
-                    title = "Tipo de vehículo",
+                    title = stringResource(R.string.tipo_vehiculo_titulo),
                     options = optionsTipoVehiculo,
                     selectedOption = formState.tipoVehiculo.value,
                     onOptionSelected = {  crearSolicitudViewModel.setTipoVehiculoTercero(formState, it ) },
                     label = { it.displayName }
                 )
                 DropdownMenuSample(
-                    title = "Color",
+                    title = stringResource(R.string.color_titulo),
                     options = optionsColor,
                     selectedOption = formState.colorDelVehiculo.value,
                     onOptionSelected = {  crearSolicitudViewModel.setColorVehiculoTercero(formState, it ) },
@@ -84,7 +86,7 @@ fun DatosPropietarioVehiculoTercero(
 
         item {
             DatePicker(
-                label = "Fecha vencimiento de la poliza",
+                label = stringResource(R.string.vencimiento_poliza),
                 valor = formState.fechaDeVencimiento,
                 error = formState.errorFechaVencimiento,
                 onDateSelected = { newValue -> crearSolicitudViewModel.setFechaDeVencimientoPropTercero(formState,newValue) }
@@ -108,7 +110,7 @@ fun DatosPropietarioVehiculoTercero(
                         }
                     },
                     modifier = Modifier.align(Alignment.CenterHorizontally),
-                    text = "Siguiente"
+                    text = stringResource(R.string.siguiente)
                 )
 
             }

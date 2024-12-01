@@ -11,8 +11,10 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.login.R
 import com.example.login.components.AppButton
 import com.example.login.components.DatePicker
 import com.example.login.components.FieldStringForms
@@ -43,14 +45,14 @@ fun DatosSiniestro(
 
         item {
             DatePicker(
-                label = "Fecha de ocurrencia",
+                label = stringResource(R.string.fecha_ocurrencia),
                 valor = viewModel.fechaOcurrencia,
                 error = viewModel.errorFechaOcurrencua,
                 onDateSelected = { newValue -> viewModel.setFechaOcurrencia(newValue) }
             )
             //DatePicker2()
             TimePicker(
-                label = "Hora de ocurrencia",
+                label = stringResource(R.string.hora_ocurrencia_titulo),
                 valor = viewModel.horaOcurriencia,
                 error = viewModel.errorHoraOcurrencua,
                 onTimeSelected = { newValue -> viewModel.setHoraOcurrencia(newValue) })
@@ -70,7 +72,7 @@ fun DatosSiniestro(
 
         item {
             AppButton(
-                text = "Siguiente"
+                text = stringResource(R.string.siguiente),
             )
             {
                 val solicitud = viewModel.crearSolicitudPoliza()

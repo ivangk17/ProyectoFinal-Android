@@ -9,8 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.login.R
 import com.example.login.components.AppButton
 import com.example.login.components.DropdownMenuSample
 import com.example.login.components.FieldStringForms
@@ -57,7 +59,7 @@ fun DatosPropietarioVehiculoAsegurado(
 
                 if (index == 8) {
                     DropdownMenuSample(
-                        title = "Sexo",
+                        title = stringResource(R.string.sexo_titulo),
                         options = optionsSexo,
                         selectedOption = viewModel.sexoSeleccionado.value,
                         onOptionSelected = { viewModel.sexoSeleccionado.value = it },
@@ -68,14 +70,14 @@ fun DatosPropietarioVehiculoAsegurado(
 
             item {
                 DropdownMenuSample(
-                    title = "Color",
+                    title = stringResource(R.string.color_titulo),
                     options = optionsColor,
                     selectedOption = viewModel.colorDelVehiculo.value,
                     onOptionSelected = { viewModel.colorDelVehiculo.value = it },
                     label = { it.displayName }
                 )
                 DropdownMenuSample(
-                    title = "Uso del vehiculo",
+                    title = stringResource(R.string.uso_vehiculo_titulo),
                     options = optionsUsoVehiculo,
                     selectedOption = viewModel.usoDelVehiculo.value,
                     onOptionSelected = { viewModel.usoDelVehiculo.value = it },
@@ -94,7 +96,7 @@ fun DatosPropietarioVehiculoAsegurado(
                         }
                     },
                     modifier = Modifier.align(Alignment.CenterHorizontally),
-                    text = "Siguiente"
+                    text = stringResource(R.string.siguiente)
                 )
             }
         }

@@ -17,8 +17,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.login.R
 import com.example.login.components.DropdownMenuSample
 import com.example.login.components.FieldStringForms
 import com.example.login.components.MultipleLine
@@ -45,7 +47,7 @@ fun LugarAsistencia(
             .padding(25.dp)
     ) {
         CamposCheckeablesDetails(
-            label = "Hubo Centro de Asistencia?",
+            label = stringResource(R.string.confirmar_asistencia),
             campo = huboCentroAsistencia,
             onCheckedChange = { huboCentroAsistencia = it }
         )
