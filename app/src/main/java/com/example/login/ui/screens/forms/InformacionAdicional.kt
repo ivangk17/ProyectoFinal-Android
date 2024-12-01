@@ -9,8 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.login.R
 import com.example.login.components.AppButton
 import com.example.login.components.DropdownMenuSample
 import com.example.login.components.SwitchCustom
@@ -47,7 +49,7 @@ fun InformacionAdicional(
 
             item {
                 DropdownMenuSample(
-                    title = "Seleccionar si hubo denuncia",
+                    title = stringResource(R.string.seleccionar_denuncia),
                     options = options,
                     selectedOption = viewModel.huboDenunciaSeleccion.value,
                     onOptionSelected = { viewModel.huboDenunciaSeleccion.value = it },
@@ -66,7 +68,7 @@ fun InformacionAdicional(
                         navController.navigate("${Rutas.LoadingScreen.ruta}/$polizaJson/${Rutas.DatosPropietarioVehiculoAsegurado.ruta}")
                     },
                     modifier = Modifier.align(Alignment.CenterHorizontally),
-                    text = "Siguiente"
+                    text = stringResource(R.string.siguiente)
                 )
 
             }

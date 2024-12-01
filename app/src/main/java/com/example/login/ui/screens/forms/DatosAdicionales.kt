@@ -10,9 +10,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.example.login.R
 import com.example.login.components.DropdownMenuSample
 import com.example.login.components.MultipleLine
 import com.example.login.components.SwitchCustom
@@ -57,7 +59,7 @@ fun DatosAdicionales(
                     label = { it.displayName }
                 )
                 DropdownMenuSample(
-                    title = "Seleccionar el estado del tiempo",
+                    title = stringResource(R.string.seleccionar_clima),
                     options = optionEstadoTiempo,
                     selectedOption = viewModel.estadoTiempo.value,
                     onOptionSelected = { viewModel.estadoTiempo.value = it },
@@ -78,7 +80,7 @@ fun DatosAdicionales(
 
         item {
             MultipleLine(
-                "Observaciones",
+                stringResource(R.string.observaciones),
                 viewModel.observaciones,
                 onValueChange = { newValue -> viewModel.onObservacionChange(newValue) },
                 error = viewModel.errorObservaciones
@@ -98,7 +100,7 @@ fun DatosAdicionales(
                     }
                 }
             ) {
-                Text("Siguiente")
+                Text(stringResource(R.string.siguiente))
             }
         }
     }

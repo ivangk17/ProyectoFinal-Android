@@ -11,8 +11,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.login.R
 import com.example.login.components.AppButton
 import com.example.login.components.DatePicker
 import com.example.login.components.DropdownMenuSample
@@ -58,7 +60,7 @@ fun ConductorVehiculoAsegurado(
 
             if (index == 7) {
                 DatePicker(
-                    label = "Fecha de nacimiento",
+                    label = stringResource(R.string.fecha_nacimiento_titulo),
                     valor = formState.fechaNacimiento,
                     error = formState.errorFechaNacimiento,
                     onDateSelected = { newValue ->
@@ -87,7 +89,7 @@ fun ConductorVehiculoAsegurado(
 
             if (index == 11) {
                 DatePicker(
-                    label = "Fecha de expedicion",
+                    label = stringResource(R.string.fecha_expedicion),
                     valor = formState.fechaExpedicion,
                     error = formState.errorFechaExpedicion,
                     onDateSelected = { newValue ->
@@ -98,7 +100,7 @@ fun ConductorVehiculoAsegurado(
                     }
                 )
                 DatePicker(
-                    label = "Fecha de vencimiento",
+                    label = stringResource(R.string.fecha_vencimiento),
                     valor = formState.fechaDeVencimiento,
                     error = formState.errorFechaVencimiento,
                     onDateSelected = { newValue ->
@@ -130,7 +132,7 @@ fun ConductorVehiculoAsegurado(
                         }
                     },
                     modifier = Modifier.align(Alignment.CenterHorizontally),
-                    text = "Siguiente"
+                    text = stringResource(R.string.siguiente)
                 )
 
             }

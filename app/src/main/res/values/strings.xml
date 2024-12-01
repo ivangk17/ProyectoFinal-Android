@@ -102,6 +102,32 @@
     <string name="vehicle_icon">Vehicle Icon</string>
     <string name="danio_vehiculo_tercero">Daños del Vehículo Tercero</string>
     <string name="solicitud_enviada">La solicitud fue enviada correctamente</string>
+    <string name="fecha_nacimiento_titulo">Fecha de nacimiento</string>
+    <string name="fecha_expedicion">Fecha de expedición</string>
+    <string name="fecha_vencimiento">Fecha de vencimiento</string>
+    <string name="siguiente">Siguiente</string>
+    <string name="sexo_titulo">Sexo</string>
+    <string name="seleccionar_clima">Seleccionar el estado del tiempo</string>
+    <string name="observaciones">Observaciones</string>
+    <string name="color_titulo">Color</string>
+    <string name="uso_vehiculo_titulo">Uso del vehículo</string>
+    <string name="tipo_vehiculo_titulo">Tipo de vehículo</string>
+    <string name="vencimiento_poliza">Fecha vencimiento de la póliza</string>
+    <string name="hora_ocurrencia_titulo">Hora de ocurrencia</string>
+    <string name="seleccionar_denuncia">Seleccionar si hubo denuncia</string>
+    <string name="confirmar_asistencia">¿Hubo atención en centro de Asistencia?</string>
+    <string name="relato_accidente">Relato del accidente</string>
+    <string name="datos_propietario_asegurado">Datos del Propietario del Vehículo Asegurado</string>
+    <string name="informacion_adicional">Información Adicional</string>
+    <string name="datos_propietario_afectado">Datos del Propietario del Vehículo Afectado</string>
+    <string name="conductor_asegurado">Conductor del Vehículo Asegurado</string>
+    <string name="conductor_afectado">Conductor del Vehículo Afectado</string>
+    <string name="datos_adicionales">Datos Adicionales</string>
+    <string name="consecuencia_siniestro">Consecuencia del Siniestro</string>
+    <string name="danios_vehiculo_asegurado">Daños del  Vechículo Asegurado</string>
+    <string name="danios_vehiculo_afectado">Daños del  Vechículo Afectado</string>
+    <string name="lugar_asistencia">Lugar de Asistencia</string>
+    <string name="sin_registro_de_asistencia">No se ha registrado lugar de asistencia</string>
 
 
 </resources>

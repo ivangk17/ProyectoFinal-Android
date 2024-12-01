@@ -7,9 +7,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
+import com.example.login.R
 import com.example.login.components.AppButton
 import com.example.login.components.MultipleLine
 import com.example.login.data.models.solicitud.Solicitud
@@ -51,7 +53,7 @@ fun <T> DaniosDeVehiculos(
                     Log.d("solicitud", "no se creo")
                 }
             },
-            text = "Siguiente"
+            text = stringResource(R.string.siguiente)
         )
 
     }

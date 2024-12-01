@@ -9,8 +9,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.login.R
 import com.example.login.components.MultipleLine
 import com.example.login.navigation.Rutas
 import com.example.login.ui.viewmodels.CrearSolicitudViewModel
@@ -31,7 +33,7 @@ fun RelatoAccidente(
             .padding(25.dp)
     ) {
         MultipleLine(
-            "Relato del accidente",
+            stringResource(R.string.relato_accidente),
             viewModel.relatoAccidente,
             onValueChange = { newValue -> viewModel.onRelatoChange(newValue) },
             error = viewModel.errorRelatoAccidente
@@ -49,7 +51,7 @@ fun RelatoAccidente(
                 }
             }
         ) {
-            Text("Siguiente")
+            Text(stringResource(R.string.siguiente))
         }
     }
 }
